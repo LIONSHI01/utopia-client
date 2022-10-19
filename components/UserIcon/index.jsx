@@ -1,6 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const smallSizeStyles = css`
+  height: 3rem;
+  width: 3rem;
+`;
 
 const IconWrapper = styled.div`
   .placeholder {
@@ -13,12 +18,14 @@ const IconWrapper = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 100px;
+
+    ${(props) => props.size === 's' && smallSizeStyles}
   }
 `;
 
-const UserIcon = ({ username, image, userId }) => {
+const UserIcon = ({ username, image, userId, size }) => {
   return (
-    <IconWrapper>
+    <IconWrapper size={size}>
       <Link href={`/user-profile/${userId}`}>
         <a>
           {image ? (
