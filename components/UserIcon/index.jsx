@@ -12,12 +12,17 @@ const IconWrapper = styled.div`
     height: 3.7rem;
     width: 3.7rem;
     background-color: var(--primary);
-    color: var(--white);
-    font-size: var(--fs);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
+
+    span {
+      color: var(--white);
+      line-height: 0;
+      font-size: var(--fs);
+      text-transform: uppercase;
+    }
 
     ${(props) => props.size === 's' && smallSizeStyles}
   }
@@ -31,7 +36,9 @@ const UserIcon = ({ username, image, userId, size }) => {
           {image ? (
             <img src="" />
           ) : (
-            <div className="placeholder">{username?.slice(0, 1)}</div>
+            <div className="placeholder">
+              <span>{username?.slice(0, 1)}</span>
+            </div>
           )}
         </a>
       </Link>

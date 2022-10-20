@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
@@ -10,6 +11,10 @@ import { UserIcon, Button, BUTTON_TYPES, AuthForm } from '../index';
 import { HeaderWrapper } from './index.styles';
 
 const MainHeader = () => {
+  // STATE MANAGEMENT
+  const [showAuthForm, setShowAuthForm] = useState(false);
+  const { data: user } = useSession();
+  console.log(user);
   return (
     <>
       <HeaderWrapper>
@@ -45,10 +50,28 @@ const MainHeader = () => {
 
           <Button size="x">Sell</Button>
           {/* Temple test */}
-          <UserIcon username="John" />
+          {user && <UserIcon username={user?.user.name} />}
+          {!user && (
+            <>
+              <Button
+                size="x"
+                buttonType={BUTTON_TYPES.outlineGrey}
+                onClick={() => setShowAuthForm(true)}
+              >
+                Sign In
+              </Button>
+              <Button
+                size="x"
+                buttonType={BUTTON_TYPES.base}
+                onClick={() => setShowAuthForm(true)}
+              >
+                Get Start
+              </Button>
+            </>
+          )}
         </div>
       </HeaderWrapper>
-      <AuthForm />
+      {showAuthForm && <AuthForm setShowAuthForm={setShowAuthForm} />}
     </>
   );
 };

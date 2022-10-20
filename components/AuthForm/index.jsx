@@ -6,13 +6,16 @@ import { signupRequest } from '../../utils/authRequest';
 import { Button, BUTTON_TYPES, Overlay } from '../index';
 import { FormContainer } from './index.styles';
 
-const AuthForm = () => {
-  const INITIAL_FORM_FIELD = {
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  };
+const INITIAL_FORM_FIELD = {
+  username: '',
+  email: '',
+  password: '',
+  passwordConfirm: '',
+};
+
+const AuthForm = ({ setShowAuthForm }) => {
+  // CONFIGURATION
+
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
@@ -32,7 +35,8 @@ const AuthForm = () => {
         console.log(res);
       }
     } else {
-      signIn('credentials', { email, password, redirect: '/' });
+      const res = await signIn('credentials', { email, password });
+      console.log(res);
     }
   };
 
@@ -43,14 +47,16 @@ const AuthForm = () => {
           <h2>{isSignup ? 'Sign Up' : 'Sign In'} to Utopia</h2>
         </div>
         <form className="form" onSubmit={onSubmitHandler}>
-          <input
-            name="username"
-            value={username}
-            type="text"
-            placeholder="Username"
-            onChange={onChangeHandler}
-            className="input-field"
-          />
+          {isSignup && (
+            <input
+              name="username"
+              value={username}
+              type="text"
+              placeholder="Username"
+              onChange={onChangeHandler}
+              className="input-field"
+            />
+          )}
           <input
             name="email"
             value={email}
@@ -96,7 +102,7 @@ const AuthForm = () => {
           </Button>
         </div>
       </FormContainer>
-      <Overlay />
+      <Overlay setShowUp={setShowAuthForm} />
     </>
   );
 };

@@ -22,10 +22,13 @@ export const HeaderWrapper = styled.div`
   }
 
   .searchBar {
+    height: 4rem;
+    min-width: 50%;
+    max-width: 65%;
+
     display: flex;
     align-items: center;
-    height: 4rem;
-    width: 65%;
+
     border-radius: var(--br-s);
     border: 1px solid var(--black);
     overflow: hidden;
@@ -40,7 +43,6 @@ export const HeaderWrapper = styled.div`
       width: 100%;
       height: 4rem;
       border: none;
-      /* background-color: green; */
       font-size: var(--fs);
       padding: 1rem;
 

@@ -14,11 +14,12 @@ export const authOptions = {
       name: 'Credentials',
       credentials: {},
       async authorize(credentials, req) {
+        console.log(credentials);
         const { email, password } = credentials;
         await connectMongoose();
 
-        const user = await User.findOne({ email: email });
-
+        const user = await User.findOne({ email: email }).select('+password');
+        console.log(user);
         if (!user) {
           throw Error('No user found with this email');
         }

@@ -3,7 +3,6 @@ import User from '../../../models/userModel';
 import { hashPassword } from '../../../utils/hashPassword';
 
 const handler = async (req, res, next) => {
-  console.log(req.body);
   const { username, email, password } = req.body;
 
   await connectMongoose();

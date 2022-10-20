@@ -14,8 +14,8 @@ const OverlayWrapper = styled.div`
   z-index: 1000;
 `;
 
-const Overlay = () => {
-  return <OverlayWrapper />;
+const Overlay = ({ setShowUp }) => {
+  return <OverlayWrapper onClick={() => setShowUp(false)} />;
 };
 
 export default Overlay;
