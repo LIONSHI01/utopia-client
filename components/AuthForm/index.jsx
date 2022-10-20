@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import { signIn } from 'next-auth/react';
+
+import { signupRequest } from '../../utils/authRequest';
 
 import { Button, BUTTON_TYPES, Overlay } from '../index';
 import { FormContainer } from './index.styles';
 
-const INITIAL_FORM_FIELD = {
-  username: '',
-  email: '',
-  password: '',
-  passwordConfirm: '',
-};
-
 const AuthForm = () => {
+  const INITIAL_FORM_FIELD = {
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
+  };
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
@@ -23,9 +24,17 @@ const AuthForm = () => {
     setFormField({ ...formField, [name]: value });
   };
 
-  // const onSubmitHandler = async (e) => {
-  //   e.preventDefault();
-  // };
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      if (password === passwordConfirm) {
+        const res = await signupRequest({ username, email, password });
+        console.log(res);
+      }
+    } else {
+      signIn('credentials', { email, password, redirect: '/' });
+    }
+  };
 
   return (
     <>
@@ -33,7 +42,7 @@ const AuthForm = () => {
         <div className="heading">
           <h2>{isSignup ? 'Sign Up' : 'Sign In'} to Utopia</h2>
         </div>
-        <form className="form">
+        <form className="form" onSubmit={onSubmitHandler}>
           <input
             name="username"
             value={username}
