@@ -7,10 +7,11 @@ export const ItemWrapper = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
 
   :hover {
-    border-bottom: 2px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
   }
 
   span {

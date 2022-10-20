@@ -18,6 +18,11 @@ export const BaseButton = styled.button`
   background-color: transparent;
   border-radius: 100px;
   cursor: pointer;
+  transition: all 0.3s;
+
+  :active {
+    scale: 0.85;
+  }
 
   ${(props) => props.size === 's' && smallSizeStyles}
   ${(props) => props.size === 'x' && bigSizeStyles}

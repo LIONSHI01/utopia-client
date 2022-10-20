@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   width: 30rem;
-  height: 43rem;
+  height: 42rem;
   border: 1px solid var(--black-light-3);
   border-radius: var(--br-m);
   overflow: hidden;
@@ -22,7 +22,7 @@ export const HeaderContaienr = styled.div`
   .user-info {
     position: relative;
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     align-items: center;
   }
 `;
@@ -31,7 +31,6 @@ export const ImageContainer = styled.div`
   position: relative;
   height: 22rem;
   width: 100%;
-  background-color: orangered;
 `;
 
 export const ContentContainer = styled.div`
@@ -67,5 +66,24 @@ export const ContentContainer = styled.div`
   .buttons-group {
     display: flex;
     justify-content: space-between;
+  }
+
+  .like-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    :active {
+      scale: 0.8;
+    }
+  }
+
+  .icon {
+    color: var(--black-light-3);
+
+    :hover {
+      color: var(--primary);
+    }
   }
 `;

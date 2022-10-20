@@ -43,7 +43,7 @@ const ProfilePreviewCard = () => {
   return (
     <CardContaienr>
       <InfoContainer>
-        <UserIcon />
+        <UserIcon username="Lion" />
         <div className="user-details">
           <p className="name">Username</p>
           <div className="social-links">

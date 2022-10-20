@@ -21,14 +21,23 @@ import {
 } from './index.styles';
 
 const ProductCard = () => {
+  // CONFIGURATION
+  let hoverTimer;
+
+  // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   return (
     <CardContainer>
       <HeaderContaienr>
         <div
           className="user-info"
-          onMouseEnter={() => setShowProfilePreview(true)}
-          onMouseLeave={() => setShowProfilePreview(false)}
+          onMouseEnter={() => {
+            hoverTimer = setTimeout(() => setShowProfilePreview(true), 300);
+          }}
+          onMouseLeave={() => {
+            setShowProfilePreview(false);
+            clearTimeout(hoverTimer);
+          }}
         >
           <UserIcon username="Lion" size="s" />
           {/* Temple PLACEHOLDER  */}
@@ -59,9 +68,9 @@ const ProductCard = () => {
           <span className="status">Brand New</span>
         </div>
         <div className="buttons-group">
-          <IconButton size="x">
-            <BsFillHeartFill size={20} color="var(--black-light-3)" />
-          </IconButton>
+          <button className="like-btn">
+            <BsFillHeartFill size={25} className="icon" />
+          </button>
           <Button size="m" type="button" buttonType={BUTTON_TYPES.base}>
             Make Offer
           </Button>

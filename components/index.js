@@ -6,6 +6,8 @@ import ProductCard from './ProductCard';
 import IconButton, { ICON_BUTTON_TYPES } from './IconButton';
 import Button, { BUTTON_TYPES } from './Button';
 import ProfilePreviewCard from './ProfilePreviewCard';
+import Overlay from './Overlay';
+import AuthForm from './AuthForm';
 
 export {
   MainHeader,
@@ -18,4 +20,6 @@ export {
   Button,
   BUTTON_TYPES,
   ProfilePreviewCard,
+  Overlay,
+  AuthForm,
 };

@@ -20,6 +20,10 @@ const DropdownWindow = ({ subCategories }) => {
 };
 
 const CategoryBarItem = ({ item }) => {
+  // CONFIGURATION
+  // For Delayed Hover effect
+  let timer;
+
   // STATE MANAGEMENT
   const [showMenu, setShowMenu] = useState(false);
 
@@ -27,8 +31,13 @@ const CategoryBarItem = ({ item }) => {
 
   return (
     <ItemWrapper
-      onMouseEnter={() => setShowMenu(true)}
-      onMouseLeave={() => setShowMenu(false)}
+      onMouseEnter={() => {
+        timer = setTimeout(() => setShowMenu(true), 300);
+      }}
+      onMouseLeave={() => {
+        setShowMenu(false);
+        clearTimeout(timer);
+      }}
     >
       <Link href={link}>
         <a>
