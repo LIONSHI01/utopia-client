@@ -1,0 +1,3 @@
+export const USER_ACTION_TYPES = {
+  SET_USER_PROFILE: 'user/SET_USER_PROFILE',
+};

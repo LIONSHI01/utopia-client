@@ -34,7 +34,7 @@ const UserIcon = ({ username, image, userId, size }) => {
       <Link href={`/user-profile/${userId}`}>
         <a>
           {image ? (
-            <img src="" />
+            <img src={image} alt="user" />
           ) : (
             <div className="placeholder">
               <span>{username?.slice(0, 1)}</span>

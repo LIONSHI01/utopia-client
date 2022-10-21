@@ -49,6 +49,7 @@ export const DropdownWrapper = styled.div`
     color: var(--black-light-2);
     font-size: var(--fs-s);
     padding: 0.8rem 0;
+    font-weight: 100;
 
     :hover {
       color: var(--black);

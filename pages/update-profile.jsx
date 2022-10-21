@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import ImageUploading from 'react-images-uploading';
 import axios from 'axios';
 
-const uploadRequest = (data) =>
+const uploadRequest = (data, userEmail) =>
   axios({
     method: 'POST',
-    url: 'http://localhost:8000/api/v1/users/updateProfileImage',
-    headers: { 'Content-Type': 'multipart/form-data' },
+    url: 'http://localhost:3001/api/v1/users/update-profile',
+    headers: { 'Content-Type': 'multipart/form-data', email: userEmail },
     data,
   });
 
 const CreatePost = () => {
+  const { data: user } = useSession();
+  console.log(user);
   const [images, setImages] = useState([]);
   const maxNumber = 69;
 
@@ -18,7 +21,7 @@ const CreatePost = () => {
     const uploadPromises = images?.map((image) => {
       let form = new FormData();
       form.append('image', image.file);
-      return uploadRequest(form);
+      return uploadRequest(form, user?.user.email);
     });
 
     axios
