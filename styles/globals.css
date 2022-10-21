@@ -194,5 +194,5 @@ p {
   font-size: 1.8rem !important;
 }
 .toastProgress {
-  background: #333f48 !important;
+  background: var(--primary) !important;
 }

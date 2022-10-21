@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSession } from 'next-auth/react';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import { setCurrentUser } from '../../store/user/user.action';
 
+import { getLocalUser } from '../../utils/fetchLocalUser';
+// import { getLocalUser } from '../.';
 import { signupRequest } from '../../utils/authRequest';
-
 import { Button, BUTTON_TYPES, Overlay } from '../index';
 import { FormContainer } from './index.styles';
 
@@ -15,6 +21,7 @@ const INITIAL_FORM_FIELD = {
 
 const AuthForm = ({ setShowAuthForm }) => {
   // CONFIGURATION
+  const router = useRouter();
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
@@ -30,13 +37,24 @@ const AuthForm = ({ setShowAuthForm }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (isSignup) {
+      2;
       if (password === passwordConfirm) {
         const res = await signupRequest({ username, email, password });
-        console.log(res);
       }
     } else {
-      const res = await signIn('credentials', { email, password });
-      console.log(res);
+      signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      }).then((res) => {
+        if (res.ok) {
+          setShowAuthForm(false);
+          router.replace('/');
+          toast.success('Welcome back!');
+        }
+        toast.warn(res.error);
+        console.log(res);
+      });
     }
   };
 

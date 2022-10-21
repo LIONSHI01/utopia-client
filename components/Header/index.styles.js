@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.div`
 
   .searchBar {
     height: 4rem;
-    min-width: 50%;
+    min-width: 55%;
     max-width: 65%;
 
     display: flex;

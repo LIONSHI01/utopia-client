@@ -18,7 +18,7 @@ const awsS3 = new S3Client({
 });
 
 exports.signup = async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { username, email, password } = req.body;
 
   const existingUser = await User.findOne({ email });

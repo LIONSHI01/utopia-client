@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
@@ -11,10 +13,12 @@ import { UserIcon, Button, BUTTON_TYPES, AuthForm } from '../index';
 import { HeaderWrapper } from './index.styles';
 
 const MainHeader = () => {
+  const router = useRouter();
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
+
   const { data: user } = useSession();
-  console.log(user);
+
   return (
     <>
       <HeaderWrapper>
@@ -49,8 +53,9 @@ const MainHeader = () => {
           </Link>
 
           <Button size="x">Sell</Button>
-          {/* Temple test */}
-          {user && <UserIcon username={user?.user.name} />}
+
+          {user && <UserIcon user={user} hasUserMenu={true} />}
+
           {!user && (
             <>
               <Button

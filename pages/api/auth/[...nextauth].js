@@ -14,12 +14,12 @@ export const authOptions = {
       name: 'Credentials',
       credentials: {},
       async authorize(credentials, req) {
-        console.log(credentials);
+        // console.log(credentials);
         const { email, password } = credentials;
         await connectMongoose();
 
         const user = await User.findOne({ email: email }).select('+password');
-        console.log(user);
+        // console.log(user);
         if (!user) {
           throw Error('No user found with this email');
         }
@@ -37,6 +37,18 @@ export const authOptions = {
   //   signIn: '/auth',
   // },
   secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+  callbacks: {
+    async session({ session, token, user }) {
+      // Fetch UserProfile from DB
+      await connectMongoose();
+      const userProfile = await User.findOne({ email: token?.email });
+
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+      session.profile = userProfile;
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
