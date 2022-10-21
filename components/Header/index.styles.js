@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.div`
 
   .searchBar {
     height: 4rem;
-    min-width: 55%;
+    min-width: 50%;
     max-width: 65%;
 
     display: flex;
@@ -76,5 +76,10 @@ export const HeaderWrapper = styled.div`
       font-size: var(--fs);
       color: var(--black-light-2);
     }
+  }
+
+  .auth-buttons {
+    display: flex;
+    gap: 1rem;
   }
 `;

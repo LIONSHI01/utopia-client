@@ -13,7 +13,7 @@ const uploadRequest = (data, userEmail) =>
 
 const CreatePost = () => {
   const { data: user } = useSession();
-  console.log(user);
+
   const [images, setImages] = useState([]);
   const maxNumber = 69;
 

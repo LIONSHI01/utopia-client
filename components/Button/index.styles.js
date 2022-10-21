@@ -4,7 +4,7 @@ const mediumSizeStyles = css`
   padding: 0.2rem 1rem;
 `;
 const largeSizeStyles = css`
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1.6rem;
   font-size: var(--fs);
 `;
 

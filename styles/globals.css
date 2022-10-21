@@ -99,6 +99,8 @@ figure {
   --primary-light-2: #ffc0d0;
   --primary-dark: #cc254f;
 
+  --uploadbg: #b1e9d4;
+
   /* FONT */
   --ff-display: 'Playfair Display', serif;
 
@@ -134,8 +136,8 @@ figure {
 
   /* BORDER RADIUS */
   --br-s: 5px;
-  --br-m: 8px;
-  --br-x: 12px;
+  --br-m: 10px;
+  --br-x: 15px;
 
   /* SPACE */
   --container: 144rem;

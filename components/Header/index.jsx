@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
 import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
 import { FiHeart } from 'react-icons/fi';
@@ -13,7 +11,6 @@ import { UserIcon, Button, BUTTON_TYPES, AuthForm } from '../index';
 import { HeaderWrapper } from './index.styles';
 
 const MainHeader = () => {
-  const router = useRouter();
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
 
@@ -57,7 +54,7 @@ const MainHeader = () => {
           {user && <UserIcon user={user} hasUserMenu={true} />}
 
           {!user && (
-            <>
+            <div className="auth-buttons">
               <Button
                 size="x"
                 buttonType={BUTTON_TYPES.outlineGrey}
@@ -72,7 +69,7 @@ const MainHeader = () => {
               >
                 Get Start
               </Button>
-            </>
+            </div>
           )}
         </div>
       </HeaderWrapper>

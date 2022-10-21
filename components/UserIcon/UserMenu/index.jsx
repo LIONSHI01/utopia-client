@@ -37,8 +37,8 @@ const UserMenuDropdown = () => {
       <span
         className="signout-btn"
         onClick={() => {
-          // signOut({ redirect: false });
-          // router.replace('/');
+          signOut({ redirect: false });
+          router.replace('/');
         }}
       >
         Sign Out

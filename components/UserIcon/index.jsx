@@ -50,6 +50,7 @@ const UserIcon = ({ user, size, hasUserMenu = false }) => {
 
   const [showUserMenu, setShowUserMenu] = useState(false);
 
+  console.log(user?.profile?.photo);
   useEffect(() => {
     const checkIfClickOutside = (e) => {
       if (showUserMenu && !ref.current.contains(e.target)) {
@@ -64,11 +65,10 @@ const UserIcon = ({ user, size, hasUserMenu = false }) => {
   }, [showUserMenu]);
 
   return (
-    <IconWrapper size={size}>
+    <IconWrapper size={size} ref={ref}>
       <div
         className="icon-container"
         onClick={() => setShowUserMenu((prev) => !prev)}
-        ref={ref}
       >
         {user?.profile?.photo ? (
           <div className="user-image-box">
@@ -86,7 +86,6 @@ const UserIcon = ({ user, size, hasUserMenu = false }) => {
           </div>
         )}
       </div>
-
       {hasUserMenu && showUserMenu && <UserMenuDropdown />}
     </IconWrapper>
   );
