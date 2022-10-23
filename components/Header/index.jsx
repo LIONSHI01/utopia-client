@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
 import { FiHeart } from 'react-icons/fi';
@@ -49,7 +49,9 @@ const MainHeader = () => {
             </a>
           </Link>
 
-          <Button size="x">Sell</Button>
+          <Button size="x" onClick={() => Router.replace('/create-post')}>
+            Sell
+          </Button>
 
           {user && <UserIcon user={user} hasUserMenu={true} />}
 

@@ -4,7 +4,7 @@ export const categories = [
     link: '/category/fashion',
     subCategories: [
       {
-        subCategory: 'Top',
+        subCategory: 'Tops',
         link: '/category/fashion/tops',
       },
       {
@@ -12,7 +12,7 @@ export const categories = [
         link: '/category/fashion/bottoms',
       },
       {
-        subCategory: 'Footwear',
+        subCategory: 'Footwears',
         link: '/category/fashion/footwears',
       },
       {

@@ -6,7 +6,7 @@ import axios from 'axios';
 const uploadRequest = (data, userEmail) =>
   axios({
     method: 'POST',
-    url: 'http://localhost:3001/api/v1/users/update-profile',
+    url: 'http://localhost:3001/api/v1/posts/',
     headers: { 'Content-Type': 'multipart/form-data', email: userEmail },
     data,
   });
@@ -15,12 +15,12 @@ const CreatePost = () => {
   const { data: user } = useSession();
 
   const [images, setImages] = useState([]);
-  const maxNumber = 69;
+  const maxNumber = 10;
 
   const uploadHandler = () => {
     const uploadPromises = images?.map((image) => {
       let form = new FormData();
-      form.append('image', image.file);
+      form.append('images', image.file);
       return uploadRequest(form, user?.user.email);
     });
 
@@ -28,6 +28,10 @@ const CreatePost = () => {
       .all(uploadPromises)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+
+    // let form = new FormData();
+    // form.append('images', images);
+    // uploadRequest(form, user?.user.email);
   };
 
   const onChange = (imageList, addUpdateIndex) => {

@@ -8,6 +8,7 @@ import Button, { BUTTON_TYPES } from './Button';
 import ProfilePreviewCard from './ProfilePreviewCard';
 import Overlay from './Overlay';
 import AuthForm from './AuthForm';
+import PostForm from './PostForm';
 
 export {
   MainHeader,
@@ -22,4 +23,5 @@ export {
   ProfilePreviewCard,
   Overlay,
   AuthForm,
+  PostForm,
 };

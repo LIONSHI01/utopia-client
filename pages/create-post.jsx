@@ -6,7 +6,7 @@ import { BsArrowClockwise } from 'react-icons/bs';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FiTrash } from 'react-icons/fi';
 
-import { Button, BUTTON_TYPES } from '../components';
+import { Button, BUTTON_TYPES, PostForm } from '../components';
 
 import {
   CreatePostContainer,
@@ -21,7 +21,7 @@ import {
 const CreatePost = () => {
   // CONFIGURATION
   const { data: user } = useSession();
-  const maxNumber = 69;
+  const maxNumber = 10;
 
   // STATE MANAGEMENT
   const [images, setImages] = useState([]);
@@ -72,7 +72,7 @@ const CreatePost = () => {
               <PreviewWrapper>
                 <div className="reminder">
                   <div className="reminder-box">
-                    <HiOutlineLightBulb size={20} color="var(--white)" />
+                    <HiOutlineLightBulb size={17} color="var(--white)" />
                   </div>
                   <p>The first image will be the cover image of your post</p>
                 </div>
@@ -116,7 +116,9 @@ const CreatePost = () => {
             </ImageSection>
           )}
         </ImageUploading>
-        <FormSection>Form</FormSection>
+        <FormSection>
+          <PostForm images={images} />
+        </FormSection>
       </OutterContainer>
     </CreatePostContainer>
   );

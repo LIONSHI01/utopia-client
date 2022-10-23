@@ -6,10 +6,9 @@ const draggingStyles = css`
 
 export const CreatePostContainer = styled.div`
   width: 100vw;
-  height: calc(100vh - 10rem);
-
-  /* background-color: orangered; */
-  padding: 2rem 5rem;
+  min-height: calc(100vh - 10rem);
+  padding: 0 5rem;
+  margin: 5rem 0;
 `;
 
 export const OutterContainer = styled.div`
@@ -85,8 +84,8 @@ export const PreviewWrapper = styled.div`
   }
 
   .reminder-box {
-    height: 3rem;
-    width: 3rem;
+    height: 2.5rem;
+    width: 2.5rem;
     background-color: var(--primary);
     display: flex;
     justify-content: center;
@@ -192,7 +191,7 @@ export const ImageItem = styled.div`
 `;
 
 export const FormSection = styled.div`
-  padding: 2rem;
+  /* padding: 2rem; */
   background-color: var(--white);
   box-shadow: var(--bs-s);
   border-radius: var(--br-m);

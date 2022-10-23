@@ -8,18 +8,6 @@ import multerS3 from 'multer-s3';
 import connectMongoose from '../../../utils/connectMongo';
 import User from '../../../models/userModel';
 
-// Configure AWS S3
-// const s3 = new S3Client({
-//   credentials: {
-//     accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
-//     secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESSS_KEY,
-//   },
-//   region: process.env.NEXT_PUBLIC_AWS_BUCKET_REGION,
-//   sslEnabled: false,
-//   s3ForcePathStyle: true,
-//   signatureVersion: 'v4',
-// });
-
 export const config = {
   api: {
     bodyParser: { sizeLimit: '10mb' },
