@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { DisplayContainer } from './index.styles';
 import { ProductCard } from '../index';
 
-const DisplayList = () => {
+const DisplayList = ({ posts }) => {
   return (
     <DisplayContainer>
-      <ProductCard />
+      {posts?.map((post) => (
+        <ProductCard key={post._id} post={post} />
+      ))}
     </DisplayContainer>
   );
 };

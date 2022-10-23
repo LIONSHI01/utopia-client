@@ -18,6 +18,7 @@ export const ItemWrapper = styled.div`
     font-size: var(--fs);
     font-weight: 300;
     color: var(--black-light-2);
+    text-transform: capitalize;
   }
 `;
 
@@ -50,6 +51,7 @@ export const DropdownWrapper = styled.div`
     font-size: var(--fs-s);
     padding: 0.8rem 0;
     font-weight: 100;
+    text-transform: capitalize;
 
     :hover {
       color: var(--black);

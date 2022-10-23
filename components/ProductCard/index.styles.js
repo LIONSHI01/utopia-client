@@ -25,6 +25,10 @@ export const HeaderContaienr = styled.div`
     gap: 1rem;
     align-items: center;
   }
+
+  .postedBy-name {
+    text-transform: capitalize;
+  }
 `;
 
 export const ImageContainer = styled.div`

@@ -39,13 +39,13 @@ import {
   ButtonsContainer,
 } from './index.styles';
 
-const ProfilePreviewCard = () => {
+const ProfilePreviewCard = ({ postByUser }) => {
   return (
     <CardContaienr>
       <InfoContainer>
-        <UserIcon username="Lion" />
+        <UserIcon user={postByUser} />
         <div className="user-details">
-          <p className="name">Username</p>
+          <p className="name">{postByUser?.name}</p>
           <div className="social-links">
             <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
               <AiFillInstagram size={15} color="var(--black-light-2)" />

@@ -14,7 +14,8 @@ const MainHeader = () => {
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
 
-  const { data: user } = useSession();
+  const { data } = useSession();
+  const user = data?.profile;
 
   return (
     <>

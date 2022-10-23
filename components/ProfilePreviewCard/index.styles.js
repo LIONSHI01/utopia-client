@@ -36,6 +36,7 @@ export const InfoContainer = styled.div`
   .name {
     font-size: var(--fs-ss);
     font-weight: 500;
+    text-transform: capitalize;
   }
 
   .social-links {

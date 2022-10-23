@@ -25,6 +25,7 @@ const AuthForm = ({ setShowAuthForm }) => {
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
+
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
   const { username, email, password, passwordConfirm } = formField;
 
@@ -36,6 +37,7 @@ const AuthForm = ({ setShowAuthForm }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
     if (isSignup) {
       2;
       if (password === passwordConfirm) {
@@ -48,6 +50,7 @@ const AuthForm = ({ setShowAuthForm }) => {
         redirect: false,
       }).then((res) => {
         if (res.ok) {
+          setFormField(INITIAL_FORM_FIELD);
           setShowAuthForm(false);
           router.replace('/');
           toast.success('Welcome back!');

@@ -11,7 +11,8 @@ import {
   BUTTON_TYPES,
   ProfilePreviewCard,
 } from '../index';
-import SaladImg from '../../assets/image/salad.jpg';
+
+// import SaladImg from '../../assets/image/salad.jpg';
 
 import {
   CardContainer,
@@ -20,9 +21,10 @@ import {
   ContentContainer,
 } from './index.styles';
 
-const ProductCard = () => {
+const ProductCard = ({ post }) => {
   // CONFIGURATION
   let hoverTimer;
+  const { images, title, category, price, postedBy } = post;
 
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
@@ -39,14 +41,14 @@ const ProductCard = () => {
             clearTimeout(hoverTimer);
           }}
         >
-          <UserIcon username="Lion" size="s" />
+          <UserIcon user={postedBy} size="s" />
           {/* Temple PLACEHOLDER  */}
           <Link href={`/user-profile/usernumber`}>
             <a>
-              <span>Username</span>
+              <span className="postedBy-name">{postedBy?.name}</span>
             </a>
           </Link>
-          {showProfilePreview && <ProfilePreviewCard />}
+          {showProfilePreview && <ProfilePreviewCard postByUser={postedBy} />}
         </div>
         <IconButton size="s" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
           <BsThreeDots size={20} />
@@ -54,7 +56,7 @@ const ProductCard = () => {
       </HeaderContaienr>
       <ImageContainer>
         <Image
-          src={SaladImg}
+          src={images[0]}
           alt="PRODUCT"
           objectFit="cover"
           objectPosition="center"
@@ -63,8 +65,8 @@ const ProductCard = () => {
       </ImageContainer>
       <ContentContainer>
         <div className="details">
-          <h3 className="title">Nike Foodwear 42</h3>
-          <span className="price">$500</span>
+          <h3 className="title">{title}</h3>
+          <span className="price">${price}</span>
           <span className="status">Brand New</span>
         </div>
         <div className="buttons-group">

@@ -6,7 +6,7 @@ import { BsArrowClockwise } from 'react-icons/bs';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FiTrash } from 'react-icons/fi';
 
-import { Button, BUTTON_TYPES, PostForm } from '../components';
+import { Button, PostForm } from '../components';
 
 import {
   CreatePostContainer,

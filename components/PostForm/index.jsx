@@ -22,6 +22,7 @@ const PostForm = ({ images }) => {
 
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
+  const [isListing, setIsListing] = useState(false);
 
   const { title, category, subCategory, brand, price, description } =
     formFields;
@@ -33,6 +34,7 @@ const PostForm = ({ images }) => {
   };
 
   const onSubmitHandler = async (e) => {
+    setIsListing(true);
     e.preventDefault();
     let form = new FormData();
     // Append Images into FormData
@@ -45,10 +47,12 @@ const PostForm = ({ images }) => {
     form.append('description', description);
     form.append('price', price);
     form.append('postedBy', user?.profile._id);
+
     // Send Request
-    const res = await createPost(form);
-    console.log(res);
+    await createPost(form);
+    setIsListing(false);
   };
+  console.log(formFields);
 
   return (
     <FormContainer>
@@ -69,7 +73,12 @@ const PostForm = ({ images }) => {
             >
               <option>Select a category</option>
               {categories?.map((category) => (
-                <option key={category.category}>{category.category}</option>
+                <option
+                  key={category.categoryValue}
+                  value={category.categoryValue}
+                >
+                  {category.category}
+                </option>
               ))}
             </select>
             <IoIosArrowDown size={20} className="dropdownIcon" />
@@ -93,9 +102,12 @@ const PostForm = ({ images }) => {
                       : 'Select Category first'}
                   </option>
                   {categories
-                    ?.filter((item) => item.category === category)[0]
+                    ?.filter((item) => item.categoryValue === category)[0]
                     ?.subCategories?.map((subCategory) => (
-                      <option key={subCategory.subCategory}>
+                      <option
+                        key={subCategory.subCategoryValue}
+                        value={subCategory.subCategoryValue}
+                      >
                         {subCategory.subCategory}
                       </option>
                     ))}
@@ -160,7 +172,7 @@ const PostForm = ({ images }) => {
               </div>
             </div>
             <Button type="submit" size="x">
-              List Now
+              {isListing ? 'Listing' : 'List Now'}
             </Button>
           </>
         )}
