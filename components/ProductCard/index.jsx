@@ -27,6 +27,8 @@ const ProductCard = ({ post }) => {
   const { _id, slug, images, title, category, subCategory, price, postedBy } =
     post;
 
+  console.log(post);
+
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   return (
@@ -42,9 +44,9 @@ const ProductCard = ({ post }) => {
             clearTimeout(hoverTimer);
           }}
         >
-          <UserIcon user={postedBy} size="s" />
-          {/* Temple PLACEHOLDER  */}
-          <Link href={`/user-profile/${postedBy?._id}`}>
+          <UserIcon user={post?.postedBy} size="s" />
+
+          <Link href={`/users/${postedBy?._id}`}>
             <a>
               <span className="postedBy-name">{postedBy?.name}</span>
             </a>
@@ -61,7 +63,7 @@ const ProductCard = ({ post }) => {
             <Image
               src={images[0]}
               alt="PRODUCT"
-              objectFit="cover"
+              objectFit="contain"
               objectPosition="center"
               layout="fill"
             />

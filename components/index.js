@@ -9,6 +9,12 @@ import ProfilePreviewCard from './ProfilePreviewCard';
 import Overlay from './Overlay';
 import AuthForm from './AuthForm';
 import PostForm from './PostForm';
+import ImageDisplayModal from './PostDetails/ImageDisplayModal';
+import NavigationMap from './NavigationMap';
+import SellerInfoBox from './PostDetails/SellerInfoBox';
+import SimilarPostsBox from './PostDetails/MoreSimilarPosts';
+import MoreFromSeller from './PostDetails/MoreFromSeller';
+import MeetSellerColumn from './PostDetails/MeetSellerColumn';
 
 export {
   MainHeader,
@@ -24,4 +30,10 @@ export {
   Overlay,
   AuthForm,
   PostForm,
+  ImageDisplayModal,
+  NavigationMap,
+  SellerInfoBox,
+  SimilarPostsBox,
+  MoreFromSeller,
+  MeetSellerColumn,
 };

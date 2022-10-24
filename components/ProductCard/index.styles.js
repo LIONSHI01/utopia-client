@@ -34,6 +34,7 @@ export const HeaderContaienr = styled.div`
 export const ImageContainer = styled.div`
   position: relative;
   height: 22rem;
+
   width: 100%;
 `;
 

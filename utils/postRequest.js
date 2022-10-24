@@ -38,6 +38,12 @@ export const getOnePost = async (category, subCategory, postId) => {
     url: `${baseURL}/${category}/${subCategory}/${postId}`,
   });
 
-  console.log(res);
-  return res.data.post;
+  // console.log(res);
+  const results = {
+    post: res.data.post,
+    sellerPosts: res.data.sellerPosts,
+    similarPosts: res.data.similarPosts,
+  };
+
+  return results;
 };
