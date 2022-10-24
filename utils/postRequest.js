@@ -21,3 +21,23 @@ export const getCategoryPosts = async (category) => {
   // console.log(res.data.posts);
   return res.data.posts;
 };
+
+export const getSubCategoryPosts = async (category, subCategory) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/${category}/${subCategory}`,
+  });
+
+  // console.log(res.data.posts);
+  return res.data.posts;
+};
+
+export const getOnePost = async (category, subCategory, postId) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/${category}/${subCategory}/${postId}`,
+  });
+
+  console.log(res);
+  return res.data.post;
+};

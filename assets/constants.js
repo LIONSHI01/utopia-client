@@ -34,32 +34,32 @@ export const categories = [
   {
     category: 'mobiles & electronics',
     categoryValue: 'mobiles-electronics',
-    link: '/products/mobile-electronic',
+    link: '/products/mobiles-electronics',
     subCategories: [
       {
         subCategory: 'computers & tech',
         subCategoryValue: 'computers-tech',
-        link: '/products/mobile-electronic/computer-tech',
+        link: '/products/mobiles-electronics/computers-tech',
       },
       {
         subCategory: 'video games',
         subCategoryValue: 'video-games',
-        link: '/products/mobile-electronic/video-games',
+        link: '/products/mobiles-electronics/video-games',
       },
       {
         subCategory: 'mobile phones',
         subCategoryValue: 'mobile-phones',
-        link: '/products/mobile-electronic/mobile-phones',
+        link: '/products/mobiles-electronics/mobile-phones',
       },
       {
         subCategory: 'photography',
         subCategoryValue: 'photography',
-        link: '/products/mobile-electronic/photography',
+        link: '/products/mobiles-electronics/photography',
       },
       {
         subCategory: 'others',
         subCategoryValue: 'others',
-        link: '/products/mobile-electronic/others',
+        link: '/products/mobiles-electronics/others',
       },
     ],
   },
@@ -167,22 +167,22 @@ export const categories = [
       {
         subCategory: 'cars',
         subCategoryValue: 'cars',
-        link: '/productscars-properties/cars',
+        link: '/products/cars-properties/cars',
       },
       {
         subCategory: 'property for sale',
         subCategoryValue: 'property-for-sale',
-        link: '/productscars-properties/property-sale',
+        link: '/products/cars-properties/property-sale',
       },
       {
         subCategory: 'property for rental',
         subCategoryValue: 'property-for-rental',
-        link: '/productscars-properties/property-rental',
+        link: '/products/cars-properties/property-rental',
       },
       {
         subCategory: 'others',
         subCategoryValue: 'others',
-        link: '/productscars-properties/others',
+        link: '/products/cars-properties/others',
       },
     ],
   },

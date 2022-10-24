@@ -24,7 +24,8 @@ import {
 const ProductCard = ({ post }) => {
   // CONFIGURATION
   let hoverTimer;
-  const { images, title, category, price, postedBy } = post;
+  const { _id, slug, images, title, category, subCategory, price, postedBy } =
+    post;
 
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
@@ -43,7 +44,7 @@ const ProductCard = ({ post }) => {
         >
           <UserIcon user={postedBy} size="s" />
           {/* Temple PLACEHOLDER  */}
-          <Link href={`/user-profile/usernumber`}>
+          <Link href={`/user-profile/${postedBy?._id}`}>
             <a>
               <span className="postedBy-name">{postedBy?.name}</span>
             </a>
@@ -54,15 +55,19 @@ const ProductCard = ({ post }) => {
           <BsThreeDots size={20} />
         </IconButton>
       </HeaderContaienr>
-      <ImageContainer>
-        <Image
-          src={images[0]}
-          alt="PRODUCT"
-          objectFit="cover"
-          objectPosition="center"
-          layout="fill"
-        />
-      </ImageContainer>
+      <Link href={`/products/${category}/${subCategory}/${slug}/${_id}`}>
+        <a>
+          <ImageContainer>
+            <Image
+              src={images[0]}
+              alt="PRODUCT"
+              objectFit="cover"
+              objectPosition="center"
+              layout="fill"
+            />
+          </ImageContainer>
+        </a>
+      </Link>
       <ContentContainer>
         <div className="details">
           <h3 className="title">{title}</h3>
