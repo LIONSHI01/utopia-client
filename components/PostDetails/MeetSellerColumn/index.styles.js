@@ -33,13 +33,25 @@ export const ColumnWrapper = styled.div`
   }
   .details {
     display: flex;
+    gap: 1rem;
+    color: var(--black-light-2);
   }
-  .rating {
+  .item {
+    display: flex;
+    gap: 0.2rem;
+    font-size: 1.3rem;
+    font-weight: 100;
+    span {
+      font-weight: 500;
+      color: var(--black);
+    }
   }
-  .reviews {
-  }
-  .lists {
-  }
-  .sales {
+  .buttons-group {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    align-self: flex-start;
+    height: 3rem;
+    width: 30rem;
   }
 `;

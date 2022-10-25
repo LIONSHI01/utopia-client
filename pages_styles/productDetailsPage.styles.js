@@ -16,6 +16,7 @@ export const OutterContainer = styled.div`
 export const PostDetailsContainer = styled.div`
   display: flex;
   margin-bottom: var(--mg-x);
+  gap: 5rem;
 `;
 
 export const LeftContainer = styled.div`
@@ -67,6 +68,33 @@ export const GalleryWrapper = styled.div`
     overflow: hidden;
 
     cursor: zoom-in;
+  }
+`;
+
+export const CTAWrapper = styled.div`
+  display: flex;
+  border-bottom: 1px solid var(--grey-light-2);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--fs-ss);
+    color: var(--black-light-2);
+    font-weight: 100;
+
+    a {
+      font-weight: 500;
+      color: var(--primary);
+    }
+  }
+
+  .buttons {
+    height: 4rem;
+    width: 12rem;
+    margin-left: auto;
   }
 `;
 

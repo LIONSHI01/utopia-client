@@ -6,7 +6,16 @@ export const createPost = async (data) => {
   const res = await axios({
     method: 'POST',
     url: `${baseURL}/posts`,
-    // headers: { 'Content-Type': 'multipart/form-data' },
+    data,
+  });
+
+  return res;
+};
+
+export const updateUserPhoto = async (data, userId) => {
+  const res = await axios({
+    method: 'PATCH',
+    url: `${baseURL}/users/${userId}`,
     data,
   });
 

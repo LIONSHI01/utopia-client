@@ -10,6 +10,7 @@ const largeSizeStyles = css`
 
 const fullSizeStyles = css`
   width: 100%;
+  height: 100%;
 `;
 
 export const BaseButton = styled.button`
@@ -37,7 +38,7 @@ export const BaseButton = styled.button`
 
 export const OutlineRedButton = styled(BaseButton)`
   background-color: var(--white);
-  border: 2px solid var(--primary);
+  border: 1px solid var(--primary);
   color: var(--black);
 
   :hover {
@@ -54,7 +55,6 @@ export const OutlineGreyButton = styled(BaseButton)`
   :hover {
     border: 1px solid var(--black);
     background-color: transparent;
-    /* color: var(--black); */
   }
 `;
 export const RawButton = styled(BaseButton)`

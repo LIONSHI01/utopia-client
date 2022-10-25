@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillStar } from 'react-icons/ai';
 
+import { Button, BUTTON_TYPES } from '../../index';
 import { ColumnWrapper } from './index.styles';
 
 const MeetSellerColumn = ({ seller }) => {
@@ -29,10 +30,27 @@ const MeetSellerColumn = ({ seller }) => {
                 <AiFillStar key={i} size={15} />
               ))}
             </div>
-            <span className="reviews">10 reviews</span>
-            <span className="lists">20 listed</span>
-            <span className="sales">12 sales</span>
+            <div className="item">
+              <span>10</span>
+              reviews
+            </div>
+            <div className="item">
+              <span>20</span>
+              listed
+            </div>
+            <div className="item">
+              <span>98</span>
+              sales
+            </div>
           </div>
+        </div>
+        <div className="buttons-group">
+          <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
+            View Profile
+          </Button>
+          <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
+            Message Seller
+          </Button>
         </div>
       </div>
     </ColumnWrapper>

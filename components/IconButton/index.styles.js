@@ -9,6 +9,10 @@ const bigSizeStyles = css`
   height: 4rem;
   width: 4rem;
 `;
+const megaSizeStyles = css`
+  height: 5rem;
+  width: 5rem;
+`;
 
 export const BaseButton = styled.button`
   display: flex;
@@ -26,9 +30,18 @@ export const BaseButton = styled.button`
 
   ${(props) => props.size === 's' && smallSizeStyles}
   ${(props) => props.size === 'x' && bigSizeStyles}
+  ${(props) => props.size === 'xl' && megaSizeStyles}
 `;
 
 export const HoverBackgroundButton = styled(BaseButton)`
+  :hover {
+    background-color: var(--grey-light-2);
+  }
+`;
+export const WhiteBackgroundButton = styled(BaseButton)`
+  background-color: var(--white);
+  border: 1px solid var(--black-light-2);
+
   :hover {
     background-color: var(--grey-light-2);
   }

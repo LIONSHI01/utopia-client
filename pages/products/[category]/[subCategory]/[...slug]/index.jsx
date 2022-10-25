@@ -24,6 +24,7 @@ import {
   GalleryWrapper,
   RightContainer,
   DetailsWrapper,
+  CTAWrapper,
 } from '../../../../../pages_styles/productDetailsPage.styles';
 
 const ProductDetailsPage = () => {
@@ -102,6 +103,19 @@ const ProductDetailsPage = () => {
                 />
               )}
             </GalleryWrapper>
+            <CTAWrapper>
+              <div className="cta">
+                <p>Have a similar item?</p>
+                <Link href="/create-post">
+                  <a>Sell yours</a>
+                </Link>
+              </div>
+              <div className="buttons">
+                <Button size="full" buttonType={BUTTON_TYPES.outlineRed}>
+                  Like this item
+                </Button>
+              </div>
+            </CTAWrapper>
             <MeetSellerColumn seller={post?.postedBy} />
           </LeftContainer>
           <RightContainer>
