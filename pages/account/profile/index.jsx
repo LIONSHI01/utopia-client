@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MdAddAPhoto } from 'react-icons/md';
 
-import { updateUserPhoto } from '../../../utils/accountRequest';
+import { updateUserPhoto, getUser } from '../../../utils/accountRequest';
 
 import {
   ProfilePageContainer,
@@ -19,22 +19,40 @@ import {
 import { CollectionItem } from '../../../components';
 
 const AccountProfilePage = () => {
+  // CONFIGURATION
   const router = useRouter();
   const { data } = useSession();
   const user = data?.profile;
+  // console.log(user);
 
   // STATE MANAGEMENT
-  const [image, setImage] = useState([]);
+  const [itemCollections, setItemCollections] = useState([]);
 
   const updateUserPicHandler = async (e) => {
     e.preventDefault();
 
-    const form = new FormData();
-    form.append('images', e.target.files[0]);
+    if (e.target.files[0]) {
+      // console.log('send update quest');
+      const form = new FormData();
+      form.append('images', e.target.files[0]);
 
-    const res = await updateUserPhoto(form, user?._id);
-    if (res.status === 200) router.reload();
+      const res = await updateUserPhoto(form, user?._id);
+      if (res.status === 200) router.reload();
+    }
   };
+  // console.log(user);
+  useEffect(() => {
+    const getUserData = async () => {
+      const res = await getUser(user?._id);
+      if (res) setItemCollections(res.itemCollections);
+    };
+
+    if (user?._id) {
+      getUserData();
+    }
+  }, [user?._id]);
+
+  // console.log(itemCollections);
 
   return (
     <ProfilePageContainer>
@@ -87,8 +105,12 @@ const AccountProfilePage = () => {
           </UserInfoSection>
           <CollectionSection>
             <div className="display-zone">
-              {/* Map all the collections */}
-              <CollectionItem />
+              {itemCollections?.map((itemCollection) => (
+                <CollectionItem
+                  key={itemCollection?._id}
+                  itemCollections={itemCollections}
+                />
+              ))}
             </div>
           </CollectionSection>
         </ControlPanel>

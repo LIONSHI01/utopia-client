@@ -7,10 +7,9 @@ import { ImEarth } from 'react-icons/im';
 import { ItemWrapper } from './index.styles';
 import placeholderImage from '../../../../assets/image/salad.jpg';
 
-const CollectionItem = () => {
+const CollectionItem = ({ collection }) => {
   return (
     <ItemWrapper>
-      <div className="outliner" />
       <div className="image-container">
         {placeholderImage ? (
           <Image
@@ -25,10 +24,10 @@ const CollectionItem = () => {
         )}
       </div>
 
-      <p>Favorite items</p>
+      <p>{collection?.name}</p>
       <div className="total-items">
         <ImEarth size={12} />
-        <span>5 items</span>
+        <span>{collection?.items?.length || 0}&nbsp;items</span>
       </div>
     </ItemWrapper>
   );

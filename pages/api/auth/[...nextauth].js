@@ -33,9 +33,7 @@ export const authOptions = {
       },
     }),
   ],
-  // pages: {
-  //   signIn: '/auth',
-  // },
+
   secret: process.env.NEXT_PUBLIC_JWT_SECRET,
   callbacks: {
     async session({ session, token, user }) {

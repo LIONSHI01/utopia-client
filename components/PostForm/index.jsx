@@ -52,7 +52,7 @@ const PostForm = ({ images }) => {
     await createPost(form);
     setIsListing(false);
   };
-  console.log(formFields);
+  // console.log(formFields);
 
   return (
     <FormContainer>

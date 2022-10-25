@@ -27,8 +27,6 @@ const ProductCard = ({ post }) => {
   const { _id, slug, images, title, category, subCategory, price, postedBy } =
     post;
 
-  console.log(post);
-
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   return (

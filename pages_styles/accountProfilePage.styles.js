@@ -115,6 +115,12 @@ export const UserInfoSection = styled.div`
     }
   }
 `;
-export const CollectionSection = styled.div``;
+export const CollectionSection = styled.div`
+  .display-zone {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+`;
 
 export const DisplayZone = styled.div``;

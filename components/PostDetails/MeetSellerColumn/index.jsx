@@ -7,7 +7,7 @@ import { Button, BUTTON_TYPES } from '../../index';
 import { ColumnWrapper } from './index.styles';
 
 const MeetSellerColumn = ({ seller }) => {
-  console.log(seller);
+  // console.log(seller);
 
   return (
     <ColumnWrapper>

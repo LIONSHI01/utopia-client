@@ -45,6 +45,7 @@ const userSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+
 const User = models.User || model('User', userSchema);
 
 export default User;

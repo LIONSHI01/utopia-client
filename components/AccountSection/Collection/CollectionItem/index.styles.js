@@ -12,20 +12,6 @@ export const ItemWrapper = styled.div`
     scale: 1.1;
   }
 
-  .outliner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 10rem;
-    width: 14rem;
-    border-radius: 16px;
-    border: 2px solid var(--black-light-3);
-    scale: 0;
-
-    opacity: 0;
-    transition: all 0.4s ease-in-out;
-  }
-
   .image-container {
     position: relative;
     height: 10rem;
@@ -36,6 +22,12 @@ export const ItemWrapper = styled.div`
     background-color: var(--black-light-3);
     overflow: hidden;
     margin-bottom: 0.5rem;
+    transition: all 0.2s ease-in-out;
+
+    :hover {
+      outline: 2px solid var(--black-light-3);
+      outline-offset: 4px;
+    }
   }
 
   p {

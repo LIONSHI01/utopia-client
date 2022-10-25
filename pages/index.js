@@ -15,7 +15,7 @@ const Home = () => {
     getAllPostHandler();
   }, []);
 
-  console.log('Posts:', posts);
+  // console.log('Posts:', posts);
 
   return (
     <>
