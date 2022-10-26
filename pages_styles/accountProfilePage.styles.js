@@ -119,7 +119,7 @@ export const CollectionSection = styled.div`
   .display-zone {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 `;
 

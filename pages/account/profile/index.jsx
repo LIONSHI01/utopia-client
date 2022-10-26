@@ -44,6 +44,7 @@ const AccountProfilePage = () => {
   useEffect(() => {
     const getUserData = async () => {
       const res = await getUser(user?._id);
+
       if (res) setItemCollections(res.itemCollections);
     };
 
@@ -52,7 +53,7 @@ const AccountProfilePage = () => {
     }
   }, [user?._id]);
 
-  // console.log(itemCollections);
+  // console.log('collections', itemCollections);
 
   return (
     <ProfilePageContainer>
@@ -108,7 +109,7 @@ const AccountProfilePage = () => {
               {itemCollections?.map((itemCollection) => (
                 <CollectionItem
                   key={itemCollection?._id}
-                  itemCollections={itemCollections}
+                  collection={itemCollection}
                 />
               ))}
             </div>

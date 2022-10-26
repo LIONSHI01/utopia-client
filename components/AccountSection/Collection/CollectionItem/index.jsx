@@ -8,6 +8,7 @@ import { ItemWrapper } from './index.styles';
 import placeholderImage from '../../../../assets/image/salad.jpg';
 
 const CollectionItem = ({ collection }) => {
+  // console.log(collection);
   return (
     <ItemWrapper>
       <div className="image-container">

@@ -76,7 +76,8 @@ const MainHeader = () => {
           )}
         </div>
       </HeaderWrapper>
-      {showAuthForm && <AuthForm setShowAuthForm={setShowAuthForm} />}
+
+      <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
     </>
   );
 };

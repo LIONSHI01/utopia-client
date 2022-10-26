@@ -16,6 +16,7 @@ import SimilarPostsBox from './PostDetails/MoreSimilarPosts';
 import MoreFromSeller from './PostDetails/MoreFromSeller';
 import MeetSellerColumn from './PostDetails/MeetSellerColumn';
 import CollectionItem from './AccountSection/Collection/CollectionItem';
+import AddToCollectionModal from './AddToCollectionModal';
 
 export {
   MainHeader,
@@ -38,4 +39,5 @@ export {
   MoreFromSeller,
   MeetSellerColumn,
   CollectionItem,
+  AddToCollectionModal,
 };

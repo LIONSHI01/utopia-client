@@ -5,9 +5,6 @@ import S3 from 'aws-sdk/clients/s3';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 
-import connectMongoose from '../../../utils/connectMongo';
-import User from '../../../models/userModel';
-
 export const config = {
   api: {
     bodyParser: { sizeLimit: '10mb' },

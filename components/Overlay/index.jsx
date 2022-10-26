@@ -1,5 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const showUpStyles = css`
+  opacity: 1;
+  visibility: visible;
+  display: unset;
+`;
 
 const OverlayWrapper = styled.div`
   position: fixed;
@@ -12,10 +18,17 @@ const OverlayWrapper = styled.div`
   backdrop-filter: blur(10px);
 
   z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  display: none;
+
+  ${(props) => props.showUp && showUpStyles}
 `;
 
-const Overlay = ({ setShowUp }) => {
-  return <OverlayWrapper onClick={() => setShowUp(false)} />;
+const Overlay = ({ showUp, setShowUp }) => {
+  return <OverlayWrapper showUp={showUp} onClick={() => setShowUp(false)} />;
 };
 
 export default Overlay;

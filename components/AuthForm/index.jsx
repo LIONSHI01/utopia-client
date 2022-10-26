@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSession } from 'next-auth/react';
+import React, { useState } from 'react';
+
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { setCurrentUser } from '../../store/user/user.action';
-
-import { getLocalUser } from '../../utils/fetchLocalUser';
-// import { getLocalUser } from '../.';
 import { signupRequest } from '../../utils/authRequest';
 import { Button, BUTTON_TYPES, Overlay } from '../index';
 import { FormContainer } from './index.styles';
@@ -19,7 +14,7 @@ const INITIAL_FORM_FIELD = {
   passwordConfirm: '',
 };
 
-const AuthForm = ({ setShowAuthForm }) => {
+const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   // CONFIGURATION
   const router = useRouter();
 
@@ -63,7 +58,7 @@ const AuthForm = ({ setShowAuthForm }) => {
 
   return (
     <>
-      <FormContainer>
+      <FormContainer showUp={showAuthForm}>
         <div className="heading">
           <h2>{isSignup ? 'Sign Up' : 'Sign In'} to Utopia</h2>
         </div>
@@ -123,7 +118,7 @@ const AuthForm = ({ setShowAuthForm }) => {
           </Button>
         </div>
       </FormContainer>
-      <Overlay setShowUp={setShowAuthForm} />
+      <Overlay showUp={showAuthForm} setShowUp={setShowAuthForm} />
     </>
   );
 };

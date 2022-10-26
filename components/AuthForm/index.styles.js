@@ -1,16 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const showUpStyles = css`
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+`;
 
 export const FormContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  /* height: 50rem; */
+  transform: translate(-50%, -45%);
+
   width: 40rem;
   padding: 3rem 5rem 0rem 5rem;
   background-color: var(--white);
   border-radius: var(--br-m);
   z-index: 2000;
+  transition: all 0.3s ease-in-out;
+
+  /* Hide before activate */
+  visibility: hidden;
+  opacity: 0;
+
+  ${(props) => props.showUp && showUpStyles}
 
   .heading {
     margin-bottom: var(--mg-m);
