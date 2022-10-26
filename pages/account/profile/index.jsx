@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MdAddAPhoto } from 'react-icons/md';
-
+import { AiOutlinePlus } from 'react-icons/ai';
 import { updateUserPhoto, getUser } from '../../../utils/accountRequest';
 
 import {
@@ -14,25 +14,33 @@ import {
   DisplayZone,
   UserInfoSection,
   CollectionSection,
+  CreateButtonWrapper,
 } from '../../../pages_styles/accountProfilePage.styles';
 
-import { CollectionItem } from '../../../components';
+import { CollectionItem, CreateCollectionModal } from '../../../components';
+
+const CreateButton = ({ ...otherProps }) => (
+  <CreateButtonWrapper {...otherProps}>
+    <AiOutlinePlus size={25} color="var(--white)" />
+    <span>Create collection</span>
+  </CreateButtonWrapper>
+);
 
 const AccountProfilePage = () => {
   // CONFIGURATION
   const router = useRouter();
   const { data } = useSession();
   const user = data?.profile;
-  // console.log(user);
 
   // STATE MANAGEMENT
   const [itemCollections, setItemCollections] = useState([]);
+  const [showCreateCollectionModal, setShowCreateCollectionModal] =
+    useState(false);
 
   const updateUserPicHandler = async (e) => {
     e.preventDefault();
 
     if (e.target.files[0]) {
-      // console.log('send update quest');
       const form = new FormData();
       form.append('images', e.target.files[0]);
 
@@ -40,7 +48,7 @@ const AccountProfilePage = () => {
       if (res.status === 200) router.reload();
     }
   };
-  // console.log(user);
+
   useEffect(() => {
     const getUserData = async () => {
       const res = await getUser(user?._id);
@@ -53,10 +61,14 @@ const AccountProfilePage = () => {
     }
   }, [user?._id]);
 
-  // console.log('collections', itemCollections);
-
   return (
     <ProfilePageContainer>
+      <CreateButton onClick={() => setShowCreateCollectionModal(true)} />
+      <CreateCollectionModal
+        user={user}
+        showCreateCollectionModal={showCreateCollectionModal}
+        setShowCreateCollectionModal={setShowCreateCollectionModal}
+      />
       <MainContainer>
         <ControlPanel>
           <UserInfoSection>

@@ -17,6 +17,8 @@ import MoreFromSeller from './PostDetails/MoreFromSeller';
 import MeetSellerColumn from './PostDetails/MeetSellerColumn';
 import CollectionItem from './AccountSection/Collection/CollectionItem';
 import AddToCollectionModal from './AddToCollectionModal';
+import CreateCollectionModal from './ItemCollection/CreateCollectionModal';
+import FormInputComp from './InputComponents/FormInput';
 
 export {
   MainHeader,
@@ -40,4 +42,6 @@ export {
   MeetSellerColumn,
   CollectionItem,
   AddToCollectionModal,
+  CreateCollectionModal,
+  FormInputComp,
 };

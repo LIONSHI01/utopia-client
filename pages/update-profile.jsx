@@ -28,10 +28,6 @@ const CreatePost = () => {
       .all(uploadPromises)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-
-    // let form = new FormData();
-    // form.append('images', images);
-    // uploadRequest(form, user?.user.email);
   };
 
   const onChange = (imageList, addUpdateIndex) => {

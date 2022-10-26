@@ -124,3 +124,24 @@ export const CollectionSection = styled.div`
 `;
 
 export const DisplayZone = styled.div``;
+
+export const CreateButtonWrapper = styled.div`
+  position: fixed;
+  left: 3rem;
+  bottom: 3rem;
+  padding: 1rem 2rem;
+  background-color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 100px;
+  box-shadow: var(--bs-m);
+  z-index: 1000;
+  cursor: pointer;
+
+  span {
+    color: var(--white);
+    font-size: var(--fs);
+  }
+`;

@@ -47,9 +47,7 @@ const AddToCollectionModal = ({
     const res = await updateCollection(items, collection._id);
     if (res.status === 201) {
       router.reload();
-      // console.log(res);
     }
-    // return console.log(items);
   };
 
   return (
