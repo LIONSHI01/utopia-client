@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+
+import { useDispatch } from 'react-redux';
 import { signupRequest } from '../../utils/authRequest';
 import { Button, BUTTON_TYPES, Overlay } from '../index';
 import { FormContainer } from './index.styles';
@@ -17,6 +18,9 @@ const INITIAL_FORM_FIELD = {
 const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   // CONFIGURATION
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { data } = useSession();
+  console.log(data);
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
@@ -25,6 +29,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   const { username, email, password, passwordConfirm } = formField;
 
   // HANDLERS
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormField({ ...formField, [name]: value });
@@ -34,9 +39,8 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     e.preventDefault();
 
     if (isSignup) {
-      2;
       if (password === passwordConfirm) {
-        const res = await signupRequest({ username, email, password });
+        await signupRequest({ username, email, password });
       }
     } else {
       signIn('credentials', {
@@ -45,10 +49,10 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         redirect: false,
       }).then((res) => {
         if (res.ok) {
-          setFormField(INITIAL_FORM_FIELD);
           setShowAuthForm(false);
-          router.replace('/');
+          setFormField(INITIAL_FORM_FIELD);
           toast.success('Welcome back!');
+          router.replace('/');
         }
         toast.warn(res.error);
         console.log(res);

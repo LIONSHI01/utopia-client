@@ -24,14 +24,16 @@ const menuList = [
   },
 ];
 
-const UserMenuDropdown = () => {
+const UserMenuDropdown = ({ setShowUp }) => {
   const router = useRouter();
 
   return (
     <MenuWrapper>
       {menuList.map((item) => (
         <Link key={item.name} href={item.link}>
-          <a className="list-item">{item.name}</a>
+          <a className="list-item" onClick={() => setShowUp(false)}>
+            {item.name}
+          </a>
         </Link>
       ))}
       <span

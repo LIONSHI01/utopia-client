@@ -53,6 +53,8 @@ export const CollectionsContainer = styled.div`
     border-radius: var(--br-m);
     border: 2px solid transparent;
     cursor: pointer;
+    width: 100%;
+    background-color: var(--white);
 
     display: flex;
 

@@ -16,9 +16,11 @@ import SimilarPostsBox from './PostDetails/MoreSimilarPosts';
 import MoreFromSeller from './PostDetails/MoreFromSeller';
 import MeetSellerColumn from './PostDetails/MeetSellerColumn';
 import CollectionItem from './AccountSection/Collection/CollectionItem';
-import AddToCollectionModal from './AddToCollectionModal';
-import CreateCollectionModal from './ItemCollection/CreateCollectionModal';
+import AddToCollectionModal from './AccountSection/Collection/AddToCollectionModal';
+import CreateCollectionModal from './AccountSection/Collection/CreateCollectionModal';
 import FormInputComp from './InputComponents/FormInput';
+import CollectionDisplay from './AccountSection/Collection/CollectionDisplay';
+import EditCollectionModal from './AccountSection/Collection/EditCollectionModal';
 
 export {
   MainHeader,
@@ -44,4 +46,6 @@ export {
   AddToCollectionModal,
   CreateCollectionModal,
   FormInputComp,
+  CollectionDisplay,
+  EditCollectionModal,
 };

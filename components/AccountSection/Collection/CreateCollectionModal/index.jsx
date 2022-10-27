@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { IoMdClose } from 'react-icons/io';
+import { useSelector } from 'react-redux';
+
+import { selectUser } from '../../../../store/user/user.selector';
 
 import { ModalContainer } from './index.styles';
 import {
@@ -10,16 +13,16 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
   FormInputComp,
-} from '../../index';
-import { createCollection } from '../../../utils/collectionRequest';
+} from '../../../index';
+import { createCollection } from '../../../../utils/collectionRequest';
 
 const CreateCollectionModal = ({
-  user,
   showCreateCollectionModal,
   setShowCreateCollectionModal,
 }) => {
   // CONFIGURATION
   const router = useRouter();
+  const user = useSelector(selectUser);
 
   // STATE MANAGEMENT
   const [name, setName] = useState('');
@@ -42,7 +45,7 @@ const CreateCollectionModal = ({
     <>
       <ModalContainer showUp={showCreateCollectionModal}>
         <div className="close-btn" onClick={closeHandler}>
-          <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
+          <IconButton size="x" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
             <IoMdClose size={25} />
           </IconButton>
         </div>
@@ -53,7 +56,7 @@ const CreateCollectionModal = ({
         <FormInputComp
           fieldName="collectionName"
           label="Collection name"
-          placeHolder="Artwork,Chrismas Gift List, etc."
+          placeholder="Artwork,Chrismas Gift List, etc."
           maxLength="50"
           value={name}
           onChange={(e) => {

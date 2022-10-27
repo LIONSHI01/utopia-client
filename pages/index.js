@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from '../store/user/user.action';
 
 import { DisplayList } from '../components';
 import { getAllPosts } from '../utils/postRequest';
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { data } = useSession();
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
     const getAllPostHandler = async () => {
       const res = await getAllPosts();
       setPosts(res);
-      // console.log(res);
     };
     getAllPostHandler();
   }, []);
 
-  // console.log('Posts:', posts);
+  useEffect(() => {
+    dispatch(setCurrentUser(data?.profile));
+  }, [dispatch, data]);
 
   return (
     <>
@@ -25,14 +31,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// export const getServerSideProps = async () => {
-//   const data = await getAllPosts();
-//   const posts = {};
-//   console.log(data);
-//   return {
-//     props: {
-//       posts: {},
-//     },
-//   };
-// };

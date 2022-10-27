@@ -19,7 +19,7 @@ export const BaseButton = styled.button`
   background-color: var(--primary);
   color: var(--white);
   border-radius: var(--br-m);
-  transition: all 0.3;
+  transition: all 0.3s;
   font-size: var(--fs-s);
 
   cursor: pointer;

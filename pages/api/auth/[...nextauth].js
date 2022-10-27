@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import connectMongoose from '../../../utils/connectMongo';
 import User from '../../../models/userModel';
 import { verifyPassword } from '../../../utils/hashPassword';
+import { getUser } from '../../../utils/accountRequest';
 
 export const authOptions = {
   session: {
@@ -41,9 +42,12 @@ export const authOptions = {
       await connectMongoose();
       const userProfile = await User.findOne({ email: token?.email });
 
+      const userData = await getUser(userProfile?._id);
+
       session.accessToken = token.accessToken;
       session.user.id = token.id;
-      session.profile = userProfile;
+      session.profile = userData;
+
       return session;
     },
   },

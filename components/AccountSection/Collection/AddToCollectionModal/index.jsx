@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { AiOutlineGift } from 'react-icons/ai';
 import { ImEarth } from 'react-icons/im';
@@ -10,9 +10,14 @@ import {
   CollectionsContainer,
   CollectionWrapper,
 } from './index.styles';
-import { Overlay, IconButton, ICON_BUTTON_TYPES } from '../index';
-import { updateCollection } from '../../utils/collectionRequest';
-import { newCollectionItems } from '../../utils/calculator';
+import {
+  Overlay,
+  IconButton,
+  ICON_BUTTON_TYPES,
+  CreateCollectionModal,
+} from '../../../index';
+import { updateCollection } from '../../../../utils/collectionRequest';
+import { newCollectionItems } from '../../../../utils/calculator';
 
 const Collection = ({ collection, ...otherProps }) => (
   <CollectionWrapper {...otherProps}>
@@ -39,13 +44,14 @@ const AddToCollectionModal = ({
   const router = useRouter();
 
   // STATE MANAGEMENT
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   // HANDLER
   const updateCollectionHandler = async (collection, itemId) => {
     // console.log(collection, itemId);
     const items = newCollectionItems(collection.items, itemId);
-    const res = await updateCollection(items, collection._id);
-    if (res.status === 201) {
+    const res = await updateCollection({ items, collectionId: collection._id });
+    if (res.status === 200) {
       router.reload();
     }
   };
@@ -66,12 +72,12 @@ const AddToCollectionModal = ({
           <h3>Add to collection</h3>
         </div>
         <CollectionsContainer>
-          <div className="addCollection">
+          <button className="addCollection">
             <div className="placeHolder">
               <AiOutlinePlus size={30} color="var(--white)" />
             </div>
             <span className="name">Create new collection</span>
-          </div>
+          </button>
           {collections?.map((collection) => (
             <Collection
               key={collection._id}
@@ -81,6 +87,10 @@ const AddToCollectionModal = ({
           ))}
         </CollectionsContainer>
       </ModalContainer>
+      <CreateCollectionModal
+        showCreateCollectionModal={showCreateModal}
+        setShowCreateCollectionModal={setShowCreateModal}
+      />
       <Overlay showUp={showAddToColModal} setShowUp={setShowAddToColModal} />
     </>
   );

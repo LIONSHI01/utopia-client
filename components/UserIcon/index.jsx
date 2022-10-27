@@ -86,7 +86,9 @@ const UserIcon = ({ user, size, hasUserMenu = false }) => {
           </div>
         )}
       </div>
-      {hasUserMenu && showUserMenu && <UserMenuDropdown />}
+      {hasUserMenu && showUserMenu && (
+        <UserMenuDropdown setShowUp={setShowUserMenu} />
+      )}
     </IconWrapper>
   );
 };

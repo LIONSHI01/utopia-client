@@ -7,10 +7,9 @@ import { ImEarth } from 'react-icons/im';
 import { ItemWrapper } from './index.styles';
 import placeholderImage from '../../../../assets/image/salad.jpg';
 
-const CollectionItem = ({ collection }) => {
-  // console.log(collection);
+const CollectionItem = ({ collection, ...otherProps }) => {
   return (
-    <ItemWrapper>
+    <ItemWrapper {...otherProps}>
       <div className="image-container">
         {placeholderImage ? (
           <Image

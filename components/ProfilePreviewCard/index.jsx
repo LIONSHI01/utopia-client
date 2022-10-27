@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 import { GrFacebookOption } from 'react-icons/gr';
 import { AiOutlineTwitter, AiFillInstagram } from 'react-icons/ai';
 
-import catImage from '../../assets/image/cat.jpg';
-import pancakeImage from '../../assets/image/pancake.jpg';
-import saladImage from '../../assets/image/salad.jpg';
+// import catImage from '../../assets/image/cat.jpg';
+// import pancakeImage from '../../assets/image/pancake.jpg';
+// import saladImage from '../../assets/image/salad.jpg';
 
-const ImagePlaceHolders = [
-  {
-    name: 'cat',
-    image: catImage,
-  },
-  {
-    name: 'pancake',
-    image: pancakeImage,
-  },
-  {
-    name: 'salad',
-    image: saladImage,
-  },
-];
+// const ImagePlaceHolders = [
+//   {
+//     name: 'cat',
+//     image: catImage,
+//   },
+//   {
+//     name: 'pancake',
+//     image: pancakeImage,
+//   },
+//   {
+//     name: 'salad',
+//     image: saladImage,
+//   },
+// ];
 
 import {
   Button,
@@ -38,14 +38,28 @@ import {
   ImagesContainer,
   ButtonsContainer,
 } from './index.styles';
+import { getUser } from '../../utils/accountRequest';
 
 const ProfilePreviewCard = ({ postByUser }) => {
+  const [postOwner, setPostOwner] = useState(null);
+  const previewImages = postOwner?.posts
+    ?.map((post) => post?.images[0])
+    ?.slice(0, 3);
+
+  useEffect(() => {
+    const getPostOwnerData = async () => {
+      const data = await getUser(postByUser);
+      setPostOwner(data);
+    };
+    getPostOwnerData();
+  }, [postByUser]);
+
   return (
     <CardContaienr>
       <InfoContainer>
-        <UserIcon user={postByUser} />
+        <UserIcon user={postOwner} />
         <div className="user-details">
-          <p className="name">{postByUser?.name}</p>
+          <p className="name">{postOwner?.name}</p>
           <div className="social-links">
             <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
               <AiFillInstagram size={15} color="var(--black-light-2)" />
@@ -61,25 +75,25 @@ const ProfilePreviewCard = ({ postByUser }) => {
       </InfoContainer>
       <ProfileContainer>
         <div className="section">
-          <span className="numbers">89</span>
+          <span className="numbers">{postOwner?.posts?.length || 0}</span>
           posts
         </div>
         <div className="section">
-          <span className="numbers">594</span>
+          <span className="numbers">{postOwner?.followers?.length || 0}</span>
           followers
         </div>
         <div className="section">
-          <span className="numbers">102</span>
+          <span className="numbers">{postOwner?.followings?.length || 0}</span>
           following
         </div>
       </ProfileContainer>
       <ImagesContainer>
-        {ImagePlaceHolders.map(({ name, image }) => (
-          <div key={name} className="image-container">
+        {previewImages?.map((image, i) => (
+          <div key={i} className="image-container">
             <Image
-              src={image}
-              alt={name}
-              objectFit="cover"
+              src={image && image}
+              alt="Preview"
+              objectFit="contain"
               objectPosition="center"
               layout="fill"
             />

@@ -17,7 +17,11 @@ import {
   CreateButtonWrapper,
 } from '../../../pages_styles/accountProfilePage.styles';
 
-import { CollectionItem, CreateCollectionModal } from '../../../components';
+import {
+  CollectionItem,
+  CreateCollectionModal,
+  CollectionDisplay,
+} from '../../../components';
 
 const CreateButton = ({ ...otherProps }) => (
   <CreateButtonWrapper {...otherProps}>
@@ -36,6 +40,9 @@ const AccountProfilePage = () => {
   const [itemCollections, setItemCollections] = useState([]);
   const [showCreateCollectionModal, setShowCreateCollectionModal] =
     useState(false);
+  const [selectedCollection, setSelectedCollection] = useState(
+    itemCollections[0]
+  );
 
   const updateUserPicHandler = async (e) => {
     e.preventDefault();
@@ -53,7 +60,10 @@ const AccountProfilePage = () => {
     const getUserData = async () => {
       const res = await getUser(user?._id);
 
-      if (res) setItemCollections(res.itemCollections);
+      if (res) {
+        setItemCollections(res.itemCollections);
+        setSelectedCollection(res.itemCollections[0]);
+      }
     };
 
     if (user?._id) {
@@ -122,12 +132,13 @@ const AccountProfilePage = () => {
                 <CollectionItem
                   key={itemCollection?._id}
                   collection={itemCollection}
+                  onClick={() => setSelectedCollection(itemCollection)}
                 />
               ))}
             </div>
           </CollectionSection>
         </ControlPanel>
-        <DisplayZone>DISPLAY ZONE</DisplayZone>
+        <CollectionDisplay collection={selectedCollection} />
       </MainContainer>
     </ProfilePageContainer>
   );
