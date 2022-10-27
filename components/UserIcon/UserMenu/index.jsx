@@ -8,7 +8,7 @@ import { MenuWrapper } from './index.styles';
 const menuList = [
   {
     name: 'Profile',
-    link: '/account/profile',
+    link: '/account/collections',
   },
   {
     name: 'Manage Offers',

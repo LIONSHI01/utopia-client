@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -47,28 +48,70 @@ const ProductDetailsPage = () => {
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
 
-  useEffect(() => {
-    const getOnePostHandler = async () => {
-      const data = await getOnePost(category, subCategory, postId);
-      setPost(data?.post);
-      setMoreSellerPosts(data?.sellerPosts);
-      setSimilarPosts(data?.similarPosts);
-    };
-    if (category && subCategory && postId) {
-      getOnePostHandler();
-    }
-  }, [category, subCategory, postId]);
+  const onSuccess = (data) => {
+    setPost(data?.post);
+    setMoreSellerPosts(data?.sellerPosts);
+    setSimilarPosts(data?.similarPosts);
+  };
 
-  useEffect(() => {
-    const getUserHandler = async () => {
-      const userData = await getUser(data?.profile.id);
-      setUser(userData);
-    };
-
-    if (data?.profile.id) {
-      getUserHandler();
+  const onError = (error) => {
+    console.log(error);
+  };
+  const {
+    isLoading: isLoadingPost,
+    isError: isErrorPost,
+    data: postData,
+  } = useQuery(
+    ['postDetails', category, subCategory, postId],
+    () => getOnePost(category, subCategory, postId),
+    {
+      onError,
+      onSuccess,
+      enabled: !!category && !!subCategory && !!postId,
     }
-  }, [data?.profile.id]);
+  );
+
+  const onSuccessUser = (data) => {
+    setUser(data);
+  };
+
+  const onErrorUser = (error) => {
+    console.log(error);
+  };
+  const {
+    isLoading: isLoadingUser,
+    isError: isErrorUser,
+    data: userData,
+  } = useQuery(['user', data?.profile?.id], () => getUser(data?.profile.id), {
+    onError: onErrorUser,
+    onSuccess: onSuccessUser,
+    enabled: !!data?.profile?.id,
+  });
+
+  // console.log(user);
+
+  // useEffect(() => {
+  //   const getOnePostHandler = async () => {
+  //     const data = await getOnePost(category, subCategory, postId);
+  //     setPost(data?.post);
+  //     setMoreSellerPosts(data?.sellerPosts);
+  //     setSimilarPosts(data?.similarPosts);
+  //   };
+  //   if (category && subCategory && postId) {
+  //     getOnePostHandler();
+  //   }
+  // }, [category, subCategory, postId]);
+
+  // useEffect(() => {
+  //   const getUserHandler = async () => {
+  //     const userData = await getUser(data?.profile.id);
+  //     setUser(userData);
+  //   };
+
+  //   if (data?.profile.id) {
+  //     getUserHandler();
+  //   }
+  // }, [data?.profile?.id]);
 
   return (
     <>
@@ -105,13 +148,15 @@ const ProductDetailsPage = () => {
                   className="displayed-image-contaienr"
                   onClick={() => setShowDisplayModal(true)}
                 >
-                  <Image
-                    src={post?.images[displayIndex]}
-                    alt="image"
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="center"
-                  />
+                  {post?.images && (
+                    <Image
+                      src={post?.images[displayIndex]}
+                      alt="image"
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="center"
+                    />
+                  )}
                 </div>
                 {showDisplayModal && (
                   <ImageDisplayModal

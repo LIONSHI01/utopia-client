@@ -31,8 +31,6 @@ const ProductCard = ({ post }) => {
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
   const user = useSelector(selectUser);
 
-  // console.log('ProductCard-Postdby', post?.postedBy);
-
   // HANDLERS
 
   return (

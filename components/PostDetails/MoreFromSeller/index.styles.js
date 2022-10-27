@@ -14,9 +14,8 @@ export const BoxContainer = styled.div`
 
   .seller-posts {
     width: 100%;
-    /* background-color: orangered; */
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
   }
 `;

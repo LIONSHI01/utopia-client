@@ -8,7 +8,6 @@ export const getAllPosts = async () => {
     url: `${baseURL}`,
   });
 
-  // console.log(res.data.posts);
   return res.data.posts;
 };
 
@@ -18,7 +17,6 @@ export const getCategoryPosts = async (category) => {
     url: `${baseURL}/${category}`,
   });
 
-  // console.log(res.data.posts);
   return res.data.posts;
 };
 
@@ -28,22 +26,24 @@ export const getSubCategoryPosts = async (category, subCategory) => {
     url: `${baseURL}/${category}/${subCategory}`,
   });
 
-  // console.log(res.data.posts);
   return res.data.posts;
 };
 
 export const getOnePost = async (category, subCategory, postId) => {
-  const res = await axios({
-    method: 'GET',
-    url: `${baseURL}/${category}/${subCategory}/${postId}`,
-  });
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `${baseURL}/${category}/${subCategory}/${postId}`,
+    });
 
-  // console.log(res);
-  const results = {
-    post: res.data.post,
-    sellerPosts: res.data.sellerPosts,
-    similarPosts: res.data.similarPosts,
-  };
+    const results = {
+      post: res.data.post,
+      sellerPosts: res.data.sellerPosts,
+      similarPosts: res.data.similarPosts,
+    };
 
-  return results;
+    return results;
+  } catch (err) {
+    console.log(err);
+  }
 };

@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import Image from 'next/image';
 
 import { GrFacebookOption } from 'react-icons/gr';
 import { AiOutlineTwitter, AiFillInstagram } from 'react-icons/ai';
-
-// import catImage from '../../assets/image/cat.jpg';
-// import pancakeImage from '../../assets/image/pancake.jpg';
-// import saladImage from '../../assets/image/salad.jpg';
-
-// const ImagePlaceHolders = [
-//   {
-//     name: 'cat',
-//     image: catImage,
-//   },
-//   {
-//     name: 'pancake',
-//     image: pancakeImage,
-//   },
-//   {
-//     name: 'salad',
-//     image: saladImage,
-//   },
-// ];
 
 import {
   Button,

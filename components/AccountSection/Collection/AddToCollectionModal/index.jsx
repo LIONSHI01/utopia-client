@@ -48,7 +48,6 @@ const AddToCollectionModal = ({
 
   // HANDLER
   const updateCollectionHandler = async (collection, itemId) => {
-    // console.log(collection, itemId);
     const items = newCollectionItems(collection.items, itemId);
     const res = await updateCollection({ items, collectionId: collection._id });
     if (res.status === 200) {

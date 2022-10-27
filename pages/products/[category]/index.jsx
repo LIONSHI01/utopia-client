@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
 
 import { getCategoryPosts } from '../../../utils/postRequest';
 import { DisplayList } from '../../../components';
@@ -14,16 +15,33 @@ const CategoryPage = () => {
   // STATE MANAGEMENT
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const getCategoryPostsHandler = async () => {
-      const data = await getCategoryPosts(category);
-      setPosts(data);
-      // console.log(res);
-    };
-    getCategoryPostsHandler();
-  }, [category]);
+  const onSuccess = (data) => {
+    setPosts(data);
+  };
 
-  // console.log(posts);
+  const onError = (error) => {
+    console.log(error);
+  };
+
+  const {
+    isLoading,
+    data: postsData,
+    isError,
+    error,
+  } = useQuery(['categoryPosts', category], () => getCategoryPosts(category), {
+    onSuccess,
+    onError,
+    enabled: !!category,
+  });
+
+  // useEffect(() => {
+  //   const getCategoryPostsHandler = async () => {
+  //     const data = await getCategoryPosts(category);
+  //     setPosts(data);
+  //   };
+  //   getCategoryPostsHandler();
+  // }, [category]);
+
   return (
     <CategoryPageContainer>
       {posts && <DisplayList posts={posts} />}

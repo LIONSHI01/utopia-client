@@ -1,24 +1,20 @@
 import styled from 'styled-components';
 
-export const ProfilePageContainer = styled.div``;
+export const SidebarContainer = styled.div`
+  width: 30rem;
+  padding: 2rem;
+  box-shadow: 2px 0 10px -2px rgba(0, 0, 0, 0.15);
+  clip-path: inset(0px -15px 0px 0px);
+`;
 
-export const MainContainer = styled.div`
-  width: var(--container);
-  margin: 0 auto;
-`;
-export const ControlPanel = styled.div`
-  display: flex;
-  margin: var(--mg-m);
-  gap: 5rem;
-`;
 export const UserInfoSection = styled.div`
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 1rem;
   align-items: center;
-
+  margin-bottom: var(--mg-m);
   .icon-container {
     position: relative;
-    /* cursor: pointer; */
   }
 
   .user-image-box {
@@ -115,33 +111,29 @@ export const UserInfoSection = styled.div`
     }
   }
 `;
-export const CollectionSection = styled.div`
-  .display-zone {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-`;
 
-export const DisplayZone = styled.div``;
-
-export const CreateButtonWrapper = styled.div`
-  position: fixed;
-  left: 3rem;
-  bottom: 3rem;
-  padding: 1rem 2rem;
-  background-color: var(--black);
+export const MenuList = styled.ul`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 100px;
-  box-shadow: var(--bs-m);
-  z-index: 1000;
-  cursor: pointer;
+  flex-direction: column;
+  gap: 1rem;
 
-  span {
-    color: var(--white);
+  .listItem {
+    /* background-color: orange; */
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.5rem 3rem;
     font-size: var(--fs);
+    font-weight: 100;
+    width: 100%;
+    border-radius: var(--br-m);
+    transition: all 0.3s ease-in-out;
+    :hover {
+      background-color: var(--black-light-3);
+    }
+  }
+
+  .active {
+    background-color: var(--black-light-3);
   }
 `;

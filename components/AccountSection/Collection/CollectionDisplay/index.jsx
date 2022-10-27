@@ -16,7 +16,6 @@ import {
 
 const CollectionDisplay = ({ collection }) => {
   const [showEditModal, setShowEditModal] = useState(false);
-  // console.log(collection);
 
   return (
     <DisplaySection>

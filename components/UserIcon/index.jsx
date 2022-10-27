@@ -50,7 +50,6 @@ const UserIcon = ({ user, size, hasUserMenu = false }) => {
 
   const [showUserMenu, setShowUserMenu] = useState(false);
 
-  // console.log(user?.photo);
   useEffect(() => {
     const checkIfClickOutside = (e) => {
       if (showUserMenu && !ref.current.contains(e.target)) {

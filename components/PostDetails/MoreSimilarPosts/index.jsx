@@ -7,7 +7,7 @@ const SimilarPostsBox = ({ posts }) => {
   return (
     <BoxContainer>
       <div className="heading">
-        <h3>More from Seller</h3>
+        <h3>More Similar Items</h3>
         <Button size="x" buttonType={BUTTON_TYPES.outlineGrey}>
           See more
         </Button>

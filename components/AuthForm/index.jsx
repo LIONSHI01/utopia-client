@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-import { useDispatch } from 'react-redux';
 import { signupRequest } from '../../utils/authRequest';
 import { Button, BUTTON_TYPES, Overlay } from '../index';
 import { FormContainer } from './index.styles';
@@ -18,9 +17,6 @@ const INITIAL_FORM_FIELD = {
 const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   // CONFIGURATION
   const router = useRouter();
-  const dispatch = useDispatch();
-  const { data } = useSession();
-  console.log(data);
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);

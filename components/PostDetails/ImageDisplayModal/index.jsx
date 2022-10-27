@@ -11,7 +11,6 @@ import {
 const ImageDisplayModal = ({ images, setShowDisplayModal }) => {
   const [displayIndex, setDisplayIndex] = useState(0);
 
-  // console.log(images);
   return (
     <DisplayModalContainer>
       <DisplayedImageWrapper>

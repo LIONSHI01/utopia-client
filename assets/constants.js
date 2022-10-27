@@ -1,3 +1,6 @@
+import { MdLocalOffer, MdBusinessCenter } from 'react-icons/md';
+import { AiFillGift, AiTwotoneSetting } from 'react-icons/ai';
+
 export const categories = [
   {
     category: 'fashion',
@@ -207,5 +210,28 @@ export const categories = [
         link: '/products/jobs-services/internship-others',
       },
     ],
+  },
+];
+
+export const profileLinks = [
+  {
+    title: 'Collections',
+    path: '/account/collections',
+    icon: <AiFillGift size={25} />,
+  },
+  {
+    title: 'Orders',
+    path: '/account/orders',
+    icon: <MdBusinessCenter size={25} />,
+  },
+  {
+    title: 'Offers',
+    path: '/account/offers',
+    icon: <MdLocalOffer size={25} />,
+  },
+  {
+    title: 'Settings',
+    path: '/account/settings',
+    icon: <AiTwotoneSetting size={25} />,
   },
 ];

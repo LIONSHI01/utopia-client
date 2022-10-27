@@ -21,6 +21,9 @@ import CreateCollectionModal from './AccountSection/Collection/CreateCollectionM
 import FormInputComp from './InputComponents/FormInput';
 import CollectionDisplay from './AccountSection/Collection/CollectionDisplay';
 import EditCollectionModal from './AccountSection/Collection/EditCollectionModal';
+import MenuSidebar from './AccountSection/MenuSidebar';
+import OrderPreviewItem from './AccountSection/Order/OrderPreviewItem';
+import OrderDetails from './AccountSection/Order/OrderDetails';
 
 export {
   MainHeader,
@@ -48,4 +51,7 @@ export {
   FormInputComp,
   CollectionDisplay,
   EditCollectionModal,
+  MenuSidebar,
+  OrderPreviewItem,
+  OrderDetails,
 };

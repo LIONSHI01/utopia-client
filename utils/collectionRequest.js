@@ -11,7 +11,6 @@ export const createCollection = async (data, userId) => {
     },
   });
 
-  console.log(res);
   return res;
 };
 
