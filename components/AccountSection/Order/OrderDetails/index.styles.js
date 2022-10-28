@@ -9,6 +9,7 @@ export const SectionContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: var(--mg-m);
   }
 
   .row {
@@ -47,5 +48,23 @@ export const SectionContainer = styled.div`
     :hover {
       color: var(--primary);
     }
+  }
+
+  .buttons-group {
+    display: flex;
+    gap: 1rem;
+  }
+`;
+
+export const EditTxHashBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .edit-buttons {
+    display: flex;
+    gap: 1rem;
+    align-self: flex-end;
   }
 `;

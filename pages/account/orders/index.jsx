@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useQuery } from 'react-query';
 
@@ -26,19 +26,12 @@ const ProfileOrdersPage = () => {
   // useQuery fetching data
   const onSuccess = (data) => {
     setOrders(data);
-    // console.log(data);
     setselectedOrder(data[0]);
   };
 
   const onError = (error) => {
     console.log('encounter an error during fetching ==> ', error);
   };
-
-  const fetchUserOrderHandler = () => {
-    getUserOrders(user?._id);
-  };
-
-  console.log(orders);
 
   const {
     isLoading,
@@ -68,9 +61,9 @@ const ProfileOrdersPage = () => {
       <ContentsContainer>
         <h3 className="heading">Your Orders</h3>
         <OrdersList>
-          {orders?.map((order, i) => (
+          {orders?.map((order) => (
             <OrderPreviewItem
-              key={i}
+              key={order?._id}
               order={order}
               onClick={() => setselectedOrder(order)}
             />

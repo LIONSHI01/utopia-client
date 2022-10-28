@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { BsThreeDots, BsFillHeartFill } from 'react-icons/bs';
 
@@ -24,6 +25,7 @@ import {
 
 const ProductCard = ({ post }) => {
   // CONFIGURATION
+  const router = useRouter();
   let hoverTimer;
 
   // STATE MANAGEMENT
@@ -90,8 +92,17 @@ const ProductCard = ({ post }) => {
             >
               <BsFillHeartFill size={25} className="icon" />
             </button>
-            <Button size="m" type="button" buttonType={BUTTON_TYPES.base}>
-              Make Offer
+            <Button
+              size="m"
+              type="button"
+              buttonType={BUTTON_TYPES.base}
+              onClick={() =>
+                router.replace(
+                  ` /products/${post?.category}/${post?.subCategory}/${post?.slug}/${post?._id}`
+                )
+              }
+            >
+              Details
             </Button>
           </div>
         </ContentContainer>

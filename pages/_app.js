@@ -2,6 +2,7 @@ import { SessionProvider } from 'next-auth/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import Layout from '../components/Layout';
 import { ToastContainer } from 'react-toastify';
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps: { session, pageProps } }) {
               progressClassName="toastProgress"
               bodyClassName="toastBody"
             />
+            <ReactQueryDevtools initialIsOpen={false} />
           </Layout>
         </QueryClientProvider>
       </Provider>

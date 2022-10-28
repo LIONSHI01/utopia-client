@@ -19,6 +19,7 @@ export const ContentsContainer = styled.div`
 
 export const OrdersList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   gap: 2rem;
   padding-bottom: 5rem;

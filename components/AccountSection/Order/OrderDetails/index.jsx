@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-
 import { AiTwotoneEdit } from 'react-icons/ai';
-import { SectionContainer } from './index.styles';
+
+import { SectionContainer, EditTxHashBox } from './index.styles';
+import { Button, BUTTON_TYPES, FormInputComp } from '../../../index';
+import {
+  deleteOrder,
+  updateOrder,
+} from '../../../../utils/apiData/orderRequest';
 
 const OrderDetails = ({ order }) => {
+  const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
+  const [txHash, setTxHash] = useState('');
+  const deleteOrderHandler = async () => {
+    await deleteOrder(order?._id);
+  };
+
+  const updateTxHashHandler = async () => {
+    const res = await updateOrder(order?._id, txHash);
+    console.log(res);
+  };
+
   return (
     <SectionContainer>
       <h3 className="heading">Order Details</h3>
@@ -53,11 +69,43 @@ const OrderDetails = ({ order }) => {
         <div className="row">
           <span className="title">Transaction hash:</span>
           <div className="contents">
-            <span className="transactionHash">
-              {order?.transactionHash ||
-                'Please provide your payment transaction hash for payment validation'}
-            </span>
-            <AiTwotoneEdit size={15} className="copy-icon" />
+            {showEditTxHashInput ? (
+              <EditTxHashBox>
+                <FormInputComp
+                  type="text"
+                  value={txHash}
+                  onChange={(e) => setTxHash(e.target.value)}
+                />
+                <div className="edit-buttons">
+                  <Button
+                    size="m"
+                    buttonType={BUTTON_TYPES.outlineGrey}
+                    onClick={() => setShowEditTxHashInput(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    size="m"
+                    buttonType={BUTTON_TYPES.outlineRed}
+                    onClick={updateTxHashHandler}
+                  >
+                    Save
+                  </Button>
+                </div>
+              </EditTxHashBox>
+            ) : (
+              <>
+                <span className="transactionHash">
+                  {order?.transactionHash ||
+                    'Please provide your payment transaction hash for payment validation'}
+                </span>
+                <AiTwotoneEdit
+                  size={15}
+                  className="copy-icon"
+                  onClick={() => setShowEditTxHashInput(true)}
+                />
+              </>
+            )}
           </div>
         </div>
         <div className="row">
@@ -71,11 +119,23 @@ const OrderDetails = ({ order }) => {
           <div className="contents">
             <span>
               {order?.from ||
-                'Please provide your payment address payment validation'}
+                'Please log in with MetaMask to register your payment address for this transaction.'}
             </span>
             <AiTwotoneEdit size={15} className="copy-icon" />
           </div>
         </div>
+      </div>
+      <div className="buttons-group">
+        <Button size="x" buttonType={BUTTON_TYPES.outlineRed}>
+          Save Changes
+        </Button>
+        <Button
+          size="x"
+          buttonType={BUTTON_TYPES.outlineGrey}
+          onClick={deleteOrderHandler}
+        >
+          Delete order
+        </Button>
       </div>
     </SectionContainer>
   );

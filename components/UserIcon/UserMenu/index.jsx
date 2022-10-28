@@ -7,16 +7,16 @@ import { MenuWrapper } from './index.styles';
 
 const menuList = [
   {
-    name: 'Profile',
+    name: 'My collections',
     link: '/account/collections',
+  },
+  {
+    name: 'Manage orders',
+    link: '/account/orders',
   },
   {
     name: 'Manage Offers',
     link: '/account/offers',
-  },
-  {
-    name: 'Post a Item',
-    link: '/account/sell',
   },
   {
     name: 'Settings',

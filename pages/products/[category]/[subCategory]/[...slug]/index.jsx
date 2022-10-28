@@ -19,6 +19,7 @@ import {
 
 import { getOnePost } from '../../../../../utils/postRequest';
 import { getUser } from '../../../../../utils/accountRequest';
+import { createOrder } from '../../../../../utils/apiData/orderRequest';
 
 import {
   DetailsPageContainer,
@@ -47,6 +48,10 @@ const ProductDetailsPage = () => {
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
+
+  const buyHandler = async () => {
+    await createOrder(user?._id, post?.postedBy?._id, post?._id);
+  };
 
   const onSuccess = (data) => {
     setPost(data?.post);
@@ -194,7 +199,9 @@ const ProductDetailsPage = () => {
                     <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
                       Add to cart
                     </Button>
-                    <Button size="full">Buy now</Button>
+                    <Button size="full" onClick={buyHandler}>
+                      Buy now
+                    </Button>
                   </div>
                 </div>
                 <div className="lower-box">
