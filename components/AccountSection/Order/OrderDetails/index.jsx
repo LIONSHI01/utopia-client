@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { AiTwotoneEdit } from 'react-icons/ai';
+import { BsCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
 import { FaWallet } from 'react-icons/fa';
 
 import { SectionContainer, EditTxHashBox } from './index.styles';
@@ -10,6 +11,7 @@ import { Button, BUTTON_TYPES, FormInputComp } from '../../../index';
 import {
   deleteOrder,
   updateOrder,
+  validateOrder,
 } from '../../../../utils/apiData/orderRequest';
 
 const OrderDetails = ({ order }) => {
@@ -18,8 +20,10 @@ const OrderDetails = ({ order }) => {
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
   const [txHash, setTxHash] = useState(order?.transactionHash);
   const [address, setAddress] = useState(order?.from);
+  const [isValidating, setIsValidating] = useState(false);
   const deleteOrderHandler = async () => {
     await deleteOrder(order?._id);
+    router.reload();
   };
 
   const cancelChanges = async () => {
@@ -41,13 +45,20 @@ const OrderDetails = ({ order }) => {
       await window.ethereum
         .request({ method: 'eth_requestAccounts' })
         .then((res) => {
-          // Return the address of the wallet
-          console.log(res);
           setAddress(res[0]);
         });
     } else {
       alert('Please install Metamask extension.');
     }
+  };
+
+  const validateTxHandler = async () => {
+    setIsValidating(true);
+    const res = await validateOrder(order?._id);
+    setIsValidating(false);
+    router.reload();
+
+    console.log(res);
   };
 
   useEffect(() => {
@@ -74,7 +85,20 @@ const OrderDetails = ({ order }) => {
         <div className="row">
           <span className="title">Order status:</span>
           <div className="contents">
-            <span className="status"> {order?.status}</span>
+            <div
+              className={
+                order?.status === 'payment validated'
+                  ? 'status completedStatus'
+                  : 'status '
+              }
+            >
+              {order?.status === 'completed' ? (
+                <BsCheckCircleFill size={18} />
+              ) : (
+                <BsXCircleFill size={18} />
+              )}
+              <span>{order?.status}</span>
+            </div>
           </div>
         </div>
         <div className="row">
@@ -145,7 +169,27 @@ const OrderDetails = ({ order }) => {
         <div className="row">
           <span className="title">Transaction validation:</span>
           <div className="contents">
-            <span className="validation">Completed</span>
+            <div
+              className={
+                order?.transactionValidation === 'completed'
+                  ? 'validation completedStatus'
+                  : 'validation '
+              }
+            >
+              {order?.transactionValidation === 'completed' ? (
+                <BsCheckCircleFill size={18} />
+              ) : (
+                <BsXCircleFill size={18} />
+              )}
+              <span>{order?.transactionValidation}</span>
+            </div>
+            <Button
+              size="m"
+              buttonType={BUTTON_TYPES.outlineRed}
+              onClick={validateTxHandler}
+            >
+              {isValidating ? 'Validating' : 'Validate'}
+            </Button>
           </div>
         </div>
         <div className="row">

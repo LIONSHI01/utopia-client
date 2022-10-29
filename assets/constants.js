@@ -1,5 +1,8 @@
 import { MdLocalOffer, MdBusinessCenter } from 'react-icons/md';
-import { AiFillGift, AiTwotoneSetting } from 'react-icons/ai';
+import { AiFillGift, AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
+import { TbFileInvoice } from 'react-icons/tb';
+import { SlEnvolopeLetter } from 'react-icons/sl';
+import { FiSettings } from 'react-icons/fi';
 
 export const categories = [
   {
@@ -233,5 +236,28 @@ export const profileLinks = [
     title: 'Settings',
     path: '/account/settings',
     icon: <AiTwotoneSetting size={25} />,
+  },
+];
+
+export const iconDropdownMenuList = [
+  {
+    name: 'Collections',
+    link: '/account/collections',
+    icon: <AiOutlineGift size={19} />,
+  },
+  {
+    name: 'Orders',
+    link: '/account/orders',
+    icon: <TbFileInvoice size={19} />,
+  },
+  {
+    name: 'Offers',
+    link: '/account/offers',
+    icon: <SlEnvolopeLetter size={18} />,
+  },
+  {
+    name: 'Settings',
+    link: '/account/settings',
+    icon: <FiSettings size={19} />,
   },
 ];

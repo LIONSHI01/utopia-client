@@ -19,6 +19,9 @@ export const MenuWrapper = styled.div`
 
   .signout-btn,
   .list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: var(--fs-s);
     font-weight: 100;
     color: var(--black-light-2);

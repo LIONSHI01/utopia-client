@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
 import { FiHeart } from 'react-icons/fi';

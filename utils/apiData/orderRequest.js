@@ -11,7 +11,7 @@ export const getUserOrders = async (userId) => {
   return res.data.orders;
 };
 
-export const createOrder = async (userId, sellerId, postId) => {
+export const createOrder = async (userId, sellerId, postId, value) => {
   const res = await axios({
     method: 'POST',
     url: `${baseURL}/orders/`,
@@ -19,9 +19,10 @@ export const createOrder = async (userId, sellerId, postId) => {
       postedBy: userId,
       seller: sellerId,
       post: postId,
+      value: value,
     },
   });
-  // console.log(res);
+
   return res.data;
 };
 
@@ -42,6 +43,15 @@ export const deleteOrder = async (orderId) => {
   const res = await axios({
     method: 'DELETE',
     url: `${baseURL}/orders/${orderId}`,
+  });
+  console.log(res);
+  return res.data;
+};
+
+export const validateOrder = async (orderId) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/orders/validate/${orderId}`,
   });
   console.log(res);
   return res.data;

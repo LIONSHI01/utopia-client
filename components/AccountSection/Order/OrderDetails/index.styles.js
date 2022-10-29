@@ -33,7 +33,16 @@ export const SectionContainer = styled.div`
 
   .status,
   .validation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: capitalize;
     font-weight: 500;
+    color: red;
+  }
+
+  .completedStatus {
+    color: green;
   }
 
   .icon {

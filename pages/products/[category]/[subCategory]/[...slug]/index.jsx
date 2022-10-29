@@ -50,7 +50,7 @@ const ProductDetailsPage = () => {
   const [showAddToColModal, setShowAddToColModal] = useState(false);
 
   const buyHandler = async () => {
-    await createOrder(user?._id, post?.postedBy?._id, post?._id);
+    await createOrder(user?._id, post?.postedBy?._id, post?._id, post?.price);
   };
 
   const onSuccess = (data) => {
