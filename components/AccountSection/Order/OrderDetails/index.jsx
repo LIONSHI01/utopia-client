@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 import { AiTwotoneEdit } from 'react-icons/ai';
+import { FaWallet } from 'react-icons/fa';
 
 import { SectionContainer, EditTxHashBox } from './index.styles';
 import { Button, BUTTON_TYPES, FormInputComp } from '../../../index';
@@ -10,16 +13,47 @@ import {
 } from '../../../../utils/apiData/orderRequest';
 
 const OrderDetails = ({ order }) => {
+  const router = useRouter();
+
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
-  const [txHash, setTxHash] = useState('');
+  const [txHash, setTxHash] = useState(order?.transactionHash);
+  const [address, setAddress] = useState(order?.from);
   const deleteOrderHandler = async () => {
     await deleteOrder(order?._id);
   };
 
-  const updateTxHashHandler = async () => {
-    const res = await updateOrder(order?._id, txHash);
-    console.log(res);
+  const cancelChanges = async () => {
+    setTxHash(transactionHash);
+    setAddress(from);
   };
+
+  const updateTxHashHandler = async () => {
+    if (txHash !== order?.transactionHash || address !== order?.from) {
+      await updateOrder(order?._id, address, txHash);
+      router.reload();
+    } else {
+      toast.error('You have not made any changes.');
+    }
+  };
+
+  const connectWalletHandler = async () => {
+    if (window.ethereum) {
+      await window.ethereum
+        .request({ method: 'eth_requestAccounts' })
+        .then((res) => {
+          // Return the address of the wallet
+          console.log(res);
+          setAddress(res[0]);
+        });
+    } else {
+      alert('Please install Metamask extension.');
+    }
+  };
+
+  useEffect(() => {
+    setTxHash(order?.transactionHash);
+    setAddress(order?.from);
+  }, [order]);
 
   return (
     <SectionContainer>
@@ -87,21 +121,21 @@ const OrderDetails = ({ order }) => {
                   <Button
                     size="m"
                     buttonType={BUTTON_TYPES.outlineRed}
-                    onClick={updateTxHashHandler}
+                    onClick={() => setShowEditTxHashInput(false)}
                   >
-                    Save
+                    Confirm
                   </Button>
                 </div>
               </EditTxHashBox>
             ) : (
               <>
                 <span className="transactionHash">
-                  {order?.transactionHash ||
+                  {txHash ||
                     'Please provide your payment transaction hash for payment validation'}
                 </span>
                 <AiTwotoneEdit
                   size={15}
-                  className="copy-icon"
+                  className="icon"
                   onClick={() => setShowEditTxHashInput(true)}
                 />
               </>
@@ -118,17 +152,34 @@ const OrderDetails = ({ order }) => {
           <span className="title">Your payment address:</span>
           <div className="contents">
             <span>
-              {order?.from ||
+              {address ||
                 'Please log in with MetaMask to register your payment address for this transaction.'}
             </span>
-            <AiTwotoneEdit size={15} className="copy-icon" />
+            <FaWallet
+              size={15}
+              className="icon"
+              onClick={connectWalletHandler}
+            />
           </div>
         </div>
       </div>
       <div className="buttons-group">
-        <Button size="x" buttonType={BUTTON_TYPES.outlineRed}>
-          Save Changes
-        </Button>
+        <div className="edit-buttons">
+          <Button
+            size="x"
+            buttonType={BUTTON_TYPES.outlineGrey}
+            onClick={cancelChanges}
+          >
+            Cancel
+          </Button>
+          <Button
+            size="x"
+            buttonType={BUTTON_TYPES.outlineRed}
+            onClick={updateTxHashHandler}
+          >
+            Save Changes
+          </Button>
+        </div>
         <Button
           size="x"
           buttonType={BUTTON_TYPES.outlineGrey}

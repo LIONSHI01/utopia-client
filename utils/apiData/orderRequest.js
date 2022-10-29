@@ -7,7 +7,7 @@ export const getUserOrders = async (userId) => {
     method: 'GET',
     url: `${baseURL}/orders/userOrders/${userId}`,
   });
-  // console.log(res);
+
   return res.data.orders;
 };
 
@@ -25,15 +25,16 @@ export const createOrder = async (userId, sellerId, postId) => {
   return res.data;
 };
 
-export const updateOrder = async (orderId, data) => {
+export const updateOrder = async (orderId, address, txHash) => {
   const res = await axios({
     method: 'PATCH',
     url: `${baseURL}/orders/${orderId}`,
     data: {
-      transactionHash: data,
+      from: address,
+      transactionHash: txHash,
     },
   });
-  // console.log(res);
+  console.log(res);
   return res.data;
 };
 

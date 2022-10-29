@@ -40,11 +40,13 @@ const CollectionDisplay = ({ collection }) => {
           <ProductCard key={item?._id} post={item} />
         ))}
       </ItemsListContainer>
-      <EditCollectionModal
-        collection={collection}
-        showUp={showEditModal}
-        setShowUp={setShowEditModal}
-      />
+      {collection && (
+        <EditCollectionModal
+          collection={collection}
+          showUp={showEditModal}
+          setShowUp={setShowEditModal}
+        />
+      )}
     </DisplaySection>
   );
 };

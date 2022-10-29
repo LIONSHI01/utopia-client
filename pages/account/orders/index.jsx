@@ -21,12 +21,11 @@ const ProfileOrdersPage = () => {
 
   // STATE MANAGEMENT
   const [orders, setOrders] = useState(null);
-  const [selectedOrder, setselectedOrder] = useState(null);
+  const [selectedOrderIndex, setselectedOrderIndex] = useState(0);
 
   // useQuery fetching data
   const onSuccess = (data) => {
     setOrders(data);
-    setselectedOrder(data[0]);
   };
 
   const onError = (error) => {
@@ -61,15 +60,18 @@ const ProfileOrdersPage = () => {
       <ContentsContainer>
         <h3 className="heading">Your Orders</h3>
         <OrdersList>
-          {orders?.map((order) => (
+          {orders?.map((order, i) => (
             <OrderPreviewItem
               key={order?._id}
               order={order}
-              onClick={() => setselectedOrder(order)}
+              onClick={() => setselectedOrderIndex(i)}
             />
           ))}
         </OrdersList>
-        <OrderDetails order={selectedOrder} />
+
+        {orders?.[selectedOrderIndex] && (
+          <OrderDetails order={orders?.[selectedOrderIndex]} />
+        )}
       </ContentsContainer>
     </PageContainer>
   );

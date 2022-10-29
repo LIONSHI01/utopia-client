@@ -36,7 +36,7 @@ export const SectionContainer = styled.div`
     font-weight: 500;
   }
 
-  .copy-icon {
+  .icon {
     cursor: pointer;
   }
 
@@ -52,7 +52,12 @@ export const SectionContainer = styled.div`
 
   .buttons-group {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .edit-buttons {
+    display: flex;
+    gap: 2rem;
   }
 `;
 

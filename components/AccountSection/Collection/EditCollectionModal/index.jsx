@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { IoMdClose, IoMdTrash } from 'react-icons/io';
 
@@ -21,8 +21,12 @@ const EditCollectionModal = ({ collection, showUp, setShowUp }) => {
   const router = useRouter();
   const [name, setName] = useState(collection?.name);
 
+  useEffect(() => {
+    setName(collection?.name);
+  }, [collection]);
+
   const closeModalHandler = () => {
-    setName('');
+    setName(collection?.name);
     setShowUp(false);
   };
 

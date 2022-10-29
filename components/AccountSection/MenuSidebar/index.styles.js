@@ -82,6 +82,7 @@ export const UserInfoSection = styled.div`
       font-weight: 100;
       letter-spacing: -1px;
       line-height: 0;
+      text-align: center;
     }
   }
 

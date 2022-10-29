@@ -15,9 +15,8 @@ export const BoxContainer = styled.div`
 
   .similar-posts {
     width: 100%;
-
     display: flex;
-    justify-content: space-evenly;
     flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 `;
