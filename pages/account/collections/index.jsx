@@ -61,21 +61,6 @@ const ProfileCollectionsPage = () => {
     enabled: !!user?._id,
   });
 
-  // useEffect(() => {
-  //   const getUserData = async () => {
-  //     const res = await getUser(user?._id);
-
-  //     if (res) {
-  //       setItemCollections(res.itemCollections);
-  //       setSelectedCollection(res.itemCollections[0]);
-  //     }
-  //   };
-
-  //   if (user?._id) {
-  //     getUserData();
-  //   }
-  // }, [user?._id]);
-
   return (
     <ProfilePageContainer>
       <MenuSidebar user={user} />

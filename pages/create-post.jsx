@@ -20,7 +20,7 @@ import {
 
 const CreatePost = () => {
   // CONFIGURATION
-  const { data: user } = useSession();
+
   const maxNumber = 10;
 
   // STATE MANAGEMENT

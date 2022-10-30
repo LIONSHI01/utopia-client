@@ -101,4 +101,10 @@ export const FormContainer = styled.div`
       margin-right: 1rem;
     }
   }
+
+  .icon-wrapper {
+    position: relative;
+    height: 2rem;
+    width: 2rem;
+  }
 `;

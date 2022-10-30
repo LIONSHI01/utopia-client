@@ -20,11 +20,11 @@ const OrderPreviewItem = ({ order, ...otherProps }) => {
       </div>
       <div className="details">
         <p className="title">{order?.post?.title}</p>
-        <span className="since">Since {order?.createdAt?.split('T')[0]}</span>
+        {/* <span className="since">Since {order?.createdAt?.split('T')[0]}</span>
         <div className="status">
           <GrStatusGoodSmall size={17} />
           <span>Status: {order?.status}</span>
-        </div>
+        </div> */}
       </div>
     </ItemWrapper>
   );

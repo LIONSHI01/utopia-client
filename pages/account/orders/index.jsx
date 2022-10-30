@@ -24,35 +24,19 @@ const ProfileOrdersPage = () => {
   const [selectedOrderIndex, setselectedOrderIndex] = useState(0);
 
   // useQuery fetching data
-  const onSuccess = (data) => {
-    setOrders(data);
-  };
-
-  const onError = (error) => {
-    console.log('encounter an error during fetching ==> ', error);
-  };
-
   const {
     isLoading,
     data: postsData,
     isError,
     error,
+    refetch: refetchOrders,
   } = useQuery(['userOrders', user?._id], () => getUserOrders(user?._id), {
-    onSuccess,
-    onError,
+    onSuccess: (data) => setOrders(data),
+    onError: (error) => {
+      console.log('encounter an error during fetching ==> ', error);
+    },
     enabled: !!user?._id,
   });
-
-  // useEffect(() => {
-  //   const getUserOrdersHandler = async () => {
-  //     const data = await getUserOrders(user?._id);
-  //     setOrders(data);
-  //     setselectedOrder(data[0]);
-  //   };
-  //   if (user?._id) {
-  //     getUserOrdersHandler();
-  //   }
-  // }, [user?._id]);
 
   return (
     <PageContainer>
@@ -70,7 +54,10 @@ const ProfileOrdersPage = () => {
         </OrdersList>
 
         {orders?.[selectedOrderIndex] && (
-          <OrderDetails order={orders?.[selectedOrderIndex]} />
+          <OrderDetails
+            refetchOrders={refetchOrders}
+            order={orders?.[selectedOrderIndex]}
+          />
         )}
       </ContentsContainer>
     </PageContainer>

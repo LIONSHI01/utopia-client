@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { AiTwotoneEdit } from 'react-icons/ai';
+import { AiTwotoneEdit, AiOutlineCheckCircle } from 'react-icons/ai';
 import { BsCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
 import { FaWallet } from 'react-icons/fa';
 
@@ -14,30 +15,51 @@ import {
   validateOrder,
 } from '../../../../utils/apiData/orderRequest';
 
-const OrderDetails = ({ order }) => {
+const OrderDetails = ({ order, refetchOrders }) => {
+  // CONFIGURATION
   const router = useRouter();
 
+  // STATES
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
   const [txHash, setTxHash] = useState(order?.transactionHash);
   const [address, setAddress] = useState(order?.from);
-  const [isValidating, setIsValidating] = useState(false);
-  const deleteOrderHandler = async () => {
-    await deleteOrder(order?._id);
-    router.reload();
-  };
+  const [isOrderCompleted, setIsOrderCompleted] = useState(false);
 
+  // HANDLERS
   const cancelChanges = async () => {
-    setTxHash(transactionHash);
-    setAddress(from);
+    setTxHash(order?.transactionHash);
+    setAddress(order?.from);
   };
 
-  const updateTxHashHandler = async () => {
-    if (txHash !== order?.transactionHash || address !== order?.from) {
-      await updateOrder(order?._id, address, txHash);
-      router.reload();
-    } else {
-      toast.error('You have not made any changes.');
+  // API CALL
+  const updateOrderHandler = async () => {
+    console.log('update:', address, txHash);
+    // Validate txHash format
+    if (txHash) {
+      if (!txHash?.startsWith('0x'))
+        return toast.error(
+          'Transaction hash should start with "0x", please try again.'
+        );
+
+      if (+txHash?.length !== 66)
+        return toast.error(
+          'Transaction hash should be in length of 66 characters, please try again.'
+        );
     }
+
+    if (address) {
+      if (!address?.startsWith('0x'))
+        return toast.error('Invalid address, please try again.');
+    }
+
+    if (txHash == order?.transactionHash && address == order?.from)
+      return toast.error('You have not made any changes.');
+
+    mutateUpdateOrder({
+      orderId: order?._id,
+      address,
+      txHash,
+    });
   };
 
   const connectWalletHandler = async () => {
@@ -52,18 +74,52 @@ const OrderDetails = ({ order }) => {
     }
   };
 
-  const validateTxHandler = async () => {
-    setIsValidating(true);
-    const res = await validateOrder(order?._id);
-    setIsValidating(false);
-    router.reload();
+  // Validate order payment
+  const { isLoading: isValidating, mutate } = useMutation(validateOrder, {
+    onSuccess: (res) => {
+      refetchOrders();
+      toast.success(`Validation ${res?.data?.validationResult}`);
+    },
+    onError: (err) => {
+      console.log('from mutation err', err);
+      toast.error(`${err?.response.data?.data?.message}`);
+    },
+  });
 
-    console.log(res);
-  };
+  // Delete Order
+  const { isLoading: isDeleting, mutate: mutateDeleteOrder } = useMutation(
+    deleteOrder,
+    {
+      onSuccess: () => {
+        toast.success('Order deleted!');
+        refetchOrders();
+      },
+      onError: (err) => {
+        console.log('from mutation err', err);
+        toast.error(`${err?.response.data?.data?.message}`);
+      },
+    }
+  );
+
+  // Update order TxHash and address
+  const { isLoading: isUpdatingOrder, mutate: mutateUpdateOrder } = useMutation(
+    updateOrder,
+    {
+      onSuccess: () => {
+        toast.success('Update successfully!');
+        refetchOrders();
+      },
+      onError: (err) => {
+        console.log('error from Mutation request', err);
+        toast.error(err.response.data.data.message);
+      },
+    }
+  );
 
   useEffect(() => {
     setTxHash(order?.transactionHash);
     setAddress(order?.from);
+    setIsOrderCompleted(order?.transactionValidation === 'completed');
   }, [order]);
 
   return (
@@ -89,7 +145,7 @@ const OrderDetails = ({ order }) => {
               className={
                 order?.status === 'payment validated'
                   ? 'status completedStatus'
-                  : 'status '
+                  : 'status'
               }
             >
               {order?.status === 'completed' ? (
@@ -153,15 +209,19 @@ const OrderDetails = ({ order }) => {
               </EditTxHashBox>
             ) : (
               <>
-                <span className="transactionHash">
+                <div className="transactionHash">
                   {txHash ||
                     'Please provide your payment transaction hash for payment validation'}
-                </span>
-                <AiTwotoneEdit
-                  size={15}
-                  className="icon"
-                  onClick={() => setShowEditTxHashInput(true)}
-                />
+                </div>
+                {isOrderCompleted ? (
+                  <AiOutlineCheckCircle size={18} color="green" />
+                ) : (
+                  <AiTwotoneEdit
+                    size={15}
+                    className="icon"
+                    onClick={() => setShowEditTxHashInput(true)}
+                  />
+                )}
               </>
             )}
           </div>
@@ -171,39 +231,42 @@ const OrderDetails = ({ order }) => {
           <div className="contents">
             <div
               className={
-                order?.transactionValidation === 'completed'
-                  ? 'validation completedStatus'
-                  : 'validation '
+                isOrderCompleted ? 'validation completedStatus' : 'validation '
               }
             >
-              {order?.transactionValidation === 'completed' ? (
+              {isOrderCompleted ? (
                 <BsCheckCircleFill size={18} />
               ) : (
                 <BsXCircleFill size={18} />
               )}
               <span>{order?.transactionValidation}</span>
             </div>
-            <Button
-              size="m"
-              buttonType={BUTTON_TYPES.outlineRed}
-              onClick={validateTxHandler}
-            >
-              {isValidating ? 'Validating' : 'Validate'}
-            </Button>
+            {!isOrderCompleted && (
+              <Button
+                size="m"
+                buttonType={BUTTON_TYPES.outlineRed}
+                onClick={() => mutate(order?._id)}
+              >
+                {isValidating ? 'Validating' : 'Validate'}
+              </Button>
+            )}
           </div>
         </div>
         <div className="row">
-          <span className="title">Your payment address:</span>
+          <span className="title">Payment address:</span>
           <div className="contents">
             <span>
               {address ||
                 'Please log in with MetaMask to register your payment address for this transaction.'}
             </span>
-            <FaWallet
-              size={15}
-              className="icon"
-              onClick={connectWalletHandler}
-            />
+
+            {!isOrderCompleted && (
+              <FaWallet
+                size={15}
+                className="icon"
+                onClick={connectWalletHandler}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -219,17 +282,17 @@ const OrderDetails = ({ order }) => {
           <Button
             size="x"
             buttonType={BUTTON_TYPES.outlineRed}
-            onClick={updateTxHashHandler}
+            onClick={updateOrderHandler}
           >
-            Save Changes
+            {isUpdatingOrder ? 'Updating' : 'Save Changes'}
           </Button>
         </div>
         <Button
           size="x"
           buttonType={BUTTON_TYPES.outlineGrey}
-          onClick={deleteOrderHandler}
+          onClick={() => mutateDeleteOrder(order?._id)}
         >
-          Delete order
+          {isDeleting ? 'Deleting' : 'Delete order'}
         </Button>
       </div>
     </SectionContainer>

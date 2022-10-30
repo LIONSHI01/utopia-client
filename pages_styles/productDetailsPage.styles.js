@@ -117,9 +117,21 @@ export const DetailsWrapper = styled.div`
   }
 
   .price {
-    font-size: var(--fs-xl);
-    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: var(--mg-m);
+
+    span {
+      font-size: var(--fs-xl);
+      font-weight: 600;
+    }
+  }
+
+  .icon-wrapper {
+    position: relative;
+    height: 3rem;
+    width: 3rem;
   }
 
   .buttons-group {

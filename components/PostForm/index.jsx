@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
+import Image from 'next/image';
 import { useSession } from 'next-auth/react';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import { Button, BUTTON_TYPES } from '../index';
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
-import { createPost } from '../../utils/accountRequest';
+import { createPost } from '../../utils/postRequest';
+import EthIcon from '../../assets/image/eth-icon.png';
 
 const INITIAL_FORM_FIELDS = {
   category: '',
@@ -22,10 +26,23 @@ const PostForm = ({ images }) => {
 
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
-  const [isListing, setIsListing] = useState(false);
+  // const [isListing, setIsListing] = useState(false);
 
   const { title, category, subCategory, brand, price, description } =
     formFields;
+
+  const { isLoading: isListing, mutate: mutateCreatePost } = useMutation(
+    createPost,
+    {
+      onSuccess: () => {
+        setFormFields(INITIAL_FORM_FIELDS);
+        toast.success('Congretulations! Your item is on listed.');
+      },
+      onError: (err) => {
+        console.log('From mutation', err);
+      },
+    }
+  );
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -33,8 +50,8 @@ const PostForm = ({ images }) => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const onSubmitHandler = async (e) => {
-    setIsListing(true);
+  const onSubmitHandler = (e) => {
+    // setIsListing(true);
     e.preventDefault();
     let form = new FormData();
     // Append Images into FormData
@@ -49,9 +66,11 @@ const PostForm = ({ images }) => {
     form.append('postedBy', user?.profile._id);
 
     // Send Request
-    await createPost(form);
-    setIsListing(false);
+    mutateCreatePost({ data: form });
+    // setIsListing(false);
   };
+
+  // Create POST
 
   return (
     <FormContainer>
@@ -154,10 +173,19 @@ const PostForm = ({ images }) => {
               </div>
             </div>
             <div className="price">
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Price (Paied in Ethereum)</label>
               <div className="priceInputField">
                 <div className="field-cover">
-                  <span>US&nbsp;$</span>
+                  <div className="icon-wrapper">
+                    <Image
+                      src={EthIcon}
+                      alt="eth-icon"
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="center"
+                    />
+                  </div>
+                  <span>&nbsp;Ethereum</span>
                   <input
                     type="number"
                     id="price"

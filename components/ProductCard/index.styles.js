@@ -61,6 +61,15 @@ export const ContentContainer = styled.div`
     font-size: var(--fs);
     color: var(--black);
     margin-bottom: var(--mg-s);
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    height: 2rem;
+    width: 2rem;
   }
 
   .status {

@@ -3,6 +3,7 @@ import { AiFillGift, AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
 import { TbFileInvoice } from 'react-icons/tb';
 import { SlEnvolopeLetter } from 'react-icons/sl';
 import { FiSettings } from 'react-icons/fi';
+import { BsFillFileEarmarkTextFill, BsFillHeartFill } from 'react-icons/bs';
 
 export const categories = [
   {
@@ -220,12 +221,12 @@ export const profileLinks = [
   {
     title: 'Collections',
     path: '/account/collections',
-    icon: <AiFillGift size={25} />,
+    icon: <BsFillHeartFill size={25} />,
   },
   {
     title: 'Orders',
     path: '/account/orders',
-    icon: <MdBusinessCenter size={25} />,
+    icon: <BsFillFileEarmarkTextFill size={25} />,
   },
   {
     title: 'Offers',

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { BsThreeDots, BsFillHeartFill } from 'react-icons/bs';
-
+import ethIcon from '../../assets/image/eth-icon.png';
 import { selectUser } from '../../store/user/user.selector';
 import {
   UserIcon,
@@ -82,7 +82,18 @@ const ProductCard = ({ post }) => {
         <ContentContainer>
           <div className="details">
             <h3 className="title">{post?.title}</h3>
-            <span className="price">${post?.price}</span>
+            <div className="price">
+              <div className="icon-wrapper">
+                <Image
+                  src={ethIcon}
+                  alt="eth-icon"
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="center"
+                />
+              </div>
+              {post?.price}
+            </div>
             <span className="status">Brand New</span>
           </div>
           <div className="buttons-group">

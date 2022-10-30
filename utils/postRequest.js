@@ -47,3 +47,13 @@ export const getOnePost = async (category, subCategory, postId) => {
     console.log(err);
   }
 };
+
+export const createPost = async ({ data }) => {
+  const res = await axios({
+    method: 'POST',
+    url: `${baseURL}/`,
+    data,
+  });
+
+  return res;
+};

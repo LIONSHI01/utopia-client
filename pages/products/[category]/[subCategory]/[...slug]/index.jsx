@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import Link from 'next/link';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 import {
   ImageDisplayModal,
@@ -16,7 +17,7 @@ import {
   MeetSellerColumn,
   AddToCollectionModal,
 } from '../../../../../components';
-
+import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { getOnePost } from '../../../../../utils/postRequest';
 import { getUser } from '../../../../../utils/accountRequest';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
@@ -49,9 +50,21 @@ const ProductDetailsPage = () => {
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
 
-  const buyHandler = async () => {
-    await createOrder(user?._id, post?.postedBy?._id, post?._id, post?.price);
-  };
+  const { mutate: mutateBuying, isSuccess: isOrderSuccess } = useMutation(
+    createOrder,
+    {
+      onSuccess: () => {
+        toast.success(
+          `Successfully ordered < ${post?.title} >, please check your order list`
+        );
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    }
+  );
+
+  const buyHandler = () => {};
 
   const onSuccess = (data) => {
     setPost(data?.post);
@@ -92,31 +105,6 @@ const ProductDetailsPage = () => {
     onSuccess: onSuccessUser,
     enabled: !!data?.profile?.id,
   });
-
-  // console.log(user);
-
-  // useEffect(() => {
-  //   const getOnePostHandler = async () => {
-  //     const data = await getOnePost(category, subCategory, postId);
-  //     setPost(data?.post);
-  //     setMoreSellerPosts(data?.sellerPosts);
-  //     setSimilarPosts(data?.similarPosts);
-  //   };
-  //   if (category && subCategory && postId) {
-  //     getOnePostHandler();
-  //   }
-  // }, [category, subCategory, postId]);
-
-  // useEffect(() => {
-  //   const getUserHandler = async () => {
-  //     const userData = await getUser(data?.profile.id);
-  //     setUser(userData);
-  //   };
-
-  //   if (data?.profile.id) {
-  //     getUserHandler();
-  //   }
-  // }, [data?.profile?.id]);
 
   return (
     <>
@@ -194,13 +182,34 @@ const ProductDetailsPage = () => {
               <DetailsWrapper>
                 <div className="upper-box">
                   <div className="title">{post?.title}</div>
-                  <div className="price">${post?.price}</div>
+                  <div className="price">
+                    <div className="icon-wrapper">
+                      <Image
+                        src={ethIcon}
+                        alt="eth-icon"
+                        objectFit="cover"
+                        objectPosition="center"
+                        layout="fill"
+                      />
+                    </div>
+                    <span>{post?.price}</span>
+                  </div>
                   <div className="buttons-group">
                     <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
                       Add to cart
                     </Button>
-                    <Button size="full" onClick={buyHandler}>
-                      Buy now
+                    <Button
+                      size="full"
+                      onClick={() =>
+                        mutateBuying({
+                          userId: user?._id,
+                          sellerId: post?.postedBy?._id,
+                          postId: post?._id,
+                          value: post?.price,
+                        })
+                      }
+                    >
+                      {isOrderSuccess ? 'Ordered' : 'Buy now'}
                     </Button>
                   </div>
                 </div>
