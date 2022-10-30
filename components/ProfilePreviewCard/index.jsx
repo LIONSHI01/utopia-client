@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useQuery } from 'react-query';
 import Image from 'next/image';
 
@@ -24,13 +25,18 @@ import { getUser } from '../../utils/accountRequest';
 
 const ProfilePreviewCard = ({ postByUser }) => {
   const [postOwner, setPostOwner] = useState(null);
-  const previewImages = postOwner?.posts
-    ?.map((post) => post?.images[0])
+  const previewItems = postOwner?.posts
+    ?.map((post) => ({
+      image: post?.images[0],
+      path: `/products/${post?.category}/${post?.subCategory}/${post?.slug}/${post?._id}`,
+    }))
     ?.slice(0, 3);
 
+  console.log(previewItems);
+  // console.log(postOwner);
   useEffect(() => {
     const getPostOwnerData = async () => {
-      const data = await getUser(postByUser);
+      const data = await getUser(postByUser?._id);
       setPostOwner(data);
     };
     getPostOwnerData();
@@ -39,7 +45,7 @@ const ProfilePreviewCard = ({ postByUser }) => {
   return (
     <CardContaienr>
       <InfoContainer>
-        <UserIcon user={postOwner} />
+        <UserIcon user={postByUser} />
         <div className="user-details">
           <p className="name">{postOwner?.name}</p>
           <div className="social-links">
@@ -70,16 +76,22 @@ const ProfilePreviewCard = ({ postByUser }) => {
         </div>
       </ProfileContainer>
       <ImagesContainer>
-        {previewImages?.map((image, i) => (
-          <div key={i} className="image-container">
-            <Image
-              src={image && image}
-              alt="Preview"
-              objectFit="contain"
-              objectPosition="center"
-              layout="fill"
-            />
-          </div>
+        {previewItems?.map((item, i) => (
+          <Link key={i} href={item.path}>
+            <a
+              className="image-container"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={item?.image}
+                alt="Preview"
+                objectFit="contain"
+                objectPosition="center"
+                layout="fill"
+              />
+            </a>
+          </Link>
         ))}
       </ImagesContainer>
       <ButtonsContainer>

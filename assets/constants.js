@@ -1,8 +1,9 @@
-import { MdLocalOffer, MdBusinessCenter } from 'react-icons/md';
-import { AiFillGift, AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
+import { MdLocalOffer } from 'react-icons/md';
+import { AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
 import { TbFileInvoice } from 'react-icons/tb';
 import { SlEnvolopeLetter } from 'react-icons/sl';
 import { FiSettings } from 'react-icons/fi';
+import { RiAuctionFill } from 'react-icons/ri';
 import { BsFillFileEarmarkTextFill, BsFillHeartFill } from 'react-icons/bs';
 
 export const categories = [
@@ -222,6 +223,11 @@ export const profileLinks = [
     title: 'Collections',
     path: '/account/collections',
     icon: <BsFillHeartFill size={25} />,
+  },
+  {
+    title: 'Listings',
+    path: '/account/listings',
+    icon: <RiAuctionFill size={25} />,
   },
   {
     title: 'Orders',
