@@ -18,16 +18,17 @@ import {
 const OrderDetails = ({ order, refetchOrders }) => {
   // CONFIGURATION
   const router = useRouter();
+  console.log(order);
 
   // STATES
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
-  const [txHash, setTxHash] = useState(order?.transactionHash);
+  const [txHash, setTxHash] = useState(order?.transaction_hash[0]?.hash);
   const [address, setAddress] = useState(order?.from);
   const [isOrderCompleted, setIsOrderCompleted] = useState(false);
 
   // HANDLERS
   const cancelChanges = async () => {
-    setTxHash(order?.transactionHash);
+    setTxHash(order?.transaction_hash[0]?.hash);
     setAddress(order?.from);
   };
 
@@ -52,7 +53,7 @@ const OrderDetails = ({ order, refetchOrders }) => {
         return toast.error('Invalid address, please try again.');
     }
 
-    if (txHash == order?.transactionHash && address == order?.from)
+    if (txHash == order?.transaction_hash[0]?.hash && address == order?.from)
       return toast.error('You have not made any changes.');
 
     mutateUpdateOrder({
@@ -117,7 +118,7 @@ const OrderDetails = ({ order, refetchOrders }) => {
   );
 
   useEffect(() => {
-    setTxHash(order?.transactionHash);
+    setTxHash(order?.transaction_hash[0]?.hash);
     setAddress(order?.from);
     setIsOrderCompleted(order?.transactionValidation === 'completed');
   }, [order]);

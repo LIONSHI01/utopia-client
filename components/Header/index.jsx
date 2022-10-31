@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
@@ -6,16 +6,38 @@ import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
 import { FiHeart } from 'react-icons/fi';
 
-import { UserIcon, Button, BUTTON_TYPES, AuthForm } from '../index';
+import {
+  UserIcon,
+  Button,
+  BUTTON_TYPES,
+  AuthForm,
+  NotificationDropdown,
+} from '../index';
 
 import { HeaderWrapper } from './index.styles';
 
 const MainHeader = () => {
-  // STATE MANAGEMENT
-  const [showAuthForm, setShowAuthForm] = useState(false);
-
+  // CONFIGURATION
+  const ref = useRef();
   const { data } = useSession();
   const user = data?.profile;
+
+  // STATE MANAGEMENT
+  const [showAuthForm, setShowAuthForm] = useState(false);
+  const [showNotiDropdown, setShowNotiDropdown] = useState(false);
+
+  useEffect(() => {
+    const checkIfClickOutside = (e) => {
+      if (showNotiDropdown && !ref.current.contains(e.target)) {
+        setShowNotiDropdown(false);
+      }
+    };
+    window.addEventListener('mousedown', checkIfClickOutside, true);
+
+    return () => {
+      window.removeEventListener('mousedown', checkIfClickOutside, true);
+    };
+  }, [showNotiDropdown]);
 
   return (
     <>
@@ -34,21 +56,26 @@ const MainHeader = () => {
           </button>
         </div>
         <div className="links">
-          <Link href="/notification">
-            <a>
-              <RiNotification4Line size={23} color="var(--black-light-2)" />
-            </a>
-          </Link>
-          <Link href="/message">
-            <a>
-              <HiOutlineMail size={23} color="var(--black-light-2)" />
-            </a>
-          </Link>
-          <Link href="/wishlist">
+          <Link href="/account/collections">
             <a>
               <FiHeart size={23} color="var(--black-light-2)" />
             </a>
           </Link>
+          <div
+            className="notification"
+            onClick={() => setShowNotiDropdown((prev) => !prev)}
+            ref={ref}
+          >
+            <RiNotification4Line size={23} color="var(--black-light-2)" />
+            <div className="noti-number">
+              <span>{user?.notifications.length || 0}</span>
+            </div>
+            <NotificationDropdown
+              notifications={user?.notifications}
+              showUp={showNotiDropdown}
+              setShowUp={setShowNotiDropdown}
+            />
+          </div>
 
           <Button size="x" onClick={() => Router.replace('/create-post')}>
             Sell

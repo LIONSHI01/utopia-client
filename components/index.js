@@ -24,6 +24,7 @@ import EditCollectionModal from './AccountSection/Collection/EditCollectionModal
 import MenuSidebar from './AccountSection/MenuSidebar';
 import OrderPreviewItem from './AccountSection/Order/OrderPreviewItem';
 import OrderDetails from './AccountSection/Order/OrderDetails';
+import NotificationDropdown from './Header/notificationDropdown';
 
 export {
   MainHeader,
@@ -54,4 +55,5 @@ export {
   MenuSidebar,
   OrderPreviewItem,
   OrderDetails,
+  NotificationDropdown,
 };

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const HeaderWrapper = styled.div`
   height: 7rem;
   width: 100%;
-  /* background-color: var(--white); */
-  /* background-color: orangered; */
   padding: 1rem 5rem;
   display: flex;
   align-items: center;
@@ -81,5 +79,29 @@ export const HeaderWrapper = styled.div`
   .auth-buttons {
     display: flex;
     gap: 1rem;
+  }
+
+  .notification {
+    position: relative;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  .noti-number {
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    background-color: red;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+
+    span {
+      color: var(--white);
+      line-height: 0;
+    }
   }
 `;

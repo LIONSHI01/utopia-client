@@ -31,7 +31,7 @@ export const CreateButtonWrapper = styled.div`
   right: 3rem;
   bottom: 3rem;
   padding: 1rem 2rem;
-  background-color: var(--black);
+  background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,12 @@ export const CreateButtonWrapper = styled.div`
   border-radius: 100px;
   box-shadow: var(--bs-m);
   z-index: 1000;
+  transition: all 0.3s;
   cursor: pointer;
+
+  :hover {
+    background-color: var(--primary-dark);
+  }
 
   span {
     color: var(--white);

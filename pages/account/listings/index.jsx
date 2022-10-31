@@ -56,7 +56,11 @@ const ProfileListingsPage = () => {
         </DisplayList>
       </ContentsContainer>
       {/* For creating Collction */}
-      <CreateButton onClick={() => {}} />
+      <CreateButton
+        onClick={() => {
+          router.replace('/create-post');
+        }}
+      />
     </ProfilePageContainer>
   );
 };
