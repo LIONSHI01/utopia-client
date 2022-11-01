@@ -102,6 +102,7 @@ export const HeaderWrapper = styled.div`
     span {
       color: var(--white);
       line-height: 0;
+      font-size: var(--fs-sss);
     }
   }
 `;

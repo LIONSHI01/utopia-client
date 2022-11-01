@@ -64,17 +64,6 @@ const ProductDetailsPage = () => {
     }
   );
 
-  const buyHandler = () => {};
-
-  const onSuccess = (data) => {
-    setPost(data?.post);
-    setMoreSellerPosts(data?.sellerPosts);
-    setSimilarPosts(data?.similarPosts);
-  };
-
-  const onError = (error) => {
-    console.log(error);
-  };
   const {
     isLoading: isLoadingPost,
     isError: isErrorPost,
@@ -83,26 +72,29 @@ const ProductDetailsPage = () => {
     ['postDetails', category, subCategory, postId],
     () => getOnePost(category, subCategory, postId),
     {
-      onError,
-      onSuccess,
+      onError: (error) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        setPost(data?.post);
+        setMoreSellerPosts(data?.sellerPosts);
+        setSimilarPosts(data?.similarPosts);
+      },
       enabled: !!category && !!subCategory && !!postId,
     }
   );
 
-  const onSuccessUser = (data) => {
-    setUser(data);
-  };
-
-  const onErrorUser = (error) => {
-    console.log(error);
-  };
   const {
     isLoading: isLoadingUser,
     isError: isErrorUser,
     data: userData,
   } = useQuery(['user', data?.profile?.id], () => getUser(data?.profile.id), {
-    onError: onErrorUser,
-    onSuccess: onSuccessUser,
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: (data) => {
+      setUser(data);
+    },
     enabled: !!data?.profile?.id,
   });
 

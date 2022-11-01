@@ -136,5 +136,7 @@ export const MenuList = styled.ul`
 
   .active {
     background-color: var(--black-light-3);
+    color: var(--primary);
+    font-weight: 500;
   }
 `;

@@ -20,7 +20,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
   const { username, email, password, passwordConfirm } = formField;
 
@@ -33,10 +33,11 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     if (isSignup) {
       if (password === passwordConfirm) {
         await signupRequest({ username, email, password });
+        setIsLoading(false);
       }
     } else {
       signIn('credentials', {
@@ -53,6 +54,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         toast.warn(res.error);
         console.log(res);
       });
+      setIsLoading(false);
     }
   };
 
@@ -114,7 +116,13 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             onClick={() => setIsSignup((prev) => !prev)}
             buttonType={BUTTON_TYPES.raw}
           >
-            {isSignup ? 'Sign In' : 'Sign Up'}
+            {isSignup
+              ? isLoading
+                ? 'Signing in'
+                : 'Sign in'
+              : isLoading
+              ? 'Signing up'
+              : 'Sign up'}
           </Button>
         </div>
       </FormContainer>

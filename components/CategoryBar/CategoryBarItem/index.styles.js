@@ -36,7 +36,7 @@ export const DropdownWrapper = styled.div`
 
   background-color: var(--white);
   box-shadow: var(--bs-s);
-  border-radius: var(--br-s);
+  border-radius: var(--br-x);
 
   /* background-color: orangered; */
   padding: 2rem 2rem 2rem 3rem;

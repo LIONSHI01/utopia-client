@@ -45,17 +45,24 @@ export const DropdownWrapper = styled.div`
 export const MasterContainer = styled.div`
   overflow: hidden;
   width: 100%;
-`;
-
-export const ContentContainer = styled.div`
-  overflow: scroll;
-  min-width: 30rem;
 
   .heading {
     padding: 2rem 0;
     font-size: 2rem;
     text-align: center;
   }
+`;
+
+export const ContentContainer = styled.div`
+  overflow: scroll;
+  min-width: 30rem;
+  min-height: 50rem;
+  max-width: 30rem;
+  max-height: 40rem;
+
+  /* border-radius: var(--br-x); */
+  border-bottom-left-radius: var(--br-x);
+  border-bottom-right-radius: var(--br-x);
 `;
 
 export const MessageItemWrapper = styled.div`
@@ -67,7 +74,7 @@ export const MessageItemWrapper = styled.div`
   background-color: var(--grey-light-2);
   font-size: var(--fs-ss);
   font-weight: 100;
-  border-bottom: 1px solid var(--grey-light-1);
+  border-bottom: 1px solid var(--black-light-3);
 
   :hover {
     background-color: var(--grey-light-1);
@@ -103,9 +110,17 @@ export const HostIcon = styled(BaseIconWrapper)`
 `;
 
 export const OrderIcon = styled(BaseIconWrapper)`
-  background-color: var(--primary-light-4);
+  background-color: #ffbccd;
 
   .icon {
-    color: var(--primary-light);
+    color: #ff5882;
+  }
+`;
+
+export const OfferIcon = styled(BaseIconWrapper)`
+  background-color: #c1eddd;
+
+  .icon {
+    color: #8ebaaa;
   }
 `;

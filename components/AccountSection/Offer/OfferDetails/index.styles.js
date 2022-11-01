@@ -54,6 +54,7 @@ export const SectionContainer = styled.div`
     display: flex;
     gap: 0.5rem;
   }
+
   .icon-container {
     position: relative;
     height: 2rem;

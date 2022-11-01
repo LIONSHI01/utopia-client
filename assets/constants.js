@@ -1,10 +1,14 @@
 import { MdLocalOffer } from 'react-icons/md';
 import { AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
 import { TbFileInvoice } from 'react-icons/tb';
-import { SlEnvolopeLetter } from 'react-icons/sl';
+
 import { FiSettings } from 'react-icons/fi';
 import { RiAuctionFill } from 'react-icons/ri';
-import { BsFillFileEarmarkTextFill, BsFillHeartFill } from 'react-icons/bs';
+import {
+  BsFillFileEarmarkTextFill,
+  BsFillHeartFill,
+  BsTag,
+} from 'react-icons/bs';
 
 export const categories = [
   {
@@ -260,7 +264,7 @@ export const iconDropdownMenuList = [
   {
     name: 'Offers',
     link: '/account/offers',
-    icon: <SlEnvolopeLetter size={18} />,
+    icon: <BsTag size={18} />,
   },
   {
     name: 'Settings',

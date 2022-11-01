@@ -25,6 +25,8 @@ import MenuSidebar from './AccountSection/MenuSidebar';
 import OrderPreviewItem from './AccountSection/Order/OrderPreviewItem';
 import OrderDetails from './AccountSection/Order/OrderDetails';
 import NotificationDropdown from './Header/notificationDropdown';
+import AlertModal from './AlertModal';
+import OfferDetails from './AccountSection/Offer/OfferDetails';
 
 export {
   MainHeader,
@@ -56,4 +58,6 @@ export {
   OrderPreviewItem,
   OrderDetails,
   NotificationDropdown,
+  AlertModal,
+  OfferDetails,
 };

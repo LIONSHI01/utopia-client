@@ -1,30 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { AiTwotoneEdit, AiOutlineCheckCircle } from 'react-icons/ai';
 import { BsCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
+import { CgSandClock } from 'react-icons/cg';
+
 import { FaWallet } from 'react-icons/fa';
 
+import EthIcon from '../../../../assets/image/eth-icon.png';
 import { SectionContainer, EditTxHashBox } from './index.styles';
-import { Button, BUTTON_TYPES, FormInputComp } from '../../../index';
+import {
+  Button,
+  BUTTON_TYPES,
+  FormInputComp,
+  AlertModal,
+} from '../../../index';
 import {
   deleteOrder,
   updateOrder,
   validateOrder,
+  buyerConfirmOrder,
 } from '../../../../utils/apiData/orderRequest';
 
-const OrderDetails = ({ order, refetchOrders }) => {
+const OrderDetails = ({ user, order, refetchOrders }) => {
+  console.log(paymentCompleted);
   // CONFIGURATION
-  const router = useRouter();
   console.log(order);
-
   // STATES
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
   const [txHash, setTxHash] = useState(order?.transaction_hash[0]?.hash);
   const [address, setAddress] = useState(order?.from);
-  const [isOrderCompleted, setIsOrderCompleted] = useState(false);
+
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [showBuyerConfirm, setShowBuyerConfirm] = useState(false);
 
   // HANDLERS
   const cancelChanges = async () => {
@@ -32,9 +43,18 @@ const OrderDetails = ({ order, refetchOrders }) => {
     setAddress(order?.from);
   };
 
+  // Modal Message
+  const buyerConfirmTitle = 'Confirm Order';
+  const buyerConfirmMsg =
+    'Once you confirm the order, it will be marked as completed, and cannot undo the changes.';
+  const buyerConfirmHandler = () => {
+    mutateBuyerConfirm({ orderId: order?._id, userId: user?._id });
+    setShowBuyerConfirm(false);
+  };
+
   // API CALL
   const updateOrderHandler = async () => {
-    console.log('update:', address, txHash);
+    // console.log('update:', address, txHash);
     // Validate txHash format
     if (txHash) {
       if (!txHash?.startsWith('0x'))
@@ -102,6 +122,21 @@ const OrderDetails = ({ order, refetchOrders }) => {
     }
   );
 
+  // Buyer Confirm Order
+  const { isLoading: isConfirming, mutate: mutateBuyerConfirm } = useMutation(
+    buyerConfirmOrder,
+    {
+      onSuccess: () => {
+        toast.success('Order confirmed!');
+        refetchOrders();
+      },
+      onError: (err) => {
+        console.log('from mutation err', err);
+        toast.error(`${err?.response.data?.data?.message}`);
+      },
+    }
+  );
+
   // Update order TxHash and address
   const { isLoading: isUpdatingOrder, mutate: mutateUpdateOrder } = useMutation(
     updateOrder,
@@ -120,7 +155,7 @@ const OrderDetails = ({ order, refetchOrders }) => {
   useEffect(() => {
     setTxHash(order?.transaction_hash[0]?.hash);
     setAddress(order?.from);
-    setIsOrderCompleted(order?.transactionValidation === 'completed');
+    setPaymentCompleted(order?.transaction_validated);
   }, [order]);
 
   return (
@@ -144,7 +179,7 @@ const OrderDetails = ({ order, refetchOrders }) => {
           <div className="contents">
             <div
               className={
-                order?.status === 'payment validated'
+                order?.status === 'completed'
                   ? 'status completedStatus'
                   : 'status'
               }
@@ -152,12 +187,46 @@ const OrderDetails = ({ order, refetchOrders }) => {
               {order?.status === 'completed' ? (
                 <BsCheckCircleFill size={18} />
               ) : (
-                <BsXCircleFill size={18} />
+                <CgSandClock size={18} />
               )}
               <span>{order?.status}</span>
             </div>
           </div>
         </div>
+        {paymentCompleted && (
+          <div className="row">
+            <span className="title">Buyer confirmation:</span>
+            <div className="contents">
+              {!order?.buyer_confirmation ? (
+                <div className="buyer-confirmation">
+                  <p>
+                    Please confirm order status, if you have received
+                    item/service.
+                  </p>
+                  <Button
+                    size="m"
+                    buttonType={BUTTON_TYPES.outlineRed}
+                    onClick={() => setShowBuyerConfirm(true)}
+                  >
+                    {isConfirming ? 'Confirming' : 'Confirm'}
+                  </Button>
+                </div>
+              ) : (
+                <div className="confirmation-status">
+                  <AiOutlineCheckCircle size={18} />
+                  <span>Confirmed</span>
+                </div>
+              )}
+            </div>
+            <AlertModal
+              title={buyerConfirmTitle}
+              message={buyerConfirmMsg}
+              onConfirmHandler={buyerConfirmHandler}
+              showup={showBuyerConfirm}
+              setShowup={setShowBuyerConfirm}
+            />
+          </div>
+        )}
         <div className="row">
           <span className="title">Item name:</span>
           <div className="contents">
@@ -178,7 +247,18 @@ const OrderDetails = ({ order, refetchOrders }) => {
         <div className="row">
           <span className="title">Value:</span>
           <div className="contents">
-            <span>${order?.post?.price}</span>
+            <div className="order-value">
+              <div className="icon-container">
+                <Image
+                  src={EthIcon}
+                  alt="eth"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                />
+              </div>
+              <span>{order?.post?.price}</span>
+            </div>
           </div>
         </div>
         <div className="row">
@@ -214,8 +294,8 @@ const OrderDetails = ({ order, refetchOrders }) => {
                   {txHash ||
                     'Please provide your payment transaction hash for payment validation'}
                 </div>
-                {isOrderCompleted ? (
-                  <AiOutlineCheckCircle size={18} color="green" />
+                {paymentCompleted ? (
+                  <AiOutlineCheckCircle size={18} color="var(--green)" />
                 ) : (
                   <AiTwotoneEdit
                     size={15}
@@ -227,22 +307,40 @@ const OrderDetails = ({ order, refetchOrders }) => {
             )}
           </div>
         </div>
+
+        <div className="row">
+          <span className="title">Payment address:</span>
+          <div className="contents">
+            <span>
+              {address ||
+                'Please log in with MetaMask to register your payment address for this transaction.'}
+            </span>
+
+            {!paymentCompleted && (
+              <FaWallet
+                size={15}
+                className="icon"
+                onClick={connectWalletHandler}
+              />
+            )}
+          </div>
+        </div>
         <div className="row">
           <span className="title">Transaction validation:</span>
           <div className="contents">
             <div
               className={
-                isOrderCompleted ? 'validation completedStatus' : 'validation '
+                paymentCompleted ? 'validation completedStatus' : 'validation'
               }
             >
-              {isOrderCompleted ? (
-                <BsCheckCircleFill size={18} />
+              {paymentCompleted ? (
+                <AiOutlineCheckCircle size={18} />
               ) : (
                 <BsXCircleFill size={18} />
               )}
-              <span>{order?.transactionValidation}</span>
+              <span>{paymentCompleted ? 'Validated' : 'Invalidated'}</span>
             </div>
-            {!isOrderCompleted && (
+            {!paymentCompleted && (
               <Button
                 size="m"
                 buttonType={BUTTON_TYPES.outlineRed}
@@ -253,49 +351,34 @@ const OrderDetails = ({ order, refetchOrders }) => {
             )}
           </div>
         </div>
-        <div className="row">
-          <span className="title">Payment address:</span>
-          <div className="contents">
-            <span>
-              {address ||
-                'Please log in with MetaMask to register your payment address for this transaction.'}
-            </span>
-
-            {!isOrderCompleted && (
-              <FaWallet
-                size={15}
-                className="icon"
-                onClick={connectWalletHandler}
-              />
-            )}
-          </div>
-        </div>
       </div>
-      <div className="buttons-group">
-        <div className="edit-buttons">
+      {!order?.buyer_confirmation && (
+        <div className="buttons-group">
+          <div className="edit-buttons">
+            <Button
+              size="x"
+              buttonType={BUTTON_TYPES.outlineGrey}
+              onClick={cancelChanges}
+            >
+              Cancel
+            </Button>
+            <Button
+              size="x"
+              buttonType={BUTTON_TYPES.outlineRed}
+              onClick={updateOrderHandler}
+            >
+              {isUpdatingOrder ? 'Updating' : 'Save Changes'}
+            </Button>
+          </div>
           <Button
             size="x"
             buttonType={BUTTON_TYPES.outlineGrey}
-            onClick={cancelChanges}
+            onClick={() => mutateDeleteOrder(order?._id)}
           >
-            Cancel
-          </Button>
-          <Button
-            size="x"
-            buttonType={BUTTON_TYPES.outlineRed}
-            onClick={updateOrderHandler}
-          >
-            {isUpdatingOrder ? 'Updating' : 'Save Changes'}
+            {isDeleting ? 'Deleting' : 'Delete order'}
           </Button>
         </div>
-        <Button
-          size="x"
-          buttonType={BUTTON_TYPES.outlineGrey}
-          onClick={() => mutateDeleteOrder(order?._id)}
-        >
-          {isDeleting ? 'Deleting' : 'Delete order'}
-        </Button>
-      </div>
+      )}
     </SectionContainer>
   );
 };

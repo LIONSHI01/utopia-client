@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { useSession } from 'next-auth/react';
 import { useDispatch } from 'react-redux';
 import { useQuery } from 'react-query';
@@ -6,6 +7,11 @@ import { setCurrentUser } from '../store/user/user.action';
 
 import { DisplayList } from '../components';
 import { getAllPosts } from '../utils/postRequest';
+
+const ContentContainer = styled.div`
+  width: 100vw;
+  min-height: 100vh;
+`;
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -31,23 +37,14 @@ const Home = () => {
     onError,
   });
 
-  // console.log(postsData);
-  // useEffect(() => {
-  //   const getAllPostHandler = async () => {
-  //     const res = await getAllPosts();
-  //     setPosts(res);
-  //   };
-  //   getAllPostHandler();
-  // }, []);
-
   useEffect(() => {
     dispatch(setCurrentUser(data?.profile));
   }, [dispatch, data]);
 
   return (
-    <>
+    <ContentContainer>
       <DisplayList posts={posts} />
-    </>
+    </ContentContainer>
   );
 };
 

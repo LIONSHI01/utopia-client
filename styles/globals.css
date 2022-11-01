@@ -92,20 +92,30 @@ figure {
   --grey-dark-2: #474747;
   --grey-dark-3: #333; */
 
+  --green:#4ca230;
+  --red:#E94560;
   --white: #fff;
 
-  --primary: #ff2e63;
+  /* --primary: #ff2e63;
   --primary-light: #ff5882;
   --primary-light-2: #ffabc1;
   --primary-light-3: #ffc0d0;
   --primary-light-4: #ffeaef;
-  --primary-dark: #cc254f;
+  --primary-dark: #cc254f; */
+
+  --primary: #FF6F3C;
+  --primary-light: #ff8c63;
+  --primary-light-2: #ff9a77;
+  --primary-light-3: #ffa98a;
+  --primary-light-4: #ffd4c5;
+  --primary-dark: #e66436; 
 
   --uploadbg: #b1e9d4;
 
   /* FONT */
   --ff-display: 'Playfair Display', serif;
 
+  --fs-sss:0.6rem
   --fs-ss: 1.4rem;
   --fs-s: 1.6rem;
   --fs: 1.8rem;

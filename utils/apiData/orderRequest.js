@@ -11,6 +11,15 @@ export const getUserOrders = async (userId) => {
   return res.data.data.orders;
 };
 
+export const getUserOffers = async (userId) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/orders/userOffers/${userId}`,
+  });
+
+  return res.data.data.offers;
+};
+
 export const createOrder = async ({ userId, sellerId, postId, value }) => {
   const res = await axios({
     method: 'POST',
@@ -52,6 +61,23 @@ export const validateOrder = async (orderId) => {
   const res = await axios({
     method: 'GET',
     url: `${baseURL}/orders/validate/${orderId}`,
+  });
+  console.log(res);
+  return res.data;
+};
+
+export const buyerConfirmOrder = async ({ orderId, userId }) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/orders/buyerConfirm/${userId}/${orderId}`,
+  });
+  console.log(res);
+  return res.data;
+};
+export const sellerConfirmOrder = async ({ orderId, userId }) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/orders/sellerConfirm/${userId}/${orderId}`,
   });
   console.log(res);
   return res.data;

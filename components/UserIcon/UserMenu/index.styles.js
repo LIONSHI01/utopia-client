@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 const showUpStyles = css`
   width: 20rem;
   height: 30rem;
-
   opacity: 1;
   visibility: visible;
 `;

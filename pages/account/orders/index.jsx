@@ -55,6 +55,7 @@ const ProfileOrdersPage = () => {
 
         {orders?.[selectedOrderIndex] && (
           <OrderDetails
+            user={user}
             refetchOrders={refetchOrders}
             order={orders?.[selectedOrderIndex]}
           />

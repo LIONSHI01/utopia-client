@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  width: 30rem;
-  height: 42rem;
+  width: 25rem;
+  height: 38rem;
   border: 1px solid var(--black-light-3);
   border-radius: var(--br-m);
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const HeaderContaienr = styled.div`
@@ -33,9 +33,8 @@ export const HeaderContaienr = styled.div`
 
 export const ImageContainer = styled.div`
   position: relative;
-  height: 22rem;
-
   width: 100%;
+  height: 18rem;
 `;
 
 export const ContentContainer = styled.div`

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { RiAuctionFill } from 'react-icons/ri';
-import { AiFillTag } from 'react-icons/ai';
+
+import { MdLocalOffer } from 'react-icons/md';
 import { BsHouseFill } from 'react-icons/bs';
 
 import {
@@ -11,6 +12,7 @@ import {
   ContentContainer,
   HostIcon,
   OrderIcon,
+  OfferIcon,
 } from './index.styles';
 
 const MessageItem = ({ message }) => {
@@ -26,8 +28,14 @@ const MessageItem = ({ message }) => {
     if (messageType === 'order')
       return (
         <OrderIcon>
-          <RiAuctionFill size={15} className="icon" />;
+          <RiAuctionFill size={15} className="icon" />
         </OrderIcon>
+      );
+    if (messageType === 'offer')
+      return (
+        <OfferIcon>
+          <MdLocalOffer size={15} className="icon" />
+        </OfferIcon>
       );
   };
 
@@ -43,12 +51,11 @@ const MessageItem = ({ message }) => {
 };
 
 const NotificationDropdown = ({ notifications, showUp, setShowUp }) => {
-  console.log(notifications);
   return (
     <DropdownWrapper showUp={showUp}>
       <MasterContainer>
+        <div className="heading">Notifications</div>
         <ContentContainer>
-          <div className="heading">Notifications</div>
           {notifications?.map((item) => (
             <MessageItem key={item?._id} message={item} />
           ))}

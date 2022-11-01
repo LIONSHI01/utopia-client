@@ -21,7 +21,8 @@ const OverlayWrapper = styled.div`
 
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all 0.3s ease-in-out;
+
   display: none;
 
   ${(props) => props.showUp && showUpStyles}

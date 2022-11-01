@@ -96,10 +96,10 @@ const ProfilePreviewCard = ({ postByUser }) => {
       </ImagesContainer>
       <ButtonsContainer>
         <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
-          Message
+          Follow
         </Button>
         <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
-          Follow
+          View more
         </Button>
       </ButtonsContainer>
     </CardContaienr>
