@@ -21,7 +21,7 @@ const CreateButton = ({ ...otherProps }) => (
   </CreateButtonWrapper>
 );
 
-const CollectionMasterSection = ({ user, refetchUser }) => {
+const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
   console.log('Collection Section:', user);
   // CONFIGURATION
 
@@ -56,16 +56,21 @@ const CollectionMasterSection = ({ user, refetchUser }) => {
         <CollectionDisplay
           refetchUser={refetchUser}
           collection={selectedCollection}
+          isAuthenticated={isAuthenticated}
         />
       </ContentsContainer>
       {/* For creating Collction */}
-      <CreateButton onClick={() => setShowCreateCollectionModal(true)} />
-      <CreateCollectionModal
-        user={user}
-        refetchUser={refetchUser}
-        showCreateCollectionModal={showCreateCollectionModal}
-        setShowCreateCollectionModal={setShowCreateCollectionModal}
-      />
+      {isAuthenticated && (
+        <>
+          <CreateButton onClick={() => setShowCreateCollectionModal(true)} />
+          <CreateCollectionModal
+            user={user}
+            refetchUser={refetchUser}
+            showCreateCollectionModal={showCreateCollectionModal}
+            setShowCreateCollectionModal={setShowCreateCollectionModal}
+          />
+        </>
+      )}
     </SectionContainer>
   );
 };

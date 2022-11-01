@@ -22,7 +22,7 @@ const CreateButton = ({ ...otherProps }) => (
   </CreateButtonWrapper>
 );
 
-const ListingsMasterSection = ({ user }) => {
+const ListingsMasterSection = ({ user, isAuthenticated }) => {
   // CONFIGURATION
   const router = useRouter();
 
@@ -36,7 +36,7 @@ const ListingsMasterSection = ({ user }) => {
   return (
     <SectionContainer>
       <ContentsContainer>
-        <h3 className="heading">My Listings</h3>
+        <h3 className="heading">Listings</h3>
         <DisplayList>
           {listings?.map((item) => (
             <ProductCard key={item?._id} post={item} />
@@ -44,11 +44,13 @@ const ListingsMasterSection = ({ user }) => {
         </DisplayList>
       </ContentsContainer>
 
-      <CreateButton
-        onClick={() => {
-          router.replace('/create-post');
-        }}
-      />
+      {isAuthenticated && (
+        <CreateButton
+          onClick={() => {
+            router.replace('/create-post');
+          }}
+        />
+      )}
     </SectionContainer>
   );
 };

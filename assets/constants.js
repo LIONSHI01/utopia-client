@@ -227,26 +227,31 @@ export const profileLinks = [
     title: 'Collections',
     path: '/account/collections',
     icon: <BsFillHeartFill size={25} />,
+    isPublic: true,
   },
   {
     title: 'Listings',
     path: '/account/listings',
     icon: <RiAuctionFill size={25} />,
+    isPublic: true,
   },
   {
     title: 'Orders',
     path: '/account/orders',
     icon: <BsFillFileEarmarkTextFill size={25} />,
+    isPublic: false,
   },
   {
     title: 'Offers',
     path: '/account/offers',
     icon: <MdLocalOffer size={25} />,
+    isPublic: false,
   },
   {
     title: 'Settings',
     path: '/account/settings',
     icon: <AiTwotoneSetting size={25} />,
+    isPublic: false,
   },
 ];
 

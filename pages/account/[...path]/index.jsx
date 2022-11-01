@@ -19,12 +19,15 @@ import {
 } from '../../../pages_styles/ProfilePage.styles';
 
 const AccountPage = () => {
+  const { data } = useSession();
+
   // CONFIGURATION
   const router = useRouter();
   const { query } = router;
 
-  // STATE MANAGEMENT
+  // STATE MANAGEMENT isAuthenticated={isAuthenticated}
   const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [displaySection, setDisplaySection] = useState('Orders');
 
   // console.log(user);
@@ -46,6 +49,10 @@ const AccountPage = () => {
 
   // HANDLERS
 
+  useEffect(() => {
+    setIsAuthenticated(data?.profile?._id === user?._id);
+  }, [user, data]);
+
   if (isLoadingUser) {
     return (
       <LoadingPageContainer>
@@ -56,18 +63,35 @@ const AccountPage = () => {
 
   return (
     <PageContainer>
-      <MenuSidebar user={user} setDisplaySection={setDisplaySection} />
+      <MenuSidebar
+        user={user}
+        setDisplaySection={setDisplaySection}
+        isAuthenticated={isAuthenticated}
+        displaySection={displaySection}
+      />
       {displaySection === 'Collections' && (
-        <CollectionMasterSection user={user} refetchUser={refetchUser} />
-      )}
-      {displaySection === 'Offers' && (
-        <OffersMasterSection user={user} refetchUser={refetchUser} />
-      )}
-      {displaySection === 'Orders' && (
-        <OrdersMasterSection user={user} refetchUser={refetchUser} />
+        <CollectionMasterSection
+          user={user}
+          refetchUser={refetchUser}
+          isAuthenticated={isAuthenticated}
+        />
       )}
       {displaySection === 'Listings' && (
-        <ListingsMasterSection user={user} refetchUser={refetchUser} />
+        <ListingsMasterSection
+          user={user}
+          refetchUser={refetchUser}
+          isAuthenticated={isAuthenticated}
+        />
+      )}
+      {isAuthenticated && (
+        <>
+          {displaySection === 'Offers' && (
+            <OffersMasterSection user={user} refetchUser={refetchUser} />
+          )}
+          {displaySection === 'Orders' && (
+            <OrdersMasterSection user={user} refetchUser={refetchUser} />
+          )}
+        </>
       )}
     </PageContainer>
   );

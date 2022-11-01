@@ -7,7 +7,12 @@ import { profileLinks } from '../../../assets/constants';
 import { SidebarContainer, UserInfoSection, MenuList } from './index.styles';
 import { updateUserPhoto } from '../../../utils/accountRequest';
 
-const MenuSidebar = ({ user, setDisplaySection }) => {
+const MenuSidebar = ({
+  user,
+  setDisplaySection,
+  isAuthenticated,
+  displaySection,
+}) => {
   const router = useRouter();
 
   const updateUserPicHandler = async (e) => {
@@ -41,18 +46,20 @@ const MenuSidebar = ({ user, setDisplaySection }) => {
               <span>{user?.name?.slice(0, 1)}</span>
             </div>
           )}
-          <div className="update-box">
-            <input
-              type="file"
-              id="img"
-              name="img"
-              accept="image/*"
-              onChange={updateUserPicHandler}
-            />
-            <label htmlFor="img" className="add-photo-btn">
-              <MdAddAPhoto size={20} />
-            </label>
-          </div>
+          {isAuthenticated && (
+            <div className="update-box">
+              <input
+                type="file"
+                id="img"
+                name="img"
+                accept="image/*"
+                onChange={updateUserPicHandler}
+              />
+              <label htmlFor="img" className="add-photo-btn">
+                <MdAddAPhoto size={20} />
+              </label>
+            </div>
+          )}
         </div>
         <div className="user-details">
           <h3>{user?.name}</h3>
@@ -67,19 +74,45 @@ const MenuSidebar = ({ user, setDisplaySection }) => {
         </div>
       </UserInfoSection>
       <MenuList>
-        {profileLinks?.map((link) => (
-          <li key={link.title}>
-            <div
-              className={
-                router.pathname === link.path ? 'listItem active' : 'listItem'
-              }
-              onClick={() => setDisplaySection(link.title)}
-            >
-              {link.icon}
-              <span>{link.title}</span>
-            </div>
-          </li>
-        ))}
+        {isAuthenticated ? (
+          <>
+            {profileLinks?.map((link) => (
+              <li key={link.title}>
+                <div
+                  className={
+                    displaySection === link.title
+                      ? 'listItem active'
+                      : 'listItem'
+                  }
+                  onClick={() => setDisplaySection(link.title)}
+                >
+                  {link.icon}
+                  <span>{link.title}</span>
+                </div>
+              </li>
+            ))}
+          </>
+        ) : (
+          <>
+            {profileLinks
+              ?.filter((item) => item.isPublic === true)
+              ?.map((link) => (
+                <li key={link.title}>
+                  <div
+                    className={
+                      displaySection === link.title
+                        ? 'listItem active'
+                        : 'listItem'
+                    }
+                    onClick={() => setDisplaySection(link.title)}
+                  >
+                    {link.icon}
+                    <span>{link.title}</span>
+                  </div>
+                </li>
+              ))}
+          </>
+        )}
       </MenuList>
     </SidebarContainer>
   );

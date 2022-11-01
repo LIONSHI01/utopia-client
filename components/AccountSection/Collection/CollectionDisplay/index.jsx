@@ -14,7 +14,7 @@ import {
   EditCollectionModal,
 } from '../../../index';
 
-const CollectionDisplay = ({ collection, refetchUser }) => {
+const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   return (
@@ -22,13 +22,15 @@ const CollectionDisplay = ({ collection, refetchUser }) => {
       <TitleContainer>
         <div className="title">
           <h3>{collection?.name}</h3>
-          <IconButton
-            size="x"
-            buttonType={ICON_BUTTON_TYPES.hoverBackground}
-            onClick={() => setShowEditModal(true)}
-          >
-            <MdModeEditOutline size={20} />
-          </IconButton>
+          {isAuthenticated && (
+            <IconButton
+              size="x"
+              buttonType={ICON_BUTTON_TYPES.hoverBackground}
+              onClick={() => setShowEditModal(true)}
+            >
+              <MdModeEditOutline size={20} />
+            </IconButton>
+          )}
         </div>
         <div className="items-count">
           <ImEarth size={15} color="var(--black-light-2)" />

@@ -19,7 +19,7 @@ const OffersMasterSection = ({ user, refetchUser }) => {
   return (
     <PageContainer>
       <ContentsContainer>
-        <h3 className="heading">Your Offers</h3>
+        <h3 className="heading">Offers</h3>
         <OrdersList>
           {offers?.map((order, i) => (
             <OrderPreviewItem
