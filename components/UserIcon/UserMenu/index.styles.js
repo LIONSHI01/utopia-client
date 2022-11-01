@@ -49,6 +49,10 @@ export const MenuWrapper = styled.div`
     gap: 1rem;
     margin-bottom: 0.5rem;
 
+    :hover {
+      background-color: var(--grey-light-1);
+    }
+
     span {
       color: var(--black);
       text-transform: capitalize;

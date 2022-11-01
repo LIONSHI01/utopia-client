@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -25,13 +24,12 @@ import {
   buyerConfirmOrder,
 } from '../../../../utils/apiData/orderRequest';
 
-const OrderDetails = ({ user, order, refetchOrders }) => {
-  console.log(paymentCompleted);
+const OrderDetails = ({ user, order, refetchUser }) => {
   // CONFIGURATION
   console.log(order);
   // STATES
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
-  const [txHash, setTxHash] = useState(order?.transaction_hash[0]?.hash);
+  const [txHash, setTxHash] = useState(order?.transaction_hash?.[0]?.hash);
   const [address, setAddress] = useState(order?.from);
 
   const [paymentCompleted, setPaymentCompleted] = useState(false);
@@ -39,7 +37,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
 
   // HANDLERS
   const cancelChanges = async () => {
-    setTxHash(order?.transaction_hash[0]?.hash);
+    setTxHash(order?.transaction_hash?.[0]?.hash);
     setAddress(order?.from);
   };
 
@@ -73,7 +71,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
         return toast.error('Invalid address, please try again.');
     }
 
-    if (txHash == order?.transaction_hash[0]?.hash && address == order?.from)
+    if (txHash == order?.transaction_hash?.[0]?.hash && address == order?.from)
       return toast.error('You have not made any changes.');
 
     mutateUpdateOrder({
@@ -98,7 +96,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
   // Validate order payment
   const { isLoading: isValidating, mutate } = useMutation(validateOrder, {
     onSuccess: (res) => {
-      refetchOrders();
+      refetchUser();
       toast.success(`Validation ${res?.data?.validationResult}`);
     },
     onError: (err) => {
@@ -113,7 +111,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
     {
       onSuccess: () => {
         toast.success('Order deleted!');
-        refetchOrders();
+        refetchUser();
       },
       onError: (err) => {
         console.log('from mutation err', err);
@@ -128,7 +126,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
     {
       onSuccess: () => {
         toast.success('Order confirmed!');
-        refetchOrders();
+        refetchUser();
       },
       onError: (err) => {
         console.log('from mutation err', err);
@@ -143,7 +141,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
     {
       onSuccess: () => {
         toast.success('Update successfully!');
-        refetchOrders();
+        refetchUser();
       },
       onError: (err) => {
         console.log('error from Mutation request', err);
@@ -153,7 +151,7 @@ const OrderDetails = ({ user, order, refetchOrders }) => {
   );
 
   useEffect(() => {
-    setTxHash(order?.transaction_hash[0]?.hash);
+    setTxHash(order?.transaction_hash?.[0]?.hash);
     setAddress(order?.from);
     setPaymentCompleted(order?.transaction_validated);
   }, [order]);

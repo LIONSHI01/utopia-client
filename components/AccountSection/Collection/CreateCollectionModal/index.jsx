@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { IoMdClose } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 
@@ -17,12 +17,12 @@ import {
 import { createCollection } from '../../../../utils/collectionRequest';
 
 const CreateCollectionModal = ({
+  user,
+  refetchUser,
   showCreateCollectionModal,
   setShowCreateCollectionModal,
 }) => {
   // CONFIGURATION
-  const router = useRouter();
-  const user = useSelector(selectUser);
 
   // STATE MANAGEMENT
   const [name, setName] = useState('');
@@ -31,8 +31,9 @@ const CreateCollectionModal = ({
     const res = await createCollection(name, user?._id);
 
     if (res.status === 201) {
-      router.reload();
       setName('');
+      refetchUser();
+      setShowCreateCollectionModal(false);
     }
   };
 

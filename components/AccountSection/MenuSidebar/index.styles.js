@@ -119,7 +119,6 @@ export const MenuList = styled.ul`
   gap: 1rem;
 
   .listItem {
-    /* background-color: orange; */
     display: flex;
     align-items: center;
     gap: 0.8rem;
@@ -129,6 +128,8 @@ export const MenuList = styled.ul`
     width: 100%;
     border-radius: var(--br-m);
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
     :hover {
       background-color: var(--black-light-3);
     }

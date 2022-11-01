@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useQuery } from 'react-query';
+
 import Image from 'next/image';
 
 import { GrFacebookOption } from 'react-icons/gr';
@@ -32,7 +32,7 @@ const ProfilePreviewCard = ({ postByUser }) => {
     }))
     ?.slice(0, 3);
 
-  console.log(previewItems);
+  // console.log(previewItems);
   // console.log(postOwner);
   useEffect(() => {
     const getPostOwnerData = async () => {

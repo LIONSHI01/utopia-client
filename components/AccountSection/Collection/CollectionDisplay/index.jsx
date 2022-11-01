@@ -14,7 +14,7 @@ import {
   EditCollectionModal,
 } from '../../../index';
 
-const CollectionDisplay = ({ collection }) => {
+const CollectionDisplay = ({ collection, refetchUser }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   return (
@@ -43,6 +43,7 @@ const CollectionDisplay = ({ collection }) => {
       {collection && (
         <EditCollectionModal
           collection={collection}
+          refetchUser={refetchUser}
           showUp={showEditModal}
           setShowUp={setShowEditModal}
         />

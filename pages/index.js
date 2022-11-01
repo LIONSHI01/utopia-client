@@ -5,12 +5,19 @@ import { useDispatch } from 'react-redux';
 import { useQuery } from 'react-query';
 import { setCurrentUser } from '../store/user/user.action';
 
-import { DisplayList } from '../components';
+import { DisplayList, Spinner } from '../components';
 import { getAllPosts } from '../utils/postRequest';
 
 const ContentContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
+`;
+const LoadingPageContainer = styled.div`
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Home = () => {
@@ -28,7 +35,7 @@ const Home = () => {
   };
 
   const {
-    isLoading,
+    isLoading: isLoadingPosts,
     data: postsData,
     isError,
     error,
@@ -40,6 +47,14 @@ const Home = () => {
   useEffect(() => {
     dispatch(setCurrentUser(data?.profile));
   }, [dispatch, data]);
+
+  if (isLoadingPosts) {
+    return (
+      <LoadingPageContainer>
+        <Spinner message="Loading page..." />
+      </LoadingPageContainer>
+    );
+  }
 
   return (
     <ContentContainer>

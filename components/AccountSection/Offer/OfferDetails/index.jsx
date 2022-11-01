@@ -16,7 +16,7 @@ import {
   sellerConfirmOrder,
 } from '../../../../utils/apiData/orderRequest';
 
-const OfferDetails = ({ user, order, refetchOrders }) => {
+const OfferDetails = ({ user, order, refetchUser }) => {
   // CONFIGURATION
   console.log(order);
   // STATES
@@ -56,7 +56,7 @@ const OfferDetails = ({ user, order, refetchOrders }) => {
   // Validate order payment
   const { isLoading: isValidating, mutate } = useMutation(validateOrder, {
     onSuccess: (res) => {
-      refetchOrders();
+      refetchUser();
       toast.success(`Validation ${res?.data?.validationResult}`);
     },
     onError: (err) => {
@@ -71,7 +71,7 @@ const OfferDetails = ({ user, order, refetchOrders }) => {
     {
       onSuccess: () => {
         toast.success('Order confirmed!');
-        refetchOrders();
+        refetchUser();
       },
       onError: (err) => {
         console.log('from mutation err', err);

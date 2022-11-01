@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { MdAddAPhoto } from 'react-icons/md';
@@ -8,7 +7,7 @@ import { profileLinks } from '../../../assets/constants';
 import { SidebarContainer, UserInfoSection, MenuList } from './index.styles';
 import { updateUserPhoto } from '../../../utils/accountRequest';
 
-const MenuSidebar = ({ user }) => {
+const MenuSidebar = ({ user, setDisplaySection }) => {
   const router = useRouter();
 
   const updateUserPicHandler = async (e) => {
@@ -70,16 +69,15 @@ const MenuSidebar = ({ user }) => {
       <MenuList>
         {profileLinks?.map((link) => (
           <li key={link.title}>
-            <Link href={link.path}>
-              <a
-                className={
-                  router.pathname === link.path ? 'listItem active' : 'listItem'
-                }
-              >
-                {link.icon}
-                <span>{link.title}</span>
-              </a>
-            </Link>
+            <div
+              className={
+                router.pathname === link.path ? 'listItem active' : 'listItem'
+              }
+              onClick={() => setDisplaySection(link.title)}
+            >
+              {link.icon}
+              <span>{link.title}</span>
+            </div>
           </li>
         ))}
       </MenuList>

@@ -14,10 +14,12 @@ const UserMenuDropdown = ({ user, showUp, setShowUp }) => {
   return (
     <MenuWrapper showUp={showUp}>
       <ContentWrapper>
-        <div className="userInfo">
-          <UserIcon user={user} size="s" />
-          <span className="name">{user?.name}</span>
-        </div>
+        <Link href={`/account/${user?._id}`}>
+          <a className="userInfo" onClick={() => setShowUp(false)}>
+            <UserIcon user={user} size="s" />
+            <span className="name">{user?.name}</span>
+          </a>
+        </Link>
         <div className="navigation-items">
           {iconDropdownMenuList.map((item) => (
             <Link key={item.name} href={item.link}>

@@ -11,7 +11,7 @@ const OrderPreviewItem = ({ order, ...otherProps }) => {
     <ItemWrapper {...otherProps}>
       <div className="post-image">
         <Image
-          src={order?.post?.images[0]}
+          src={order?.post?.images?.[0]}
           alt={order?.post?.title}
           layout="fill"
           objectFit="contain"

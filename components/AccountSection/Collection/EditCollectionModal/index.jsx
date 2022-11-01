@@ -17,7 +17,12 @@ import {
   FormInputComp,
 } from '../../../index';
 
-const EditCollectionModal = ({ collection, showUp, setShowUp }) => {
+const EditCollectionModal = ({
+  collection,
+  showUp,
+  setShowUp,
+  refetchUser,
+}) => {
   const router = useRouter();
   const [name, setName] = useState(collection?.name);
 
@@ -33,16 +38,18 @@ const EditCollectionModal = ({ collection, showUp, setShowUp }) => {
   const onSubmitHandler = async () => {
     const res = await updateCollection({ name, collectionId: collection?._id });
     if (res.status === 200) {
-      router.reload();
+      refetchUser();
       setName('');
+      setShowUp(false);
     }
   };
 
   const deleteHandler = async () => {
     const res = await deleteCollection(collection?._id);
     if (res.status === 200) {
-      router.reload();
+      refetchUser();
       setName('');
+      setShowUp(false);
     }
   };
 
