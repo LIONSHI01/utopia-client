@@ -9,6 +9,7 @@ const bigSizeStyles = css`
   height: 4rem;
   width: 4rem;
 `;
+
 const megaSizeStyles = css`
   height: 5rem;
   width: 5rem;

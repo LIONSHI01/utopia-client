@@ -48,11 +48,36 @@ export const getOnePost = async (category, subCategory, postId) => {
   }
 };
 
+export const getPostDetails = async (postId) => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `${baseURL}/${postId}`,
+    });
+    // console.log('from request', res);
+    return res.data.data.post;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const createPost = async ({ data }) => {
   const res = await axios({
     method: 'POST',
     url: `${baseURL}/`,
     data,
+  });
+
+  return res;
+};
+
+export const updatePost = async ({ data, postId }) => {
+  console.log('call update post');
+
+  const res = await axios({
+    method: 'PATCH',
+    url: `${baseURL}/${postId}`,
+    data: data,
   });
 
   return res;

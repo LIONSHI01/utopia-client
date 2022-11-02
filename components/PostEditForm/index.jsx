@@ -8,7 +8,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { Button, BUTTON_TYPES } from '../index';
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
-import { createPost } from '../../utils/postRequest';
+import { updatePost } from '../../utils/postRequest';
 import EthIcon from '../../assets/image/eth-icon.png';
 
 const INITIAL_FORM_FIELDS = {
@@ -20,23 +20,23 @@ const INITIAL_FORM_FIELDS = {
   price: '',
 };
 
-const PostForm = ({ images }) => {
+const PostEditForm = ({ post, images }) => {
   // CONFIGURATION
   const { data: user } = useSession();
-
+  console.log('images from PostForm:', images);
+  console.log(images.filter((image) => image.file));
   // STATE MANAGEMENT
-  const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
-  // const [isListing, setIsListing] = useState(false);
+  const [formFields, setFormFields] = useState(post);
 
   const { title, category, subCategory, brand, price, description } =
     formFields;
 
-  const { isLoading: isListing, mutate: mutateCreatePost } = useMutation(
-    createPost,
+  const { isLoading: isSaving, mutate: mutateUpdatePost } = useMutation(
+    updatePost,
     {
       onSuccess: () => {
         setFormFields(INITIAL_FORM_FIELDS);
-        toast.success('Congretulations! Your item is on listed.');
+        toast.success('Congretulations! Your item is saved.');
       },
       onError: (err) => {
         console.log('From mutation', err);
@@ -54,7 +54,9 @@ const PostForm = ({ images }) => {
     e.preventDefault();
     let form = new FormData();
     // Append Images into FormData
-    images.forEach((image) => form.append('images', image.file));
+    images
+      .filter((image) => image.file)
+      .forEach((image) => form.append('images', image.file));
     // Append Other Post data into FormData
     form.append('category', category);
     form.append('subCategory', subCategory);
@@ -62,10 +64,9 @@ const PostForm = ({ images }) => {
     form.append('title', title);
     form.append('description', description);
     form.append('price', price);
-    form.append('postedBy', user?.profile?._id);
 
     // Send Request
-    mutateCreatePost({ data: form });
+    mutateUpdatePost({ data: form, postId: post?._id });
   };
 
   // Create POST
@@ -193,7 +194,7 @@ const PostForm = ({ images }) => {
               </div>
             </div>
             <Button type="submit" size="x">
-              {isListing ? 'Listing' : 'List Now'}
+              {isSaving ? 'Saving' : 'Save'}
             </Button>
           </>
         )}
@@ -202,4 +203,4 @@ const PostForm = ({ images }) => {
   );
 };
 
-export default PostForm;
+export default PostEditForm;

@@ -33,6 +33,7 @@ import OffersMasterSection from './AccountSection/Offer/OfferSection';
 import OrdersMasterSection from './AccountSection/Order/OrdersSection';
 import ListingsMasterSection from './AccountSection/Listing';
 import WaitingModal from './WaitingModal';
+import PostEditForm from './PostEditForm';
 
 export {
   MainHeader,
@@ -72,4 +73,5 @@ export {
   OrdersMasterSection,
   ListingsMasterSection,
   WaitingModal,
+  PostEditForm,
 };

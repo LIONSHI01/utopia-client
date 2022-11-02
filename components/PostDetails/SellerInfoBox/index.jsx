@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { AiFillStar } from 'react-icons/ai';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
-import { UserIcon, Button, BUTTON_TYPES } from '../../index';
+import {
+  UserIcon,
+  Button,
+  BUTTON_TYPES,
+  IconButton,
+  ICON_BUTTON_TYPES,
+} from '../../index';
+import EditDropdownMenu from '../EditDropdownMenu';
 import { BoxWrapper } from './index.styles';
 
-const SellerInfoBox = ({ seller }) => {
+const SellerInfoBox = ({ seller, isAuthenticated, post }) => {
+  const [showEditDropdown, setShowEditDropdown] = useState(false);
+
   return (
     <BoxWrapper>
       <div className="upperBox">
@@ -16,11 +26,26 @@ const SellerInfoBox = ({ seller }) => {
           </a>
         </Link>
 
-        <div className="follow-btn">
-          <Button size="x" buttonType={BUTTON_TYPES.outlineGrey}>
-            Follow
-          </Button>
-        </div>
+        <Button size="x" buttonType={BUTTON_TYPES.outlineGrey}>
+          Follow
+        </Button>
+
+        {isAuthenticated && (
+          <div className="editing-btn">
+            <IconButton
+              size="x"
+              buttonType={ICON_BUTTON_TYPES.hoverBackground}
+              onClick={() => setShowEditDropdown((prev) => !prev)}
+            >
+              <BsThreeDotsVertical size={22} />
+            </IconButton>
+            <EditDropdownMenu
+              post={post}
+              showup={showEditDropdown}
+              setShowup={setShowEditDropdown}
+            />
+          </div>
+        )}
       </div>
       <div className="lowerBox">
         <div className="sales">98 sales</div>

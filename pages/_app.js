@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-function MyApp({ Component, pageProps: { session, pageProps } }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const queryClient = new QueryClient();
   return (
     <SessionProvider session={session}>

@@ -25,7 +25,9 @@ export const BoxWrapper = styled.div`
     }
   }
 
-  .follow-btn {
+  .editing-btn {
+    position: relative;
+    margin-left: auto;
   }
 
   .lowerBox {

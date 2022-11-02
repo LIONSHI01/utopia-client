@@ -1,38 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { useSession } from 'next-auth/react';
 import ImageUploading from 'react-images-uploading';
 import Image from 'next/image';
 import { BsArrowClockwise } from 'react-icons/bs';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FiTrash } from 'react-icons/fi';
-
-import { Button, PostForm } from '../components';
+import { getPostDetails } from '../../utils/postRequest';
+import { Button, PostEditForm } from '../../components';
 
 import {
-  CreatePostContainer,
+  EditPostContainer,
   OutterContainer,
   ImageSection,
   FormSection,
   UploadImageWrapper,
   PreviewWrapper,
   ImageItem,
-} from '../pages_styles/create-post.styles';
+} from '../../pages_styles/edit-post.styles';
 
-const CreatePost = () => {
+const EditPostPage = ({ post, postId }) => {
   // CONFIGURATION
 
+  console.log(post);
+  // console.log(data);
   const maxNumber = 10;
-
+  // const testImages = [
+  //   'https://utopia-image-storage.s3.ap-southeast-1.ama…9e48944-7ee04db6-8bcc-4a8b-aaf0-0096fa4a332e.jpeg',
+  //   'https://utopia-image-storage.s3.ap-southeast-1.ama…f4b-4fbc-9abb-5779f1b11254-27ARISTOTLE-jumbo.jpeg',
+  //   'https://utopia-image-storage.s3.ap-southeast-1.ama…12cf3015-df6d-44a0-ac31-f8a234eb5829-cicero1.jpeg',
+  // ];
   // STATE MANAGEMENT
-  const [images, setImages] = useState([]);
-
+  const [images, setImages] = useState(post?.images);
+  console.log('Preset:', images);
   // HANDLERS
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
   };
 
   return (
-    <CreatePostContainer>
+    <EditPostContainer>
       <OutterContainer>
         <ImageUploading
           multiple
@@ -81,7 +88,7 @@ const CreatePost = () => {
                         {index === 0 && <p className="cover-text">COVER</p>}
                         <div className="preview-image-container">
                           <Image
-                            src={image['data_url']}
+                            src={image['data_url'] || image}
                             alt={index}
                             layout="fill"
                             objectFit="contain"
@@ -115,11 +122,23 @@ const CreatePost = () => {
           )}
         </ImageUploading>
         <FormSection>
-          <PostForm images={images} />
+          <PostEditForm post={post} images={images} />
         </FormSection>
       </OutterContainer>
-    </CreatePostContainer>
+    </EditPostContainer>
   );
 };
 
-export default CreatePost;
+export const getServerSideProps = async ({ query }) => {
+  const { postId } = query;
+  const post = await getPostDetails(postId);
+
+  return {
+    props: {
+      postId,
+      post,
+    },
+  };
+};
+
+export default EditPostPage;

@@ -40,6 +40,7 @@ const ProductDetailsPage = () => {
   const { category, subCategory, slug } = query;
   const postId = slug && slug[1];
   const { data } = useSession();
+  const isAuthenticated = true;
 
   // STATE MANAGEMENT
   const [post, setPost] = useState(null);
@@ -170,7 +171,11 @@ const ProductDetailsPage = () => {
               <MeetSellerColumn seller={post?.postedBy} />
             </LeftContainer>
             <RightContainer>
-              <SellerInfoBox seller={post?.postedBy} />
+              <SellerInfoBox
+                post={post}
+                seller={post?.postedBy}
+                isAuthenticated={isAuthenticated}
+              />
               <DetailsWrapper>
                 <div className="upper-box">
                   <div className="title">{post?.title}</div>
