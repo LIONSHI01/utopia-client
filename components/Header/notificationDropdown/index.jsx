@@ -18,7 +18,7 @@ import {
 const MessageItem = ({ message }) => {
   const { content, type } = message || {};
   const getIcon = (messageType) => {
-    if (messageType === 'sign_up')
+    if (messageType === 'system')
       return (
         <HostIcon>
           <BsHouseFill size={15} className="icon" />

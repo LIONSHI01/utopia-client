@@ -74,9 +74,9 @@ export const PreviewWrapper = styled.div`
 
   .reminder {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
     align-items: center;
-    /* padding: 1rem 0; */
     font-size: var(--fs-s);
     color: var(--black-light-2);
     margin: 2rem 0;
@@ -88,9 +88,15 @@ export const PreviewWrapper = styled.div`
     width: 2.5rem;
     background-color: var(--primary);
     display: flex;
+
     justify-content: center;
     align-items: center;
     border-radius: 100px;
+  }
+
+  .upload-warning {
+    font-weight: 600;
+    text-decoration: underline;
   }
 
   .preview-area {

@@ -18,7 +18,7 @@ import {
   AddToCollectionModal,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
-import { getOnePost } from '../../../../../utils/postRequest';
+import { getOnePost, inactivePost } from '../../../../../utils/postRequest';
 import { getUser } from '../../../../../utils/accountRequest';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
 

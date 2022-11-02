@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { useSession } from 'next-auth/react';
 import ImageUploading from 'react-images-uploading';
 import Image from 'next/image';
 import { BsArrowClockwise } from 'react-icons/bs';
@@ -19,19 +18,15 @@ import {
   ImageItem,
 } from '../../pages_styles/edit-post.styles';
 
-const EditPostPage = ({ post, postId }) => {
+const EditPostPage = ({ post }) => {
   // CONFIGURATION
 
   console.log(post);
   // console.log(data);
   const maxNumber = 10;
-  // const testImages = [
-  //   'https://utopia-image-storage.s3.ap-southeast-1.ama…9e48944-7ee04db6-8bcc-4a8b-aaf0-0096fa4a332e.jpeg',
-  //   'https://utopia-image-storage.s3.ap-southeast-1.ama…f4b-4fbc-9abb-5779f1b11254-27ARISTOTLE-jumbo.jpeg',
-  //   'https://utopia-image-storage.s3.ap-southeast-1.ama…12cf3015-df6d-44a0-ac31-f8a234eb5829-cicero1.jpeg',
-  // ];
+
   // STATE MANAGEMENT
-  const [images, setImages] = useState(post?.images);
+  const [images, setImages] = useState([]);
   console.log('Preset:', images);
   // HANDLERS
   const onChange = (imageList, addUpdateIndex) => {
@@ -79,7 +74,11 @@ const EditPostPage = ({ post, postId }) => {
                   <div className="reminder-box">
                     <HiOutlineLightBulb size={17} color="var(--white)" />
                   </div>
-                  <p>The first image will be the cover image of your post</p>
+                  <p className="upload-warning">
+                    {' '}
+                    Please upload images for your post again.
+                  </p>
+                  <p>The first image will be the cover image of your post.</p>
                 </div>
                 <div className="preview-area">
                   {imageList.map((image, index) => (
@@ -88,7 +87,7 @@ const EditPostPage = ({ post, postId }) => {
                         {index === 0 && <p className="cover-text">COVER</p>}
                         <div className="preview-image-container">
                           <Image
-                            src={image['data_url'] || image}
+                            src={image['data_url']}
                             alt={index}
                             layout="fill"
                             objectFit="contain"

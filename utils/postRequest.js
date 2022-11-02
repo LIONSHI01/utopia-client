@@ -82,3 +82,14 @@ export const updatePost = async ({ data, postId }) => {
 
   return res;
 };
+
+export const inactivePost = async ({ postId }) => {
+  console.log('call update post');
+
+  const res = await axios({
+    method: 'PATCH',
+    url: `${baseURL}/inactivate/${postId}`,
+  });
+
+  return res;
+};

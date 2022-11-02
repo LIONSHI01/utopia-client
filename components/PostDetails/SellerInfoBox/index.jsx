@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { AiFillStar } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
@@ -14,7 +14,24 @@ import EditDropdownMenu from '../EditDropdownMenu';
 import { BoxWrapper } from './index.styles';
 
 const SellerInfoBox = ({ seller, isAuthenticated, post }) => {
+  // CONFIGURATION
+  const ref = useRef();
+
+  // STATE MANAGEMENT
   const [showEditDropdown, setShowEditDropdown] = useState(false);
+
+  useEffect(() => {
+    const checkIfClickOutside = (e) => {
+      if (showEditDropdown && !ref.current.contains(e.target)) {
+        setShowEditDropdown(false);
+      }
+    };
+    window.addEventListener('mousedown', checkIfClickOutside, true);
+
+    return () => {
+      window.removeEventListener('mousedown', checkIfClickOutside, true);
+    };
+  }, [showEditDropdown]);
 
   return (
     <BoxWrapper>
@@ -31,7 +48,7 @@ const SellerInfoBox = ({ seller, isAuthenticated, post }) => {
         </Button>
 
         {isAuthenticated && (
-          <div className="editing-btn">
+          <div className="editing-btn" ref={ref}>
             <IconButton
               size="x"
               buttonType={ICON_BUTTON_TYPES.hoverBackground}

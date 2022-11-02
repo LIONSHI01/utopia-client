@@ -33,13 +33,15 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     if (isSignup) {
+      setIsLoading(true);
       if (password === passwordConfirm) {
         await signupRequest({ username, email, password });
         setIsLoading(false);
       }
+      setIsLoading(false);
     } else {
+      setIsLoading(true);
       signIn('credentials', {
         email,
         password,
@@ -50,11 +52,11 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           setFormField(INITIAL_FORM_FIELD);
           toast.success('Welcome back!');
           router.replace('/');
+          setIsLoading(false);
         }
         toast.warn(res.error);
         console.log(res);
       });
-      setIsLoading(false);
     }
   };
 
@@ -102,7 +104,13 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             />
           )}
           <Button size="x" type="submit">
-            {isSignup ? 'Sign Up' : 'Sign In'}
+            {isSignup
+              ? isLoading
+                ? 'Signing up'
+                : 'Sign up'
+              : isLoading
+              ? 'Signing in'
+              : 'Sign in'}
           </Button>
           {!isSignup && (
             <div className="forget">
@@ -116,13 +124,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             onClick={() => setIsSignup((prev) => !prev)}
             buttonType={BUTTON_TYPES.raw}
           >
-            {isSignup
-              ? isLoading
-                ? 'Signing in'
-                : 'Sign in'
-              : isLoading
-              ? 'Signing up'
-              : 'Sign up'}
+            {isSignup ? 'Sign in' : 'Sign up'}
           </Button>
         </div>
       </FormContainer>

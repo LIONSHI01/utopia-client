@@ -5,7 +5,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { IoIosArrowDown } from 'react-icons/io';
 
-import { Button, BUTTON_TYPES } from '../index';
+import { Button } from '../index';
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
 import { updatePost } from '../../utils/postRequest';
