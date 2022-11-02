@@ -72,6 +72,7 @@ export const MenuWrapper = styled.div`
     font-size: var(--fs-ss);
     font-weight: 100;
     color: var(--black);
+    cursor: pointer;
     :hover {
       background-color: var(--grey-light-1);
     }

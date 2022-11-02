@@ -100,11 +100,13 @@ const MenuSidebar = ({
                 <li key={link.title}>
                   <div
                     className={
-                      displaySection === link.title
+                      displaySection === link.title.toLocaleLowerCase()
                         ? 'listItem active'
                         : 'listItem'
                     }
-                    onClick={() => setDisplaySection(link.title)}
+                    onClick={() =>
+                      setDisplaySection(link.title.toLocaleLowerCase())
+                    }
                   >
                     {link.icon}
                     <span>{link.title}</span>

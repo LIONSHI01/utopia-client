@@ -10,27 +10,29 @@ import { BsCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
 
 import EthIcon from '../../../../assets/image/eth-icon.png';
 import { SectionContainer } from './index.styles';
-import { Button, BUTTON_TYPES, AlertModal } from '../../../index';
+import { Button, BUTTON_TYPES, AlertModal, WaitingModal } from '../../../index';
 import {
-  validateOrder,
   sellerConfirmOrder,
+  sellerClaimFund,
 } from '../../../../utils/apiData/orderRequest';
 
 const OfferDetails = ({ user, order, refetchUser }) => {
   // CONFIGURATION
-  console.log(order);
+  const sellerClaimHashUrl = `https://goerli.etherscan.io/tx/${order?.seller_claim_txHash}`;
   // STATES
+  console.log(order);
 
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   const [showSellerConfirm, setShowSellerConfirm] = useState(false);
+  const [showSellerClaimModal, setShowSellerClaimModal] = useState(false);
+  const [showClaimWaitModal, setShowClaimWaitModal] = useState(false);
+  const [sellerClaimHash, setSellerClaimHash] = useState(
+    order?.seller_claim_txHash
+  );
 
   // HANDLERS
-  const cancelChanges = async () => {
-    setTxHash(order?.transaction_hash[0]?.hash);
-    setAddress(order?.from);
-  };
 
-  // Modal Message
+  // Modal Message: Seller Confirmation
   const sellerConfirmTitle = 'Confirm Order';
   const sellerConfirmMsg =
     'Once you confirm the order, it will be marked as completed, and cannot undo the changes.';
@@ -39,33 +41,24 @@ const OfferDetails = ({ user, order, refetchUser }) => {
     setShowSellerConfirm(false);
   };
 
-  // API CALL
+  // // Modal Message: Seller Claim
+  const sellerClaimTitle = 'Claim your fund';
+  const sellerClaimMsg =
+    "Congrets for completing the order, the claiming process may take a few minutes, please don't close this window after confirming the order, thank you.";
 
-  const connectWalletHandler = async () => {
-    if (window.ethereum) {
-      await window.ethereum
-        .request({ method: 'eth_requestAccounts' })
-        .then((res) => {
-          setAddress(res[0]);
-        });
-    } else {
-      alert('Please install Metamask extension.');
-    }
+  const sellerClaimHandler = () => {
+    mutateSellerClaim({ orderId: order?._id, userId: user?._id });
+    setShowClaimWaitModal(true);
+    setShowSellerClaimModal(false);
   };
 
-  // Validate order payment
-  const { isLoading: isValidating, mutate } = useMutation(validateOrder, {
-    onSuccess: (res) => {
-      refetchUser();
-      toast.success(`Validation ${res?.data?.validationResult}`);
-    },
-    onError: (err) => {
-      console.log('from mutation err', err);
-      toast.error(`${err?.response.data?.data?.message}`);
-    },
-  });
+  const waitModalTitle = 'Claiming Completed!';
+  const waitModalMsg = 'You may view the claiming transaction on chain.';
+  const waitingModalLink = `https://goerli.etherscan.io/tx/${sellerClaimHash}`;
 
-  // Buyer Confirm Order
+  // API CALL
+
+  // Seller Confirm Order
   const { isLoading: isConfirming, mutate: mutateSellerConfirm } = useMutation(
     sellerConfirmOrder,
     {
@@ -82,7 +75,27 @@ const OfferDetails = ({ user, order, refetchUser }) => {
 
   useEffect(() => {
     setPaymentCompleted(order?.transaction_validated);
+    setSellerClaimHash(order?.seller_claim_txHash);
   }, [order]);
+
+  // Seller Claim Fund
+  const { isLoading: isClaiming, mutate: mutateSellerClaim } = useMutation(
+    sellerClaimFund,
+    {
+      onSuccess: () => {
+        toast.success(
+          'You have claimed your fund, you may check it on block explorer.'
+        );
+        refetchUser();
+      },
+      onError: (err) => {
+        console.log('from mutation err', err);
+        toast.error(`${err?.response.data?.data?.message}`);
+      },
+    }
+  );
+
+  // Handler
 
   return (
     <SectionContainer>
@@ -238,10 +251,47 @@ const OfferDetails = ({ user, order, refetchUser }) => {
             </div>
           </div>
         </div>
+        <div className="row">
+          <span className="title">Seller Claim History:</span>
+          <div className="contents">
+            <div className="seller-claim">
+              {order?.seller_claimed ? (
+                <a
+                  href={sellerClaimHashUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >{`${sellerClaimHashUrl.slice(0, 40)}...`}</a>
+              ) : (
+                <span>No record yet</span>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
-      <Button size="x" buttonType={BUTTON_TYPES.outlineRed}>
-        Claim fund
-      </Button>
+      {!order?.seller_claimed && (
+        <Button
+          size="x"
+          buttonType={BUTTON_TYPES.outlineRed}
+          onClick={() => setShowSellerClaimModal(true)}
+        >
+          Claim fund
+        </Button>
+      )}
+      <AlertModal
+        title={sellerClaimTitle}
+        message={sellerClaimMsg}
+        onConfirmHandler={sellerClaimHandler}
+        showup={showSellerClaimModal}
+        setShowup={setShowSellerClaimModal}
+      />
+      <WaitingModal
+        title={waitModalTitle}
+        message={waitModalMsg}
+        url={waitingModalLink}
+        isLoading={isClaiming}
+        showup={showClaimWaitModal}
+        setShowup={setShowClaimWaitModal}
+      />
     </SectionContainer>
   );
 };

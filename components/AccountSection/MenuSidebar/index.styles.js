@@ -127,6 +127,7 @@ export const MenuList = styled.ul`
     font-weight: 100;
     width: 100%;
     border-radius: var(--br-m);
+    text-transform: capitalize;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 

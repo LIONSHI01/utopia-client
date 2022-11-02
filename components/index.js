@@ -32,6 +32,7 @@ import CollectionMasterSection from './AccountSection/Collection/CollectionSecti
 import OffersMasterSection from './AccountSection/Offer/OfferSection';
 import OrdersMasterSection from './AccountSection/Order/OrdersSection';
 import ListingsMasterSection from './AccountSection/Listing';
+import WaitingModal from './WaitingModal';
 
 export {
   MainHeader,
@@ -70,4 +71,5 @@ export {
   OffersMasterSection,
   OrdersMasterSection,
   ListingsMasterSection,
+  WaitingModal,
 };

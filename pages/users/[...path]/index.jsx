@@ -28,9 +28,9 @@ const AccountPage = () => {
   // STATE MANAGEMENT isAuthenticated={isAuthenticated}
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [displaySection, setDisplaySection] = useState('Orders');
-
-  // console.log(user);
+  const [displaySection, setDisplaySection] = useState(
+    query?.path?.[1] || 'collections'
+  );
 
   // API FETCH
   const { isLoading: isLoadingUser, refetch: refetchUser } = useQuery(
@@ -51,7 +51,8 @@ const AccountPage = () => {
 
   useEffect(() => {
     setIsAuthenticated(data?.profile?._id === user?._id);
-  }, [user, data]);
+    setDisplaySection(query?.path?.[1]);
+  }, [user, data, query]);
 
   if (isLoadingUser) {
     return (
@@ -69,14 +70,14 @@ const AccountPage = () => {
         isAuthenticated={isAuthenticated}
         displaySection={displaySection}
       />
-      {displaySection === 'Collections' && (
+      {displaySection === 'collections' && (
         <CollectionMasterSection
           user={user}
           refetchUser={refetchUser}
           isAuthenticated={isAuthenticated}
         />
       )}
-      {displaySection === 'Listings' && (
+      {displaySection === 'listings' && (
         <ListingsMasterSection
           user={user}
           refetchUser={refetchUser}
@@ -85,10 +86,10 @@ const AccountPage = () => {
       )}
       {isAuthenticated && (
         <>
-          {displaySection === 'Offers' && (
+          {displaySection === 'offers' && (
             <OffersMasterSection user={user} refetchUser={refetchUser} />
           )}
-          {displaySection === 'Orders' && (
+          {displaySection === 'orders' && (
             <OrdersMasterSection user={user} refetchUser={refetchUser} />
           )}
         </>

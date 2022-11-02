@@ -82,3 +82,12 @@ export const sellerConfirmOrder = async ({ orderId, userId }) => {
   console.log(res);
   return res.data;
 };
+
+export const sellerClaimFund = async ({ orderId, userId }) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/orders/sellerClaim/${userId}/${orderId}`,
+  });
+  console.log(res);
+  return res.data;
+};

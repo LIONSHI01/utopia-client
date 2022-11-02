@@ -52,7 +52,6 @@ const OrderDetails = ({ user, order, refetchUser }) => {
 
   // API CALL
   const updateOrderHandler = async () => {
-    // console.log('update:', address, txHash);
     // Validate txHash format
     if (txHash) {
       if (!txHash?.startsWith('0x'))

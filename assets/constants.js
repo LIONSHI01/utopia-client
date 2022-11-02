@@ -224,31 +224,31 @@ export const categories = [
 
 export const profileLinks = [
   {
-    title: 'Collections',
+    title: 'collections',
     path: '/account/collections',
     icon: <BsFillHeartFill size={25} />,
     isPublic: true,
   },
   {
-    title: 'Listings',
+    title: 'listings',
     path: '/account/listings',
     icon: <RiAuctionFill size={25} />,
     isPublic: true,
   },
   {
-    title: 'Orders',
+    title: 'orders',
     path: '/account/orders',
     icon: <BsFillFileEarmarkTextFill size={25} />,
     isPublic: false,
   },
   {
-    title: 'Offers',
+    title: 'offers',
     path: '/account/offers',
     icon: <MdLocalOffer size={25} />,
     isPublic: false,
   },
   {
-    title: 'Settings',
+    title: 'settings',
     path: '/account/settings',
     icon: <AiTwotoneSetting size={25} />,
     isPublic: false,
@@ -258,22 +258,22 @@ export const profileLinks = [
 export const iconDropdownMenuList = [
   {
     name: 'Collections',
-    link: '/account/collections',
+    link: 'collections',
     icon: <AiOutlineGift size={19} />,
   },
   {
     name: 'Orders',
-    link: '/account/orders',
+    link: 'orders',
     icon: <TbFileInvoice size={19} />,
   },
   {
     name: 'Offers',
-    link: '/account/offers',
+    link: 'offers',
     icon: <BsTag size={18} />,
   },
   {
     name: 'Settings',
-    link: '/account/settings',
+    link: 'settings',
     icon: <FiSettings size={19} />,
   },
 ];

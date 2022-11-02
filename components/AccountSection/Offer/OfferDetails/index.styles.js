@@ -106,6 +106,15 @@ export const SectionContainer = styled.div`
     display: flex;
     gap: 2rem;
   }
+
+  .seller-claim {
+    display: flex;
+    gap: 1rem;
+    color: var(--black-light-2);
+    a {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const EditTxHashBox = styled.div`

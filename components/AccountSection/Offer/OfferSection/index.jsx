@@ -11,7 +11,6 @@ const OffersMasterSection = ({ user, refetchUser }) => {
 
   useEffect(() => {
     setOffers(user?.offers);
-    setselectedOrderIndex(0);
   }, [user]);
 
   console.log('Offer Section:', offers);
