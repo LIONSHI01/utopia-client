@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { AiOutlineGift } from 'react-icons/ai';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 import { ImEarth } from 'react-icons/im';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
@@ -39,6 +41,7 @@ const AddToCollectionModal = ({
   collections,
   showAddToColModal,
   setShowAddToColModal,
+  refetchUser,
 }) => {
   // CONFIGURATION
   const router = useRouter();
@@ -49,11 +52,23 @@ const AddToCollectionModal = ({
   // HANDLER
   const updateCollectionHandler = async (collection, itemId) => {
     const items = newCollectionItems(collection.items, itemId);
-    const res = await updateCollection({ items, collectionId: collection._id });
-    if (res.status === 200) {
-      router.reload();
-    }
+    mutateUpdateCollection({ items, collectionId: collection._id });
   };
+
+  // API CALL
+  const { mutate: mutateUpdateCollection } = useMutation(updateCollection, {
+    onSuccess: () => {
+      toast.success('Collection updated.');
+      setShowAddToColModal(false);
+      if (typeof refetchUser !== 'undefined') {
+        // safe to use the function
+        refetchUser();
+      }
+    },
+    onError: (err) => {
+      toast.error(`Error:${err.message}`);
+    },
+  });
 
   return (
     <>

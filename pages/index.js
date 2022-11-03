@@ -14,6 +14,7 @@ const ContentContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
 `;
+
 const LoadingPageContainer = styled.div`
   min-height: 100vh;
   min-width: 100vw;

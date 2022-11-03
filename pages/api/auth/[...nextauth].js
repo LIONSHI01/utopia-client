@@ -4,7 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import connectMongoose from '../../../utils/connectMongo';
 import User from '../../../models/userModel';
 import { verifyPassword } from '../../../utils/hashPassword';
-import { getUser } from '../../../utils/accountRequest';
+import { getUser } from '../../../utils/apiData/userRequest';
 
 export const authOptions = {
   session: {

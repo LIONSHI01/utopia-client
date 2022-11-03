@@ -74,7 +74,7 @@ const AuthenticationBox = ({ user, refetchUser }) => {
         onChange={onChangeHandler}
       />
       <FormInputComp
-        label="Confirm password"
+        label="Confirm new password"
         fieldName="confirm_password"
         type="password"
         name="confirmPassword"

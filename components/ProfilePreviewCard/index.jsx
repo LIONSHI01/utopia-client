@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-
+import { useMutation } from 'react-query';
 import Image from 'next/image';
 
 import { GrFacebookOption } from 'react-icons/gr';
@@ -12,6 +12,7 @@ import {
   UserIcon,
   IconButton,
   ICON_BUTTON_TYPES,
+  Spinner,
 } from '../index';
 
 import {
@@ -21,7 +22,7 @@ import {
   ImagesContainer,
   ButtonsContainer,
 } from './index.styles';
-import { getUser } from '../../utils/accountRequest';
+import { getUser } from '../../utils/apiData/userRequest';
 
 const ProfilePreviewCard = ({ postByUser }) => {
   const [postOwner, setPostOwner] = useState(null);
@@ -32,15 +33,19 @@ const ProfilePreviewCard = ({ postByUser }) => {
     }))
     ?.slice(0, 3);
 
-  // console.log(previewItems);
-  // console.log(postOwner);
   useEffect(() => {
-    const getPostOwnerData = async () => {
-      const data = await getUser(postByUser?._id);
-      setPostOwner(data);
-    };
-    getPostOwnerData();
+    mutateGetUser(postByUser?._id);
   }, [postByUser]);
+
+  // API CALL
+  const { isLoading: isLoadingPostByUser, mutate: mutateGetUser } = useMutation(
+    getUser,
+    {
+      onSuccess: (data) => {
+        setPostOwner(data);
+      },
+    }
+  );
 
   return (
     <CardContaienr>

@@ -59,6 +59,9 @@ const NotificationDropdown = ({ notifications, showUp, setShowUp }) => {
           {notifications?.map((item) => (
             <MessageItem key={item?._id} message={item} />
           ))}
+          {notifications?.length === 0 && (
+            <div className="no-message">No message yet.</div>
+          )}
         </ContentContainer>
       </MasterContainer>
     </DropdownWrapper>

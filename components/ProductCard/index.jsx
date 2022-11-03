@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useSession } from 'next-auth/react';
 import { BsThreeDots, BsFillHeartFill } from 'react-icons/bs';
 import ethIcon from '../../assets/image/eth-icon.png';
 import { selectUser } from '../../store/user/user.selector';
@@ -26,13 +27,14 @@ import {
 const ProductCard = ({ post }) => {
   // CONFIGURATION
   const router = useRouter();
+
   let hoverTimer;
 
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
   const user = useSelector(selectUser);
-
+  // console.log(user);
   // HANDLERS
 
   return (

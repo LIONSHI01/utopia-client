@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-// import { useRouter } from 'next/router';
 import { IoMdClose } from 'react-icons/io';
-import { useSelector } from 'react-redux';
-
-import { selectUser } from '../../../../store/user/user.selector';
 
 import { ModalContainer } from './index.styles';
 import {

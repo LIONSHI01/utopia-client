@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { DisplayContainer } from './index.styles';
 import { ProductCard } from '../index';

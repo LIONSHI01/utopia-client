@@ -4,8 +4,6 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { getUser } from '../../../utils/accountRequest';
-
 import {
   SectionContainer,
   ContentsContainer,

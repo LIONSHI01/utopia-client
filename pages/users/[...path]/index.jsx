@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 
-import { getUser } from '../../../utils/accountRequest';
+import { getUser } from '../../../utils/apiData/userRequest';
 import {
   Spinner,
   MenuSidebar,

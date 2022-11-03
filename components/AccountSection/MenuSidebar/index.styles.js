@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const SidebarContainer = styled.div`
-  /* overflow: visible;
-  height: 100rem; */
-
   width: 30rem;
   padding: 2rem;
   box-shadow: 2px 0 10px -2px rgba(0, 0, 0, 0.15);
@@ -12,12 +9,6 @@ export const SidebarContainer = styled.div`
 `;
 
 export const UserInfoSection = styled.div`
-  /* position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  left: 0;
-  align-self: flex-start; */
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -34,6 +25,7 @@ export const UserInfoSection = styled.div`
     width: 8.5rem;
     border-radius: 100px;
     overflow: hidden;
+    border: 1px solid var(--black-light-3);
   }
 
   .placeholder {

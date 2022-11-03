@@ -5,7 +5,7 @@ import { MdAddAPhoto } from 'react-icons/md';
 
 import { profileLinks } from '../../../assets/constants';
 import { SidebarContainer, UserInfoSection, MenuList } from './index.styles';
-import { updateUserPhoto } from '../../../utils/accountRequest';
+import { updateUserPhoto } from '../../../utils/apiData/userRequest';
 
 const MenuSidebar = ({
   user,

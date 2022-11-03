@@ -54,15 +54,24 @@ export const MasterContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   overflow: scroll;
   min-width: 30rem;
-  min-height: 50rem;
+  min-height: 30rem;
   max-width: 30rem;
   max-height: 40rem;
 
   /* border-radius: var(--br-x); */
   border-bottom-left-radius: var(--br-x);
   border-bottom-right-radius: var(--br-x);
+
+  .no-message {
+    text-align: center;
+    font-size: var(--fs);
+    margin: auto 0;
+    /* padding: 3rem 0; */
+  }
 `;
 
 export const MessageItemWrapper = styled.div`

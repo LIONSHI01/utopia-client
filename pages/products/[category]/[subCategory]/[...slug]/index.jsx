@@ -19,7 +19,7 @@ import {
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { getOnePost } from '../../../../../utils/postRequest';
-import { getUser } from '../../../../../utils/accountRequest';
+import { getUser } from '../../../../../utils/apiData/userRequest';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
 
 import {
@@ -89,6 +89,7 @@ const ProductDetailsPage = () => {
     isLoading: isLoadingUser,
     isError: isErrorUser,
     data: userData,
+    refetch: refetchUser,
   } = useQuery(['user', data?.profile?.id], () => getUser(data?.profile.id), {
     onError: (error) => {
       console.log(error);
@@ -258,6 +259,7 @@ const ProductDetailsPage = () => {
         </OutterContainer>
       </DetailsPageContainer>
       <AddToCollectionModal
+        refetchUser={refetchUser}
         postId={postId}
         collections={user?.itemCollections}
         showAddToColModal={showAddToColModal}
