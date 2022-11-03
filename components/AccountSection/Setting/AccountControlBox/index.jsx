@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { signOut } from 'next-auth/react';
+import Router from 'next/router';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
+
+import { inactivateUserRequest } from '../../../../utils/apiData/userRequest';
 
 import { Button, BUTTON_TYPES, Overlay, FormInputComp } from '../../../index';
 
@@ -21,6 +25,7 @@ const AccountControlBox = ({ user }) => {
   // HANDLERS
   const onSubmitHandler = () => {
     console.log(password);
+    mutateInactivateUser({ userId: user._id, password });
   };
 
   const onChangeHandler = (e) => {
@@ -32,6 +37,21 @@ const AccountControlBox = ({ user }) => {
     setShowModal(false);
   };
   // API CALLS
+
+  const { isLoading, mutate: mutateInactivateUser } = useMutation(
+    inactivateUserRequest,
+    {
+      onSuccess: () => {
+        toast.success('You have inactivate you account.');
+        onCloseHandler();
+        signOut({ redirect: false });
+        Router.push('/');
+      },
+      onError: (err) => {
+        toast.error(`${err?.response.data.data.message}`);
+      },
+    }
+  );
 
   return (
     <AccountControlWrapper>
@@ -85,7 +105,7 @@ const AccountControlBox = ({ user }) => {
             buttonType={BUTTON_TYPES.outlineRed}
             onClick={onSubmitHandler}
           >
-            Confirm
+            {isLoading ? 'Inactivating' : 'Confirm'}
           </Button>
         </ButtonsGroup>
       </ModalContainer>

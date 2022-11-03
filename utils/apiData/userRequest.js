@@ -46,3 +46,13 @@ export const changePasswordRequest = async ({
 
   return res;
 };
+
+export const inactivateUserRequest = async ({ userId, password }) => {
+  const res = await axios({
+    method: 'PATCH',
+    url: `${baseURL}/users/inactivateAccount/${userId}`,
+    data: { password },
+  });
+
+  return res;
+};
