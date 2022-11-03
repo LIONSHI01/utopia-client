@@ -1,18 +1,29 @@
 import styled from 'styled-components';
 
 export const SidebarContainer = styled.div`
+  /* overflow: visible;
+  height: 100rem; */
+
   width: 30rem;
   padding: 2rem;
   box-shadow: 2px 0 10px -2px rgba(0, 0, 0, 0.15);
   clip-path: inset(0px -15px 0px 0px);
+  /* background-color: red; */
 `;
 
 export const UserInfoSection = styled.div`
+  /* position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-self: flex-start; */
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
   margin-bottom: var(--mg-m);
+
   .icon-container {
     position: relative;
   }

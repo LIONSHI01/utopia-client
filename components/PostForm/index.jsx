@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
@@ -23,6 +24,7 @@ const INITIAL_FORM_FIELDS = {
 const PostForm = ({ images }) => {
   // CONFIGURATION
   const { data: user } = useSession();
+  const router = useRouter();
 
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
@@ -36,6 +38,7 @@ const PostForm = ({ images }) => {
     {
       onSuccess: () => {
         setFormFields(INITIAL_FORM_FIELDS);
+        router.push('/');
         toast.success('Congretulations! Your item is on listed.');
       },
       onError: (err) => {
@@ -49,8 +52,12 @@ const PostForm = ({ images }) => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
-
   const onSubmitHandler = (e) => {
+    if (images.length === 0)
+      return toast.error(
+        'It is highly recommended to provide images for your item.'
+      );
+
     e.preventDefault();
     let form = new FormData();
     // Append Images into FormData

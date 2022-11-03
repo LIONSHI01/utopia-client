@@ -3,7 +3,7 @@ import { AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
 import { TbFileInvoice } from 'react-icons/tb';
 
 import { FiSettings } from 'react-icons/fi';
-import { RiAuctionFill } from 'react-icons/ri';
+import { RiAuctionFill, RiAuctionLine } from 'react-icons/ri';
 import {
   BsFillFileEarmarkTextFill,
   BsFillHeartFill,
@@ -259,21 +259,26 @@ export const iconDropdownMenuList = [
   {
     name: 'Collections',
     link: 'collections',
-    icon: <AiOutlineGift size={19} />,
+    icon: <AiOutlineGift size={23} />,
+  },
+  {
+    name: 'Listings',
+    link: 'listings',
+    icon: <RiAuctionLine size={23} />,
   },
   {
     name: 'Orders',
     link: 'orders',
-    icon: <TbFileInvoice size={19} />,
+    icon: <TbFileInvoice size={23} />,
   },
   {
     name: 'Offers',
     link: 'offers',
-    icon: <BsTag size={18} />,
+    icon: <BsTag size={23} />,
   },
   {
     name: 'Settings',
     link: 'settings',
-    icon: <FiSettings size={19} />,
+    icon: <FiSettings size={23} />,
   },
 ];

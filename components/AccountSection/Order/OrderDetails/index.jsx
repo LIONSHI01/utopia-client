@@ -26,7 +26,7 @@ import {
 
 const OrderDetails = ({ user, order, refetchUser }) => {
   // CONFIGURATION
-  console.log(order);
+  // console.log(order);
   // STATES
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
   const [txHash, setTxHash] = useState(order?.transaction_hash?.[0]?.hash);

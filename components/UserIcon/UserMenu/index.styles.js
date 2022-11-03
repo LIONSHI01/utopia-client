@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const showUpStyles = css`
   width: 20rem;
-  height: 30rem;
+  height: 34rem;
   opacity: 1;
   visibility: visible;
 `;
@@ -56,6 +56,17 @@ export const MenuWrapper = styled.div`
     span {
       color: var(--black);
       text-transform: capitalize;
+      font-size: 1.6rem;
+    }
+  }
+
+  .info-box {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: var(--fs-ss);
+      font-weight: 400;
     }
   }
 
@@ -65,12 +76,12 @@ export const MenuWrapper = styled.div`
 
   .signout-btn,
   .list-item {
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
     font-size: var(--fs-ss);
-    font-weight: 100;
+    font-weight: 400;
     color: var(--black);
     cursor: pointer;
     :hover {

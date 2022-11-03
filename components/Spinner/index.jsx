@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import ClipLoader from 'react-spinners/ClipLoader';
 import BeatLoader from 'react-spinners/BeatLoader';
 
 const SpinnerWrapper = styled.div`
@@ -21,19 +19,11 @@ const SpinnerWrapper = styled.div`
 const Spinner = ({ message }) => {
   return (
     <SpinnerWrapper>
-      {/* <ClipLoader
-        color="var(--primary)"
-        // loading={loading}
-        // cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      /> */}
       <BeatLoader
         color="var(--primary)"
         // loading={loading}
         // cssOverride={override}
-        size={50}
+        size={30}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

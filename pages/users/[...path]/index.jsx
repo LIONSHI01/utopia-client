@@ -11,6 +11,7 @@ import {
   OffersMasterSection,
   OrdersMasterSection,
   ListingsMasterSection,
+  SettingsMasterSection,
 } from '../../../components/index';
 
 import {
@@ -29,7 +30,7 @@ const AccountPage = () => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [displaySection, setDisplaySection] = useState(
-    query?.path?.[1] || 'collections'
+    query?.path?.[1] || 'settings'
   );
 
   // API FETCH
@@ -91,6 +92,9 @@ const AccountPage = () => {
           )}
           {displaySection === 'orders' && (
             <OrdersMasterSection user={user} refetchUser={refetchUser} />
+          )}
+          {displaySection === 'settings' && (
+            <SettingsMasterSection user={user} refetchUser={refetchUser} />
           )}
         </>
       )}

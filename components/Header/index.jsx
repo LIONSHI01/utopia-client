@@ -56,7 +56,7 @@ const MainHeader = () => {
           </button>
         </div>
         <div className="links">
-          <Link href={`users/${user?._id}/collections`}>
+          <Link href={`/users/${user?._id}/collections`}>
             <a>
               <FiHeart size={23} color="var(--black-light-2)" />
             </a>

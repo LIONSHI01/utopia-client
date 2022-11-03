@@ -14,9 +14,8 @@ export const BoxContainer = styled.div`
   }
 
   .similar-posts {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    gap: 3rem;
   }
 `;

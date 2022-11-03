@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useMutation } from 'react-query';
+import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { IoIosArrowDown } from 'react-icons/io';
 
@@ -23,6 +24,7 @@ const INITIAL_FORM_FIELDS = {
 const PostEditForm = ({ post, images }) => {
   // CONFIGURATION
   const { data: user } = useSession();
+  const router = useRouter();
   console.log('images from PostForm:', images);
   console.log(images.filter((image) => image.file));
   // STATE MANAGEMENT
@@ -36,6 +38,7 @@ const PostEditForm = ({ post, images }) => {
     {
       onSuccess: () => {
         setFormFields(INITIAL_FORM_FIELDS);
+        router.push('/');
         toast.success('Congretulations! Your item is saved.');
       },
       onError: (err) => {
@@ -52,6 +55,12 @@ const PostEditForm = ({ post, images }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (images.length === 0)
+      return toast.error(
+        'It is highly recommended to provide images for your item.'
+      );
+
     let form = new FormData();
     // Append Images into FormData
     images

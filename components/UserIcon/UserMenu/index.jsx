@@ -17,7 +17,10 @@ const UserMenuDropdown = ({ user, showUp, setShowUp }) => {
         <Link href={`/users/${user?._id}`}>
           <a className="userInfo" onClick={() => setShowUp(false)}>
             <UserIcon user={user} size="s" />
-            <span className="name">{user?.name}</span>
+            <div className="info-box">
+              <span className="name">{user?.name}</span>
+              <p>View your profile</p>
+            </div>
           </a>
         </Link>
         <div className="navigation-items">
@@ -41,7 +44,7 @@ const UserMenuDropdown = ({ user, showUp, setShowUp }) => {
             router.replace('/');
           }}
         >
-          <VscSignOut size={19} />
+          <VscSignOut size={24} />
           Sign Out
         </span>
       </ContentWrapper>

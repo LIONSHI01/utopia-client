@@ -12,7 +12,8 @@ export const InputWrapper = styled.div`
     font-weight: 500;
   }
 
-  input {
+  input,
+  textarea {
     width: 100%;
     border-radius: var(--br-s);
     border: none;
@@ -40,5 +41,9 @@ export const InputWrapper = styled.div`
     :hover {
       border: 1px solid var(--black);
     }
+  }
+
+  textarea {
+    resize: vertical;
   }
 `;

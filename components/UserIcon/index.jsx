@@ -10,6 +10,11 @@ const smallSizeStyles = css`
   width: 3rem;
 `;
 
+const xsSizeStyles = css`
+  height: 2rem;
+  width: 2rem;
+`;
+
 const IconWrapper = styled.div`
   position: relative;
 
@@ -21,6 +26,9 @@ const IconWrapper = styled.div`
     position: relative;
     height: 3.7rem;
     width: 3.7rem;
+
+    ${(props) => props.size === 's' && smallSizeStyles}
+    ${(props) => props.size === 'xs' && xsSizeStyles}
     border-radius: 100px;
     overflow: hidden;
   }
@@ -40,8 +48,6 @@ const IconWrapper = styled.div`
       font-size: var(--fs);
       text-transform: uppercase;
     }
-
-    ${(props) => props.size === 's' && smallSizeStyles}
   }
 `;
 

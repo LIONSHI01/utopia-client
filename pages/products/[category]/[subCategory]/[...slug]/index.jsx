@@ -18,7 +18,7 @@ import {
   AddToCollectionModal,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
-import { getOnePost, inactivePost } from '../../../../../utils/postRequest';
+import { getOnePost } from '../../../../../utils/postRequest';
 import { getUser } from '../../../../../utils/accountRequest';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
 
@@ -248,7 +248,13 @@ const ProductDetailsPage = () => {
           {moreSellerPosts?.length > 0 && (
             <MoreFromSeller posts={moreSellerPosts} />
           )}
-          {similarPosts?.length > 0 && <SimilarPostsBox posts={similarPosts} />}
+          {similarPosts?.length > 0 && (
+            <SimilarPostsBox
+              category={category}
+              subCategory={subCategory}
+              posts={similarPosts}
+            />
+          )}
         </OutterContainer>
       </DetailsPageContainer>
       <AddToCollectionModal

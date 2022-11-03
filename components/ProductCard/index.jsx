@@ -60,9 +60,9 @@ const ProductCard = ({ post }) => {
               <ProfilePreviewCard postByUser={post?.postedBy} />
             )}
           </div>
-          <IconButton size="s" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
+          {/* <IconButton size="s" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
             <BsThreeDots size={20} />
-          </IconButton>
+          </IconButton> */}
         </HeaderContaienr>
         <Link
           href={`/products/${post?.category}/${post?.subCategory}/${post?.slug}/${post?._id}`}

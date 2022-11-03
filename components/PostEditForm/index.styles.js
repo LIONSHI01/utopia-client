@@ -41,9 +41,6 @@ export const FormContainer = styled.div`
       }
     }
 
-    input {
-    }
-
     textarea {
       resize: vertical;
     }

@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { useSession } from 'next-auth/react';
 import { useDispatch } from 'react-redux';
 import { useQuery } from 'react-query';
+
 import { setCurrentUser } from '../store/user/user.action';
+import { getEthereumQuotes } from '../utils/connectCMC';
 
 import { DisplayList, Spinner } from '../components';
 import { getAllPosts } from '../utils/postRequest';
@@ -47,6 +49,15 @@ const Home = () => {
   useEffect(() => {
     dispatch(setCurrentUser(data?.profile));
   }, [dispatch, data]);
+
+  useEffect(() => {
+    const fetchEthereumPrice = async () => {
+      const res = await getEthereumQuotes();
+      console.log(res);
+    };
+
+    fetchEthereumPrice();
+  }, []);
 
   if (isLoadingPosts) {
     return (

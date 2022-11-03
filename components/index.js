@@ -32,6 +32,7 @@ import CollectionMasterSection from './AccountSection/Collection/CollectionSecti
 import OffersMasterSection from './AccountSection/Offer/OfferSection';
 import OrdersMasterSection from './AccountSection/Order/OrdersSection';
 import ListingsMasterSection from './AccountSection/Listing';
+import SettingsMasterSection from './AccountSection/Setting';
 import WaitingModal from './WaitingModal';
 import PostEditForm from './PostEditForm';
 
@@ -72,6 +73,7 @@ export {
   OffersMasterSection,
   OrdersMasterSection,
   ListingsMasterSection,
+  SettingsMasterSection,
   WaitingModal,
   PostEditForm,
 };
