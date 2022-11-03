@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
 import { changePasswordRequest } from '../../../../utils/apiData/userRequest';
 import { FormInputComp, Button, BUTTON_TYPES } from '../../../index';
@@ -15,7 +16,6 @@ const INITIAL_FORM_FIELD = {
 const AuthenticationBox = ({ user, refetchUser }) => {
   console.log(user);
 
-  const isUpdating = false;
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELD);
   const { currentPassword, password, confirmPassword } = formFields;
@@ -53,7 +53,10 @@ const AuthenticationBox = ({ user, refetchUser }) => {
 
   return (
     <AuthenticationWrapper>
-      <h3 className="heading">Manage passwords</h3>
+      <div className="heading">
+        <RiLockPasswordLine size={25} />
+        <h3>Manage passwords</h3>
+      </div>
       <FormInputComp
         label="Current password"
         fieldName="currentPassword"

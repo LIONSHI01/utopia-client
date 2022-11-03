@@ -5,32 +5,28 @@ export const SectionContainer = styled.div`
 `;
 export const ContentsContainer = styled.div`
   margin: 5rem 10rem;
-  background-color: var(--grey-light-3);
-  border-radius: var(--br-x);
   display: flex;
   flex-direction: column;
   gap: 5rem;
 
-  padding: 3rem;
+  & > * {
+    padding: 3rem;
+    background-color: var(--grey-light-3);
+    border-radius: var(--br-x);
+    box-shadow: var(--bs-s);
+    border: 1px solid var(--black-light-3);
+  }
 
   h3 {
     font-size: var(--fs-x);
+    line-height: 0;
   }
-
-  h4 {
-    font-size: var(--fs);
+  label {
+    color: var(--black-light-2);
   }
-
   .profile-buttons-group {
     margin-top: var(--mg-m);
     display: flex;
     gap: 3rem;
   }
 `;
-
-export const UserInfoWrapper = styled.div``;
-export const SocialMediaWrapper = styled.div`
-  margin-top: var(--mg-s);
-`;
-export const AuthenticationWrapper = styled.div``;
-export const AccountControlWrapper = styled.div``;

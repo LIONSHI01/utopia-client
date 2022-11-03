@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema(
       ],
       lowercase: true,
     },
+    walletAddress: {
+      type: String,
+      lowercase: true,
+      trim: true,
+    },
     photo: {
       type: String,
     },
@@ -30,6 +35,26 @@ const userSchema = new mongoose.Schema(
       required: [true, 'Please provide a password'],
       select: false,
     },
+    location: {
+      type: String,
+      trim: true,
+    },
+    facebook: {
+      type: String,
+      trim: true,
+    },
+    twitter: {
+      type: String,
+      trim: true,
+    },
+    instagram: {
+      type: String,
+      trim: true,
+    },
+    bio: {
+      type: String,
+      trim: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -37,8 +62,19 @@ const userSchema = new mongoose.Schema(
     active: {
       type: Boolean,
       default: true,
-      select: false,
     },
+    followers: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+      },
+    ],
+    followings: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+      },
+    ],
   },
   {
     toJSON: { virtuals: true },

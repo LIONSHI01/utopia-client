@@ -4,10 +4,30 @@ export const AccountControlWrapper = styled.div`
   p,
   li {
     font-size: var(--fs-s);
+    color: var(--black-light-2);
+    letter-spacing: 0.5px;
+  }
+
+  .heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--black-light-3);
+    margin-bottom: var(--mg-m);
   }
 
   .contents {
     margin-bottom: var(--mg-m);
+
+    p {
+      font-size: var(--fs);
+      font-weight: 500;
+      color: var(--black);
+    }
+    ul {
+      list-style: inside;
+    }
   }
 `;
 

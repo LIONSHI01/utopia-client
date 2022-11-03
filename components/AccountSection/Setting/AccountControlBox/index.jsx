@@ -3,6 +3,7 @@ import { signOut } from 'next-auth/react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
+import { AiOutlineUserDelete } from 'react-icons/ai';
 
 import { inactivateUserRequest } from '../../../../utils/apiData/userRequest';
 
@@ -19,7 +20,7 @@ const AccountControlBox = ({ user }) => {
   // console.log(user);
 
   // STATE MANAGEMENT
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState('');
 
   // HANDLERS
@@ -55,12 +56,15 @@ const AccountControlBox = ({ user }) => {
 
   return (
     <AccountControlWrapper>
-      <h3 className="heading">Close your account</h3>
+      <div className="heading">
+        <AiOutlineUserDelete size={25} />
+        <h3>Close your account</h3>
+      </div>
       <div className="contents">
         <p> What happens when you close your account?</p>
         <ul>
           <li>Your account will be inactive, until you reopen it.</li>
-          <li>Your profile will no longer appear anywhere on Etsy.</li>
+          <li>Your profile will no longer appear anywhere on Utopia.</li>
           <li>Your account will be inactive, until you reopen it.</li>
           <li>We&#39;ll close any non-delivery cases you opened.</li>
           <li>
@@ -69,7 +73,7 @@ const AccountControlBox = ({ user }) => {
           </li>
         </ul>
         <p>
-          You can reopen your account anytime. Just sign back in to Etsy or
+          You can reopen your account anytime. Just sign back in to Utopia or
           contact Utopia support for help.
         </p>
       </div>
@@ -105,7 +109,7 @@ const AccountControlBox = ({ user }) => {
             buttonType={BUTTON_TYPES.outlineRed}
             onClick={onSubmitHandler}
           >
-            {isLoading ? 'Inactivating' : 'Confirm'}
+            {isLoading ? 'Closing' : 'Close account'}
           </Button>
         </ButtonsGroup>
       </ModalContainer>

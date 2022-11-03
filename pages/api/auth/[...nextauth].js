@@ -29,6 +29,12 @@ export const authOptions = {
           throw Error('Invalid password, please try again!');
         }
 
+        if (!user.active) {
+          throw Error(
+            'This user is inactive, please contact us to activate your account.'
+          );
+        }
+
         return user;
       },
     }),

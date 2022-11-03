@@ -3,11 +3,17 @@ import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 import validator from 'validator';
 
+import { ImProfile } from 'react-icons/im';
+
 import { updateUserProfile } from '../../../../utils/apiData/userRequest';
 
 import { FormInputComp, Button, BUTTON_TYPES } from '../../../index';
 
-import { UserInfoWrapper, SocialMediaWrapper } from './index.styles';
+import {
+  ProfileWrapper,
+  UserInfoWrapper,
+  SocialMediaWrapper,
+} from './index.styles';
 
 const ProfileBox = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
@@ -66,9 +72,12 @@ const ProfileBox = ({ user, refetchUser }) => {
     });
 
   return (
-    <UserInfoWrapper>
-      <h3 className="heading">Edit profile</h3>
-      <div className="public-profile">
+    <ProfileWrapper>
+      <div className="heading">
+        <ImProfile size={25} />
+        <h3>Edit profile</h3>
+      </div>
+      <UserInfoWrapper>
         <FormInputComp
           label="Username"
           fieldName="username"
@@ -106,10 +115,9 @@ const ProfileBox = ({ user, refetchUser }) => {
           name="location"
           onChange={onChangeProfileHandler}
         />
-      </div>
-
+      </UserInfoWrapper>
       <SocialMediaWrapper>
-        <h4 className="heading">Connect accounts</h4>
+        <h4 className="socials-heading">Connect accounts</h4>
         <FormInputComp
           label="Facebook"
           fieldName="facebook"
@@ -148,7 +156,7 @@ const ProfileBox = ({ user, refetchUser }) => {
           </Button>
         </div>
       </SocialMediaWrapper>
-    </UserInfoWrapper>
+    </ProfileWrapper>
   );
 };
 
