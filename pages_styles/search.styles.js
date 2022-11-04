@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const SearchPageContainer = styled.div`
   .results-number {
+    font-weight: 600;
   }
   .search-words {
     display: flex;

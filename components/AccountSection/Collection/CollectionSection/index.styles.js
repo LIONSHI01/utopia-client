@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SectionContainer = styled.div`
+  overflow: hidden;
   height: 100%;
   width: 100%;
   display: flex;

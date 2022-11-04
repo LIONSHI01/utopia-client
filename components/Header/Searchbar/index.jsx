@@ -10,12 +10,13 @@ const Searchbar = () => {
   const onChangeHandler = (e) => setQuery(e.target.value);
 
   const onSubmitHandler = () => {
+    setQuery('');
     Router.push(`/search/${query}`);
   };
 
   return (
     <SearchbarWrapper>
-      <input placeholder="Search" value={query} onChange={onChangeHandler} />
+      <input placeholder="Search..." value={query} onChange={onChangeHandler} />
       <button className="search-btn">
         <HiOutlineSearch
           size={20}

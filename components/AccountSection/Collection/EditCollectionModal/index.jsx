@@ -74,7 +74,7 @@ const EditCollectionModal = ({
           onChange={(e) => setName(e.target.value)}
         />
         <div className="buttons-group">
-          <button size="full" className="delete-btn" onClick={deleteHandler}>
+          <button size="x" className="delete-btn" onClick={deleteHandler}>
             <IoMdTrash size={20} />
             Delete collection
           </button>

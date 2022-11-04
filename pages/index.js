@@ -11,7 +11,9 @@ import { getAllPosts } from '../utils/postRequest';
 import { getUser } from '../utils/apiData/userRequest';
 
 const ContentContainer = styled.div`
-  /* width: 100vw; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   /* min-height: 100vh; */
   margin: 5rem 10rem;
 `;

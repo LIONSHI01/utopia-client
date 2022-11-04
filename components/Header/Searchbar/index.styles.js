@@ -27,6 +27,7 @@ export const SearchbarWrapper = styled.div`
 
     ::placeholder {
       font-size: var(--fs-s);
+      color: var(--black-light-3);
     }
 
     :focus {
