@@ -55,7 +55,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           setIsLoading(false);
         }
         toast.warn(res.error);
-        console.log(res);
+        // console.log(res);
       });
     }
   };

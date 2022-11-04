@@ -10,11 +10,11 @@ const SpinnerWrapper = styled.div`
   align-items: center;
 `;
 
-const ButtonLoader = () => {
+const ButtonLoader = ({ loaderColor = 'white' }) => {
   return (
     <SpinnerWrapper>
       <PuffLoader
-        color="var(--white)"
+        color={`var(--${loaderColor})`}
         size={25}
         margin={100}
         aria-label="Loading Spinner"

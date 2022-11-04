@@ -5,7 +5,12 @@ export const CardContainer = styled.div`
   height: 38rem;
   border: 1px solid var(--black-light-3);
   border-radius: var(--br-m);
-  /* overflow: hidden; */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  :hover {
+    border: 1px solid var(--black);
+  }
 `;
 
 export const HeaderContaienr = styled.div`
@@ -98,5 +103,9 @@ export const ContentContainer = styled.div`
     :hover {
       color: var(--primary);
     }
+  }
+
+  .is_liked {
+    color: var(--primary);
   }
 `;

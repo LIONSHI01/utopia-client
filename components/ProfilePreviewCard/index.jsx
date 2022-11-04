@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import Image from 'next/image';
 
 import { GrFacebookOption } from 'react-icons/gr';
@@ -33,17 +33,15 @@ const ProfilePreviewCard = ({ postByUser }) => {
     }))
     ?.slice(0, 3);
 
-  useEffect(() => {
-    mutateGetUser(postByUser?._id);
-  }, [postByUser]);
-
   // API CALL
-  const { isLoading: isLoadingPostByUser, mutate: mutateGetUser } = useMutation(
-    getUser,
+  const { isLoading: isLoadingPostByUser } = useQuery(
+    ['postUser', postByUser],
+    () => getUser(postByUser?._id),
     {
       onSuccess: (data) => {
         setPostOwner(data);
       },
+      enabled: !!postByUser?._id,
     }
   );
 

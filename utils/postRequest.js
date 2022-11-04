@@ -93,3 +93,12 @@ export const inactivePost = async ({ postId }) => {
 
   return res;
 };
+
+export const searchPostsRequest = async (query) => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/search?q=${query}`,
+  });
+
+  return res.data;
+};

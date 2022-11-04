@@ -14,7 +14,7 @@ const INITIAL_FORM_FIELD = {
 };
 
 const AuthenticationBox = ({ user, refetchUser }) => {
-  console.log(user);
+  // console.log(user);
 
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELD);

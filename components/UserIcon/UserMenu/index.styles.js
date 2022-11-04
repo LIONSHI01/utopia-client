@@ -7,7 +7,13 @@ const showUpStyles = css`
   visibility: visible;
 `;
 
+const contentsShowUpStyles = css`
+  opacity: 1;
+  visibility: visible;
+`;
+
 export const MenuWrapper = styled.div`
+  overflow: hidden;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -97,6 +103,11 @@ export const MenuWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
+  min-width: 20rem;
+
+  opacity: 0;
+  visibility: hidden;
+
+  ${(props) => props.showUp && contentsShowUpStyles}
 `;

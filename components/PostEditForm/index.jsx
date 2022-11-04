@@ -202,8 +202,8 @@ const PostEditForm = ({ post, images }) => {
                 </div>
               </div>
             </div>
-            <Button type="submit" size="x">
-              {isSaving ? 'Saving' : 'Save'}
+            <Button isLoading={isSaving} type="submit" size="x">
+              Save
             </Button>
           </>
         )}

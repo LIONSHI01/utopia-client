@@ -5,6 +5,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 const SpinnerWrapper = styled.div`
   width: 100%;
   height: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,14 +17,14 @@ const SpinnerWrapper = styled.div`
   }
 `;
 
-const Spinner = ({ message }) => {
+const Spinner = ({ size = 30, message }) => {
   return (
     <SpinnerWrapper>
       <BeatLoader
         color="var(--primary)"
         // loading={loading}
         // cssOverride={override}
-        size={30}
+        size={size}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

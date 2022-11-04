@@ -199,8 +199,8 @@ const PostForm = ({ images }) => {
                 </div>
               </div>
             </div>
-            <Button type="submit" size="x">
-              {isListing ? 'Listing' : 'List Now'}
+            <Button isLoading={isListing} type="submit" size="x">
+              List now
             </Button>
           </>
         )}

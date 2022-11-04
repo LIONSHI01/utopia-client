@@ -36,6 +36,7 @@ import SettingsMasterSection from './AccountSection/Setting';
 import WaitingModal from './WaitingModal';
 import PostEditForm from './PostEditForm';
 import ButtonLoader from './ButtonLoader';
+import Searchbar from './Header/Searchbar';
 
 export {
   MainHeader,
@@ -78,4 +79,5 @@ export {
   WaitingModal,
   PostEditForm,
   ButtonLoader,
+  Searchbar,
 };

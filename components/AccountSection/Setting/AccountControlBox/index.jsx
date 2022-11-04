@@ -23,7 +23,7 @@ const AccountControlBox = ({ user }) => {
 
   // HANDLERS
   const onSubmitHandler = () => {
-    console.log(password);
+    // console.log(password);
     mutateInactivateUser({ userId: user._id, password });
   };
 

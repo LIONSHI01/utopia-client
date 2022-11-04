@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { useSession } from 'next-auth/react';
 
 import { ModalContainer } from './index.styles';
 import {
@@ -13,18 +14,19 @@ import {
 import { createCollection } from '../../../../utils/collectionRequest';
 
 const CreateCollectionModal = ({
-  user,
+  // user,
   refetchUser,
   showCreateCollectionModal,
   setShowCreateCollectionModal,
 }) => {
   // CONFIGURATION
+  const { data: user } = useSession();
 
   // STATE MANAGEMENT
   const [name, setName] = useState('');
 
   const onSubmitHandler = async () => {
-    const res = await createCollection(name, user?._id);
+    const res = await createCollection(name, user?.profile?._id);
 
     if (res.status === 201) {
       setName('');

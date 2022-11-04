@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useQuery, useMutation } from 'react-query';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 import { AiFillStar } from 'react-icons/ai';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { BsThreeDotsVertical, BsBookmarkStarFill } from 'react-icons/bs';
+
+import { getUser, updateUserProfile } from '../../../utils/apiData/userRequest';
+import { newFollowingsCalculator } from '../../../utils/profileCalculator';
 
 import {
   UserIcon,
@@ -13,12 +18,19 @@ import {
 import EditDropdownMenu from '../EditDropdownMenu';
 import { BoxWrapper } from './index.styles';
 
-const SellerInfoBox = ({ seller, isAuthenticated, post }) => {
+const SellerInfoBox = ({
+  user,
+  seller,
+  isAuthenticated,
+  post,
+  isFollowing,
+}) => {
   // CONFIGURATION
   const ref = useRef();
 
   // STATE MANAGEMENT
   const [showEditDropdown, setShowEditDropdown] = useState(false);
+  // const [sellerProfile, setSellerProfile] = useState(null);
 
   useEffect(() => {
     const checkIfClickOutside = (e) => {
@@ -33,6 +45,42 @@ const SellerInfoBox = ({ seller, isAuthenticated, post }) => {
     };
   }, [showEditDropdown]);
 
+  // API CALLS
+
+  // const { isLoading: isLoadingPostByUser } = useQuery(
+  //   ['sellerProfile', seller],
+  //   () => getUser(seller?._id),
+  //   {
+  //     onSuccess: (data) => {
+  //       setSellerProfile(data);
+  //     },
+  //     enabled: !!seller?._id,
+  //   }
+  // );
+
+  const { isLoading: isLoadingFollow, mutate: mutateFollowUser } = useMutation(
+    updateUserProfile,
+    {
+      onSuccess: () => {
+        toast.success(`You have updated following list.`);
+        refetchUser();
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    }
+  );
+
+  // HANDLERS
+  const onFollowHandler = () => {
+    const newFollowingsArr = newFollowingsCalculator(
+      user?.followings,
+      post?.postedBy?.id
+    );
+
+    mutateFollowUser({ userId: user?._id, followings: newFollowingsArr });
+  };
+  console.log(seller);
   return (
     <BoxWrapper>
       <div className="upperBox">
@@ -43,8 +91,15 @@ const SellerInfoBox = ({ seller, isAuthenticated, post }) => {
           </a>
         </Link>
 
-        <Button size="x" buttonType={BUTTON_TYPES.outlineGrey}>
-          Follow
+        <Button
+          isLoading={isLoadingFollow}
+          size="x"
+          buttonType={
+            isFollowing ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
+          }
+          onClick={onFollowHandler}
+        >
+          {seller?.followers.length || 0} <BsBookmarkStarFill size={15} />
         </Button>
 
         {isAuthenticated && (

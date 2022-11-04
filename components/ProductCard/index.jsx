@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { useSession } from 'next-auth/react';
-import { BsThreeDots, BsFillHeartFill } from 'react-icons/bs';
+
+import { BsFillHeartFill } from 'react-icons/bs';
 import ethIcon from '../../assets/image/eth-icon.png';
 import { selectUser } from '../../store/user/user.selector';
+import { isItemLiked } from '../../utils/profileCalculator';
 import {
   UserIcon,
-  IconButton,
-  ICON_BUTTON_TYPES,
   Button,
   BUTTON_TYPES,
   ProfilePreviewCard,
@@ -33,9 +32,13 @@ const ProductCard = ({ post }) => {
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const user = useSelector(selectUser);
-  // console.log(user);
-  // HANDLERS
+
+  useEffect(() => {
+    const result = isItemLiked(post?.collectionsLike, user?._id);
+    setIsLiked(result);
+  }, [post, user]);
 
   return (
     <>
@@ -62,9 +65,6 @@ const ProductCard = ({ post }) => {
               <ProfilePreviewCard postByUser={post?.postedBy} />
             )}
           </div>
-          {/* <IconButton size="s" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-            <BsThreeDots size={20} />
-          </IconButton> */}
         </HeaderContaienr>
         <Link
           href={`/products/${post?.category}/${post?.subCategory}/${post?.slug}/${post?._id}`}
@@ -100,10 +100,13 @@ const ProductCard = ({ post }) => {
           </div>
           <div className="buttons-group">
             <button
-              className="like-btn"
               onClick={() => setShowAddCollectionModal(true)}
+              className="like-btn"
             >
-              <BsFillHeartFill size={25} className="icon" />
+              <BsFillHeartFill
+                size={25}
+                className={isLiked ? 'icon is_liked' : 'icon'}
+              />
             </button>
             <Button
               size="m"

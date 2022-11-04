@@ -18,7 +18,7 @@ import {
 const ProfileBox = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
   const [profileFields, setProfileFields] = useState(user);
-  console.log(user);
+  // console.log(user);
   const {
     name,
     email,

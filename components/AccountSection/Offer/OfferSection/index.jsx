@@ -13,7 +13,7 @@ const OffersMasterSection = ({ user, refetchUser }) => {
     setOffers(user?.offers);
   }, [user]);
 
-  console.log('Offer Section:', offers);
+  // console.log('Offer Section:', offers);
 
   return (
     <PageContainer>

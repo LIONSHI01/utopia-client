@@ -6,6 +6,10 @@ const boxShowUpStyles = css`
   visibility: visible;
   opacity: 1;
 `;
+const contentsShowUpStyles = css`
+  visibility: visible;
+  opacity: 1;
+`;
 
 export const DropdownWrapper = styled.div`
   position: absolute;
@@ -21,7 +25,6 @@ export const DropdownWrapper = styled.div`
   background-color: var(--white);
   box-shadow: var(--bs-s);
   border-radius: var(--br-m);
-  /* padding-top: 4rem; */
 
   transition: all 0.3s ease-in-out;
 
@@ -46,6 +49,11 @@ export const MasterContainer = styled.div`
   overflow: hidden;
   width: 100%;
 
+  visibility: hidden;
+  opacity: 0;
+
+  ${(props) => props.showUp && contentsShowUpStyles}
+
   .heading {
     padding: 2rem 0;
     font-size: 2rem;
@@ -62,7 +70,6 @@ export const ContentContainer = styled.div`
   max-width: 30rem;
   max-height: 40rem;
 
-  /* border-radius: var(--br-x); */
   border-bottom-left-radius: var(--br-x);
   border-bottom-right-radius: var(--br-x);
 
@@ -70,7 +77,6 @@ export const ContentContainer = styled.div`
     text-align: center;
     font-size: var(--fs);
     margin: auto 0;
-    /* padding: 3rem 0; */
   }
 `;
 

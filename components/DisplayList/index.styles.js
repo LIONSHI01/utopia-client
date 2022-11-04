@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const DisplayContainer = styled.main`
-  margin: 5rem 10rem;
-  gap: 3rem;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
+  gap: 3rem;
+  margin: 0 auto;
+  justify-content: space-between;
 `;

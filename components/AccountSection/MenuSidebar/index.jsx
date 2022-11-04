@@ -66,10 +66,12 @@ const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
               <span>100</span>Followers
             </p>
           </div>
-          <div className="bio">
-            <span>About me:</span>
-            <p className="bio"> {user?.bio}</p>
-          </div>
+          {user?.bio && (
+            <div className="bio">
+              <span>About me:</span>
+              <p className="bio"> {user?.bio}</p>
+            </div>
+          )}
         </div>
       </UserInfoSection>
       <MenuList>

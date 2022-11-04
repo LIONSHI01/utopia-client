@@ -11,30 +11,41 @@ import {
   ModalContainer,
   CollectionsContainer,
   CollectionWrapper,
+  UpdateLoaderContainer,
 } from './index.styles';
 import {
   Overlay,
   IconButton,
   ICON_BUTTON_TYPES,
   CreateCollectionModal,
+  Spinner,
 } from '../../../index';
 import { updateCollection } from '../../../../utils/collectionRequest';
-import { newCollectionItems } from '../../../../utils/calculator';
+import { newCollectionItems } from '../../../../utils/profileCalculator';
 
-const Collection = ({ collection, ...otherProps }) => (
-  <CollectionWrapper {...otherProps}>
-    <div className="placeHolder">
-      <AiOutlineGift size={25} />
-    </div>
-    <div className="details">
-      <span className="name">{collection?.name}</span>
-      <div className="items">
-        <ImEarth size={15} />
-        <span>{collection?.items.length || 0} items</span>
+const Collection = ({ isLoading, collection, ...otherProps }) => {
+  if (isLoading)
+    return (
+      <UpdateLoaderContainer>
+        <Spinner size={15} />
+      </UpdateLoaderContainer>
+    );
+
+  return (
+    <CollectionWrapper {...otherProps}>
+      <div className="placeHolder">
+        <AiOutlineGift size={25} />
       </div>
-    </div>
-  </CollectionWrapper>
-);
+      <div className="details">
+        <span className="name">{collection?.name}</span>
+        <div className="items">
+          <ImEarth size={15} />
+          <span>{collection?.items.length || 0} items</span>
+        </div>
+      </div>
+    </CollectionWrapper>
+  );
+};
 
 const AddToCollectionModal = ({
   postId,
@@ -42,9 +53,9 @@ const AddToCollectionModal = ({
   showAddToColModal,
   setShowAddToColModal,
   refetchUser,
+  refetchPost,
 }) => {
   // CONFIGURATION
-  const router = useRouter();
 
   // STATE MANAGEMENT
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -56,19 +67,26 @@ const AddToCollectionModal = ({
   };
 
   // API CALL
-  const { mutate: mutateUpdateCollection } = useMutation(updateCollection, {
-    onSuccess: () => {
-      toast.success('Collection updated.');
-      setShowAddToColModal(false);
-      if (typeof refetchUser !== 'undefined') {
-        // safe to use the function
-        refetchUser();
-      }
-    },
-    onError: (err) => {
-      toast.error(`Error:${err.message}`);
-    },
-  });
+  const { isLoading: isUpdating, mutate: mutateUpdateCollection } = useMutation(
+    updateCollection,
+    {
+      onSuccess: () => {
+        toast.success('Collection updated.');
+        setShowAddToColModal(false);
+        if (typeof refetchUser !== 'undefined') {
+          // safe to use the function
+          refetchUser();
+        }
+        if (typeof refetchPost !== 'undefined') {
+          // safe to use the function
+          refetchPost();
+        }
+      },
+      onError: (err) => {
+        toast.error(`Error:${err.message}`);
+      },
+    }
+  );
 
   return (
     <>
@@ -86,7 +104,10 @@ const AddToCollectionModal = ({
           <h3>Add to collection</h3>
         </div>
         <CollectionsContainer>
-          <button className="addCollection">
+          <button
+            className="addCollection"
+            onClick={() => setShowCreateModal(true)}
+          >
             <div className="placeHolder">
               <AiOutlinePlus size={30} color="var(--white)" />
             </div>
@@ -94,6 +115,7 @@ const AddToCollectionModal = ({
           </button>
           {collections?.map((collection) => (
             <Collection
+              isLoading={isUpdating}
               key={collection._id}
               collection={collection}
               onClick={() => updateCollectionHandler(collection, postId)}
@@ -102,6 +124,7 @@ const AddToCollectionModal = ({
         </CollectionsContainer>
       </ModalContainer>
       <CreateCollectionModal
+        refetchUser={refetchUser}
         showCreateCollectionModal={showCreateModal}
         setShowCreateCollectionModal={setShowCreateModal}
       />

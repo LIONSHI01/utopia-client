@@ -13,7 +13,7 @@ const UserMenuDropdown = ({ user, showUp, setShowUp }) => {
 
   return (
     <MenuWrapper showUp={showUp}>
-      <ContentWrapper>
+      <ContentWrapper showUp={showUp}>
         <Link href={`/users/${user?._id}`}>
           <a className="userInfo" onClick={() => setShowUp(false)}>
             <UserIcon user={user} size="s" />

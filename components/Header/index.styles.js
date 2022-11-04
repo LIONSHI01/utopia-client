@@ -34,7 +34,7 @@ export const HeaderWrapper = styled.div`
     margin-right: 3rem;
 
     :has(input:focus) {
-      box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 0.3rem #ff9a77;
     }
 
     input {

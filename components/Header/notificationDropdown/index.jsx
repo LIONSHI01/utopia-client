@@ -53,9 +53,9 @@ const MessageItem = ({ message }) => {
 const NotificationDropdown = ({ notifications, showUp, setShowUp }) => {
   return (
     <DropdownWrapper showUp={showUp}>
-      <MasterContainer>
+      <MasterContainer showUp={showUp}>
         <div className="heading">Notifications</div>
-        <ContentContainer>
+        <ContentContainer showUp={showUp}>
           {notifications?.map((item) => (
             <MessageItem key={item?._id} message={item} />
           ))}

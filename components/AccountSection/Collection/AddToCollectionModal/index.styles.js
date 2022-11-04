@@ -127,3 +127,8 @@ export const CollectionWrapper = styled.div`
     gap: 0.5rem;
   }
 `;
+
+export const UpdateLoaderContainer = styled.div`
+  height: 10rem;
+  width: 100%;
+`;

@@ -16,11 +16,20 @@ import {
   SimilarPostsBox,
   MeetSellerColumn,
   AddToCollectionModal,
+  Spinner,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { getOnePost } from '../../../../../utils/postRequest';
-import { getUser } from '../../../../../utils/apiData/userRequest';
+import {
+  getUser,
+  updateUserProfile,
+} from '../../../../../utils/apiData/userRequest';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
+import {
+  isItemLiked,
+  validateFollowingUser,
+  newFollowingsCalculator,
+} from '../../../../../utils/profileCalculator';
 
 import {
   DetailsPageContainer,
@@ -31,6 +40,7 @@ import {
   RightContainer,
   DetailsWrapper,
   CTAWrapper,
+  LoadingPageContainer,
 } from '../../../../../pages_styles/productDetailsPage.styles';
 
 const ProductDetailsPage = () => {
@@ -40,16 +50,34 @@ const ProductDetailsPage = () => {
   const { category, subCategory, slug } = query;
   const postId = slug && slug[1];
   const { data } = useSession();
-  const isAuthenticated = true;
 
   // STATE MANAGEMENT
   const [post, setPost] = useState(null);
   const [user, setUser] = useState(null);
+  const [seller, setSeller] = useState(null);
   const [moreSellerPosts, setMoreSellerPosts] = useState(null);
   const [similarPosts, setSimilarPosts] = useState(null);
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  useEffect(() => {
+    // Check if Post is liked by current user
+    const ifLiked = isItemLiked(post?.collectionsLike, user?._id);
+    setIsLiked(ifLiked);
+
+    // Check if PostCreator is follower by current user
+    const ifFollowing = validateFollowingUser(
+      user?.followings,
+      post?.postedBy?.id
+    );
+
+    setIsFollowing(ifFollowing);
+    setIsAuthenticated(user?._id === post?.postedBy?.id);
+  }, [post, user]);
 
   const {
     mutate: mutateBuying,
@@ -66,11 +94,9 @@ const ProductDetailsPage = () => {
     },
   });
 
-  const {
-    isLoading: isLoadingPost,
-    isError: isErrorPost,
-    data: postData,
-  } = useQuery(
+  // API CALLS
+  // Fetch Post
+  const { isLoading: isLoadingPost, refetch: refetchPost } = useQuery(
     ['postDetails', category, subCategory, postId],
     () => getOnePost(category, subCategory, postId),
     {
@@ -85,22 +111,42 @@ const ProductDetailsPage = () => {
       enabled: !!category && !!subCategory && !!postId,
     }
   );
+  // Fetch Current User
+  const { refetch: refetchUser } = useQuery(
+    ['user', data?.profile?.id],
+    () => getUser(data?.profile.id),
+    {
+      onError: (error) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        setUser(data);
+      },
+      enabled: !!data?.profile?.id,
+    }
+  );
 
-  const {
-    isLoading: isLoadingUser,
-    isError: isErrorUser,
-    data: userData,
-    refetch: refetchUser,
-  } = useQuery(['user', data?.profile?.id], () => getUser(data?.profile.id), {
-    onError: (error) => {
-      console.log(error);
-    },
-    onSuccess: (data) => {
-      setUser(data);
-    },
-    enabled: !!data?.profile?.id,
-  });
+  // Fetch Seller
+  const { refetch: refetchSeller } = useQuery(
+    ['sellerProfile', post?.postedBy?.id],
+    () => getUser(post?.postedBy?._id),
+    {
+      onSuccess: (data) => {
+        setSeller(data);
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+      enabled: !!post?.postedBy?.id,
+    }
+  );
 
+  if (isLoadingPost)
+    return (
+      <LoadingPageContainer>
+        <Spinner message="Loading item for you ..." />
+      </LoadingPageContainer>
+    );
   return (
     <>
       <DetailsPageContainer>
@@ -163,10 +209,12 @@ const ProductDetailsPage = () => {
                 <div className="buttons">
                   <Button
                     size="full"
-                    buttonType={BUTTON_TYPES.outlineRed}
+                    buttonType={
+                      isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineRed
+                    }
                     onClick={() => setShowAddToColModal(true)}
                   >
-                    Like this item
+                    {isLiked ? 'Liked' : 'Like this item'}
                   </Button>
                 </div>
               </CTAWrapper>
@@ -174,8 +222,12 @@ const ProductDetailsPage = () => {
             </LeftContainer>
             <RightContainer>
               <SellerInfoBox
+                user={user}
+                seller={seller}
+                refetchUser={refetchUser}
+                refetchSeller={refetchSeller}
+                isFollowing={isFollowing}
                 post={post}
-                seller={post?.postedBy}
                 isAuthenticated={isAuthenticated}
               />
               <DetailsWrapper>
@@ -262,6 +314,7 @@ const ProductDetailsPage = () => {
       </DetailsPageContainer>
       <AddToCollectionModal
         refetchUser={refetchUser}
+        refetchPost={refetchPost}
         postId={postId}
         collections={user?.itemCollections}
         showAddToColModal={showAddToColModal}

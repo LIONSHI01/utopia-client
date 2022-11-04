@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
-import { HiOutlineSearch, HiOutlineMail } from 'react-icons/hi';
+import { HiOutlineSearch } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
 import { FiHeart } from 'react-icons/fi';
 
@@ -12,6 +12,7 @@ import {
   BUTTON_TYPES,
   AuthForm,
   NotificationDropdown,
+  Searchbar,
 } from '../index';
 
 import { HeaderWrapper } from './index.styles';
@@ -49,12 +50,13 @@ const MainHeader = () => {
             </a>
           </Link>
         </div>
-        <div className="searchBar">
+        {/* <div className="searchBar">
           <input placeholder="Search" />
           <button className="search-btn">
             <HiOutlineSearch size={20} color="var(--white)" />
           </button>
-        </div>
+        </div> */}
+        <Searchbar />
         <div className="links">
           <Link href={`/users/${user?._id}/collections`}>
             <a>

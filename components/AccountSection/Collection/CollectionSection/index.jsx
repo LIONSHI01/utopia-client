@@ -22,7 +22,7 @@ const CreateButton = ({ ...otherProps }) => (
 );
 
 const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
-  console.log('Collection Section:', user);
+  // console.log('Collection Section:', user);
   // CONFIGURATION
 
   // STATE MANAGEMENT
