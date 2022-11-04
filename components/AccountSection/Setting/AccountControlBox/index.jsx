@@ -17,8 +17,6 @@ import {
 } from './index.styles';
 
 const AccountControlBox = ({ user }) => {
-  // console.log(user);
-
   // STATE MANAGEMENT
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState('');
@@ -105,11 +103,12 @@ const AccountControlBox = ({ user }) => {
             Cancel
           </Button>
           <Button
+            isLoading={isLoading}
             size="x"
             buttonType={BUTTON_TYPES.outlineRed}
             onClick={onSubmitHandler}
           >
-            {isLoading ? 'Closing' : 'Close account'}
+            Close account
           </Button>
         </ButtonsGroup>
       </ModalContainer>

@@ -79,6 +79,7 @@ export const UserInfoSection = styled.div`
   .user-details {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     h3 {
       font-size: var(--fs-xl);
@@ -93,7 +94,7 @@ export const UserInfoSection = styled.div`
     display: flex;
     gap: 1rem;
     font-size: var(--fs-ss);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 
     p {
       color: var(--black-light-2);
@@ -102,6 +103,18 @@ export const UserInfoSection = styled.div`
     span {
       color: var(--black);
       margin-right: 0.5rem;
+    }
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: var(--fs-ss);
+    color: var(--black-light-2);
+
+    span {
+      font-weight: 500;
     }
   }
 

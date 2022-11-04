@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 
 import { getCategoryPosts } from '../../../utils/postRequest';
-import { DisplayList } from '../../../components';
+import { DisplayList, NavigationMap, Spinner } from '../../../components';
 
-import { CategoryPageContainer } from '../../../pages_styles/category.styles';
+import {
+  CategoryPageContainer,
+  FrameWorkContainer,
+  LoadingPageContainer,
+} from '../../../pages_styles/category.styles';
 
 const CategoryPage = () => {
   // CONFIGURATION
@@ -15,36 +19,29 @@ const CategoryPage = () => {
   // STATE MANAGEMENT
   const [posts, setPosts] = useState([]);
 
-  const onSuccess = (data) => {
-    setPosts(data);
-  };
+  const { isLoading: isLoadingPosts } = useQuery(
+    ['categoryPosts', category],
+    () => getCategoryPosts(category),
+    {
+      onSuccess: (data) => setPosts(data),
+      onError: (error) => console.log(error),
+      enabled: !!category,
+    }
+  );
 
-  const onError = (error) => {
-    console.log(error);
-  };
-
-  const {
-    isLoading,
-    data: postsData,
-    isError,
-    error,
-  } = useQuery(['categoryPosts', category], () => getCategoryPosts(category), {
-    onSuccess,
-    onError,
-    enabled: !!category,
-  });
-
-  // useEffect(() => {
-  //   const getCategoryPostsHandler = async () => {
-  //     const data = await getCategoryPosts(category);
-  //     setPosts(data);
-  //   };
-  //   getCategoryPostsHandler();
-  // }, [category]);
+  if (isLoadingPosts)
+    return (
+      <LoadingPageContainer>
+        <Spinner message="Loading items for you ..." />
+      </LoadingPageContainer>
+    );
 
   return (
     <CategoryPageContainer>
-      {posts && <DisplayList posts={posts} />}
+      <FrameWorkContainer>
+        <NavigationMap categoryValue={category} />
+        {posts && <DisplayList posts={posts} />}
+      </FrameWorkContainer>
     </CategoryPageContainer>
   );
 };

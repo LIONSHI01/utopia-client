@@ -51,19 +51,20 @@ const ProductDetailsPage = () => {
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
 
-  const { mutate: mutateBuying, isSuccess: isOrderSuccess } = useMutation(
-    createOrder,
-    {
-      onSuccess: () => {
-        toast.success(
-          `Successfully ordered < ${post?.title} >, please check your order list`
-        );
-      },
-      onError: (err) => {
-        console.log(err);
-      },
-    }
-  );
+  const {
+    mutate: mutateBuying,
+    isSuccess: isOrderSuccess,
+    isLoading: isOrdering,
+  } = useMutation(createOrder, {
+    onSuccess: () => {
+      toast.success(
+        `Successfully ordered < ${post?.title} >, please check your order list`
+      );
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   const {
     isLoading: isLoadingPost,
@@ -197,6 +198,7 @@ const ProductDetailsPage = () => {
                       Add to cart
                     </Button>
                     <Button
+                      isLoading={isOrdering}
                       size="full"
                       onClick={() =>
                         mutateBuying({

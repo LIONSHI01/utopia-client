@@ -141,11 +141,12 @@ const ProfileBox = ({ user, refetchUser }) => {
         />
         <div className="profile-buttons-group">
           <Button
+            isLoading={isUpdatingProfile}
             size="x"
             buttonType={BUTTON_TYPES.outlineRed}
             onClick={onSubmitProfileHandler}
           >
-            {isUpdatingProfile ? 'Updating' : 'Save'}
+            Save
           </Button>
           <Button
             size="x"

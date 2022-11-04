@@ -83,11 +83,12 @@ const AuthenticationBox = ({ user, refetchUser }) => {
       />
       <div className="profile-buttons-group">
         <Button
+          isLoading={isLoading}
           size="x"
           buttonType={BUTTON_TYPES.outlineRed}
           onClick={onSubmitHandler}
         >
-          {isLoading ? 'Updating' : 'Save'}
+          Save
         </Button>
         <Button
           size="x"

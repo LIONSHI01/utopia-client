@@ -14,16 +14,16 @@ export const getAllPosts = async () => {
 export const getCategoryPosts = async (category) => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}/${category}`,
+    url: `${baseURL}/category/${category}`,
   });
 
   return res.data.posts;
 };
 
-export const getSubCategoryPosts = async (category, subCategory) => {
+export const getSubCategoryPosts = async ({ category, subCategory }) => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}/${category}/${subCategory}`,
+    url: `${baseURL}/subCategory/${category}/${subCategory}`,
   });
 
   return res.data.posts;

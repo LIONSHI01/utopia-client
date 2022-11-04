@@ -1,19 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button } from '../components';
 
-const test = ({ text }) => {
-  console.log(text);
-  return <div>test</div>;
-};
+const test = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
-export const getServerSideProps = async ({ params }) => {
-  // Return Product Details Page Data
-
-  const text = 'text';
-  return {
-    props: {
-      text,
-    },
-  };
+  return (
+    <div>
+      <Button size="x" isLoading={isLoading} onClick={() => setIsLoading(true)}>
+        Button
+      </Button>
+    </div>
+  );
 };
 
 export default test;

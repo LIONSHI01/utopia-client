@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+
+import { ButtonLoader } from '../index';
 
 import {
   BaseButton,
@@ -22,12 +24,65 @@ const getButton = (buttonType = BUTTON_TYPES.base) =>
     [BUTTON_TYPES.raw]: RawButton,
   }[buttonType]);
 
-const Button = ({ children, size = 'm', buttonType, ...otherProps }) => {
+const Button = ({
+  children,
+  isLoading,
+  size = 'm',
+  buttonType,
+  ...otherProps
+}) => {
+  /* Capture the dimensions of the button before the loading happens
+  so it doesn’t change size when showing the loader */
+  const [showLoader, setShowLoader] = useState(false);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const ref = useRef(null);
+
   const CustomButton = getButton(buttonType);
 
+  // Save the dimensions here
+  useEffect(() => {
+    if (ref.current && ref.current.getBoundingClientRect().width) {
+      setWidth(ref.current.getBoundingClientRect().width);
+    }
+    if (ref.current && ref.current.getBoundingClientRect().height) {
+      setHeight(ref.current.getBoundingClientRect().height);
+    }
+  }, [children]);
+
+  useEffect(() => {
+    if (isLoading) {
+      setShowLoader(true);
+    }
+
+    // Show loader a bits longer to avoid loading flash
+    if (!isLoading && showLoader) {
+      const timeout = setTimeout(() => {
+        setShowLoader(false);
+      }, 400);
+
+      // Don’t forget to clear the timeout
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [isLoading, showLoader]);
+
   return (
-    <CustomButton size={size} {...otherProps}>
-      {children}
+    <CustomButton
+      ref={ref}
+      style={
+        width && height
+          ? {
+              width: `${width}px`,
+              height: `${height}px`,
+            }
+          : {}
+      }
+      size={size}
+      {...otherProps}
+    >
+      {showLoader ? <ButtonLoader /> : children}
     </CustomButton>
   );
 };

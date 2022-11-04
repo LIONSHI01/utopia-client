@@ -103,7 +103,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               className="input-field"
             />
           )}
-          <Button size="x" type="submit">
+          <Button size="x" type="submit" isLoading={isLoading}>
             {isSignup
               ? isLoading
                 ? 'Signing up'

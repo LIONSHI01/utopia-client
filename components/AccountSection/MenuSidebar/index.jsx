@@ -7,12 +7,7 @@ import { profileLinks } from '../../../assets/constants';
 import { SidebarContainer, UserInfoSection, MenuList } from './index.styles';
 import { updateUserPhoto } from '../../../utils/apiData/userRequest';
 
-const MenuSidebar = ({
-  user,
-  setDisplaySection,
-  isAuthenticated,
-  displaySection,
-}) => {
+const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
   const router = useRouter();
 
   const updateUserPicHandler = async (e) => {
@@ -71,6 +66,10 @@ const MenuSidebar = ({
               <span>100</span>Followers
             </p>
           </div>
+          <div className="bio">
+            <span>About me:</span>
+            <p className="bio"> {user?.bio}</p>
+          </div>
         </div>
       </UserInfoSection>
       <MenuList>
@@ -84,7 +83,9 @@ const MenuSidebar = ({
                       ? 'listItem active'
                       : 'listItem'
                   }
-                  onClick={() => setDisplaySection(link.title)}
+                  onClick={() =>
+                    router.push(`/users/${user?._id}/${link.title}`)
+                  }
                 >
                   {link.icon}
                   <span>{link.title}</span>
@@ -105,7 +106,7 @@ const MenuSidebar = ({
                         : 'listItem'
                     }
                     onClick={() =>
-                      setDisplaySection(link.title.toLocaleLowerCase())
+                      router.push(`/users/${user?._id}/${link.title}`)
                     }
                   >
                     {link.icon}

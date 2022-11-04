@@ -30,7 +30,7 @@ const AccountPage = () => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [displaySection, setDisplaySection] = useState(
-    query?.path?.[1] || 'settings'
+    query?.path?.[1] || 'collections'
   );
 
   // API FETCH
