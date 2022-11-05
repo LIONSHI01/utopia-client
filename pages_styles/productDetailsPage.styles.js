@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DetailsPageContainer = styled.div`
+  overflow: hidden;
   min-height: calc(100vh - 10rem);
   width: 100%;
   display: flex;

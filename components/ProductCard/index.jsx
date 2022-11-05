@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { BsFillHeartFill } from 'react-icons/bs';
 import ethIcon from '../../assets/image/eth-icon.png';
 import { selectUser } from '../../store/user/user.selector';
+import { selectEthPrice } from '../../store/post/post.selector';
 import { isItemLiked } from '../../utils/profileCalculator';
 import {
   UserIcon,
@@ -34,6 +35,7 @@ const ProductCard = ({ post }) => {
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const user = useSelector(selectUser);
+  const ethPrice = useSelector(selectEthPrice);
 
   useEffect(() => {
     const result = isItemLiked(post?.collectionsLike, user?._id);
@@ -94,7 +96,12 @@ const ProductCard = ({ post }) => {
                   objectPosition="center"
                 />
               </div>
-              {post?.price}
+              <div className="value-info">
+                <span className="eth-value">{post?.price}</span>
+                <span className="item-value">
+                  $ {(ethPrice * +post?.price).toFixed(2)}
+                </span>
+              </div>
             </div>
             <span className="status">Brand New</span>
           </div>

@@ -3,12 +3,13 @@ import Image from 'next/image';
 import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+
 import { AiTwotoneEdit, AiOutlineCheckCircle } from 'react-icons/ai';
 import { BsCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
 import { CgSandClock } from 'react-icons/cg';
-
 import { FaWallet } from 'react-icons/fa';
-
+import { selectEthPrice } from '../../../../store/post/post.selector';
 import EthIcon from '../../../../assets/image/eth-icon.png';
 import { SectionContainer, EditTxHashBox } from './index.styles';
 import {
@@ -26,7 +27,8 @@ import {
 
 const OrderDetails = ({ user, order, refetchUser }) => {
   // CONFIGURATION
-  // console.log(order);
+  const ethPrice = useSelector(selectEthPrice);
+
   // STATES
   const [showEditTxHashInput, setShowEditTxHashInput] = useState(false);
   const [txHash, setTxHash] = useState(order?.transaction_hash?.[0]?.hash);
@@ -254,7 +256,12 @@ const OrderDetails = ({ user, order, refetchUser }) => {
                   objectPosition="center"
                 />
               </div>
-              <span>{order?.post?.price}</span>
+              <div className="value-wrapper">
+                <span>{order?.post?.price}</span>
+                <span className="item-value">
+                  $ {(ethPrice * order?.post?.price).toFixed(2)}
+                </span>
+              </div>
             </div>
           </div>
         </div>

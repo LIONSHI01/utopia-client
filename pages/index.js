@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useQuery } from 'react-query';
 
 import { setCurrentUser } from '../store/user/user.action';
+import { setEthPrice } from '../store/post/post.action';
+import { useGetEthHooks } from '../utils/reactQueryHooks/ethQueryHooks';
 
 import { DisplayList, Spinner } from '../components';
 import { getAllPosts } from '../utils/postRequest';
@@ -14,7 +16,6 @@ const ContentContainer = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* min-height: 100vh; */
   margin: 5rem 10rem;
 `;
 
@@ -27,12 +28,14 @@ const LoadingPageContainer = styled.div`
 `;
 
 const Home = () => {
+  // CONFIGURATION
   const dispatch = useDispatch();
   const { data } = useSession();
   const [posts, setPosts] = useState(null);
   const [user, setUser] = useState(null);
-
-  // useQuery fetching data
+  // const [ethQuote, setEthQuote] = useState(0);
+  const ethQuote = useGetEthHooks();
+  // API CALLS
 
   const { isLoading: isLoadingPosts } = useQuery(['posts'], getAllPosts, {
     onSuccess: (data) => setPosts(data),
@@ -53,7 +56,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(setCurrentUser(user));
-  }, [dispatch, user]);
+    dispatch(setEthPrice(ethQuote));
+  }, [dispatch, user, ethQuote]);
 
   if (isLoadingPosts) {
     return (

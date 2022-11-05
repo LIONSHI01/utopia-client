@@ -8,7 +8,7 @@ export const getAllPosts = async () => {
     url: `${baseURL}`,
   });
 
-  return res.data.posts;
+  return res.data.data.posts;
 };
 
 export const getCategoryPosts = async (category) => {
@@ -101,4 +101,13 @@ export const searchPostsRequest = async (query) => {
   });
 
   return res.data;
+};
+
+export const getEthPrice = async () => {
+  const res = await axios({
+    method: 'GET',
+    url: `${baseURL}/price`,
+  });
+
+  return res.data.data.price;
 };

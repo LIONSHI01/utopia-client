@@ -7,10 +7,12 @@ import { toast } from 'react-toastify';
 import { IoIosArrowDown } from 'react-icons/io';
 
 import { Button, BUTTON_TYPES } from '../index';
+
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
 import { createPost } from '../../utils/postRequest';
 import EthIcon from '../../assets/image/eth-icon.png';
+import { useGetEthHooks } from '../../utils/reactQueryHooks/ethQueryHooks';
 
 const INITIAL_FORM_FIELDS = {
   category: '',
@@ -25,10 +27,11 @@ const PostForm = ({ images }) => {
   // CONFIGURATION
   const { data: user } = useSession();
   const router = useRouter();
+  const ethQuotes = useGetEthHooks();
 
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
-  // const [isListing, setIsListing] = useState(false);
+  // const [ethQuotes, setEthQuotes] = useState(0);
 
   const { title, category, subCategory, brand, price, description } =
     formFields;
@@ -74,8 +77,6 @@ const PostForm = ({ images }) => {
     // Send Request
     mutateCreatePost({ data: form });
   };
-
-  // Create POST
 
   return (
     <FormContainer>
@@ -174,7 +175,9 @@ const PostForm = ({ images }) => {
               </div>
             </div>
             <div className="price">
-              <label htmlFor="price">Price (Paied in Ethereum)</label>
+              <label htmlFor="price">{`Price (Paied in Ethereum) $${(
+                ethQuotes * price
+              )?.toFixed(2)}`}</label>
               <div className="priceInputField">
                 <div className="field-cover">
                   <div className="icon-wrapper">
@@ -193,6 +196,7 @@ const PostForm = ({ images }) => {
                     name="price"
                     required
                     value={price}
+                    min="0"
                     placeholder="Price of your listing"
                     onChange={onChangeHandler}
                   />

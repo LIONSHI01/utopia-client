@@ -52,12 +52,24 @@ export const SectionContainer = styled.div`
 
   .order-value {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
   }
+
   .icon-container {
     position: relative;
     height: 2rem;
     width: 2rem;
+  }
+
+  .value-wrapper {
+    display: flex;
+    align-items: flex-end;
+    line-height: 0;
+    gap: 1rem;
+  }
+  .item-value {
+    font-size: 1.2rem;
   }
 
   .status {
