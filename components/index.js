@@ -37,6 +37,9 @@ import WaitingModal from './WaitingModal';
 import PostEditForm from './PostEditForm';
 import ButtonLoader from './ButtonLoader';
 import Searchbar from './Header/Searchbar';
+import ReviewBox from './PostDetails/ReviewBox';
+import ReviewItem from './PostDetails/ReviewBox/ReviewItem';
+import RatingItem from './RatingItem';
 
 export {
   MainHeader,
@@ -80,4 +83,7 @@ export {
   PostEditForm,
   ButtonLoader,
   Searchbar,
+  ReviewBox,
+  ReviewItem,
+  RatingItem,
 };

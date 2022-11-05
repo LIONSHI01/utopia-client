@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Router from 'next/router';
+
 import { AiFillStar } from 'react-icons/ai';
 
 import { Button, BUTTON_TYPES } from '../../index';
@@ -43,12 +44,16 @@ const MeetSellerColumn = ({ seller }) => {
           </div>
         </div>
         <div className="buttons-group">
-          <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
+          <Button
+            size="full"
+            buttonType={BUTTON_TYPES.outlineGrey}
+            onClick={() => Router.push(`/users/${seller?.id}`)}
+          >
             View Profile
           </Button>
-          <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
+          {/* <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
             Message Seller
-          </Button>
+          </Button> */}
         </div>
       </div>
     </ColumnWrapper>

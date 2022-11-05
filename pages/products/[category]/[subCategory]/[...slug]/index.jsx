@@ -17,6 +17,7 @@ import {
   MeetSellerColumn,
   AddToCollectionModal,
   Spinner,
+  ReviewBox,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
@@ -62,7 +63,7 @@ const ProductDetailsPage = () => {
   const { user: seller, refetch: refetchSeller } = useGetUserHook({
     userId: post?.postedBy?.id,
   });
-
+  console.log(post);
   // STATE MANAGEMENT
 
   const [displayIndex, setDisplayIndex] = useState(0);
@@ -180,6 +181,7 @@ const ProductDetailsPage = () => {
                 </div>
               </CTAWrapper>
               <MeetSellerColumn seller={post?.postedBy} />
+              <ReviewBox reviews={post?.reviews} />
             </LeftContainer>
             <RightContainer>
               <SellerInfoBox

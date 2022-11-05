@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: var(--mg-m);
+  border-bottom: 1px solid var(--grey-light-1);
+  padding-bottom: 2.5rem;
 
   .heading {
     font-size: var(--fs);

@@ -21,13 +21,12 @@ import {
 const EditPostPage = ({ post }) => {
   // CONFIGURATION
 
-  console.log(post);
   // console.log(data);
   const maxNumber = 10;
 
   // STATE MANAGEMENT
   const [images, setImages] = useState([]);
-  console.log('Preset:', images);
+
   // HANDLERS
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);

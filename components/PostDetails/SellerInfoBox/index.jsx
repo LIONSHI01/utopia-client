@@ -80,7 +80,7 @@ const SellerInfoBox = ({
 
     mutateFollowUser({ userId: user?._id, followings: newFollowingsArr });
   };
-  console.log(seller);
+
   return (
     <BoxWrapper>
       <div className="upperBox">

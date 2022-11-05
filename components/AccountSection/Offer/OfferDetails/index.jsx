@@ -20,7 +20,6 @@ const OfferDetails = ({ user, order, refetchUser }) => {
   // CONFIGURATION
   const sellerClaimHashUrl = `https://goerli.etherscan.io/tx/${order?.seller_claim_txHash}`;
   // STATES
-  // console.log(order);
 
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   const [showSellerConfirm, setShowSellerConfirm] = useState(false);

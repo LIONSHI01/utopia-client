@@ -44,7 +44,7 @@ export const updateOrder = async ({ orderId, address, txHash }) => {
       transactionHash: txHash,
     },
   });
-  // console.log(res);
+
   return res.data;
 };
 
@@ -53,7 +53,7 @@ export const deleteOrder = async (orderId) => {
     method: 'DELETE',
     url: `${baseURL}/orders/${orderId}`,
   });
-  console.log(res);
+
   return res.data;
 };
 
@@ -62,7 +62,7 @@ export const validateOrder = async (orderId) => {
     method: 'GET',
     url: `${baseURL}/orders/validate/${orderId}`,
   });
-  console.log(res);
+
   return res.data;
 };
 
@@ -71,7 +71,7 @@ export const buyerConfirmOrder = async ({ orderId, userId }) => {
     method: 'GET',
     url: `${baseURL}/orders/buyerConfirm/${userId}/${orderId}`,
   });
-  console.log(res);
+
   return res.data;
 };
 export const sellerConfirmOrder = async ({ orderId, userId }) => {
@@ -79,7 +79,7 @@ export const sellerConfirmOrder = async ({ orderId, userId }) => {
     method: 'GET',
     url: `${baseURL}/orders/sellerConfirm/${userId}/${orderId}`,
   });
-  console.log(res);
+
   return res.data;
 };
 
@@ -88,6 +88,6 @@ export const sellerClaimFund = async ({ orderId, userId }) => {
     method: 'GET',
     url: `${baseURL}/orders/sellerClaim/${userId}/${orderId}`,
   });
-  console.log(res);
+
   return res.data;
 };

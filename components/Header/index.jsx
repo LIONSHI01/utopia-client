@@ -53,7 +53,6 @@ const MainHeader = () => {
     window.addEventListener('scroll', setNavSticky, true);
   }, []);
 
-  console.log(sticky);
   return (
     <>
       <StickyFillinSpace sticky={sticky} />
