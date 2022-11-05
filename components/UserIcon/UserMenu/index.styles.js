@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const showUpStyles = css`
-  width: 20rem;
+  width: 23rem;
   height: 34rem;
   opacity: 1;
   visibility: visible;
@@ -35,9 +35,8 @@ export const MenuWrapper = styled.div`
   visibility: hidden;
   transition: all 0.3s ease-in-out;
 
-  ${(props) => props.showUp && showUpStyles}
-
   ::after {
+    display: block;
     content: '';
     position: absolute;
     top: 0;
@@ -47,6 +46,8 @@ export const MenuWrapper = styled.div`
     width: 2rem;
     transform: translateY(-25%) rotate(45deg);
   }
+
+  ${(props) => props.showUp && showUpStyles}
 
   .userInfo {
     padding: 0.5rem 2rem;

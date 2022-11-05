@@ -71,6 +71,7 @@ const Button = ({
   return (
     <CustomButton
       ref={ref}
+      size={size}
       style={
         width && height
           ? {
@@ -79,7 +80,6 @@ const Button = ({
             }
           : {}
       }
-      size={size}
       {...otherProps}
     >
       {showLoader ? <ButtonLoader /> : children}

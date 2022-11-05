@@ -6,10 +6,11 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { IoIosArrowDown } from 'react-icons/io';
 
-import { Button } from '../index';
+import { Button, BUTTON_TYPES } from '../index';
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
 import { updatePost } from '../../utils/postRequest';
+import { useGetEthHook } from '../../utils/reactQueryHooks/ethQueryHook';
 import EthIcon from '../../assets/image/eth-icon.png';
 
 const INITIAL_FORM_FIELDS = {
@@ -25,8 +26,8 @@ const PostEditForm = ({ post, images }) => {
   // CONFIGURATION
   const { data: user } = useSession();
   const router = useRouter();
-  console.log('images from PostForm:', images);
-  console.log(images.filter((image) => image.file));
+  const ethQuote = useGetEthHook();
+
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(post);
 
@@ -177,7 +178,9 @@ const PostEditForm = ({ post, images }) => {
               </div>
             </div>
             <div className="price">
-              <label htmlFor="price">Price (Paied in Ethereum)</label>
+              <label htmlFor="price">{`Price (Paied in Ethereum) $${(
+                ethQuote * price
+              )?.toFixed(2)}`}</label>
               <div className="priceInputField">
                 <div className="field-cover">
                   <div className="icon-wrapper">
@@ -202,9 +205,19 @@ const PostEditForm = ({ post, images }) => {
                 </div>
               </div>
             </div>
-            <Button isLoading={isSaving} type="submit" size="x">
-              Save
-            </Button>
+            <div className="buttons-group">
+              <Button isLoading={isSaving} type="submit" size="full">
+                Save
+              </Button>
+              <Button
+                size="full"
+                type="button"
+                buttonType={BUTTON_TYPES.outlineGrey}
+                onClick={() => router.back()}
+              >
+                Cancel
+              </Button>
+            </div>
           </>
         )}
       </form>

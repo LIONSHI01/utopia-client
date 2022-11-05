@@ -104,4 +104,12 @@ export const FormContainer = styled.div`
     height: 2rem;
     width: 2rem;
   }
+
+  .buttons-group {
+    height: 4rem;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    /* justify-content: flex-end; */
+  }
 `;

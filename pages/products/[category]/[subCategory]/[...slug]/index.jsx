@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useQuery, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 import Link from 'next/link';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
@@ -19,16 +19,12 @@ import {
   Spinner,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
-import { getOnePost } from '../../../../../utils/postRequest';
-import {
-  getUser,
-  updateUserProfile,
-} from '../../../../../utils/apiData/userRequest';
+import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
+import { usePostDetailsHook } from '../../../../../utils/reactQueryHooks/postQueryHook';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
 import {
   isItemLiked,
   validateFollowingUser,
-  newFollowingsCalculator,
 } from '../../../../../utils/profileCalculator';
 
 import {
@@ -47,16 +43,28 @@ const ProductDetailsPage = () => {
   // CONFIGURATION
   const router = useRouter();
   const { query } = router;
+  const { data } = useSession();
   const { category, subCategory, slug } = query;
   const postId = slug && slug[1];
-  const { data } = useSession();
+
+  // fetch post, similar posts, seller posts data
+  const {
+    post,
+    moreSellerPosts,
+    similarPosts,
+    isLoading: isLoadingPost,
+    refetch: refetchPost,
+  } = usePostDetailsHook({ category, subCategory, postId });
+  // fetch user, seller data
+  const { user, refetch: refetchUser } = useGetUserHook({
+    userId: data?.profile?.id,
+  });
+  const { user: seller, refetch: refetchSeller } = useGetUserHook({
+    userId: post?.postedBy?.id,
+  });
 
   // STATE MANAGEMENT
-  const [post, setPost] = useState(null);
-  const [user, setUser] = useState(null);
-  const [seller, setSeller] = useState(null);
-  const [moreSellerPosts, setMoreSellerPosts] = useState(null);
-  const [similarPosts, setSimilarPosts] = useState(null);
+
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
@@ -74,7 +82,6 @@ const ProductDetailsPage = () => {
       user?.followings,
       post?.postedBy?.id
     );
-
     setIsFollowing(ifFollowing);
     setIsAuthenticated(user?._id === post?.postedBy?.id);
   }, [post, user]);
@@ -95,52 +102,6 @@ const ProductDetailsPage = () => {
   });
 
   // API CALLS
-  // Fetch Post
-  const { isLoading: isLoadingPost, refetch: refetchPost } = useQuery(
-    ['postDetails', category, subCategory, postId],
-    () => getOnePost(category, subCategory, postId),
-    {
-      onError: (error) => {
-        console.log(error);
-      },
-      onSuccess: (data) => {
-        setPost(data?.post);
-        setMoreSellerPosts(data?.sellerPosts);
-        setSimilarPosts(data?.similarPosts);
-      },
-      enabled: !!category && !!subCategory && !!postId,
-    }
-  );
-  // Fetch Current User
-  const { refetch: refetchUser } = useQuery(
-    ['user', data?.profile?.id],
-    () => getUser(data?.profile.id),
-    {
-      onError: (error) => {
-        console.log(error);
-      },
-      onSuccess: (data) => {
-        setUser(data);
-      },
-      enabled: !!data?.profile?.id,
-    }
-  );
-
-  // Fetch Seller
-  const { refetch: refetchSeller } = useQuery(
-    ['sellerProfile', post?.postedBy?.id],
-    () => getUser(post?.postedBy?._id),
-    {
-      onSuccess: (data) => {
-        setSeller(data);
-      },
-      onError: (err) => {
-        console.log(err);
-      },
-      enabled: !!post?.postedBy?.id,
-    }
-  );
-
   if (isLoadingPost)
     return (
       <LoadingPageContainer>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
-import { HiOutlineSearch } from 'react-icons/hi';
 import { RiNotification4Line } from 'react-icons/ri';
 import { FiHeart } from 'react-icons/fi';
 
@@ -13,9 +12,10 @@ import {
   AuthForm,
   NotificationDropdown,
   Searchbar,
+  CategoryBar,
 } from '../index';
 
-import { HeaderWrapper } from './index.styles';
+import { HeaderWrapper, InnerWrapper, StickyFillinSpace } from './index.styles';
 
 const MainHeader = () => {
   // CONFIGURATION
@@ -26,6 +26,7 @@ const MainHeader = () => {
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [showNotiDropdown, setShowNotiDropdown] = useState(false);
+  const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
     const checkIfClickOutside = (e) => {
@@ -40,71 +41,82 @@ const MainHeader = () => {
     };
   }, [showNotiDropdown]);
 
+  const setNavSticky = () => {
+    if (window.scrollY >= 1) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', setNavSticky, true);
+  }, []);
+
+  console.log(sticky);
   return (
     <>
-      <HeaderWrapper>
-        <div className="logo">
-          <Link href="/">
-            <a>
-              <h2>Utopia</h2>
-            </a>
-          </Link>
-        </div>
-        {/* <div className="searchBar">
-          <input placeholder="Search" />
-          <button className="search-btn">
-            <HiOutlineSearch size={20} color="var(--white)" />
-          </button>
-        </div> */}
-        <Searchbar />
-        <div className="links">
-          <Link href={`/users/${user?._id}/collections`}>
-            <a>
-              <FiHeart size={23} color="var(--black-light-2)" />
-            </a>
-          </Link>
-          <div
-            className="notification"
-            onClick={() => setShowNotiDropdown((prev) => !prev)}
-            ref={ref}
-          >
-            <RiNotification4Line size={23} color="var(--black-light-2)" />
-            <div className="noti-number">
-              <span>{user?.notifications.length || 0}</span>
-            </div>
-            <NotificationDropdown
-              notifications={user?.notifications}
-              showUp={showNotiDropdown}
-              setShowUp={setShowNotiDropdown}
-            />
+      <StickyFillinSpace sticky={sticky} />
+      <InnerWrapper sticky={sticky}>
+        <HeaderWrapper>
+          <div className="logo">
+            <Link href="/">
+              <a>
+                <h2>Utopia</h2>
+              </a>
+            </Link>
           </div>
-
-          <Button size="x" onClick={() => Router.replace('/create-post')}>
-            Sell
-          </Button>
-
-          {user && <UserIcon user={user} hasUserMenu={true} />}
-
-          {!user && (
-            <div className="auth-buttons">
-              <Button
-                size="x"
-                buttonType={BUTTON_TYPES.outlineGrey}
-                onClick={() => setShowAuthForm(true)}
-              >
-                Sign In
-              </Button>
-              <Button
-                size="x"
-                buttonType={BUTTON_TYPES.base}
-                onClick={() => setShowAuthForm(true)}
-              >
-                Get Start
-              </Button>
+          <Searchbar />
+          <div className="links">
+            <Link href={`/users/${user?._id}/collections`}>
+              <a>
+                <FiHeart size={23} color="var(--black-light-2)" />
+              </a>
+            </Link>
+            <div
+              className="notification"
+              onClick={() => setShowNotiDropdown((prev) => !prev)}
+              ref={ref}
+            >
+              <RiNotification4Line size={23} color="var(--black-light-2)" />
+              <div className="noti-number">
+                <span>{user?.notifications.length || 0}</span>
+              </div>
+              <NotificationDropdown
+                notifications={user?.notifications}
+                showUp={showNotiDropdown}
+                setShowUp={setShowNotiDropdown}
+              />
             </div>
-          )}
-        </div>
-      </HeaderWrapper>
+
+            <Button size="x" onClick={() => Router.replace('/create-post')}>
+              Sell
+            </Button>
+
+            {user && <UserIcon user={user} hasUserMenu={true} />}
+
+            {!user && (
+              <div className="auth-buttons">
+                <Button
+                  size="x"
+                  buttonType={BUTTON_TYPES.outlineGrey}
+                  onClick={() => setShowAuthForm(true)}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  size="x"
+                  buttonType={BUTTON_TYPES.base}
+                  onClick={() => setShowAuthForm(true)}
+                >
+                  Get Start
+                </Button>
+              </div>
+            )}
+          </div>
+        </HeaderWrapper>
+        <CategoryBar />
+      </InnerWrapper>
 
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
     </>

@@ -12,7 +12,7 @@ import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
 import { createPost } from '../../utils/postRequest';
 import EthIcon from '../../assets/image/eth-icon.png';
-import { useGetEthHooks } from '../../utils/reactQueryHooks/ethQueryHooks';
+import { useGetEthHook } from '../../utils/reactQueryHooks/ethQueryHook';
 
 const INITIAL_FORM_FIELDS = {
   category: '',
@@ -27,7 +27,7 @@ const PostForm = ({ images }) => {
   // CONFIGURATION
   const { data: user } = useSession();
   const router = useRouter();
-  const ethQuotes = useGetEthHooks();
+  const ethQuotes = useGetEthHook();
 
   // STATE MANAGEMENT
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);

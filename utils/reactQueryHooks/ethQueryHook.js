@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { getEthPrice } from '../postRequest';
 
-export const useGetEthHooks = () => {
+export const useGetEthHook = () => {
   const [ethPrice, setEthPrice] = useState(0);
   useQuery(['ethPrice'], getEthPrice, {
     onSuccess: (data) => setEthPrice(data),

@@ -1,4 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const stickyStyles = css`
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: var(--bs-s);
+  z-index: 1000;
+`;
+
+export const InnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  /* height: 7rem; */
+  width: 100%;
+  ${(props) => props.sticky && stickyStyles}
+`;
 
 export const HeaderWrapper = styled.div`
   height: 7rem;
@@ -6,6 +23,7 @@ export const HeaderWrapper = styled.div`
   padding: 1rem 5rem;
   display: flex;
   align-items: center;
+  background-color: var(--white);
 
   .logo {
     margin-right: 5rem;
@@ -105,4 +123,8 @@ export const HeaderWrapper = styled.div`
       font-size: var(--fs-sss);
     }
   }
+`;
+
+export const StickyFillinSpace = styled.div`
+  height: ${(props) => (props.sticky ? '11rem' : 0)};
 `;
