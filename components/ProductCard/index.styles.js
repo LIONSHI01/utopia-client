@@ -79,9 +79,6 @@ export const ContentContainer = styled.div`
     width: 2rem;
   }
 
-  .value-info {
-  }
-
   .item-value {
     margin-left: 0.8rem;
     font-size: 1.2rem;

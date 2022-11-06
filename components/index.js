@@ -40,6 +40,7 @@ import Searchbar from './Header/Searchbar';
 import ReviewBox from './PostDetails/ReviewBox';
 import ReviewItem from './PostDetails/ReviewBox/ReviewItem';
 import RatingItem from './RatingItem';
+import Pagination from './Pagination';
 
 export {
   MainHeader,
@@ -86,4 +87,5 @@ export {
   ReviewBox,
   ReviewItem,
   RatingItem,
+  Pagination,
 };

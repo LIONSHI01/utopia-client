@@ -22,6 +22,7 @@ import {
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
 import { usePostDetailsHook } from '../../../../../utils/reactQueryHooks/postQueryHook';
+import { useGetEthHook } from '../../../../../utils/reactQueryHooks/ethQueryHook';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
 import {
   isItemLiked,
@@ -47,6 +48,7 @@ const ProductDetailsPage = () => {
   const { data } = useSession();
   const { category, subCategory, slug } = query;
   const postId = slug && slug[1];
+  const ethQuote = useGetEthHook();
 
   // fetch post, similar posts, seller posts data
   const {
@@ -63,7 +65,7 @@ const ProductDetailsPage = () => {
   const { user: seller, refetch: refetchSeller } = useGetUserHook({
     userId: post?.postedBy?.id,
   });
-  console.log(post);
+  // console.log(post);
   // STATE MANAGEMENT
 
   const [displayIndex, setDisplayIndex] = useState(0);
@@ -206,7 +208,12 @@ const ProductDetailsPage = () => {
                         layout="fill"
                       />
                     </div>
-                    <span>{post?.price}</span>
+                    <div className="value-info">
+                      <span className="eth-value">{post?.price}</span>
+                      <span className="item-value">
+                        $ {(ethQuote * +post?.price).toFixed(2)}
+                      </span>
+                    </div>
                   </div>
                   <div className="buttons-group">
                     <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>

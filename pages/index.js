@@ -16,6 +16,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 5rem 10rem;
+  padding: 2rem 1.4rem;
 `;
 
 const LoadingPageContainer = styled.div`

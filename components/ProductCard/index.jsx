@@ -58,7 +58,7 @@ const ProductCard = ({ post }) => {
           >
             <UserIcon user={post?.postedBy} size="s" />
 
-            <Link href={`/users/${post?.postedBy?._id}`}>
+            <Link href={`/users/${post?.postedBy?._id}/listings`}>
               <a>
                 <span className="postedBy-name">{post?.postedBy?.name}</span>
               </a>

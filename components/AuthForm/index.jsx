@@ -38,6 +38,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
       if (password === passwordConfirm) {
         await signupRequest({ username, email, password });
         setIsLoading(false);
+        setShowAuthForm(false);
       }
       setIsLoading(false);
     } else {

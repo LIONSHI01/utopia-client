@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { useMutation, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import Image from 'next/image';
 
 import { GrFacebookOption } from 'react-icons/gr';

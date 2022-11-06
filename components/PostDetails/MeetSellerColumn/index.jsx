@@ -47,7 +47,7 @@ const MeetSellerColumn = ({ seller }) => {
           <Button
             size="full"
             buttonType={BUTTON_TYPES.outlineGrey}
-            onClick={() => Router.push(`/users/${seller?.id}`)}
+            onClick={() => Router.push(`/users/${seller?.id}/listings`)}
           >
             View Profile
           </Button>

@@ -122,11 +122,21 @@ export const DetailsWrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     margin-bottom: var(--mg-m);
+  }
 
-    span {
-      font-size: var(--fs-xl);
-      font-weight: 600;
-    }
+  /* .value-info {
+    display: flex;
+  } */
+
+  .eth-value {
+    font-size: var(--fs-xl);
+    font-weight: 600;
+  }
+
+  .item-value {
+    margin-left: 1rem;
+    font-size: var(--fs-s);
+    color: var(--black-light-2);
   }
 
   .icon-wrapper {

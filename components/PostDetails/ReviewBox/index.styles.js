@@ -11,4 +11,5 @@ export const ReviewsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5rem;
+  margin-bottom: var(--mg-x);
 `;
