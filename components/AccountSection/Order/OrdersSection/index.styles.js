@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
 export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  padding: 3rem;
   width: 100%;
   .heading {
     font-size: var(--fs-xl);

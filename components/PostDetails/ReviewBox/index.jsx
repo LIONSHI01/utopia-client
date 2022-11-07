@@ -23,7 +23,6 @@ const ReviewBox = ({ reviews }) => {
         ))}
       </ReviewsList>
       <Pagination
-        className="pagination-bar"
         currentPage={currentPage}
         totalCount={reviews?.length}
         pageSize={PageSize}

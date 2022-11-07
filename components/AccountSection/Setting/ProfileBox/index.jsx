@@ -28,6 +28,7 @@ const ProfileBox = ({ user, refetchUser }) => {
     facebook,
     twitter,
     instagram,
+    shipping_address,
   } = profileFields || {};
 
   // HANDLERS
@@ -53,6 +54,7 @@ const ProfileBox = ({ user, refetchUser }) => {
       facebook,
       twitter,
       instagram,
+      shipping_address,
     });
   };
 
@@ -113,6 +115,13 @@ const ProfileBox = ({ user, refetchUser }) => {
           fieldName="location"
           value={location}
           name="location"
+          onChange={onChangeProfileHandler}
+        />
+        <FormInputComp
+          label="Shipping Address"
+          fieldName="shipping_address"
+          value={shipping_address}
+          name="shipping_address"
           onChange={onChangeProfileHandler}
         />
       </UserInfoWrapper>

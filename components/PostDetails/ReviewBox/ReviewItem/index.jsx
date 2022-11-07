@@ -21,7 +21,7 @@ const ReviewItem = ({ review }) => {
       <div className="contents">{content}</div>
       <PostedByInfo>
         <UserIcon user={postCreator} />
-        <Link href={`/users/${postedBy}`}>
+        <Link href={`/users/${postedBy}/collections`}>
           <a className="username">{postCreator?.name}</a>
         </Link>
         <span className="publish_date">{timePeriod(createdAt)}</span>

@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useQuery, useMutation } from 'react-query';
+
+import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { AiFillStar } from 'react-icons/ai';
 import { BsThreeDotsVertical, BsBookmarkStarFill } from 'react-icons/bs';
 
-import { getUser, updateUserProfile } from '../../../utils/apiData/userRequest';
+import { updateUserProfile } from '../../../utils/apiData/userRequest';
 import { newFollowingsCalculator } from '../../../utils/profileCalculator';
 
 import {
@@ -14,6 +15,7 @@ import {
   BUTTON_TYPES,
   IconButton,
   ICON_BUTTON_TYPES,
+  AuthForm,
 } from '../../index';
 import EditDropdownMenu from '../EditDropdownMenu';
 import { BoxWrapper } from './index.styles';
@@ -30,7 +32,7 @@ const SellerInfoBox = ({
 
   // STATE MANAGEMENT
   const [showEditDropdown, setShowEditDropdown] = useState(false);
-  // const [sellerProfile, setSellerProfile] = useState(null);
+  const [showAuthForm, setShowAuthForm] = useState(false);
 
   useEffect(() => {
     const checkIfClickOutside = (e) => {
@@ -46,17 +48,6 @@ const SellerInfoBox = ({
   }, [showEditDropdown]);
 
   // API CALLS
-
-  // const { isLoading: isLoadingPostByUser } = useQuery(
-  //   ['sellerProfile', seller],
-  //   () => getUser(seller?._id),
-  //   {
-  //     onSuccess: (data) => {
-  //       setSellerProfile(data);
-  //     },
-  //     enabled: !!seller?._id,
-  //   }
-  // );
 
   const { isLoading: isLoadingFollow, mutate: mutateFollowUser } = useMutation(
     updateUserProfile,
@@ -82,52 +73,55 @@ const SellerInfoBox = ({
   };
 
   return (
-    <BoxWrapper>
-      <div className="upperBox">
-        <Link href={`/users/${seller?._id}`}>
-          <a className="seller-info">
-            <UserIcon user={seller} />
-            <span>{seller?.name}</span>
-          </a>
-        </Link>
+    <>
+      <BoxWrapper>
+        <div className="upperBox">
+          <Link href={`/users/${seller?._id}/collections`}>
+            <a className="seller-info">
+              <UserIcon user={seller} />
+              <span>{seller?.name}</span>
+            </a>
+          </Link>
 
-        <Button
-          isLoading={isLoadingFollow}
-          size="x"
-          buttonType={
-            isFollowing ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
-          }
-          onClick={onFollowHandler}
-        >
-          {seller?.followers.length || 0} <BsBookmarkStarFill size={15} />
-        </Button>
+          <Button
+            isLoading={isLoadingFollow}
+            size="x"
+            buttonType={
+              isFollowing ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
+            }
+            onClick={onFollowHandler}
+          >
+            {seller?.followers.length || 0} <BsBookmarkStarFill size={15} />
+          </Button>
 
-        {isAuthenticated && (
-          <div className="editing-btn" ref={ref}>
-            <IconButton
-              size="x"
-              buttonType={ICON_BUTTON_TYPES.hoverBackground}
-              onClick={() => setShowEditDropdown((prev) => !prev)}
-            >
-              <BsThreeDotsVertical size={22} />
-            </IconButton>
-            <EditDropdownMenu
-              post={post}
-              showup={showEditDropdown}
-              setShowup={setShowEditDropdown}
-            />
-          </div>
-        )}
-      </div>
-      <div className="lowerBox">
-        <div className="sales">98 sales</div>
-        <div className="rates">
-          {[1, 2, 3, 4, 5].map((item, i) => (
-            <AiFillStar key={i} size={15} />
-          ))}
+          {isAuthenticated && (
+            <div className="editing-btn" ref={ref}>
+              <IconButton
+                size="x"
+                buttonType={ICON_BUTTON_TYPES.hoverBackground}
+                onClick={() => setShowEditDropdown((prev) => !prev)}
+              >
+                <BsThreeDotsVertical size={22} />
+              </IconButton>
+              <EditDropdownMenu
+                post={post}
+                showup={showEditDropdown}
+                setShowup={setShowEditDropdown}
+              />
+            </div>
+          )}
         </div>
-      </div>
-    </BoxWrapper>
+        <div className="lowerBox">
+          <div className="sales">98 sales</div>
+          <div className="rates">
+            {[1, 2, 3, 4, 5].map((item, i) => (
+              <AiFillStar key={i} size={15} />
+            ))}
+          </div>
+        </div>
+      </BoxWrapper>
+      <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
+    </>
   );
 };
 

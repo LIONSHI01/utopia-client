@@ -41,6 +41,8 @@ import ReviewBox from './PostDetails/ReviewBox';
 import ReviewItem from './PostDetails/ReviewBox/ReviewItem';
 import RatingItem from './RatingItem';
 import Pagination from './Pagination';
+import OrderList from './AccountSection/Order/OrderList';
+import OrderDetailBox from './AccountSection/Order/OrderDetailBox/index';
 
 export {
   MainHeader,
@@ -88,4 +90,6 @@ export {
   ReviewItem,
   RatingItem,
   Pagination,
+  OrderList,
+  OrderDetailBox,
 };

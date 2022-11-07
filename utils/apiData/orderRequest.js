@@ -35,18 +35,18 @@ export const createOrder = async ({ userId, sellerId, postId, value }) => {
   return res.data;
 };
 
-export const updateOrder = async ({ orderId, address, txHash }) => {
-  const res = await axios({
-    method: 'PATCH',
-    url: `${baseURL}/orders/${orderId}`,
-    data: {
-      from: address,
-      transactionHash: txHash,
-    },
-  });
+// export const updateOrder = async ({ orderId, address, txHash }) => {
+//   const res = await axios({
+//     method: 'PATCH',
+//     url: `${baseURL}/orders/${orderId}`,
+//     data: {
+//       from: address,
+//       transactionHash: txHash,
+//     },
+//   });
 
-  return res.data;
-};
+//   return res.data;
+// };
 
 export const deleteOrder = async (orderId) => {
   const res = await axios({
@@ -57,10 +57,14 @@ export const deleteOrder = async (orderId) => {
   return res.data;
 };
 
-export const validateOrder = async (orderId) => {
+export const validateOrder = async ({ orderId, transaction_hash, from }) => {
   const res = await axios({
-    method: 'GET',
+    method: 'PATCH',
     url: `${baseURL}/orders/validate/${orderId}`,
+    data: {
+      transaction_hash,
+      from,
+    },
   });
 
   return res.data;

@@ -12,6 +12,7 @@ export const updateUserProfile = async ({
   twitter,
   instagram,
   followings,
+  shipping_address,
 }) => {
   try {
     const res = await axios({
@@ -27,6 +28,7 @@ export const updateUserProfile = async ({
         twitter,
         instagram,
         followings,
+        shipping_address,
       },
     });
   } catch (err) {

@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useQuery } from 'react-query';
 
 import { PageContainer, ContentsContainer, OrdersList } from './index.styles';
-import { OrderPreviewItem, OrderDetails } from '../../../index';
+
+import {
+  OrderPreviewItem,
+  OrderDetails,
+  OrderList,
+  OrderDetailBox,
+} from '../../../index';
 
 const OrdersMasterSection = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
   const [orders, setOrders] = useState(null);
   const [selectedOrderIndex, setselectedOrderIndex] = useState(0);
+  const [selectedOrder, setSelectedOrder] = useState(user?.orders?.[0]);
 
   useEffect(() => {
     setOrders(user?.orders);
   }, [user]);
-
+  console.log(selectedOrder);
   return (
     <PageContainer>
       <ContentsContainer>
-        <h3 className="heading">Orders</h3>
-        <OrdersList>
+        <OrderList orders={orders} setSelectedOrder={setSelectedOrder} />
+
+        <OrderDetailBox
+          user={user}
+          refetchUser={refetchUser}
+          order={selectedOrder}
+        />
+
+        {/* <OrdersList>
           {orders?.map((order, i) => (
             <OrderPreviewItem
               key={order?._id}
@@ -26,15 +38,15 @@ const OrdersMasterSection = ({ user, refetchUser }) => {
               onClick={() => setselectedOrderIndex(i)}
             />
           ))}
-        </OrdersList>
-
+        </OrdersList> */}
+        {/* 
         {orders?.[selectedOrderIndex] && (
           <OrderDetails
             user={user}
             refetchUser={refetchUser}
             order={orders?.[selectedOrderIndex]}
           />
-        )}
+        )} */}
       </ContentsContainer>
     </PageContainer>
   );

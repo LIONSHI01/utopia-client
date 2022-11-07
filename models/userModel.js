@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    shipping_address: {
+      type: String,
+      trim: true,
+    },
     photo: {
       type: String,
     },
