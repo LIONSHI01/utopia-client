@@ -48,8 +48,6 @@ const AccountPage = () => {
     }
   );
 
-  // HANDLERS
-
   useEffect(() => {
     setIsAuthenticated(data?.profile?._id === user?._id);
     setDisplaySection(query?.path?.[1]);

@@ -7,6 +7,7 @@ import { AiOutlineCheckCircle, AiTwotoneEdit } from 'react-icons/ai';
 import { FaWallet } from 'react-icons/fa';
 import { BsXCircleFill, BsThreeDotsVertical } from 'react-icons/bs';
 import ItemInfoBox from './ItemInfoBox';
+import UserInfoBox from '../UserInfoBox';
 import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
 
 import {
@@ -19,7 +20,6 @@ import {
   ICON_BUTTON_TYPES,
 } from '../../../index';
 import {
-  updateOrder,
   validateOrder,
   deleteOrder,
   buyerConfirmOrder,
@@ -28,9 +28,8 @@ import {
 import {
   DetailsBoxContainer,
   LeftContentBox,
-  // ItemInfoBox,
   TransactionInfoBox,
-  UserInfoBox,
+  // UserInfoBox,
   EditTxHashBox,
 } from './index.styles';
 
@@ -44,19 +43,11 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   const [showBuyerConfirm, setShowBuyerConfirm] = useState(false);
 
-  const { post, value, status, transaction_validated, transaction_hash } =
-    order || {};
-  const { category, title, coverImages, subCategory, description } = post || {};
+  const { post } = order || {};
+
   console.log(order);
 
   // Modal Message
-  const buyerConfirmTitle = 'Confirm Order';
-  const buyerConfirmMsg =
-    'Once you confirm the order, it will be marked as completed, and cannot undo the changes.';
-  const buyerConfirmHandler = () => {
-    mutateBuyerConfirm({ orderId: order?._id, userId: user?._id });
-    setShowBuyerConfirm(false);
-  };
 
   // Validate order payment
   const { isLoading: isValidating, mutate: mutateValidateOrder } = useMutation(
@@ -65,36 +56,6 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
       onSuccess: (res) => {
         refetchUser();
         toast.success(`Validation ${res?.data?.validationResult}`);
-      },
-      onError: (err) => {
-        console.log('from mutation err', err);
-        toast.error(`${err?.response.data?.data?.message}`);
-      },
-    }
-  );
-
-  // Delete Order
-  const { isLoading: isDeleting, mutate: mutateDeleteOrder } = useMutation(
-    deleteOrder,
-    {
-      onSuccess: () => {
-        toast.success('Order deleted!');
-        refetchUser();
-      },
-      onError: (err) => {
-        console.log('from mutation err', err);
-        toast.error(`${err?.response.data?.data?.message}`);
-      },
-    }
-  );
-
-  // Buyer Confirm Order
-  const { isLoading: isConfirming, mutate: mutateBuyerConfirm } = useMutation(
-    buyerConfirmOrder,
-    {
-      onSuccess: () => {
-        toast.success('Order confirmed!');
-        refetchUser();
       },
       onError: (err) => {
         console.log('from mutation err', err);
@@ -125,61 +86,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
     <DetailsBoxContainer>
       <LeftContentBox>
         <ItemInfoBox order={order} user={user} refetchUser={refetchUser} />
-        {/* <ItemInfoBox>
-          <h4 className="heading">Item information</h4>
-          <div className="item_details_wrapper">
-            <div className="image_container">
-              <Image
-                alt={title}
-                src={coverImages}
-                layout="fill"
-                objectFit="contain"
-                objectPosition="center"
-              />
-            </div>
-            <div className="details_description">
-              <span className="item-title">{title}</span>
-              <p>
-                {category?.replace('-', ' & ')},&nbsp;
-                {subCategory?.replace('-', ' & ')}
-              </p>
-              <p>{description?.slice(0, 50) + '...'}</p>
-            </div>
-            <div className="details_value">{value} ETH</div>
-            {!order?.buyer_confirmation ? (
-              <div className="buyer-confirmation">
-                <Button
-                  size="m"
-                  buttonType={BUTTON_TYPES.outlineRed}
-                  onClick={() => setShowBuyerConfirm(true)}
-                >
-                  {isConfirming ? 'Confirming' : 'Confirm'}
-                </Button>
-                <p>
-                  Please confirm order status, if you have received
-                  item/service.
-                </p>
-                <AlertModal
-                  title={buyerConfirmTitle}
-                  message={buyerConfirmMsg}
-                  onConfirmHandler={buyerConfirmHandler}
-                  showup={showBuyerConfirm}
-                  setShowup={setShowBuyerConfirm}
-                />
-              </div>
-            ) : (
-              <div className="confirmation-status">
-                <AiOutlineCheckCircle size={18} />
-                <span>Confirmed</span>
-              </div>
-            )}
-          </div>
-          <div className="edit-btn">
-            <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-              <BsThreeDotsVertical size={20} />
-            </IconButton>
-          </div>
-        </ItemInfoBox> */}
+
         <TransactionInfoBox>
           <h4 className="heading">Transaction Details</h4>
           <div className="details_box">
@@ -264,11 +171,12 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                 ) : (
                   <BsXCircleFill size={18} />
                 )}
-                <span>{paymentCompleted ? 'Validated' : 'Invalidated'}</span>
+                <span>{paymentCompleted ? 'Validated' : 'Pending'}</span>
               </div>
               {!paymentCompleted && (
                 <Button
                   size="x"
+                  isLoading={isValidating}
                   buttonType={BUTTON_TYPES.outlineRed}
                   onClick={() =>
                     mutateValidateOrder({
@@ -278,26 +186,14 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                     })
                   }
                 >
-                  {isValidating ? 'Validating' : 'Validate'}
+                  Validate
                 </Button>
               )}
             </div>
           </div>
         </TransactionInfoBox>
       </LeftContentBox>
-      <UserInfoBox>
-        <h4 className="heading">Seller Info</h4>
-        <Link href={`/users/${seller?.id}/collections`}>
-          <a className="userInfo_top">
-            <UserIcon user={seller} />
-            <div className="username">{seller?.name}</div>
-          </a>
-        </Link>
-        <div className="shippingAddress">
-          <h5 className="shippingAddress_heading">Shipping Address:</h5>
-          <p>{seller?.shipping_address}</p>
-        </div>
-      </UserInfoBox>
+      <UserInfoBox seller={seller} />
     </DetailsBoxContainer>
   );
 };

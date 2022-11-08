@@ -2,17 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import { PageContainer, ContentsContainer, OrdersList } from './index.styles';
 
-import {
-  OrderPreviewItem,
-  OrderDetails,
-  OrderList,
-  OrderDetailBox,
-} from '../../../index';
+import { OrderList, OrderDetailBox } from '../../../index';
 
 const OrdersMasterSection = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
   const [orders, setOrders] = useState(null);
-  const [selectedOrderIndex, setselectedOrderIndex] = useState(0);
   const [selectedOrder, setSelectedOrder] = useState(user?.orders?.[0]);
 
   useEffect(() => {
@@ -29,24 +23,6 @@ const OrdersMasterSection = ({ user, refetchUser }) => {
           refetchUser={refetchUser}
           order={selectedOrder}
         />
-
-        {/* <OrdersList>
-          {orders?.map((order, i) => (
-            <OrderPreviewItem
-              key={order?._id}
-              order={order}
-              onClick={() => setselectedOrderIndex(i)}
-            />
-          ))}
-        </OrdersList> */}
-        {/* 
-        {orders?.[selectedOrderIndex] && (
-          <OrderDetails
-            user={user}
-            refetchUser={refetchUser}
-            order={orders?.[selectedOrderIndex]}
-          />
-        )} */}
       </ContentsContainer>
     </PageContainer>
   );

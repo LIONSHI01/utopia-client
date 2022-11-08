@@ -122,6 +122,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         <div className="switch-box">
           <p>{!isSignup ? 'Not a member yet?' : 'Already a member?'}</p>
           <Button
+            size="x"
             onClick={() => setIsSignup((prev) => !prev)}
             buttonType={BUTTON_TYPES.raw}
           >

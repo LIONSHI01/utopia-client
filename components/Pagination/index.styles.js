@@ -1,11 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const smFontSizeStyles = css`
+  font-size: 0.5rem;
+`;
+
+const mdFontSizeStyles = css`
+  font-size: var(--fs-s);
+`;
 
 export const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
   list-style-type: none;
-  /* gap: 1rem; */
   font-size: var(--fs-s);
+
+  /* ${(props) => props.fontSize === 'm' && mdFontSizeStyles}
+  ${(props) => props.fontSize === 's' && smFontSizeStyles} */
 
   .pagination-item {
     padding: 0 12px;
@@ -20,7 +30,11 @@ export const PaginationContainer = styled.div`
     border-radius: 16px;
     line-height: 1.43;
     font-size: var(--fs-s);
+    font-size: 0.5rem;
     min-width: 32px;
+
+    ${(props) => props.fontSize === 'm' && mdFontSizeStyles}
+    ${(props) => props.fontSize === 's' && smFontSizeStyles}
 
     :hover {
       background-color: rgba(0, 0, 0, 0.04);
@@ -39,7 +53,6 @@ export const PaginationContainer = styled.div`
     .arrow {
       &::before {
         position: relative;
-        /* top: 3px; */
         content: '';
 
         display: inline-block;

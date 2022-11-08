@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 
 import { Pagination } from '../../../index';
 import {
@@ -7,48 +7,65 @@ import {
   ListTable,
   TableHeader,
   ListItemWrapper,
-  ItemsDisplay,
   PaginationWrapper,
 } from './index.styles';
 
-const orderStatus = ['all orders', 'completed', 'continuing', 'canceled'];
+import { useSelectOrders } from '../../../../utils/reactQueryHooks/useSelectOrders';
+
+const orderStatus = ['all orders', 'completed', 'continuing', 'cancelled'];
 const tableHeader = [
   'order id',
   'item',
   'order date',
   'order value',
   'payment',
+  'order activity',
   'order status',
 ];
 
 const ListItem = ({ order, ...otherProps }) => {
-  const { id, post, createdAt, value, transaction_validated, status } =
+  // STATE MANAGEMENT
+
+  const { id, post, createdAt, value, transaction_validated, status, active } =
     order || {};
 
   const displayId = id?.slice(0, 5) + '...' + id?.slice(-5);
 
   return (
     <ListItemWrapper {...otherProps}>
-      <div>{displayId}</div>
+      <div className="order_id">{displayId}</div>
       <div>{post?.title}</div>
       <div>{createdAt?.split('T')[0]}</div>
       <div>{value}&nbsp;ETH</div>
       <div>{transaction_validated ? 'confirmed' : 'pending'}</div>
       <div>{status}</div>
+      <div className={active ? 'order_active' : 'order_inactive'}>
+        {active ? 'Active' : 'Inactive'}
+      </div>
     </ListItemWrapper>
   );
 };
 
-let PageSize = 2;
+let PageSize = 3;
+
 const OrderList = ({ orders, setSelectedOrder }) => {
-  const [selectedStatus, setSelectedStatus] = useState(0);
+  // CONFIGURATION
+
+  // STATE MANAGEMENT
+  const [selectedStatus, setSelectedStatus] = useState('all orders');
   const [currentPage, setCurrentPage] = useState(1);
+  const selectStatusOrders = useSelectOrders(orders, selectedStatus);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return orders?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, orders]);
+    return selectStatusOrders?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, selectStatusOrders]);
+
+  // !!!Reset Current page whenever selected status change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedStatus]);
 
   return (
     <ListContainer>
@@ -57,9 +74,9 @@ const OrderList = ({ orders, setSelectedOrder }) => {
           <div
             key={i}
             className={
-              selectedStatus === i ? 'status_item selected' : 'status_item'
+              selectedStatus === status ? 'status_item selected' : 'status_item'
             }
-            onClick={() => setSelectedStatus(i)}
+            onClick={() => setSelectedStatus(status)}
           >
             {status}
           </div>
@@ -84,9 +101,10 @@ const OrderList = ({ orders, setSelectedOrder }) => {
       <PaginationWrapper>
         <Pagination
           currentPage={currentPage}
-          totalCount={orders?.length}
+          totalCount={selectStatusOrders?.length}
           pageSize={PageSize}
           onPageChange={(page) => setCurrentPage(page)}
+          fontSize="s"
         />
       </PaginationWrapper>
     </ListContainer>

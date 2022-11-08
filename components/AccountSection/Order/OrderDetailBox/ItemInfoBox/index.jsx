@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 import Image from 'next/image';
-import { AiOutlineCheckCircle, AiTwotoneEdit } from 'react-icons/ai';
-import { BsXCircleFill, BsThreeDotsVertical } from 'react-icons/bs';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
 
 import {
   deleteOrder,
   buyerConfirmOrder,
 } from '../../../../../utils/apiData/orderRequest';
+
 import {
   Button,
   BUTTON_TYPES,
@@ -15,17 +17,16 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
 } from '../../../../index';
-import { ItemInfoBoxContainer } from './index.styles';
 
-const EditDropDownMenu = () => {};
+import { ItemInfoBoxContainer } from './index.styles';
 
 const ItemInfoBox = ({ order, user, refetchUser }) => {
   const { post, value } = order || {};
-
   const { category, title, coverImages, subCategory, description } = post || {};
 
   // STATE MANAGEMENT
   const [showBuyerConfirm, setShowBuyerConfirm] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   // Modal Message
   const buyerConfirmTitle = 'Confirm Order';
@@ -35,6 +36,11 @@ const ItemInfoBox = ({ order, user, refetchUser }) => {
     mutateBuyerConfirm({ orderId: order?._id, userId: user?._id });
     setShowBuyerConfirm(false);
   };
+
+  // Delet Order Alert
+  const deleteAlertTitle = 'Delete post';
+  const deleteAlertMsg =
+    'Order will be inactivated immediately. Please confirm below.';
 
   // Buyer Confirm Order
   const { isLoading: isConfirming, mutate: mutateBuyerConfirm } = useMutation(
@@ -51,9 +57,30 @@ const ItemInfoBox = ({ order, user, refetchUser }) => {
     }
   );
 
+  // Delete Order
+  const { isLoading: isDeleting, mutate: mutateDeleteOrder } = useMutation(
+    deleteOrder,
+    {
+      onSuccess: () => {
+        toast.success('Order canceled.');
+        refetchUser();
+      },
+      onError: (err) => {
+        console.log('from mutation err', err);
+        toast.error(`${err?.response.data?.data?.message}`);
+      },
+    }
+  );
+
+  // HANDLERS
+  const deleteOrderHandler = () => {
+    mutateDeleteOrder(order?.id);
+    setShowDeleteAlert(false);
+  };
+
   return (
     <ItemInfoBoxContainer>
-      <h4 className="heading">Item information</h4>
+      <h4 className="heading">Item Information</h4>
       <div className="item_details_wrapper">
         <div className="image_container">
           <Image
@@ -76,7 +103,7 @@ const ItemInfoBox = ({ order, user, refetchUser }) => {
         {!order?.buyer_confirmation ? (
           <div className="buyer-confirmation">
             <Button
-              size="m"
+              size="x"
               buttonType={BUTTON_TYPES.outlineRed}
               onClick={() => setShowBuyerConfirm(true)}
             >
@@ -101,9 +128,20 @@ const ItemInfoBox = ({ order, user, refetchUser }) => {
         )}
       </div>
       <div className="edit-btn">
-        <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-          <BsThreeDotsVertical size={20} />
+        <IconButton
+          size="x"
+          buttonType={ICON_BUTTON_TYPES.hoverBackground}
+          onClick={() => setShowDeleteAlert(true)}
+        >
+          <MdDelete size={20} />
         </IconButton>
+        <AlertModal
+          title={deleteAlertTitle}
+          message={deleteAlertMsg}
+          onConfirmHandler={deleteOrderHandler}
+          showup={showDeleteAlert}
+          setShowup={setShowDeleteAlert}
+        />
       </div>
     </ItemInfoBoxContainer>
   );

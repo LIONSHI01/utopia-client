@@ -12,62 +12,15 @@ export const LeftContentBox = styled.div`
   flex-direction: column;
   gap: 2rem;
 `;
-export const ItemInfoBox = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  color: var(--black-light-2);
-  border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
-  padding: 1.5rem;
 
-  .heading {
-    font-size: var(--fs);
-    font-weight: 500;
-    margin-bottom: var(--mg-s);
-    color: var(--black);
-  }
-
-  .item_details_wrapper {
-    display: flex;
-    gap: 2rem;
-    font-size: var(--fs-s);
-    font-weight: 100;
-  }
-
-  .details_description {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .item-title {
-    font-size: var(--fs);
-    font-weight: 400;
-  }
-
-  .image_container {
-    position: relative;
-    height: 20rem;
-    width: 15rem;
-    border-radius: var(--br-m);
-    overflow: hidden;
-  }
-
-  .edit-btn {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-  }
-`;
 export const UserInfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  color: var(--black-light-2);
+  color: var(--black);
   border-radius: var(--br-m);
   background-color: var(--grey-light-3);
   padding: 1.5rem;
+
   .heading {
     font-size: var(--fs);
     font-weight: 500;
@@ -94,12 +47,14 @@ export const UserInfoBox = styled.div`
 export const TransactionInfoBox = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   color: var(--black-light-2);
   border-radius: var(--br-m);
   background-color: var(--grey-light-3);
   padding: 1.5rem;
   font-size: var(--fs-s);
   font-weight: 100;
+  height: 100%;
 
   & > * {
     display: flex;
@@ -129,6 +84,19 @@ export const TransactionInfoBox = styled.div`
 
   .icon {
     cursor: pointer;
+  }
+
+  .validation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: capitalize;
+    /* font-weight: 500; */
+    color: var(--red);
+  }
+
+  .completedStatus {
+    color: var(--green);
   }
 `;
 

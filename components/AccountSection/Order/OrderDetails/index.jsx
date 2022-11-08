@@ -342,15 +342,17 @@ const OrderDetails = ({ user, order, refetchUser }) => {
               ) : (
                 <BsXCircleFill size={18} />
               )}
-              <span>{paymentCompleted ? 'Validated' : 'Invalidated'}</span>
+              <span>{paymentCompleted ? 'Validated' : 'Pending'}</span>
             </div>
             {!paymentCompleted && (
               <Button
                 size="m"
                 buttonType={BUTTON_TYPES.outlineRed}
+                isLoading={isValidating}
                 onClick={() => mutate(order?._id)}
               >
-                {isValidating ? 'Validating' : 'Validate'}
+                {/* {isValidating ? 'Validating' : 'Validate'} */}
+                Validate
               </Button>
             )}
           </div>

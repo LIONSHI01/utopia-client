@@ -35,10 +35,16 @@ export const BaseButton = styled.button`
   ${(props) => props.size === 'm' && mediumSizeStyles}
   ${(props) => props.size === 'x' && largeSizeStyles}
   ${(props) => props.size === 'full' && fullSizeStyles}
+
+
+
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;
 
 export const OutlineRedButton = styled(BaseButton)`
-  background-color: var(--white);
+  background-color: ${(props) =>
+    props.showLoader ? 'var(--primary)' : 'var(--white)'};
   border: 1px solid var(--primary);
   color: var(--black);
 
@@ -49,7 +55,8 @@ export const OutlineRedButton = styled(BaseButton)`
 `;
 
 export const OutlineGreyButton = styled(BaseButton)`
-  background-color: var(--white);
+  background-color: ${(props) =>
+    props.showLoader ? 'var(--black)' : 'var(--white)'};
   border: 1px solid var(--black-light-3);
   color: var(--black);
 
@@ -59,7 +66,8 @@ export const OutlineGreyButton = styled(BaseButton)`
   }
 `;
 export const RawButton = styled(BaseButton)`
-  background-color: transparent;
+  background-color: ${(props) =>
+    props.showLoader ? 'var(--primary)' : 'transparent'};
   color: var(--primary);
 
   :hover {

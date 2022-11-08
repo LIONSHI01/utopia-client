@@ -12,6 +12,7 @@ const Pagination = (props) => {
     siblingCount = 1,
     currentPage,
     pageSize,
+    fontSize = 'm',
   } = props;
 
   const paginationRange = usePagination({
@@ -35,7 +36,7 @@ const Pagination = (props) => {
 
   let lastPage = paginationRange?.[paginationRange?.length - 1];
   return (
-    <PaginationContainer>
+    <PaginationContainer fontSize={fontSize}>
       <li
         className={
           currentPage === 1 ? 'pagination-item disabled' : 'pagination-item'

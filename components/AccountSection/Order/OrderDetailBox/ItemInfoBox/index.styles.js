@@ -48,4 +48,16 @@ export const ItemInfoBoxContainer = styled.div`
     top: 2rem;
     right: 2rem;
   }
+  .buyer-confirmation {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .confirmation-status {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--green);
+  }
 `;

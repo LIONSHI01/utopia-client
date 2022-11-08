@@ -35,25 +35,13 @@ export const createOrder = async ({ userId, sellerId, postId, value }) => {
   return res.data;
 };
 
-// export const updateOrder = async ({ orderId, address, txHash }) => {
-//   const res = await axios({
-//     method: 'PATCH',
-//     url: `${baseURL}/orders/${orderId}`,
-//     data: {
-//       from: address,
-//       transactionHash: txHash,
-//     },
-//   });
-
-//   return res.data;
-// };
-
 export const deleteOrder = async (orderId) => {
   const res = await axios({
-    method: 'DELETE',
-    url: `${baseURL}/orders/${orderId}`,
+    method: 'GET',
+    url: `${baseURL}/orders/inactivate/${orderId}`,
   });
 
+  console.log(res);
   return res.data;
 };
 

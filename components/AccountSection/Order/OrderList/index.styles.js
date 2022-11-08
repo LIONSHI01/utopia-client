@@ -35,14 +35,14 @@ export const SelectionContainer = styled.div`
 export const ListTable = styled.div`
   /* height: 100%; */
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   font-weight: 100;
 `;
 
 export const TableHeader = styled.div`
   grid-column: 1/-1;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   font-weight: 400;
   border-bottom: 1px solid var(--black-light-3);
   padding-bottom: 1rem;
@@ -55,7 +55,7 @@ export const TableHeader = styled.div`
 export const ListItemWrapper = styled.div`
   grid-column: 1/-1;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   font-weight: 100;
   color: var(--black-light-2);
   text-transform: capitalize;
@@ -65,15 +65,22 @@ export const ListItemWrapper = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: var(--black-light-3);
+    background-color: var(--grey-light-1);
+  }
+
+  .order_id {
+    padding-left: 1rem;
+  }
+  .order_active {
+    color: var(--green);
+    font-weight: 400;
+  }
+  .order_inactive {
+    color: var(--black-light-2);
+    font-weight: 400;
   }
 `;
 
-// export const ItemsDisplay = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(6, 1fr);
-//   /* margin-top: auto; */
-// `;
 export const PaginationWrapper = styled.div`
   margin-top: auto;
 `;
