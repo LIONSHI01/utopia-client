@@ -13,7 +13,7 @@ export const UserInfoSection = styled.div`
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  margin-bottom: var(--mg-m);
+  margin-bottom: var(--mg-s);
 
   .icon-container {
     position: relative;
@@ -21,8 +21,8 @@ export const UserInfoSection = styled.div`
 
   .user-image-box {
     position: relative;
-    height: 8.5rem;
-    width: 8.5rem;
+    height: 8rem;
+    width: 8rem;
     border-radius: 100px;
     overflow: hidden;
     border: 1px solid var(--black-light-3);
@@ -30,8 +30,8 @@ export const UserInfoSection = styled.div`
 
   .placeholder {
     position: relative;
-    height: 8.5rem;
-    width: 8.5rem;
+    height: 8rem;
+    width: 8rem;
     background-color: var(--primary);
     display: flex;
     justify-content: center;
@@ -82,11 +82,26 @@ export const UserInfoSection = styled.div`
     align-items: center;
 
     h3 {
-      font-size: var(--fs-xl);
-      font-weight: 100;
+      font-size: var(--fs-x);
+      font-weight: 400;
       letter-spacing: -1px;
       line-height: 0;
       text-align: center;
+    }
+  }
+
+  .social_links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: var(--mg-s);
+
+    & > * {
+      color: var(--black-light-2);
+      transition: all 0.3s ease-in-out;
+
+      :hover {
+        color: var(--primary);
+      }
     }
   }
 
@@ -94,7 +109,7 @@ export const UserInfoSection = styled.div`
     display: flex;
     gap: 1rem;
     font-size: var(--fs-ss);
-    margin-bottom: 1rem;
+    margin-bottom: var(--mg-m);
 
     p {
       color: var(--black-light-2);

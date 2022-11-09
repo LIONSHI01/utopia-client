@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 
 import { toast } from 'react-toastify';
-import { AiTwotoneEdit } from 'react-icons/ai';
-import { FaWallet } from 'react-icons/fa';
-import { BsXCircleFill, BsCheck2Circle } from 'react-icons/bs';
+
+import {
+  BsXCircleFill,
+  FaWallet,
+  BsCheck2Circle,
+  AiTwotoneEdit,
+  BiTimeFive,
+} from '../../../ReactIcons';
 
 import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
 
@@ -123,7 +128,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                       buttonType={ICON_BUTTON_TYPES.hoverBackground}
                       onClick={() => setShowEditTxHashInput(true)}
                     >
-                      <AiTwotoneEdit size={15} className="icon" />
+                      <AiTwotoneEdit size={20} className="icon" />
                     </IconButton>
                   )}
                 </>
@@ -140,11 +145,12 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                   'Please log in with MetaMask to register your payment address for this transaction.'}
               </span>
               {!paymentCompleted && (
-                <FaWallet
-                  size={15}
-                  className="icon"
+                <IconButton
+                  buttonType={ICON_BUTTON_TYPES.hoverBackground}
                   onClick={connectWalletHandler}
-                />
+                >
+                  <FaWallet size={15} className="icon" />
+                </IconButton>
               )}
             </div>
           </div>
@@ -161,7 +167,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                 {paymentCompleted ? (
                   <BsCheck2Circle size={18} />
                 ) : (
-                  <BsXCircleFill size={18} />
+                  <BiTimeFive size={18} />
                 )}
                 <span>{paymentCompleted ? 'Validated' : 'Pending'}</span>
               </div>

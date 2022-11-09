@@ -149,4 +149,7 @@ export const ItemInfoBoxContainer = styled.div`
     color: var(--green);
     font-style: italic;
   }
+
+  .comment_box_section {
+  }
 `;

@@ -30,6 +30,8 @@ const Button = ({
   disable = false,
   size = 'm',
   buttonType,
+  width,
+  height,
   ...otherProps
 }) => {
   /* Capture the dimensions of the button before the loading happens
@@ -74,6 +76,8 @@ const Button = ({
       disable={disable}
       ref={ref}
       size={size}
+      width={width}
+      height={height}
       showLoader={showLoader}
       // style={
       //   width && height

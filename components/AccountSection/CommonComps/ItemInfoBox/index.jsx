@@ -3,11 +3,14 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 import Image from 'next/image';
-import { BsCheck2Circle } from 'react-icons/bs';
-import { BiTimeFive } from 'react-icons/bi';
-import { MdDelete, MdDoneAll } from 'react-icons/md';
-import { CgSandClock } from 'react-icons/cg';
 
+import {
+  BsCheck2Circle,
+  BiTimeFive,
+  MdDelete,
+  MdDoneAll,
+  CgSandClock,
+} from '../../../ReactIcons';
 import { selectEthPrice } from '../../../../store/post/post.selector';
 
 import {
@@ -21,6 +24,7 @@ import {
   AlertModal,
   IconButton,
   ICON_BUTTON_TYPES,
+  OrderCommentBox,
 } from '../../../index';
 
 import { ItemInfoBoxContainer } from './index.styles';
@@ -181,6 +185,13 @@ const ItemInfoBox = ({ order, user, refetchUser, buyer }) => {
             />
           </div>
         )}
+        <div className="comment_box_section">
+          <OrderCommentBox
+            user={user}
+            refetchUser={refetchUser}
+            order={order}
+          />
+        </div>
       </ItemInfoBoxContainer>
     );
 

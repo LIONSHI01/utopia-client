@@ -44,6 +44,8 @@ import OrderList from './AccountSection/CommonComps/OrderList';
 import OrderDetailBox from './AccountSection/Order/OrderDetailBox/index';
 import ItemInfoBox from './AccountSection/CommonComps/ItemInfoBox';
 import UserInfoBox from './AccountSection/CommonComps/UserInfoBox';
+import OrderCommentBox from './AccountSection/Order/OrderCommentBox';
+import RatingBar from './RatingBar';
 
 export {
   MainHeader,
@@ -92,4 +94,6 @@ export {
   OrderDetailBox,
   ItemInfoBox,
   UserInfoBox,
+  OrderCommentBox,
+  RatingBar,
 };

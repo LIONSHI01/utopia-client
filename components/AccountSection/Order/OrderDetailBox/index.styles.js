@@ -89,7 +89,7 @@ export const TransactionInfoBox = styled.div`
   .validation {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     text-transform: capitalize;
     font-style: italic;
     color: var(--red);

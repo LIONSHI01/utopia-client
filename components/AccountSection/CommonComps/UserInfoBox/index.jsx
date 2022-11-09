@@ -1,11 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import { GrFacebookOption } from 'react-icons/gr';
-import { BsCalendar3 } from 'react-icons/bs';
-import { GoLocation } from 'react-icons/go';
-import { HiOutlineMail } from 'react-icons/hi';
-import { AiOutlineTwitter, AiFillInstagram } from 'react-icons/ai';
-
+// import { GrFacebookOption } from 'react-icons/gr';
+// import { BsCalendar3 } from 'react-icons/bs';
+// import { GoLocation } from 'react-icons/go';
+// import { HiOutlineMail } from 'react-icons/hi';
+// import { AiOutlineTwitter, AiFillInstagram } from 'react-icons/ai';
+import {
+  GrFacebookOption,
+  BsCalendar3,
+  GoLocation,
+  HiOutlineMail,
+  AiOutlineTwitter,
+  AiFillInstagram,
+} from '../../../ReactIcons';
 import { BoxContainer } from './index.styles';
 import {
   UserIcon,
@@ -34,6 +41,23 @@ const UserInfoBox = ({ seller, buyer }) => {
               <div className="username">{buyer?.name}</div>
             </a>
           </Link>
+          <div className="social_links">
+            {buyer?.instagram && (
+              <a href={buyer?.instagram} target="_blank" rel="noreferrer">
+                <AiFillInstagram size={15} color="var(--black-light-2)" />
+              </a>
+            )}
+            {buyer?.twitter && (
+              <a href={buyer?.twitter} target="_blank" rel="noreferrer">
+                <AiOutlineTwitter size={15} color="var(--black-light-2)" />
+              </a>
+            )}
+            {buyer?.facebook && (
+              <a href={buyer?.facebook} target="_blank" rel="noreferrer">
+                <GrFacebookOption size={15} color="var(--black-light-2)" />
+              </a>
+            )}
+          </div>
           {buyer?.location && (
             <div className="location">
               <GoLocation size={15} />
@@ -53,7 +77,7 @@ const UserInfoBox = ({ seller, buyer }) => {
             <span>{buyer?.followers?.length || 0} followers</span>
             <span>{buyer?.followings?.length || 0} followings</span>
           </div>
-          <div className="social_links">
+          {/* <div className="social_links">
             <a href={buyer?.instagram} target="_blank" rel="noreferrer">
               <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
                 <AiFillInstagram size={15} color="var(--black-light-2)" />
@@ -69,7 +93,7 @@ const UserInfoBox = ({ seller, buyer }) => {
                 <GrFacebookOption size={15} color="var(--black-light-2)" />
               </IconButton>
             </a>
-          </div>
+          </div> */}
         </div>
 
         <div className="shippingAddress">
@@ -100,17 +124,36 @@ const UserInfoBox = ({ seller, buyer }) => {
       <BoxContainer>
         <h4 className="heading">Seller Info</h4>
         <div className="info_box">
-          <Link href={`/users/${seller?.id}/collections`}>
-            <a className="userInfo_top">
-              <UserIcon user={seller} />
-              <div className="username">{seller?.name}</div>
-            </a>
-          </Link>
-          <div className="sales_reviews">
-            <div className="scores">
-              <RatingItem rating={5} starSize={15} />
+          <div className="userInfo_top">
+            <UserIcon user={seller} />
+            <div className="userInfo_top_details">
+              <Link href={`/users/${seller?.id}/collections`}>
+                <a className="username">{seller?.name}</a>
+              </Link>
+              <div className="sales_reviews">
+                <div className="scores">
+                  <RatingItem rating={5} starSize={15} />
+                </div>
+                <div className="sales">{sellerSales || 0} sales</div>
+              </div>
             </div>
-            <div className="sales">{sellerSales || 0} sales</div>
+          </div>
+          <div className="social_links">
+            {seller?.instagram && (
+              <a href={seller?.instagram} target="_blank" rel="noreferrer">
+                <AiFillInstagram size={15} color="var(--black-light-2)" />
+              </a>
+            )}
+            {seller?.twitter && (
+              <a href={seller?.twitter} target="_blank" rel="noreferrer">
+                <AiOutlineTwitter size={15} color="var(--black-light-2)" />
+              </a>
+            )}
+            {seller?.facebook && (
+              <a href={seller?.facebook} target="_blank" rel="noreferrer">
+                <GrFacebookOption size={15} color="var(--black-light-2)" />
+              </a>
+            )}
           </div>
           {seller?.location && (
             <div className="location">
@@ -131,7 +174,7 @@ const UserInfoBox = ({ seller, buyer }) => {
             <span>{seller?.followers?.length || 0} followers</span>
             <span>{seller?.followings?.length || 0} followings</span>
           </div>
-          <div className="social_links">
+          {/* <div className="social_links">
             <a href={seller?.instagram} target="_blank" rel="noreferrer">
               <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
                 <AiFillInstagram size={15} color="var(--black-light-2)" />
@@ -147,7 +190,7 @@ const UserInfoBox = ({ seller, buyer }) => {
                 <GrFacebookOption size={15} color="var(--black-light-2)" />
               </IconButton>
             </a>
-          </div>
+          </div> */}
         </div>
         <div className="bio">
           <h5 className="bio_heading">About me:</h5>

@@ -41,6 +41,10 @@ export const BaseButton = styled.button`
   ${(props) => props.size === 'm' && mediumSizeStyles}
   ${(props) => props.size === 'x' && largeSizeStyles}
   ${(props) => props.size === 'full' && fullSizeStyles}
+
+
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;
 
 export const OutlineRedButton = styled(BaseButton)`

@@ -1,8 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { MdAddAPhoto } from 'react-icons/md';
 
+import {
+  MdAddAPhoto,
+  AiFillInstagram,
+  AiOutlineTwitter,
+  GrFacebookOption,
+} from '../../ReactIcons';
 import { profileLinks } from '../../../assets/constants';
 import { SidebarContainer, UserInfoSection, MenuList } from './index.styles';
 import { updateUserPhoto } from '../../../utils/apiData/userRequest';
@@ -58,6 +63,23 @@ const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
         </div>
         <div className="user-details">
           <h3>{user?.name}</h3>
+          <div className="social_links">
+            {user?.instagram && (
+              <a href={user?.instagram} target="_blank" rel="noreferrer">
+                <AiFillInstagram size={20} />
+              </a>
+            )}
+            {user?.twitter && (
+              <a href={user?.twitter} target="_blank" rel="noreferrer">
+                <AiOutlineTwitter size={20} />
+              </a>
+            )}
+            {user?.facebook && (
+              <a href={user?.facebook} target="_blank" rel="noreferrer">
+                <GrFacebookOption size={20} />
+              </a>
+            )}
+          </div>
           <div className="follow-info">
             <p>
               <span>22</span>Followings

@@ -28,12 +28,21 @@ export const BoxContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: var(--mg-s);
+    /* margin-bottom: var(--mg-s); */
   }
 
+  .userInfo_top_details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
   .username {
     font-size: var(--fs-s);
     font-weight: 400;
+
+    :hover {
+      text-decoration: underline;
+    }
   }
 
   .shippingAddress {
@@ -78,7 +87,16 @@ export const BoxContainer = styled.div`
 
   .social_links {
     display: flex;
-    /* gap: 0.5rem; */
+    gap: 1rem;
+
+    a {
+      display: block;
+      cursor: pointer;
+
+      :hover {
+        color: var(--black);
+      }
+    }
   }
 
   .bio {

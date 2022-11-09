@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiFillStar } from 'react-icons/ai';
+
+import { AiFillStar } from '../ReactIcons';
 
 const ItemWrapper = styled.div`
   display: flex;

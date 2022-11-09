@@ -1,14 +1,27 @@
-import { MdLocalOffer } from 'react-icons/md';
-import { AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
-import { TbFileInvoice } from 'react-icons/tb';
+// import { MdLocalOffer } from 'react-icons/md';
+// import { AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
+// import { TbFileInvoice } from 'react-icons/tb';
 
-import { FiSettings } from 'react-icons/fi';
-import { RiAuctionFill, RiAuctionLine } from 'react-icons/ri';
+// import { FiSettings } from 'react-icons/fi';
+// import { RiAuctionFill, RiAuctionLine } from 'react-icons/ri';
+// import {
+//   BsFillFileEarmarkTextFill,
+//   BsFillHeartFill,
+//   BsTag,
+// } from 'react-icons/bs';
+
 import {
+  MdLocalOffer,
+  AiTwotoneSetting,
+  AiOutlineGift,
+  TbFileInvoice,
+  FiSettings,
+  RiAuctionFill,
+  RiAuctionLine,
   BsFillFileEarmarkTextFill,
   BsFillHeartFill,
   BsTag,
-} from 'react-icons/bs';
+} from '../components/ReactIcons';
 
 export const categories = [
   {
@@ -282,3 +295,11 @@ export const iconDropdownMenuList = [
     icon: <FiSettings size={23} />,
   },
 ];
+
+export const ratingScore = {
+  1: 'bad 😰',
+  2: 'ok 🤨',
+  3: 'fair 😀',
+  4: 'good~ 😁',
+  5: 'excellent! 🤩',
+};
