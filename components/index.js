@@ -23,11 +23,10 @@ import FormInputComp from './InputComponents/FormInput';
 import CollectionDisplay from './AccountSection/Collection/CollectionDisplay';
 import EditCollectionModal from './AccountSection/Collection/EditCollectionModal';
 import MenuSidebar from './AccountSection/MenuSidebar';
-import OrderPreviewItem from './AccountSection/Order/OrderPreviewItem';
-import OrderDetails from './AccountSection/Order/OrderDetails';
+
 import NotificationDropdown from './Header/notificationDropdown';
 import AlertModal from './AlertModal';
-import OfferDetails from './AccountSection/Offer/OfferDetails';
+
 import CollectionMasterSection from './AccountSection/Collection/CollectionSection';
 import OffersMasterSection from './AccountSection/Offer/OfferSection';
 import OrdersMasterSection from './AccountSection/Order/OrdersSection';
@@ -41,8 +40,10 @@ import ReviewBox from './PostDetails/ReviewBox';
 import ReviewItem from './PostDetails/ReviewBox/ReviewItem';
 import RatingItem from './RatingItem';
 import Pagination from './Pagination';
-import OrderList from './AccountSection/Order/OrderList';
+import OrderList from './AccountSection/CommonComps/OrderList';
 import OrderDetailBox from './AccountSection/Order/OrderDetailBox/index';
+import ItemInfoBox from './AccountSection/CommonComps/ItemInfoBox';
+import UserInfoBox from './AccountSection/CommonComps/UserInfoBox';
 
 export {
   MainHeader,
@@ -72,11 +73,8 @@ export {
   CollectionDisplay,
   EditCollectionModal,
   MenuSidebar,
-  OrderPreviewItem,
-  OrderDetails,
   NotificationDropdown,
   AlertModal,
-  OfferDetails,
   CollectionMasterSection,
   OffersMasterSection,
   OrdersMasterSection,
@@ -92,4 +90,6 @@ export {
   Pagination,
   OrderList,
   OrderDetailBox,
+  ItemInfoBox,
+  UserInfoBox,
 };

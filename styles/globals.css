@@ -92,10 +92,10 @@ figure {
   --grey-dark-2: #474747;
   --grey-dark-3: #333; */
 
-  --green:#4ca230;
-  --red:#E94560;
+  --green: #4ca230;
+  --red: #e94560;
   --white: #fff;
-  --yellow:#FFC93C;
+  --yellow: #ffc93c;
 
   /* --primary: #ff2e63;
   --primary-light: #ff5882;
@@ -104,19 +104,19 @@ figure {
   --primary-light-4: #ffeaef;
   --primary-dark: #cc254f; */
 
-  --primary: #FF6F3C;
+  --primary: #ff6f3c;
   --primary-light: #ff8c63;
   --primary-light-2: #ff9a77;
   --primary-light-3: #ffa98a;
-  --primary-light-4: #ffd4c5;
-  --primary-dark: #e66436; 
+  --primary-light-4: #ffd5c59f;
+  --primary-dark: #e66436;
 
   --uploadbg: #b1e9d4;
 
   /* FONT */
   --ff-display: 'Playfair Display', serif;
 
-  --fs-sss:0.6rem
+  --fs-sss: 0.6rem;
   --fs-ss: 1.4rem;
   --fs-s: 1.6rem;
   --fs: 1.8rem;

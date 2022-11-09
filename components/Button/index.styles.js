@@ -14,6 +14,12 @@ const fullSizeStyles = css`
   height: 100%;
 `;
 
+const disableStyles = css`
+  border: 1px solid var(--black-light-3);
+  color: var(--black-light-2);
+  pointer-events: none;
+`;
+
 export const BaseButton = styled.button`
   border: none;
   background-color: var(--primary);
@@ -35,11 +41,6 @@ export const BaseButton = styled.button`
   ${(props) => props.size === 'm' && mediumSizeStyles}
   ${(props) => props.size === 'x' && largeSizeStyles}
   ${(props) => props.size === 'full' && fullSizeStyles}
-
-
-
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
 `;
 
 export const OutlineRedButton = styled(BaseButton)`
@@ -52,6 +53,8 @@ export const OutlineRedButton = styled(BaseButton)`
     background-color: var(--primary);
     color: var(--white);
   }
+
+  ${(props) => props.disable && disableStyles}
 `;
 
 export const OutlineGreyButton = styled(BaseButton)`
@@ -64,6 +67,7 @@ export const OutlineGreyButton = styled(BaseButton)`
     border: 1px solid var(--black);
     background-color: transparent;
   }
+  ${(props) => props.disable && disableStyles}
 `;
 export const RawButton = styled(BaseButton)`
   background-color: ${(props) =>
@@ -74,4 +78,6 @@ export const RawButton = styled(BaseButton)`
     text-decoration: underline;
     background-color: unset;
   }
+
+  ${(props) => props.disable && disableStyles}
 `;

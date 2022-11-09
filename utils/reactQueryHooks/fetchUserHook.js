@@ -5,12 +5,16 @@ import { getUser } from '../apiData/userRequest';
 export const useGetUserHook = ({ userId }) => {
   const [user, setUser] = useState(null);
 
-  const { refetch } = useQuery(['user', userId], () => getUser(userId), {
-    onSuccess: (data) => setUser(data),
-    onError: (err) =>
-      console.log('encounter an error during fetching ==> ', err),
-    enabled: !!userId,
-  });
+  const { isLoading, refetch } = useQuery(
+    ['user', userId],
+    () => getUser(userId),
+    {
+      onSuccess: (data) => setUser(data),
+      onError: (err) =>
+        console.log('encounter an error during fetching ==> ', err),
+      enabled: !!userId,
+    }
+  );
 
-  return { user, refetch };
+  return { user, isLoading, refetch };
 };

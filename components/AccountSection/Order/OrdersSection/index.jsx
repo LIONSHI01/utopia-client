@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Router from 'next/router';
+import {
+  PageContainer,
+  ContentsContainer,
+  EmptyOrderWrapper,
+} from './index.styles';
 
-import { PageContainer, ContentsContainer, OrdersList } from './index.styles';
-
-import { OrderList, OrderDetailBox } from '../../../index';
+import { OrderList, OrderDetailBox, Button } from '../../../index';
 
 const OrdersMasterSection = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
@@ -11,8 +15,22 @@ const OrdersMasterSection = ({ user, refetchUser }) => {
 
   useEffect(() => {
     setOrders(user?.orders);
+    setSelectedOrder(user?.orders?.[0]);
   }, [user]);
-  console.log(selectedOrder);
+
+  if (user?.orders?.length === 0) {
+    return (
+      <PageContainer>
+        <EmptyOrderWrapper>
+          <p>No order yet.</p>
+          <Button size="x" onClick={() => Router.push('/')}>
+            Let&#39;s Explore !
+          </Button>
+        </EmptyOrderWrapper>
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer>
       <ContentsContainer>

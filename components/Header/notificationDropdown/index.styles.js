@@ -82,7 +82,7 @@ export const ContentContainer = styled.div`
 
 export const MessageItemWrapper = styled.div`
   display: grid;
-  grid-template-columns: max-content 1fr min-content;
+  grid-template-columns: max-content 1fr max-content;
   padding: 1.5rem;
   cursor: pointer;
   width: 100%;
@@ -97,13 +97,14 @@ export const MessageItemWrapper = styled.div`
 
   .contents {
     margin-left: 1rem;
-    margin-right: 3rem;
+    margin-right: 1.5rem;
     letter-spacing: 0.5px;
     color: var(--black-light-2);
   }
 
   .period {
     color: var(--black-light-2);
+    font-size: var(--fs-ss);
   }
 `;
 

@@ -79,6 +79,13 @@ export const ListItemWrapper = styled.div`
     color: var(--black-light-2);
     font-weight: 400;
   }
+
+  .order_activity {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 400;
+  }
 `;
 
 export const PaginationWrapper = styled.div`

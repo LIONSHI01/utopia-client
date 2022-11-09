@@ -12,7 +12,6 @@ import {
   UserIcon,
   IconButton,
   ICON_BUTTON_TYPES,
-  Spinner,
 } from '../index';
 
 import {

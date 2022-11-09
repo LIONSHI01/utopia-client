@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
+import { useGetEthHook } from '../../../utils/reactQueryHooks/ethQueryHook';
+import { setEthPrice } from '../../../store/post/post.action';
 
-import { getUser } from '../../../utils/apiData/userRequest';
 import {
   Spinner,
   MenuSidebar,
@@ -20,6 +22,7 @@ import {
 } from '../../../pages_styles/ProfilePage.styles';
 
 const AccountPage = () => {
+  const dispatch = useDispatch();
   const { data } = useSession();
 
   // CONFIGURATION
@@ -27,26 +30,25 @@ const AccountPage = () => {
   const { query } = router;
 
   // STATE MANAGEMENT isAuthenticated={isAuthenticated}
-  const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [displaySection, setDisplaySection] = useState(
     query?.path?.[1] || 'collections'
   );
+  const ethQuote = useGetEthHook();
+
+  useEffect(() => {
+    dispatch(setEthPrice(ethQuote));
+  }, [dispatch, ethQuote]);
 
   // API FETCH
-  const { isLoading: isLoadingUser, refetch: refetchUser } = useQuery(
-    ['currentUser', query?.path?.[0]],
-    () => getUser(query?.path?.[0]),
-    {
-      onSuccess: (data) => {
-        setUser(data);
-      },
-      onError: (err) => {
-        console.log(err);
-      },
-      enabled: !!query?.path?.[0],
-    }
-  );
+
+  const {
+    user,
+    isLoading: isLoadingUser,
+    refetch: refetchUser,
+  } = useGetUserHook({
+    userId: query?.path?.[0],
+  });
 
   useEffect(() => {
     setIsAuthenticated(data?.profile?._id === user?._id);

@@ -1,35 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 
-import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { AiOutlineCheckCircle, AiTwotoneEdit } from 'react-icons/ai';
+import { AiTwotoneEdit } from 'react-icons/ai';
 import { FaWallet } from 'react-icons/fa';
-import { BsXCircleFill, BsThreeDotsVertical } from 'react-icons/bs';
-import ItemInfoBox from './ItemInfoBox';
-import UserInfoBox from '../UserInfoBox';
+import { BsXCircleFill, BsCheck2Circle } from 'react-icons/bs';
+
 import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
 
 import {
   FormInputComp,
   Button,
   BUTTON_TYPES,
-  UserIcon,
-  AlertModal,
+  ItemInfoBox,
+  UserInfoBox,
   IconButton,
   ICON_BUTTON_TYPES,
 } from '../../../index';
-import {
-  validateOrder,
-  deleteOrder,
-  buyerConfirmOrder,
-} from '../../../../utils/apiData/orderRequest';
+import { validateOrder } from '../../../../utils/apiData/orderRequest';
 
 import {
   DetailsBoxContainer,
   LeftContentBox,
   TransactionInfoBox,
-  // UserInfoBox,
   EditTxHashBox,
 } from './index.styles';
 
@@ -41,11 +34,6 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
   const [txHash, setTxHash] = useState(order?.transaction_hash?.[0]?.hash);
   const [address, setAddress] = useState(order?.from);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
-  const [showBuyerConfirm, setShowBuyerConfirm] = useState(false);
-
-  const { post } = order || {};
-
-  console.log(order);
 
   // Modal Message
 
@@ -80,12 +68,17 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
     setTxHash(order?.transaction_hash?.[0]?.hash);
     setAddress(order?.from);
     setPaymentCompleted(order?.transaction_validated);
-  }, [order]);
+  }, [order, user]);
 
   return (
     <DetailsBoxContainer>
       <LeftContentBox>
-        <ItemInfoBox order={order} user={user} refetchUser={refetchUser} />
+        <ItemInfoBox
+          order={order}
+          user={user}
+          refetchUser={refetchUser}
+          buyer={true}
+        />
 
         <TransactionInfoBox>
           <h4 className="heading">Transaction Details</h4>
@@ -104,14 +97,14 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                   />
                   <div className="edit-buttons">
                     <Button
-                      size="m"
+                      size="x"
                       buttonType={BUTTON_TYPES.outlineGrey}
                       onClick={() => setShowEditTxHashInput(false)}
                     >
                       Cancel
                     </Button>
                     <Button
-                      size="m"
+                      size="x"
                       buttonType={BUTTON_TYPES.outlineRed}
                       onClick={() => setShowEditTxHashInput(false)}
                     >
@@ -125,14 +118,13 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                     {txHash ||
                       'Please provide your payment transaction hash for payment validation'}
                   </div>
-                  {paymentCompleted ? (
-                    <AiOutlineCheckCircle size={18} color="var(--green)" />
-                  ) : (
-                    <AiTwotoneEdit
-                      size={15}
-                      className="icon"
+                  {!paymentCompleted && (
+                    <IconButton
+                      buttonType={ICON_BUTTON_TYPES.hoverBackground}
                       onClick={() => setShowEditTxHashInput(true)}
-                    />
+                    >
+                      <AiTwotoneEdit size={15} className="icon" />
+                    </IconButton>
                   )}
                 </>
               )}
@@ -167,7 +159,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                 }
               >
                 {paymentCompleted ? (
-                  <AiOutlineCheckCircle size={18} />
+                  <BsCheck2Circle size={18} />
                 ) : (
                   <BsXCircleFill size={18} />
                 )}
@@ -175,6 +167,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
               </div>
               {!paymentCompleted && (
                 <Button
+                  disable={!order?.active ? true : false}
                   size="x"
                   isLoading={isValidating}
                   buttonType={BUTTON_TYPES.outlineRed}

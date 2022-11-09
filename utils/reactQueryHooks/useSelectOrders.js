@@ -9,7 +9,11 @@ export const useSelectOrders = (orders, orderStatus) => {
         setSelectStatusOrders(orders);
         break;
       case 'cancelled':
-        setSelectStatusOrders(orders?.filter((order) => !order.active));
+        setSelectStatusOrders(
+          orders?.filter(
+            (order) => !order.active && order.status !== 'completed'
+          )
+        );
         break;
       case 'completed':
         setSelectStatusOrders(

@@ -27,8 +27,7 @@ const getButton = (buttonType = BUTTON_TYPES.base) =>
 const Button = ({
   children,
   isLoading,
-  width,
-  height,
+  disable = false,
   size = 'm',
   buttonType,
   ...otherProps
@@ -72,10 +71,9 @@ const Button = ({
 
   return (
     <CustomButton
+      disable={disable}
       ref={ref}
       size={size}
-      width
-      height
       showLoader={showLoader}
       // style={
       //   width && height

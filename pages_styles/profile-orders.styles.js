@@ -25,5 +25,3 @@ export const OrdersList = styled.div`
   padding-bottom: 5rem;
   border-bottom: 1px solid var(--black-light-3);
 `;
-
-export const OrderPreviewItem = styled.div``;

@@ -26,7 +26,7 @@ export const MenuWrapper = styled.div`
   border-radius: var(--br-m);
   box-shadow: var(--bs-s);
   background-color: var(--white);
-  z-index: 100;
+  z-index: 1000;
 
   display: flex;
   flex-direction: column;

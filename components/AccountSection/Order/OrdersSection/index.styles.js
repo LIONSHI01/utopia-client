@@ -26,4 +26,18 @@ export const OrdersList = styled.div`
   border-bottom: 1px solid var(--black-light-3);
 `;
 
-export const OrderPreviewItem = styled.div``;
+export const EmptyOrderWrapper = styled.div`
+  height: 100%;
+
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  p {
+    font-size: var(--fs-xl);
+    font-style: italic;
+  }
+`;

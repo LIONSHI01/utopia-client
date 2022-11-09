@@ -4,6 +4,7 @@ import { RiAuctionFill } from 'react-icons/ri';
 
 import { MdLocalOffer } from 'react-icons/md';
 import { BsHouseFill } from 'react-icons/bs';
+import { timePeriod } from '../../../utils/timeCalculator';
 
 import {
   DropdownWrapper,
@@ -16,7 +17,8 @@ import {
 } from './index.styles';
 
 const MessageItem = ({ message }) => {
-  const { content, type } = message || {};
+  const { content, type, createdAt } = message || {};
+  const period = timePeriod(createdAt);
   const getIcon = (messageType) => {
     if (messageType === 'system')
       return (
@@ -45,7 +47,7 @@ const MessageItem = ({ message }) => {
     <MessageItemWrapper>
       <div className="type">{CustomIcon}</div>
       <div className="contents">{content}</div>
-      <div className="period">2d</div>
+      <div className="period">{period}</div>
     </MessageItemWrapper>
   );
 };

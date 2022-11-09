@@ -1,6 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { CgSandClock } from 'react-icons/cg';
+import { MdDoneAll } from 'react-icons/md';
 
 import { Pagination } from '../../../index';
+
 import {
   ListContainer,
   SelectionContainer,
@@ -38,7 +41,19 @@ const ListItem = ({ order, ...otherProps }) => {
       <div>{createdAt?.split('T')[0]}</div>
       <div>{value}&nbsp;ETH</div>
       <div>{transaction_validated ? 'confirmed' : 'pending'}</div>
-      <div>{status}</div>
+      <div className="order_activity">
+        {status === 'completed' ? (
+          <>
+            <MdDoneAll size={15} />
+            {status}
+          </>
+        ) : (
+          <>
+            <CgSandClock size={15} />
+            {status}
+          </>
+        )}
+      </div>
       <div className={active ? 'order_active' : 'order_inactive'}>
         {active ? 'Active' : 'Inactive'}
       </div>

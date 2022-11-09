@@ -13,37 +13,6 @@ export const LeftContentBox = styled.div`
   gap: 2rem;
 `;
 
-export const UserInfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: var(--black);
-  border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
-  padding: 1.5rem;
-
-  .heading {
-    font-size: var(--fs);
-    font-weight: 500;
-    margin-bottom: var(--mg-s);
-  }
-  .userInfo_top {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-bottom: 1px solid var(--black-light-3);
-    padding-bottom: 2rem;
-  }
-
-  .username {
-    font-size: var(--fs-s);
-    font-weight: 400;
-  }
-  .shippingAddress {
-    border-bottom: 1px solid var(--black-light-3);
-    padding-bottom: 2rem;
-  }
-`;
-
 export const TransactionInfoBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,7 +58,7 @@ export const TransactionInfoBox = styled.div`
   .validation {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     text-transform: capitalize;
     font-style: italic;
     color: var(--red);
@@ -98,17 +67,34 @@ export const TransactionInfoBox = styled.div`
   .completedStatus {
     color: var(--green);
   }
-`;
 
-export const EditTxHashBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  .edit-buttons {
+  .seller_claim_record {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.5rem;
+
+    a {
+      text-decoration: underline;
+      :hover {
+        color: var(--primary);
+      }
+    }
+  }
+
+  .seller_claim_btn {
     align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+  }
+
+  .seller_claim_date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 `;
