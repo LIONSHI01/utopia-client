@@ -10,7 +10,7 @@ const ItemWrapper = styled.div`
   }
 `;
 
-const RatingItem = ({ rating, starSize }) => {
+const RatingItem = ({ rating, starSize = 20 }) => {
   return (
     <ItemWrapper>
       {[...Array(5)].map((_, index) => {

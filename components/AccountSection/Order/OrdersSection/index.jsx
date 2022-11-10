@@ -12,11 +12,16 @@ const OrdersMasterSection = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
   const [orders, setOrders] = useState(null);
   const [selectedOrder, setSelectedOrder] = useState(user?.orders?.[0]);
+  // const [selectedOrderIndex, setSelectedOrderIndex] = useState(0);
+  const [selectedOrderId, setSelectedOrderId] = useState('');
 
   useEffect(() => {
     setOrders(user?.orders);
-    setSelectedOrder(user?.orders?.[0]);
-  }, [user]);
+    setSelectedOrder(
+      user?.orders?.filter((offer) => offer?.id === selectedOrderId)?.[0] ||
+        user?.orders?.[0]
+    );
+  }, [user, selectedOrderId]);
 
   if (user?.orders?.length === 0) {
     return (
@@ -34,7 +39,11 @@ const OrdersMasterSection = ({ user, refetchUser }) => {
   return (
     <PageContainer>
       <ContentsContainer>
-        <OrderList orders={orders} setSelectedOrder={setSelectedOrder} />
+        <OrderList
+          orders={orders}
+          setSelectedOrder={setSelectedOrder}
+          setSelectedOrderId={setSelectedOrderId}
+        />
 
         <OrderDetailBox
           user={user}

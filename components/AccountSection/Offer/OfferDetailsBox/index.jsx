@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { setSelectedOrderBuyer } from '../../../../store/order/order.action';
+import { selectSelectedOrder } from '../../../../store/order/order.selector';
 import { BsCheck2Circle, AiOutlineLink, BiTimeFive } from '../../../ReactIcons';
 import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
 import { sellerClaimFund } from '../../../../utils/apiData/orderRequest';
@@ -23,8 +26,10 @@ import {
 
 const OfferDetailsBox = ({ order, user, refetchUser }) => {
   // CONFIGURATION
+  const dispatch = useDispatch();
 
-  const { user: buyer } = useGetUserHook({ userId: order?.seller });
+  // const order = useSelector(selectSelectedOrder);
+  const { user: buyer } = useGetUserHook({ userId: order?.postedBy });
   const sellerClaimHashUrl = `https://goerli.etherscan.io/tx/${order?.seller_claim_txHash}`;
 
   // STATE MANAGEMENT
@@ -71,12 +76,22 @@ const OfferDetailsBox = ({ order, user, refetchUser }) => {
     setSellerClaimHash(order?.seller_claim_txHash);
   }, [order]);
 
-  console.log('offerDetailsBox:', order);
+  // useEffect(() => {
+  //   dispatch(setSelectedOrderBuyer(buyer));
+  // }, [buyer, dispatch]);
+
+  // console.log('offerDetailsBox:', order);
 
   return (
     <DetailsBoxContainer>
       <LeftContentBox>
-        <ItemInfoBox order={order} user={user} refetchUser={refetchUser} />
+        <ItemInfoBox
+          order={order}
+          user={user}
+          buyer={buyer}
+          refetchUser={refetchUser}
+          offerSection={true}
+        />
 
         <TransactionInfoBox>
           <h4 className="heading">Transaction Details</h4>

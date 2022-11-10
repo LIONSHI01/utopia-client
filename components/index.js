@@ -46,6 +46,7 @@ import ItemInfoBox from './AccountSection/CommonComps/ItemInfoBox';
 import UserInfoBox from './AccountSection/CommonComps/UserInfoBox';
 import OrderCommentBox from './AccountSection/Order/OrderCommentBox';
 import RatingBar from './RatingBar';
+import CommentSection from './AccountSection/CommonComps/CommentSection';
 
 export {
   MainHeader,
@@ -96,4 +97,5 @@ export {
   UserInfoBox,
   OrderCommentBox,
   RatingBar,
+  CommentSection,
 };

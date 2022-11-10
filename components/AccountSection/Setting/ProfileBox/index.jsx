@@ -38,10 +38,13 @@ const ProfileBox = ({ user, refetchUser }) => {
   };
 
   const onSubmitProfileHandler = () => {
-    if (!validator.isEmail(email))
+    if (email?.length > 0 && !validator.isEmail(email))
       return toast.error('Please provide valid email');
 
-    if (!validator.isEthereumAddress(walletAddress))
+    if (
+      walletAddress?.length > 0 &&
+      !validator.isEthereumAddress(walletAddress)
+    )
       return toast.error('Please provide valid Ethereum address');
 
     mutateUserProfile({

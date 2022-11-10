@@ -1,10 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-// import { GrFacebookOption } from 'react-icons/gr';
-// import { BsCalendar3 } from 'react-icons/bs';
-// import { GoLocation } from 'react-icons/go';
-// import { HiOutlineMail } from 'react-icons/hi';
-// import { AiOutlineTwitter, AiFillInstagram } from 'react-icons/ai';
+
 import {
   GrFacebookOption,
   BsCalendar3,
@@ -14,12 +10,7 @@ import {
   AiFillInstagram,
 } from '../../../ReactIcons';
 import { BoxContainer } from './index.styles';
-import {
-  UserIcon,
-  IconButton,
-  ICON_BUTTON_TYPES,
-  RatingItem,
-} from '../../../index';
+import { UserIcon, RatingItem } from '../../../index';
 
 const UserInfoBox = ({ seller, buyer }) => {
   // FOR OFFER PAGE

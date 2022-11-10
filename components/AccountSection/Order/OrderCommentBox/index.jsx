@@ -1,22 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { reviewOnPostRequest } from '../../../../utils/apiData/reviewRequest';
+import {
+  reviewOnPostRequest,
+  updateReviewRequest,
+} from '../../../../utils/apiData/reviewRequest';
 import { CommentBoxContainer, CommentWrapper } from './index.styles';
 
 import { Button, BUTTON_TYPES, FormInputComp, RatingBar } from '../../../index';
 
-const OrderCommentBox = ({ user, order, refetchUser }) => {
-  const [comment, setComment] = useState('');
-  const [reviewRating, setReviewRating] = useState(0);
-  console.log('comment box', order);
+const OrderCommentBox = ({ user, order, refetchUser, setShowup, isUpdate }) => {
+  const [comment, setComment] = useState(
+    order?.buyer_review?.[0]?.content || ''
+  );
+  const [reviewRating, setReviewRating] = useState(
+    order?.buyer_review?.[0]?.reviewRating || 0
+  );
+
+  useEffect(() => {
+    setComment(order?.buyer_review?.[0]?.content || '');
+    setReviewRating(order?.buyer_review?.[0]?.reviewRating);
+  }, [order]);
 
   const onChangeHandler = (e) => {
     setComment(e.target.value);
   };
+
   const onSubmitHandler = () => {
-    mutateReviewPost({
+    if (isUpdate) {
+      return mutateUpdateReview({
+        reviewId: order?.buyer_review?.[0]?.id,
+        content: comment,
+        reviewRating,
+      });
+    }
+    return mutateCreateReview({
       postedBy: user?.id,
       post: order?.post?.id,
       order: order?.id,
@@ -25,15 +44,20 @@ const OrderCommentBox = ({ user, order, refetchUser }) => {
     });
   };
 
-  const onCancelHandler = () => setComment('');
+  const onCancelHandler = () => {
+    setShowup(false);
+    setComment(order?.buyer_review?.[0]?.content || '');
+    setReviewRating(order?.buyer_review?.[0]?.reviewRating || 0);
+  };
 
   // API CALLS
-  const { isLoading, mutate: mutateReviewPost } = useMutation(
+  // Create Review
+  const { isLoading, mutate: mutateCreateReview } = useMutation(
     reviewOnPostRequest,
     {
       onSuccess: () => {
-        toast.success('Review published.');
         refetchUser();
+        toast.success('Review published.');
         setComment('');
         setReviewRating(0);
       },
@@ -43,12 +67,24 @@ const OrderCommentBox = ({ user, order, refetchUser }) => {
     }
   );
 
+  // Update Review
+  const { mutate: mutateUpdateReview } = useMutation(updateReviewRequest, {
+    onSuccess: () => {
+      refetchUser();
+      setShowup(false);
+      toast.success('Review updated.');
+    },
+    onError: (err) => {
+      toast.error(`${err?.response.data?.data?.message}`);
+    },
+  });
+
   return (
     <CommentBoxContainer>
-      <RatingBar setScore={setReviewRating} />
+      <RatingBar score={reviewRating} setScore={setReviewRating} />
       <CommentWrapper>
         <FormInputComp
-          placeHolder="Comment on this item..."
+          placeHolder="Please review on this item..."
           inputType="textarea"
           value={comment}
           onChange={onChangeHandler}

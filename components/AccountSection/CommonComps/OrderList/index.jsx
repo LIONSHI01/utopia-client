@@ -61,9 +61,9 @@ const ListItem = ({ order, ...otherProps }) => {
   );
 };
 
-let PageSize = 3;
+let PageSize = 5;
 
-const OrderList = ({ orders, setSelectedOrder }) => {
+const OrderList = ({ orders, setSelectedOrder, setSelectedOrderId }) => {
   // CONFIGURATION
 
   // STATE MANAGEMENT
@@ -105,11 +105,14 @@ const OrderList = ({ orders, setSelectedOrder }) => {
           ))}
         </TableHeader>
 
-        {currentTableData?.map((order) => (
+        {currentTableData?.map((order, index) => (
           <ListItem
             key={order?.id}
             order={order}
-            onClick={() => setSelectedOrder(order)}
+            onClick={() => {
+              setSelectedOrder(order);
+              setSelectedOrderId(order?.id);
+            }}
           />
         ))}
       </ListTable>

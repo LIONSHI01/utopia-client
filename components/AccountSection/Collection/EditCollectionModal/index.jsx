@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { IoMdClose, IoMdTrash } from 'react-icons/io';
+// import { IoMdClose, IoMdTrash } from 'react-icons/io';
+
+import { IoMdClose, IoMdTrash } from '../../../ReactIcons';
 
 import {
   updateCollection,
@@ -23,7 +24,6 @@ const EditCollectionModal = ({
   setShowUp,
   refetchUser,
 }) => {
-  const router = useRouter();
   const [name, setName] = useState(collection?.name);
 
   useEffect(() => {
@@ -88,7 +88,6 @@ const EditCollectionModal = ({
           <Button onClick={onSubmitHandler}>Save</Button>
         </div>
       </ModalContainer>
-      ;
       <Overlay showUp={showUp} setShowUp={setShowUp} />
     </>
   );

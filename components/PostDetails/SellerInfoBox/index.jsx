@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-
 import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { AiFillStar } from 'react-icons/ai';
-import { BsThreeDotsVertical, BsBookmarkStarFill } from 'react-icons/bs';
 
+import {
+  AiFillStar,
+  BsThreeDotsVertical,
+  BsBookmarkStarFill,
+  BsThreeDots,
+} from '../../ReactIcons';
 import { updateUserProfile } from '../../../utils/apiData/userRequest';
 import { newFollowingsCalculator } from '../../../utils/profileCalculator';
 

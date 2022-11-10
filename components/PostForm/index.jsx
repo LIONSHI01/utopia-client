@@ -196,7 +196,7 @@ const PostForm = ({ images }) => {
                     name="price"
                     required
                     value={price}
-                    min="0"
+                    // min="0"
                     placeholder="Price of your listing"
                     onChange={onChangeHandler}
                   />

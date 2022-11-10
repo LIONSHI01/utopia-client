@@ -10,6 +10,7 @@ import {
 import { BiTimeFive } from 'react-icons/bi';
 import { FaWallet } from 'react-icons/fa';
 import { MdDelete, MdDoneAll, MdAddAPhoto } from 'react-icons/md';
+import { IoMdClose, IoMdTrash } from 'react-icons/io';
 import { CgSandClock } from 'react-icons/cg';
 import { GrFacebookOption } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
@@ -25,6 +26,9 @@ import {
   BsFillFileEarmarkTextFill,
   BsFillHeartFill,
   BsTag,
+  BsThreeDotsVertical,
+  BsBookmarkStarFill,
+  BsThreeDots,
 } from 'react-icons/bs';
 
 export {
@@ -55,4 +59,9 @@ export {
   BsFillFileEarmarkTextFill,
   BsFillHeartFill,
   BsTag,
+  BsThreeDotsVertical,
+  BsBookmarkStarFill,
+  BsThreeDots,
+  IoMdClose,
+  IoMdTrash,
 };

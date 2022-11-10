@@ -150,6 +150,44 @@ export const ItemInfoBoxContainer = styled.div`
     font-style: italic;
   }
 
-  .comment_box_section {
+  .order_comment_content {
+    font-size: var(--fs-s);
+  }
+`;
+
+export const CommentSection = styled.div`
+  .comment_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+  .comment_user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .username {
+    font-size: var(--fs-ss);
+    font-weight: 500;
+  }
+
+  .comment_details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .order_comment_content {
+    font-size: var(--fs-s);
+    font-weight: 100;
+  }
+
+  .edit_button {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 `;

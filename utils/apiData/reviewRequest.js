@@ -23,3 +23,30 @@ export const reviewOnPostRequest = async ({
 
   return res;
 };
+
+export const updateReviewRequest = async ({
+  reviewId,
+  content,
+  reviewRating,
+}) => {
+  const res = await axios({
+    url: `${baseURL}/reviews/${reviewId}`,
+    method: 'PATCH',
+    data: {
+      content,
+      reviewRating,
+    },
+  });
+
+  return res;
+};
+
+export const deleteReviewRequest = async ({ userId, reviewId }) => {
+  const res = await axios({
+    url: `${baseURL}/reviews/${reviewId}`,
+    method: 'DELETE',
+    data: { userId },
+  });
+
+  return res;
+};

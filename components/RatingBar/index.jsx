@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { BarContainer } from './index.styles';
 import { AiFillStar } from '../ReactIcons';
 import { ratingScore } from '../../assets/constants';
 
-const RatingBar = ({ starSize = 20, setScore }) => {
+const RatingBar = ({ starSize = 20, score, setScore }) => {
   const [hoverState, setHoverState] = useState(0);
-  const [selectedRating, setSelectedRating] = useState(0);
+  const [selectedRating, setSelectedRating] = useState(score || 0);
 
   const onClickHandler = (index) => {
     setScore(index);
     setSelectedRating(index);
   };
+
+  useEffect(() => {
+    setSelectedRating(score);
+  }, [score]);
 
   return (
     <BarContainer>

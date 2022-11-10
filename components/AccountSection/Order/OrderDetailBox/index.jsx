@@ -82,7 +82,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
           order={order}
           user={user}
           refetchUser={refetchUser}
-          buyer={true}
+          orderSection={true}
         />
 
         <TransactionInfoBox>
