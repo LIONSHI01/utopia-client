@@ -31,12 +31,19 @@ const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
   const [selectedCollection, setSelectedCollection] = useState(
     user?.itemCollections?.[0]
   );
+  const [selectedCollectionId, setSelectedCollectionId] = useState(null);
 
   useEffect(() => {
     setItemCollections(user?.itemCollections);
-    setSelectedCollection(user?.itemCollections?.[0]);
-  }, [user]);
-
+    setSelectedCollection(
+      user?.itemCollections?.filter(
+        (col) => col.id === selectedCollectionId
+      )?.[0]
+    );
+  }, [user, selectedCollectionId]);
+  console.log(selectedCollectionId);
+  console.log(selectedCollection);
+  // console.log(user?.itemCollections);
   return (
     <SectionContainer>
       <ContentsContainer>
@@ -47,7 +54,7 @@ const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
               <CollectionItem
                 key={itemCollection?._id}
                 collection={itemCollection}
-                onClick={() => setSelectedCollection(itemCollection)}
+                onClick={() => setSelectedCollectionId(itemCollection?._id)}
               />
             ))}
           </div>

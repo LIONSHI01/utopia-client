@@ -6,16 +6,23 @@ import {
   AiTwotoneSetting,
   AiOutlineGift,
   AiTwotoneEdit,
+  AiOutlinePlus,
 } from 'react-icons/ai';
 import { BiTimeFive } from 'react-icons/bi';
 import { FaWallet } from 'react-icons/fa';
-import { MdDelete, MdDoneAll, MdAddAPhoto } from 'react-icons/md';
-import { IoMdClose, IoMdTrash } from 'react-icons/io';
+import {
+  MdDelete,
+  MdDoneAll,
+  MdAddAPhoto,
+  MdModeEditOutline,
+  MdLocalOffer,
+} from 'react-icons/md';
+import { IoMdClose, IoMdTrash, IoIosWarning } from 'react-icons/io';
 import { CgSandClock } from 'react-icons/cg';
 import { GrFacebookOption } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
 import { HiOutlineMail } from 'react-icons/hi';
-import { MdLocalOffer } from 'react-icons/md';
+
 import { TbFileInvoice } from 'react-icons/tb';
 import { FiSettings } from 'react-icons/fi';
 import { RiAuctionFill, RiAuctionLine } from 'react-icons/ri';
@@ -30,6 +37,7 @@ import {
   BsBookmarkStarFill,
   BsThreeDots,
 } from 'react-icons/bs';
+import { ImEarth } from 'react-icons/im';
 
 export {
   BsCheck2Circle,
@@ -62,6 +70,10 @@ export {
   BsThreeDotsVertical,
   BsBookmarkStarFill,
   BsThreeDots,
+  ImEarth,
   IoMdClose,
   IoMdTrash,
+  IoIosWarning,
+  MdModeEditOutline,
+  AiOutlinePlus,
 };

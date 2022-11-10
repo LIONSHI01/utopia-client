@@ -11,6 +11,7 @@ import {
   MdDelete,
   MdDoneAll,
   CgSandClock,
+  IoIosWarning,
 } from '../../../ReactIcons';
 import { selectEthPrice } from '../../../../store/post/post.selector';
 
@@ -28,7 +29,7 @@ import {
   CommentSection,
 } from '../../../index';
 
-import { ItemInfoBoxContainer } from './index.styles';
+import { ItemInfoBoxContainer, ItemDetailsWrapper } from './index.styles';
 
 const ItemInfoBox = ({
   order,
@@ -39,7 +40,8 @@ const ItemInfoBox = ({
   offerSection,
 }) => {
   const { post, value } = order || {};
-  const { category, title, coverImages, subCategory, description } = post || {};
+  const { category, title, coverImages, subCategory, description, active } =
+    post || {};
   const ethPrice = useSelector(selectEthPrice);
 
   // STATE MANAGEMENT
@@ -128,7 +130,7 @@ const ItemInfoBox = ({
             )}
           </div>
         </div>
-        <div className="item_details_wrapper">
+        <ItemDetailsWrapper isItemActive={active}>
           <div className="image_container">
             <Image
               alt={title}
@@ -139,12 +141,26 @@ const ItemInfoBox = ({
             />
           </div>
           <div className="details_description">
-            <span className="item-title">{title}</span>
-            <p>
+            <div className="details_header">
+              <span className="item-title">{title}</span>
+              <div className="item-status">
+                {active ? (
+                  <span>Listing</span>
+                ) : (
+                  <div className="item_status_unlisted">
+                    <IoIosWarning size={15} color="var(--yellow)" />
+                    <span>Unlisted</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            <p className="details_category">
               {category?.replace('-', ' & ')},&nbsp;
               {subCategory?.replace('-', ' & ')}
             </p>
-            <p>{description?.slice(0, 100) + '...'}</p>
+            <p className="details_description">
+              {description?.slice(0, 100) + '...'}
+            </p>
           </div>
           <div className="details_value">
             <div className="details_value">{value} ETH</div>
@@ -180,7 +196,7 @@ const ItemInfoBox = ({
               <span>Confirmed</span>
             </div>
           )}
-        </div>
+        </ItemDetailsWrapper>
         {!order?.transaction_validated && order?.status !== 'cancelled' && (
           <div className="edit-btn">
             <IconButton

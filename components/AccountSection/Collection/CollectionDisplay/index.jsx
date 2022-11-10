@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { MdModeEditOutline } from 'react-icons/md';
-import { ImEarth } from 'react-icons/im';
+
+import { MdModeEditOutline, ImEarth } from '../../../ReactIcons';
 
 import {
   DisplaySection,
   TitleContainer,
   ItemsListContainer,
 } from './index.styles';
+
 import {
   IconButton,
   ICON_BUTTON_TYPES,
-  ProductCard,
   EditCollectionModal,
+  CollectionProductCard,
 } from '../../../index';
 
 const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
@@ -34,12 +35,17 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
         </div>
         <div className="items-count">
           <ImEarth size={15} color="var(--black-light-2)" />
-          <span>{collection?.items.length || 0}&nbsp;Items</span>
+          <span>{collection?.items?.length || 0}&nbsp;Items</span>
         </div>
       </TitleContainer>
       <ItemsListContainer>
         {collection?.items?.map((item) => (
-          <ProductCard key={item?._id} post={item} />
+          <CollectionProductCard
+            key={item?._id}
+            post={item}
+            collection={collection}
+            refetchUser={refetchUser}
+          />
         ))}
       </ItemsListContainer>
       {collection && (

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { useSession } from 'next-auth/react';
 
-import { BsFillHeartFill } from 'react-icons/bs';
-import ethIcon from '../../assets/image/eth-icon.png';
-import { selectUser } from '../../store/user/user.selector';
-import { selectEthPrice } from '../../store/post/post.selector';
-import { isItemLiked } from '../../utils/profileCalculator';
+import ethIcon from '../../../../assets/image/eth-icon.png';
+import { selectEthPrice } from '../../../../store/post/post.selector';
+import { removeItemFromCollection } from '../../../../utils/profileCalculator';
+import { useUpdateCollection } from '../../../../utils/reactQueryHooks/collectionHooks/updateCollectionHook';
+
+import { IoMdTrash } from '../../../ReactIcons';
 
 import {
   UserIcon,
@@ -17,7 +17,7 @@ import {
   BUTTON_TYPES,
   ProfilePreviewCard,
   AddToCollectionModal,
-} from '../index';
+} from '../../../index';
 
 import {
   CardContainer,
@@ -26,29 +26,35 @@ import {
   ContentContainer,
 } from './index.styles';
 
-const ProductCard = ({ post }) => {
+const CollectionProductCard = ({ post, collection, refetchUser }) => {
   // CONFIGURATION
   const router = useRouter();
-  // const { data } = useSession();
+  const { mutate: mutateUpdateCollection } = useUpdateCollection({
+    refetchUser,
+  });
 
   let hoverTimer;
 
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const user = useSelector(selectUser);
   const ethPrice = useSelector(selectEthPrice);
 
-  // console.log('product card:', post);
-  useEffect(() => {
-    const result = isItemLiked(post?.collectionsLike, user?._id);
-    setIsLiked(result);
-  }, [post, user]);
+  const removeItemHandler = () => {
+    const newItemsArr = removeItemFromCollection({
+      itemToRemoveId: post?.id,
+      itemsArr: collection?.items,
+    });
 
-  console.log(post);
+    mutateUpdateCollection({
+      collectionId: collection?.id,
+      items: newItemsArr,
+    });
+    console.log(newItemsArr);
+  };
 
-  // const isItemLiked = useVerifyItemLiked({});
+  console.log('collectionProductCard-post:', post);
+  console.log('collectionProductCard-collection:', collection);
 
   return (
     <>
@@ -114,14 +120,8 @@ const ProductCard = ({ post }) => {
             <span className="status">Brand New</span>
           </div>
           <div className="buttons-group">
-            <button
-              onClick={() => setShowAddCollectionModal(true)}
-              className="like-btn"
-            >
-              <BsFillHeartFill
-                size={25}
-                className={isLiked ? 'icon is_liked' : 'icon'}
-              />
+            <button onClick={removeItemHandler} className="like-btn">
+              <IoMdTrash size={25} className="icon" />
             </button>
             <Button
               size="m"
@@ -148,4 +148,4 @@ const ProductCard = ({ post }) => {
   );
 };
 
-export default ProductCard;
+export default CollectionProductCard;

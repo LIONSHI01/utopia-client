@@ -1,3 +1,4 @@
+/* **********COLLECTION ITEMS********* */
 export const newCollectionItems = (itemsList, targetItemId) => {
   const existingItem = !!itemsList.filter((item) => item._id === targetItemId)
     .length;
@@ -17,7 +18,13 @@ export const isItemLiked = (postLikedCollection, currentUserId) => {
   return isLiked;
 };
 
-// Followings
+export const removeItemFromCollection = ({ itemToRemoveId, itemsArr }) => {
+  const newItemsArr = itemsArr.filter((item) => item?.id !== itemToRemoveId);
+
+  return newItemsArr;
+};
+
+/* **********FOLLOWINGS********* */
 export const newFollowingsCalculator = (followingsList, followUserId) => {
   const existingFollowing = !!followingsList?.filter(
     (item) => item === followUserId

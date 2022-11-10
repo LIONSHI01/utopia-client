@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import { AiOutlineGift } from 'react-icons/ai';
 import { useMutation } from 'react-query';
+import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
-import { ImEarth } from 'react-icons/im';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { IoMdClose } from 'react-icons/io';
+
+import {
+  AiOutlineGift,
+  ImEarth,
+  AiOutlinePlus,
+  IoMdClose,
+} from '../../../ReactIcons';
 
 import {
   ModalContainer,
@@ -22,6 +25,7 @@ import {
 } from '../../../index';
 import { updateCollection } from '../../../../utils/collectionRequest';
 import { newCollectionItems } from '../../../../utils/profileCalculator';
+import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
 
 const Collection = ({ isLoading, collection, ...otherProps }) => {
   if (isLoading)
@@ -49,13 +53,14 @@ const Collection = ({ isLoading, collection, ...otherProps }) => {
 
 const AddToCollectionModal = ({
   postId,
-  collections,
   showAddToColModal,
   setShowAddToColModal,
   refetchUser,
   refetchPost,
 }) => {
   // CONFIGURATION
+  const { data } = useSession();
+  const { user } = useGetUserHook({ userId: data?.profile?.id });
 
   // STATE MANAGEMENT
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -113,7 +118,7 @@ const AddToCollectionModal = ({
             </div>
             <span className="name">Create new collection</span>
           </button>
-          {collections?.map((collection) => (
+          {user?.itemCollections?.map((collection) => (
             <Collection
               isLoading={isUpdating}
               key={collection._id}

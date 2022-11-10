@@ -286,7 +286,7 @@ const ProductDetailsPage = () => {
         refetchUser={refetchUser}
         refetchPost={refetchPost}
         postId={postId}
-        collections={user?.itemCollections}
+        
         showAddToColModal={showAddToColModal}
         setShowAddToColModal={setShowAddToColModal}
       />

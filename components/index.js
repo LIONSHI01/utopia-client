@@ -23,7 +23,7 @@ import FormInputComp from './InputComponents/FormInput';
 import CollectionDisplay from './AccountSection/Collection/CollectionDisplay';
 import EditCollectionModal from './AccountSection/Collection/EditCollectionModal';
 import MenuSidebar from './AccountSection/MenuSidebar';
-
+import CollectionProductCard from './AccountSection/Collection/CollectionProductCard';
 import NotificationDropdown from './Header/notificationDropdown';
 import AlertModal from './AlertModal';
 
@@ -98,4 +98,5 @@ export {
   OrderCommentBox,
   RatingBar,
   CommentSection,
+  CollectionProductCard,
 };
