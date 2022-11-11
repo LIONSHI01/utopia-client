@@ -3,7 +3,9 @@ import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 import validator from 'validator';
 
-import { ImProfile } from 'react-icons/im';
+// import { ImProfile } from 'react-icons/im';
+
+import { FaWallet, ImProfile } from '../../../index';
 
 import { updateUserProfile } from '../../../../utils/apiData/userRequest';
 
@@ -18,11 +20,12 @@ import {
 const ProfileBox = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
   const [profileFields, setProfileFields] = useState(user);
+  const [walletAddress, setwalletAddress] = useState(user?.walletAddress);
 
   const {
     name,
     email,
-    walletAddress,
+    // walletAddress,
     bio,
     location,
     facebook,
@@ -65,9 +68,10 @@ const ProfileBox = ({ user, refetchUser }) => {
     setProfileFields(user);
   };
 
+  // API CALLS
   const { isLoading: isUpdatingProfile, mutate: mutateUserProfile } =
     useMutation(updateUserProfile, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         toast.success('Profile updated');
         refetchUser();
       },
@@ -75,6 +79,19 @@ const ProfileBox = ({ user, refetchUser }) => {
         console.log(err);
       },
     });
+
+  // HANDLERS
+  const connectWalletHandler = async () => {
+    if (window.ethereum) {
+      await window.ethereum
+        .request({ method: 'eth_requestAccounts' })
+        .then((res) => {
+          setwalletAddress(res[0]);
+        });
+    } else {
+      alert('Please install Metamask extension.');
+    }
+  };
 
   return (
     <ProfileWrapper>
@@ -154,14 +171,16 @@ const ProfileBox = ({ user, refetchUser }) => {
         <div className="profile-buttons-group">
           <Button
             isLoading={isUpdatingProfile}
-            size="x"
+            width="7rem"
+            height="4rem"
             buttonType={BUTTON_TYPES.outlineRed}
             onClick={onSubmitProfileHandler}
           >
             Save
           </Button>
           <Button
-            size="x"
+            width="14rem"
+            height="4rem"
             buttonType={BUTTON_TYPES.outlineGrey}
             onClick={restoreProfileHandler}
           >

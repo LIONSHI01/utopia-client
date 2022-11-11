@@ -12,7 +12,7 @@ export const ContentsContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  padding: 3rem;
 
   .heading {
     display: block;

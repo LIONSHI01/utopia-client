@@ -9,7 +9,7 @@ import {
   DisplayList,
 } from './index.styles';
 
-import { ProductCard } from '../../index';
+import { ProductCard, EmptyReminderBox } from '../../index';
 
 const CreateButton = ({ ...otherProps }) => (
   <CreateButtonWrapper {...otherProps}>
@@ -21,7 +21,7 @@ const CreateButton = ({ ...otherProps }) => (
 const ListingsMasterSection = ({ user, isAuthenticated }) => {
   // CONFIGURATION
   const router = useRouter();
-  
+
   // STATE MANAGEMENT
   const [listings, setListings] = useState(null);
 
@@ -30,10 +30,23 @@ const ListingsMasterSection = ({ user, isAuthenticated }) => {
     setListings(user?.posts?.filter((post) => post?.active === true));
   }, [user]);
 
+  if (listings?.length === 0)
+    return (
+      <EmptyReminderBox
+        message="No listing yet."
+        buttonText="Let's List One !"
+        buttonWidth="15rem"
+        buttonHeight="4rem"
+        fontSize="2.4rem"
+        link="/create-post"
+        isAuthenticated={isAuthenticated}
+      />
+    );
+
   return (
     <SectionContainer>
       <ContentsContainer>
-        <h3 className="heading">Listings</h3>
+        {/* <h3 className="heading">Listings</h3> */}
         <DisplayList>
           {listings?.map((item) => (
             <ProductCard key={item?._id} post={item} />

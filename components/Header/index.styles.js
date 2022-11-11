@@ -94,6 +94,11 @@ export const HeaderWrapper = styled.div`
     }
   }
 
+  .icon_btn {
+    cursor: pointer;
+    color: var(--black-light-2);
+  }
+
   .auth-buttons {
     display: flex;
     gap: 1rem;

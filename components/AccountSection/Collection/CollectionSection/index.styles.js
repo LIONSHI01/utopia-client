@@ -10,11 +10,13 @@ export const SectionContainer = styled.div`
 export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  padding: 3rem;
   width: 100%;
 `;
 
 export const CollectionSection = styled.div`
+  border-bottom: 1px solid var(--black-light-3);
+  padding-bottom: 5rem;
   .heading {
     display: block;
     font-size: var(--fs-xl);

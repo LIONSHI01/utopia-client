@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useSession } from 'next-auth/react';
 
 import { BsFillHeartFill } from 'react-icons/bs';
 import ethIcon from '../../assets/image/eth-icon.png';
@@ -16,6 +17,7 @@ import {
   BUTTON_TYPES,
   ProfilePreviewCard,
   AddToCollectionModal,
+  AuthForm,
 } from '../index';
 
 import {
@@ -35,13 +37,20 @@ const ProductCard = ({ post }) => {
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [showAuthForm, setShowAuthForm] = useState(false);
   const user = useSelector(selectUser);
   const ethPrice = useSelector(selectEthPrice);
+  const { data } = useSession();
 
   useEffect(() => {
     const result = isItemLiked(post?.collectionsLike, user?._id);
     setIsLiked(result);
   }, [post, user]);
+
+  const onClickLikeBtn = () => {
+    if (!data) return setShowAuthForm(true);
+    setShowAddCollectionModal(true);
+  };
 
   return (
     <>
@@ -107,10 +116,7 @@ const ProductCard = ({ post }) => {
             <span className="status">Brand New</span>
           </div>
           <div className="buttons-group">
-            <button
-              onClick={() => setShowAddCollectionModal(true)}
-              className="like-btn"
-            >
+            <button onClick={onClickLikeBtn} className="like-btn">
               <BsFillHeartFill
                 size={25}
                 className={isLiked ? 'icon is_liked' : 'icon'}
@@ -137,6 +143,7 @@ const ProductCard = ({ post }) => {
         showAddToColModal={showAddCollectionModal}
         setShowAddToColModal={setShowAddCollectionModal}
       />
+      <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
     </>
   );
 };

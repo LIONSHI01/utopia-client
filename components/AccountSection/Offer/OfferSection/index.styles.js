@@ -18,18 +18,18 @@ export const ContentsContainer = styled.div`
   }
 `;
 
-export const EmptyOfferWrapper = styled.div`
-  height: 100%;
+// export const EmptyOfferWrapper = styled.div`
+//   height: 100%;
 
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+//   margin: 0 auto;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 1rem;
 
-  p {
-    font-size: var(--fs-xl);
-    font-style: italic;
-  }
-`;
+//   p {
+//     font-size: var(--fs-xl);
+//     font-style: italic;
+//   }
+// `;

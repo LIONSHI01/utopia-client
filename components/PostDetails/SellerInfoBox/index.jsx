@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { useSession } from 'next-auth/react';
 
 import { BsThreeDotsVertical, BsBookmarkStarFill } from '../../ReactIcons';
 import { updateUserProfile } from '../../../utils/apiData/userRequest';
@@ -31,7 +32,8 @@ const SellerInfoBox = ({
   const sales = seller?.offers?.filter(
     (offer) => offer.status === 'completed'
   )?.length;
-  console.log('sellerinfobox', seller);
+  const { data } = useSession();
+
   // STATE MANAGEMENT
   const [showEditDropdown, setShowEditDropdown] = useState(false);
   const [showAuthForm, setShowAuthForm] = useState(false);
@@ -66,6 +68,8 @@ const SellerInfoBox = ({
 
   // HANDLERS
   const onFollowHandler = () => {
+    if (!data) return setShowAuthForm(true);
+
     const newFollowingsArr = newFollowingsCalculator(
       user?.followings,
       post?.postedBy?.id

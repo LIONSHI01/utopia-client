@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { useMutation } from 'react-query';
 
 import { signupRequest } from '../../utils/authRequest';
 import { Button, BUTTON_TYPES, Overlay } from '../index';
@@ -16,11 +16,9 @@ const INITIAL_FORM_FIELD = {
 
 const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   // CONFIGURATION
-  const router = useRouter();
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
   const { username, email, password, passwordConfirm } = formField;
 
@@ -34,32 +32,47 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (isSignup) {
-      setIsLoading(true);
-      if (password === passwordConfirm) {
-        await signupRequest({ username, email, password });
-        setIsLoading(false);
-        setShowAuthForm(false);
-      }
-      setIsLoading(false);
+      if (password !== passwordConfirm)
+        return toast.error('Password not macth, please confirm again!');
+
+      mutateSignup({ username, email, password });
     } else {
-      setIsLoading(true);
+      mutateSignin();
+    }
+  };
+
+  const { isLoading: isSignningup, mutate: mutateSignup } = useMutation(
+    signupRequest,
+    {
+      onSuccess: () => {
+        setFormField(INITIAL_FORM_FIELD);
+        setShowAuthForm(false);
+        toast.success('Signup successfully, you may login now!');
+      },
+      onError: (err) => {
+        toast.error(`${err.response.data.data.message}`);
+      },
+    }
+  );
+
+  const { isLoading: isSignningin, mutate: mutateSignin } = useMutation(
+    () =>
       signIn('credentials', {
         email,
         password,
         redirect: false,
-      }).then((res) => {
-        if (res.ok) {
-          setShowAuthForm(false);
-          setFormField(INITIAL_FORM_FIELD);
-          toast.success('Welcome back!');
-          router.replace('/');
-          setIsLoading(false);
-        }
-        toast.warn(res.error);
-        // console.log(res);
-      });
+      }),
+    {
+      onSuccess: () => {
+        setFormField(INITIAL_FORM_FIELD);
+        setShowAuthForm(false);
+        toast.success('Welcome back!');
+      },
+      onError: (err) => {
+        toast.error(`${err.response.data.data.message}`);
+      },
     }
-  };
+  );
 
   return (
     <>
@@ -76,6 +89,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               placeholder="Username"
               onChange={onChangeHandler}
               className="input-field"
+              required
             />
           )}
           <input
@@ -85,6 +99,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             placeholder="Email"
             onChange={onChangeHandler}
             className="input-field"
+            required
           />
           <input
             name="password"
@@ -93,6 +108,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             placeholder="Password"
             onChange={onChangeHandler}
             className="input-field"
+            required
           />
           {isSignup && (
             <input
@@ -102,16 +118,16 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               placeholder="Confirm Password"
               onChange={onChangeHandler}
               className="input-field"
+              required
             />
           )}
-          <Button size="x" type="submit" isLoading={isLoading}>
-            {isSignup
-              ? isLoading
-                ? 'Signing up'
-                : 'Sign up'
-              : isLoading
-              ? 'Signing in'
-              : 'Sign in'}
+          <Button
+            height="4rem"
+            width="100%"
+            type="submit"
+            isLoading={isSignningup || isSignningin}
+          >
+            {isSignup ? 'Sign up' : 'Sign in'}
           </Button>
           {!isSignup && (
             <div className="forget">

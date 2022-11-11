@@ -14,7 +14,7 @@ const UserMenuDropdown = ({ user, showUp, setShowUp }) => {
   return (
     <MenuWrapper showUp={showUp}>
       <ContentWrapper showUp={showUp}>
-        <Link href={`/users/${user?._id}`}>
+        <Link href={`/users/${user?._id}/collections`}>
           <a className="userInfo" onClick={() => setShowUp(false)}>
             <UserIcon user={user} size="s" />
             <div className="info-box">

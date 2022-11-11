@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Router from 'next/router';
+
 import { useDispatch } from 'react-redux';
 
-import {
-  PageContainer,
-  ContentsContainer,
-  EmptyOfferWrapper,
-} from './index.styles';
+import { PageContainer, ContentsContainer } from './index.styles';
 import OfferDetailsBox from '../OfferDetailsBox';
-import { OrderList, Button } from '../../../index';
+import { OrderList, EmptyReminderBox } from '../../../index';
 
 const OffersMasterSection = ({ user, refetchUser }) => {
   const dispatch = useDispatch();
@@ -27,14 +23,14 @@ const OffersMasterSection = ({ user, refetchUser }) => {
 
   if (user?.offers?.length === 0) {
     return (
-      <PageContainer>
-        <EmptyOfferWrapper>
-          <p>No offer yet.</p>
-          <Button size="x" onClick={() => Router.push('/create-post')}>
-            List Your First Item !
-          </Button>
-        </EmptyOfferWrapper>
-      </PageContainer>
+      <EmptyReminderBox
+        message="No offer yet."
+        fontSize="2.5rem"
+        buttonText="Let's List One !"
+        buttonHeight="4rem"
+        buttonWidth="14rem"
+        link="/create-post"
+      />
     );
   }
 

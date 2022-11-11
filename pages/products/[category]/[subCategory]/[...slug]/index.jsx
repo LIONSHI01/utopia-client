@@ -17,6 +17,7 @@ import {
   AddToCollectionModal,
   Spinner,
   ReviewBox,
+  AuthForm,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
@@ -65,12 +66,11 @@ const ProductDetailsPage = () => {
     userId: post?.postedBy?.id,
   });
 
-  // console.log(post);
   // STATE MANAGEMENT
-
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
   const [showAddToColModal, setShowAddToColModal] = useState(false);
+  const [showAuthForm, setShowAuthForm] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -80,6 +80,7 @@ const ProductDetailsPage = () => {
     const ifLiked = isItemLiked(post?.collectionsLike, user?._id);
     setIsLiked(ifLiked);
 
+    // API CALLS
     // Check if PostCreator is follower by current user
     const ifFollowing = validateFollowingUser(
       user?.followings,
@@ -104,7 +105,21 @@ const ProductDetailsPage = () => {
     },
   });
 
-  // API CALLS
+  // HANDLERS
+  const onClickAddToCollectionHandler = () => {
+    if (!data) return setShowAuthForm(true);
+    setShowAddToColModal(true);
+  };
+  const onClickBuyHandler = () => {
+    if (!data) return setShowAuthForm(true);
+    mutateBuying({
+      userId: user?._id,
+      sellerId: post?.postedBy?._id,
+      postId: post?._id,
+      value: post?.price,
+    });
+  };
+
   if (isLoadingPost)
     return (
       <LoadingPageContainer>
@@ -210,21 +225,14 @@ const ProductDetailsPage = () => {
                       buttonType={
                         isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
                       }
-                      onClick={() => setShowAddToColModal(true)}
+                      onClick={onClickAddToCollectionHandler}
                     >
                       {isLiked ? 'Liked' : 'Add to collection'}
                     </Button>
                     <Button
                       isLoading={isOrdering}
                       size="full"
-                      onClick={() =>
-                        mutateBuying({
-                          userId: user?._id,
-                          sellerId: post?.postedBy?._id,
-                          postId: post?._id,
-                          value: post?.price,
-                        })
-                      }
+                      onClick={onClickBuyHandler}
                     >
                       {isOrderSuccess ? 'Ordered' : 'Buy now'}
                     </Button>
@@ -297,6 +305,7 @@ const ProductDetailsPage = () => {
         showAddToColModal={showAddToColModal}
         setShowAddToColModal={setShowAddToColModal}
       />
+      <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
     </>
   );
 };

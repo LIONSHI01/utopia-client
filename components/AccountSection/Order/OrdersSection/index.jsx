@@ -6,13 +6,17 @@ import {
   EmptyOrderWrapper,
 } from './index.styles';
 
-import { OrderList, OrderDetailBox, Button } from '../../../index';
+import {
+  OrderList,
+  OrderDetailBox,
+  Button,
+  EmptyReminderBox,
+} from '../../../index';
 
 const OrdersMasterSection = ({ user, refetchUser }) => {
   // STATE MANAGEMENT
   const [orders, setOrders] = useState(null);
   const [selectedOrder, setSelectedOrder] = useState(user?.orders?.[0]);
-  // const [selectedOrderIndex, setSelectedOrderIndex] = useState(0);
   const [selectedOrderId, setSelectedOrderId] = useState('');
 
   useEffect(() => {
@@ -25,14 +29,14 @@ const OrdersMasterSection = ({ user, refetchUser }) => {
 
   if (user?.orders?.length === 0) {
     return (
-      <PageContainer>
-        <EmptyOrderWrapper>
-          <p>No order yet.</p>
-          <Button size="x" onClick={() => Router.push('/')}>
-            Let&#39;s Explore !
-          </Button>
-        </EmptyOrderWrapper>
-      </PageContainer>
+      <EmptyReminderBox
+        message="No order yet."
+        fontSize="2.5rem"
+        buttonText="Let's Explore !"
+        buttonHeight="4rem"
+        buttonWidth="14rem"
+        link="/"
+      />
     );
   }
 

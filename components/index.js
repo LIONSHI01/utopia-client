@@ -47,6 +47,7 @@ import RatingBar from './RatingBar';
 import CommentSection from './AccountSection/CommonComps/CommentSection';
 import PostsDisplayList from './PostDetails/PostsDisplayList';
 import Footer from './Footer';
+import EmptyReminderBox from './AccountSection/CommonComps/EmptyReminderBox';
 
 export {
   MainHeader,
@@ -99,4 +100,5 @@ export {
   CollectionProductCard,
   PostsDisplayList,
   Footer,
+  EmptyReminderBox,
 };

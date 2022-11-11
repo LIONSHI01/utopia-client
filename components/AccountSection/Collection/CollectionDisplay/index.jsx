@@ -13,6 +13,7 @@ import {
   ICON_BUTTON_TYPES,
   EditCollectionModal,
   CollectionProductCard,
+  EmptyReminderBox,
 } from '../../../index';
 
 const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
@@ -20,24 +21,26 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
 
   return (
     <DisplaySection>
-      <TitleContainer>
-        <div className="title">
-          <h3>{collection?.name}</h3>
-          {isAuthenticated && (
-            <IconButton
-              size="x"
-              buttonType={ICON_BUTTON_TYPES.hoverBackground}
-              onClick={() => setShowEditModal(true)}
-            >
-              <MdModeEditOutline size={20} />
-            </IconButton>
-          )}
-        </div>
-        <div className="items-count">
-          <ImEarth size={15} color="var(--black-light-2)" />
-          <span>{collection?.items?.length || 0}&nbsp;Items</span>
-        </div>
-      </TitleContainer>
+      {collection?.items?.length > 0 && (
+        <TitleContainer>
+          <div className="title">
+            <h3>{collection?.name}</h3>
+            {isAuthenticated && (
+              <IconButton
+                size="x"
+                buttonType={ICON_BUTTON_TYPES.hoverBackground}
+                onClick={() => setShowEditModal(true)}
+              >
+                <MdModeEditOutline size={20} />
+              </IconButton>
+            )}
+          </div>
+          <div className="items-count">
+            <ImEarth size={15} color="var(--black-light-2)" />
+            <span>{collection?.items?.length || 0}&nbsp;Items</span>
+          </div>
+        </TitleContainer>
+      )}
 
       <ItemsListContainer>
         {collection?.items?.length > 0 ? (
@@ -52,7 +55,15 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
             ))}
           </>
         ) : (
-          <p className="empty_reminder">No item yet.</p>
+          <EmptyReminderBox
+            message="No item yet."
+            fontSize="2rem"
+            buttonText="Let's Explore"
+            buttonHeight="4rem"
+            buttonWidth="12rem"
+            link="/"
+            isAuthenticated={isAuthenticated}
+          />
         )}
       </ItemsListContainer>
       {collection && (

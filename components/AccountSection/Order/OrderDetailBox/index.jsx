@@ -4,7 +4,6 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 
 import {
-  BsXCircleFill,
   FaWallet,
   BsCheck2Circle,
   AiTwotoneEdit,

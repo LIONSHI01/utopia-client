@@ -26,6 +26,7 @@ const MainHeader = () => {
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [showNotiDropdown, setShowNotiDropdown] = useState(false);
+
   const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -49,6 +50,17 @@ const MainHeader = () => {
     }
   };
 
+  // HANDLERS
+  const onClickSellBtn = () => {
+    if (!user) return setShowAuthForm(true);
+    Router.replace('/create-post');
+  };
+
+  const onClickHeartBtn = () => {
+    if (!user) return setShowAuthForm(true);
+    Router.replace(`/users/${user?._id}/collections`);
+  };
+
   useEffect(() => {
     window.addEventListener('scroll', setNavSticky, true);
   }, []);
@@ -67,11 +79,7 @@ const MainHeader = () => {
           </div>
           <Searchbar />
           <div className="links">
-            <Link href={`/users/${user?._id}/collections`}>
-              <a>
-                <FiHeart size={23} color="var(--black-light-2)" />
-              </a>
-            </Link>
+            <FiHeart size={23} className="icon_btn" onClick={onClickHeartBtn} />
             <div
               className="notification"
               onClick={() => setShowNotiDropdown((prev) => !prev)}
@@ -88,7 +96,7 @@ const MainHeader = () => {
               />
             </div>
 
-            <Button size="x" onClick={() => Router.replace('/create-post')}>
+            <Button size="x" onClick={onClickSellBtn}>
               Sell
             </Button>
 

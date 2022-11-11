@@ -6,5 +6,5 @@ export const DisplayContainer = styled.main`
   flex-wrap: wrap;
   gap: 3rem;
   margin: 0 auto;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 `;

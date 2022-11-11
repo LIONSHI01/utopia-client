@@ -12,6 +12,7 @@ import {
   CollectionItem,
   CreateCollectionModal,
   CollectionDisplay,
+  EmptyReminderBox,
 } from '../../../index';
 
 const CreateButton = ({ ...otherProps }) => (
@@ -46,16 +47,20 @@ const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
     <SectionContainer>
       <ContentsContainer>
         <CollectionSection>
-          <h3 className="heading">Collections</h3>
-          <div className="display-zone">
-            {itemCollections?.map((itemCollection) => (
-              <CollectionItem
-                key={itemCollection?._id}
-                collection={itemCollection}
-                onClick={() => setSelectedCollectionId(itemCollection?._id)}
-              />
-            ))}
-          </div>
+          {/* <h3 className="heading">Collections</h3> */}
+          {itemCollections?.length > 0 ? (
+            <div className="display-zone">
+              {itemCollections?.map((itemCollection) => (
+                <CollectionItem
+                  key={itemCollection?._id}
+                  collection={itemCollection}
+                  onClick={() => setSelectedCollectionId(itemCollection?._id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <EmptyReminderBox message="No Collection Yet." fontSize="2rem" />
+          )}
         </CollectionSection>
         <CollectionDisplay
           refetchUser={refetchUser}
