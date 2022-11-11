@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useDispatch } from 'react-redux';
-import { setSelectedOrder } from '../../../../store/order/order.action';
 
 import {
   PageContainer,
@@ -25,13 +24,6 @@ const OffersMasterSection = ({ user, refetchUser }) => {
         user?.offers?.[0]
     );
   }, [user, selectedOrderId]);
-
-  console.log(selectedOffer);
-  //!!!use set user id as key to filter selected order!!!
-
-  // useEffect(() => {
-  //   dispatch(setSelectedOrder(selectedOffer));
-  // }, [selectedOffer, dispatch, user]);
 
   if (user?.offers?.length === 0) {
     return (

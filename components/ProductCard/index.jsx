@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { useSession } from 'next-auth/react';
 
 import { BsFillHeartFill } from 'react-icons/bs';
 import ethIcon from '../../assets/image/eth-icon.png';
@@ -29,7 +28,6 @@ import {
 const ProductCard = ({ post }) => {
   // CONFIGURATION
   const router = useRouter();
-  // const { data } = useSession();
 
   let hoverTimer;
 
@@ -40,15 +38,10 @@ const ProductCard = ({ post }) => {
   const user = useSelector(selectUser);
   const ethPrice = useSelector(selectEthPrice);
 
-  // console.log('product card:', post);
   useEffect(() => {
     const result = isItemLiked(post?.collectionsLike, user?._id);
     setIsLiked(result);
   }, [post, user]);
-
-  console.log(post);
-
-  // const isItemLiked = useVerifyItemLiked({});
 
   return (
     <>

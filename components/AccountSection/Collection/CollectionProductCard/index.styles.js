@@ -97,7 +97,7 @@ export const ContentContainer = styled.div`
     justify-content: space-between;
   }
 
-  .like-btn {
+  .remove_btn {
     border: none;
     background-color: transparent;
     cursor: pointer;

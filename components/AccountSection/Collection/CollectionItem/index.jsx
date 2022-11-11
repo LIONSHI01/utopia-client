@@ -4,25 +4,41 @@ import Image from 'next/image';
 import { BsShop } from 'react-icons/bs';
 import { ImEarth } from 'react-icons/im';
 
-import { ItemWrapper } from './index.styles';
+import { ItemWrapper, ImageGridWrapper } from './index.styles';
 import placeholderImage from '../../../../assets/image/salad.jpg';
 
-const CollectionItem = ({ collection, ...otherProps }) => {
+const ImageGrid = ({ images }) => {
   return (
-    <ItemWrapper {...otherProps}>
-      <div className="image-container">
-        {placeholderImage ? (
+    <ImageGridWrapper>
+      {images?.map((image, i) => (
+        <div key={i} className="grid_item_container">
           <Image
-            src={placeholderImage}
+            src={image}
             alt="collection"
             layout="fill"
             objectFit="cover"
             objectPosition="center"
           />
-        ) : (
-          <BsShop size={25} />
-        )}
-      </div>
+        </div>
+      ))}
+    </ImageGridWrapper>
+  );
+};
+
+const CollectionItem = ({ collection, ...otherProps }) => {
+  const displayImagesArr = collection?.items?.map((item) => item?.coverImages);
+  // console.log(displayImagesArr);
+  return (
+    <ItemWrapper {...otherProps}>
+      {displayImagesArr?.length > 0 ? (
+        <div className="image-container">
+          <ImageGrid images={displayImagesArr} />
+        </div>
+      ) : (
+        <div className="placeholder_container">
+          <BsShop size={35} className="placeholder_icon" />
+        </div>
+      )}
 
       <p>{collection?.name}</p>
       <div className="total-items">

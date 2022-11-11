@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import {
@@ -23,12 +21,13 @@ const CreateButton = ({ ...otherProps }) => (
 const ListingsMasterSection = ({ user, isAuthenticated }) => {
   // CONFIGURATION
   const router = useRouter();
-
+  console.log(user);
   // STATE MANAGEMENT
   const [listings, setListings] = useState(null);
 
   useEffect(() => {
-    setListings(user?.posts);
+    // Filter only ACTIVE posts
+    setListings(user?.posts?.filter((post) => post?.active === true));
   }, [user]);
 
   return (

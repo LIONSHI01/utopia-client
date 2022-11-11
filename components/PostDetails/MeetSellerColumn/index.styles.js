@@ -50,10 +50,11 @@ export const ColumnWrapper = styled.div`
     }
   }
   .buttons-group {
+    align-self: flex-start;
     display: flex;
+    justify-content: end;
     gap: 1rem;
     margin-left: auto;
-    align-self: flex-start;
     height: 3rem;
     width: 30rem;
   }

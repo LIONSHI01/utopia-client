@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useSession } from 'next-auth/react';
 
 import ethIcon from '../../../../assets/image/eth-icon.png';
 import { selectEthPrice } from '../../../../store/post/post.selector';
@@ -26,20 +27,22 @@ import {
   ContentContainer,
 } from './index.styles';
 
+let hoverTimer;
 const CollectionProductCard = ({ post, collection, refetchUser }) => {
   // CONFIGURATION
   const router = useRouter();
   const { mutate: mutateUpdateCollection } = useUpdateCollection({
     refetchUser,
   });
-
-  let hoverTimer;
+  const { data: user } = useSession();
 
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const ethPrice = useSelector(selectEthPrice);
 
+  // HANDLERS
   const removeItemHandler = () => {
     const newItemsArr = removeItemFromCollection({
       itemToRemoveId: post?.id,
@@ -50,11 +53,12 @@ const CollectionProductCard = ({ post, collection, refetchUser }) => {
       collectionId: collection?.id,
       items: newItemsArr,
     });
-    console.log(newItemsArr);
   };
 
-  console.log('collectionProductCard-post:', post);
-  console.log('collectionProductCard-collection:', collection);
+  useEffect(() => {
+    const verifiedResult = user?.profile?._id === post?.postedBy?.id;
+    setIsAuthenticated(verifiedResult);
+  }, [user, post]);
 
   return (
     <>
@@ -120,11 +124,15 @@ const CollectionProductCard = ({ post, collection, refetchUser }) => {
             <span className="status">Brand New</span>
           </div>
           <div className="buttons-group">
-            <button onClick={removeItemHandler} className="like-btn">
-              <IoMdTrash size={25} className="icon" />
-            </button>
+            {isAuthenticated && (
+              <button onClick={removeItemHandler} className="remove_btn">
+                <IoMdTrash size={25} className="icon" />
+              </button>
+            )}
             <Button
-              size="m"
+              // size="x"
+              width="7rem"
+              height="3.5rem"
               type="button"
               buttonType={BUTTON_TYPES.base}
               onClick={() =>

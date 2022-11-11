@@ -38,15 +38,22 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
           <span>{collection?.items?.length || 0}&nbsp;Items</span>
         </div>
       </TitleContainer>
+
       <ItemsListContainer>
-        {collection?.items?.map((item) => (
-          <CollectionProductCard
-            key={item?._id}
-            post={item}
-            collection={collection}
-            refetchUser={refetchUser}
-          />
-        ))}
+        {collection?.items?.length > 0 ? (
+          <>
+            {collection?.items?.map((item) => (
+              <CollectionProductCard
+                key={item?._id}
+                post={item}
+                collection={collection}
+                refetchUser={refetchUser}
+              />
+            ))}
+          </>
+        ) : (
+          <p className="empty_reminder">No item yet.</p>
+        )}
       </ItemsListContainer>
       {collection && (
         <EditCollectionModal

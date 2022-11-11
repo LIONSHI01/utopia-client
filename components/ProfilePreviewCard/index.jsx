@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import Link from 'next/link';
 import { useQuery } from 'react-query';
 import Image from 'next/image';
@@ -49,17 +50,37 @@ const ProfilePreviewCard = ({ postByUser }) => {
       <InfoContainer>
         <UserIcon user={postByUser} />
         <div className="user-details">
-          <p className="name">{postOwner?.name}</p>
+          <Link href={`/users/${postByUser?.id}/listings`}>
+            <a className="name">{postOwner?.name}</a>
+          </Link>
           <div className="social-links">
-            <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-              <AiFillInstagram size={15} color="var(--black-light-2)" />
-            </IconButton>
-            <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-              <AiOutlineTwitter size={15} color="var(--black-light-2)" />
-            </IconButton>
-            <IconButton buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-              <GrFacebookOption size={15} color="var(--black-light-2)" />
-            </IconButton>
+            {postByUser?.instagram && (
+              <a
+                href={`${postByUser?.instagram}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiFillInstagram size={15} className="social_icon" />
+              </a>
+            )}
+            {postByUser?.twitter && (
+              <a
+                href={`${postByUser?.twitter}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiOutlineTwitter size={15} className="social_icon" />
+              </a>
+            )}
+            {postByUser?.facebook && (
+              <a
+                href={`${postByUser?.facebook}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GrFacebookOption size={15} className="social_icon" />
+              </a>
+            )}
           </div>
         </div>
       </InfoContainer>

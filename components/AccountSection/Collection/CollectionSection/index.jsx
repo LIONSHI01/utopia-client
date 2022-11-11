@@ -38,12 +38,10 @@ const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
     setSelectedCollection(
       user?.itemCollections?.filter(
         (col) => col.id === selectedCollectionId
-      )?.[0]
+      )?.[0] || user?.itemCollections?.[0]
     );
   }, [user, selectedCollectionId]);
-  console.log(selectedCollectionId);
-  console.log(selectedCollection);
-  // console.log(user?.itemCollections);
+
   return (
     <SectionContainer>
       <ContentsContainer>

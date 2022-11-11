@@ -1,23 +1,24 @@
 import React from 'react';
 import Router from 'next/router';
-import { ProductCard, Button, BUTTON_TYPES } from '../../index';
+
+import { Button, BUTTON_TYPES, ProductCard } from '../../index';
 import { BoxContainer } from './index.styles';
 
-const SimilarPostsBox = ({ posts, category, subCategory }) => {
+const PostsDisplayList = ({ posts, heading, viewMoreLink }) => {
   return (
     <BoxContainer>
       <div className="heading">
-        <h3>More Similar Items</h3>
+        <h3>{heading}</h3>
         <Button
           size="x"
           buttonType={BUTTON_TYPES.outlineGrey}
-          onClick={() => Router.push(`/products/${category}/${subCategory}`)}
+          onClick={() => Router.push(viewMoreLink)}
         >
           See more
         </Button>
       </div>
-      <div className="similar-posts">
-        {posts?.slice(0, 4)?.map((post) => (
+      <div className="seller-posts">
+        {posts?.slice(0, 5)?.map((post) => (
           <ProductCard key={post?._id} post={post} />
         ))}
       </div>
@@ -25,4 +26,4 @@ const SimilarPostsBox = ({ posts, category, subCategory }) => {
   );
 };
 
-export default SimilarPostsBox;
+export default PostsDisplayList;

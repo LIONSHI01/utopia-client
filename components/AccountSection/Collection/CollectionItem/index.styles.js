@@ -13,11 +13,13 @@ export const ItemWrapper = styled.div`
   }
 
   .image-container {
-    position: relative;
-    height: 10rem;
-    width: 14rem;
+    /* display: block;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+
+    position: relative;
+    height: 12rem;
+    width: 12rem;
     border-radius: var(--br-x);
     background-color: var(--black-light-3);
     overflow: hidden;
@@ -28,6 +30,26 @@ export const ItemWrapper = styled.div`
       outline: 2px solid var(--black-light-3);
       outline-offset: 4px;
     }
+  }
+
+  .placeholder_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12rem;
+    width: 12rem;
+    border-radius: var(--br-x);
+    background-color: var(--black-light-3);
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease-in-out;
+
+    :hover {
+      outline: 2px solid var(--black-light-3);
+      outline-offset: 4px;
+    }
+  }
+  .placeholder_icon {
   }
 
   p {
@@ -45,5 +67,18 @@ export const ItemWrapper = styled.div`
       font-size: var(--fs-ss);
       font-weight: 100;
     }
+  }
+`;
+
+export const ImageGridWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  .grid_item_container {
+    position: relative;
+    height: 6rem;
+    border: 2px solid var(--white);
+    /* width: 5rem; */
   }
 `;

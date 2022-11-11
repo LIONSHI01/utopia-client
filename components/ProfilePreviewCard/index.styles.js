@@ -37,12 +37,27 @@ export const InfoContainer = styled.div`
     font-size: var(--fs-ss);
     font-weight: 500;
     text-transform: capitalize;
+    :hover {
+      text-decoration: underline;
+    }
   }
 
   .social-links {
+    margin-top: 0.5rem;
     display: flex;
-
     align-items: center;
+    gap: 1rem;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .social_icon {
+    color: var(--black-light-2);
+    :hover {
+      color: var(--primary);
+    }
   }
 `;
 

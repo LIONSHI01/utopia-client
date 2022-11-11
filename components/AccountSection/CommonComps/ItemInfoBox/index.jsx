@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
-
-import Image from 'next/image';
 
 import {
   BsCheck2Circle,
@@ -236,7 +235,7 @@ const ItemInfoBox = ({
             <span>{order?.active ? 'Active' : 'Inactive'}</span>
           </div>
         </div>
-        <div className="item_details_wrapper">
+        <ItemDetailsWrapper isItemActive={active}>
           <div className="image_container">
             <Image
               alt={title}
@@ -247,13 +246,35 @@ const ItemInfoBox = ({
             />
           </div>
           <div className="details_description">
+            <div className="details_header">
+              <span className="item-title">{title}</span>
+              <div className="item-status">
+                {active ? (
+                  <span>Listing</span>
+                ) : (
+                  <div className="item_status_unlisted">
+                    <IoIosWarning size={15} color="var(--yellow)" />
+                    <span>Unlisted</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            <p className="details_category">
+              {category?.replace('-', ' & ')},&nbsp;
+              {subCategory?.replace('-', ' & ')}
+            </p>
+            <p className="details_description">
+              {description?.slice(0, 100) + '...'}
+            </p>
+          </div>
+          {/* <div className="details_description">
             <span className="item-title">{title}</span>
             <p>
               {category?.replace('-', ' & ')},&nbsp;
               {subCategory?.replace('-', ' & ')}
             </p>
             <p>{description?.slice(0, 100) + '...'}</p>
-          </div>
+          </div> */}
           <div className="details_value">
             <span className="details_value_eth">{value} ETH</span>
             <span className="details_value_usd">
@@ -276,7 +297,7 @@ const ItemInfoBox = ({
               <span>Confirmed</span>
             </div>
           )}
-        </div>
+        </ItemDetailsWrapper>
         <CommentSection
           user={user}
           buyer={buyer}

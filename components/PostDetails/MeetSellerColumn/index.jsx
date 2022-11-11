@@ -2,12 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import Router from 'next/router';
 
-import { AiFillStar } from 'react-icons/ai';
-
-import { Button, BUTTON_TYPES } from '../../index';
+import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
+import { Button, BUTTON_TYPES, RatingItem } from '../../index';
 import { ColumnWrapper } from './index.styles';
 
-const MeetSellerColumn = ({ seller }) => {
+const MeetSellerColumn = ({ sellerId }) => {
+  const { user: seller } = useGetUserHook({ userId: sellerId });
+  const sales = seller?.offers?.filter(
+    (offer) => offer.status === 'completed'
+  )?.length;
+
   return (
     <ColumnWrapper>
       <div className="heading">Meet the seller</div>
@@ -24,28 +28,25 @@ const MeetSellerColumn = ({ seller }) => {
         <div className="profile">
           <span className="name">{seller?.name}</span>
           <div className="details">
-            <div className="rating">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <AiFillStar key={i} size={15} />
-              ))}
-            </div>
-            <div className="item">
+            <RatingItem rating={4} />
+            {/* <div className="item">
               <span>10</span>
               reviews
-            </div>
+            </div> */}
             <div className="item">
-              <span>20</span>
+              <span>{seller?.posts?.length || 0}</span>
               listed
             </div>
             <div className="item">
-              <span>98</span>
+              <span>{sales}</span>
               sales
             </div>
           </div>
         </div>
         <div className="buttons-group">
           <Button
-            size="full"
+            height="3rem"
+            width="15rem"
             buttonType={BUTTON_TYPES.outlineGrey}
             onClick={() => Router.push(`/users/${seller?.id}/listings`)}
           >

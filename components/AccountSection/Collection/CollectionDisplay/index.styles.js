@@ -34,4 +34,9 @@ export const TitleContainer = styled.div`
 export const ItemsListContainer = styled.div`
   display: flex;
   gap: 2rem;
+
+  .empty_reminder {
+    margin: 0 auto;
+    font-size: 2.8rem;
+  }
 `;

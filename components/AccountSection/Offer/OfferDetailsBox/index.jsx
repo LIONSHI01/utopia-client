@@ -76,12 +76,6 @@ const OfferDetailsBox = ({ order, user, refetchUser }) => {
     setSellerClaimHash(order?.seller_claim_txHash);
   }, [order]);
 
-  // useEffect(() => {
-  //   dispatch(setSelectedOrderBuyer(buyer));
-  // }, [buyer, dispatch]);
-
-  // console.log('offerDetailsBox:', order);
-
   return (
     <DetailsBoxContainer>
       <LeftContentBox>

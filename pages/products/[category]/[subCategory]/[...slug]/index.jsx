@@ -12,8 +12,7 @@ import {
   BUTTON_TYPES,
   NavigationMap,
   SellerInfoBox,
-  MoreFromSeller,
-  SimilarPostsBox,
+  PostsDisplayList,
   MeetSellerColumn,
   AddToCollectionModal,
   Spinner,
@@ -65,7 +64,8 @@ const ProductDetailsPage = () => {
   const { user: seller, refetch: refetchSeller } = useGetUserHook({
     userId: post?.postedBy?.id,
   });
-  // console.log(post);
+
+  console.log(post);
   // STATE MANAGEMENT
 
   const [displayIndex, setDisplayIndex] = useState(0);
@@ -170,19 +170,8 @@ const ProductDetailsPage = () => {
                     <a>Sell yours</a>
                   </Link>
                 </div>
-                <div className="buttons">
-                  <Button
-                    size="full"
-                    buttonType={
-                      isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineRed
-                    }
-                    onClick={() => setShowAddToColModal(true)}
-                  >
-                    {isLiked ? 'Liked' : 'Like this item'}
-                  </Button>
-                </div>
               </CTAWrapper>
-              <MeetSellerColumn seller={post?.postedBy} />
+              <MeetSellerColumn sellerId={post?.postedBy?.id} />
               <ReviewBox reviews={post?.reviews} />
             </LeftContainer>
             <RightContainer>
@@ -216,8 +205,14 @@ const ProductDetailsPage = () => {
                     </div>
                   </div>
                   <div className="buttons-group">
-                    <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
-                      Add to cart
+                    <Button
+                      size="full"
+                      buttonType={
+                        isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
+                      }
+                      onClick={() => setShowAddToColModal(true)}
+                    >
+                      {isLiked ? 'Liked' : 'Add to collection'}
                     </Button>
                     <Button
                       isLoading={isOrdering}
@@ -259,7 +254,15 @@ const ProductDetailsPage = () => {
                     </div>
                     <div className="list-item">
                       <p className="list-title">Posted</p>
-                      <p className="list-content">10/24/22</p>
+                      <p className="list-content">
+                        {new Date(
+                          Date.parse(post?.createdAt)
+                        )?.toLocaleDateString('en-us', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: '2-digit',
+                        })}
+                      </p>
                     </div>
                   </div>
                   <div className="description">
@@ -270,14 +273,19 @@ const ProductDetailsPage = () => {
               </DetailsWrapper>
             </RightContainer>
           </PostDetailsContainer>
+
           {moreSellerPosts?.length > 0 && (
-            <MoreFromSeller posts={moreSellerPosts} />
+            <PostsDisplayList
+              posts={moreSellerPosts}
+              heading="More from Seller"
+              viewMoreLink={`/users/${post?.postedBy?.id}/listings`}
+            />
           )}
           {similarPosts?.length > 0 && (
-            <SimilarPostsBox
-              category={category}
-              subCategory={subCategory}
+            <PostsDisplayList
               posts={similarPosts}
+              heading="Items you may like"
+              viewMoreLink={`/products/${category}/${subCategory}`}
             />
           )}
         </OutterContainer>
@@ -286,7 +294,6 @@ const ProductDetailsPage = () => {
         refetchUser={refetchUser}
         refetchPost={refetchPost}
         postId={postId}
-        
         showAddToColModal={showAddToColModal}
         setShowAddToColModal={setShowAddToColModal}
       />

@@ -11,6 +11,7 @@ export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5rem;
+  width: 100%;
 `;
 
 export const CollectionSection = styled.div`

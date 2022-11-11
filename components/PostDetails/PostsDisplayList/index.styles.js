@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const BoxContainer = styled.div`
+  margin-bottom: var(--mg-m);
   .heading {
     display: flex;
     justify-content: space-between;
@@ -13,9 +14,9 @@ export const BoxContainer = styled.div`
     }
   }
 
-  .similar-posts {
+  .seller-posts {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2rem;
   }
 `;
