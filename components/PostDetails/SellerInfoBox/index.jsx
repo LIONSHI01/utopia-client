@@ -3,12 +3,7 @@ import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
-import {
-  AiFillStar,
-  BsThreeDotsVertical,
-  BsBookmarkStarFill,
-  BsThreeDots,
-} from '../../ReactIcons';
+import { BsThreeDotsVertical, BsBookmarkStarFill } from '../../ReactIcons';
 import { updateUserProfile } from '../../../utils/apiData/userRequest';
 import { newFollowingsCalculator } from '../../../utils/profileCalculator';
 
@@ -19,6 +14,7 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
   AuthForm,
+  RatingItem,
 } from '../../index';
 import EditDropdownMenu from '../EditDropdownMenu';
 import { BoxWrapper } from './index.styles';
@@ -32,7 +28,10 @@ const SellerInfoBox = ({
 }) => {
   // CONFIGURATION
   const ref = useRef();
-
+  const sales = seller?.offers?.filter(
+    (offer) => offer.status === 'completed'
+  )?.length;
+  console.log('sellerinfobox', seller);
   // STATE MANAGEMENT
   const [showEditDropdown, setShowEditDropdown] = useState(false);
   const [showAuthForm, setShowAuthForm] = useState(false);
@@ -115,12 +114,8 @@ const SellerInfoBox = ({
           )}
         </div>
         <div className="lowerBox">
-          <div className="sales">98 sales</div>
-          <div className="rates">
-            {[1, 2, 3, 4, 5].map((item, i) => (
-              <AiFillStar key={i} size={15} />
-            ))}
-          </div>
+          <div className="sales">{sales} sales</div>
+          <RatingItem rating={4} starSize={15} />
         </div>
       </BoxWrapper>
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />

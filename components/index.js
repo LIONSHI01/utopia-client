@@ -13,8 +13,6 @@ import PostForm from './PostForm';
 import ImageDisplayModal from './PostDetails/ImageDisplayModal';
 import NavigationMap from './NavigationMap';
 import SellerInfoBox from './PostDetails/SellerInfoBox';
-import SimilarPostsBox from './PostDetails/MoreSimilarPosts';
-import MoreFromSeller from './PostDetails/MoreFromSeller';
 import MeetSellerColumn from './PostDetails/MeetSellerColumn';
 import CollectionItem from './AccountSection/Collection/CollectionItem';
 import AddToCollectionModal from './AccountSection/Collection/AddToCollectionModal';
@@ -48,6 +46,7 @@ import OrderCommentBox from './AccountSection/Order/OrderCommentBox';
 import RatingBar from './RatingBar';
 import CommentSection from './AccountSection/CommonComps/CommentSection';
 import PostsDisplayList from './PostDetails/PostsDisplayList';
+import Footer from './Footer';
 
 export {
   MainHeader,
@@ -67,8 +66,6 @@ export {
   ImageDisplayModal,
   NavigationMap,
   SellerInfoBox,
-  SimilarPostsBox,
-  MoreFromSeller,
   MeetSellerColumn,
   CollectionItem,
   AddToCollectionModal,
@@ -101,4 +98,5 @@ export {
   CommentSection,
   CollectionProductCard,
   PostsDisplayList,
+  Footer,
 };

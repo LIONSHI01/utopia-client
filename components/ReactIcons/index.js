@@ -25,7 +25,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 
 import { TbFileInvoice } from 'react-icons/tb';
 import { FiSettings } from 'react-icons/fi';
-import { RiAuctionFill, RiAuctionLine } from 'react-icons/ri';
+import { RiAuctionFill, RiAuctionLine, RiEarthFill } from 'react-icons/ri';
 import {
   BsCheck2Circle,
   BsXCircleFill,
@@ -36,8 +36,11 @@ import {
   BsThreeDotsVertical,
   BsBookmarkStarFill,
   BsThreeDots,
+  BsTwitter,
+  BsGithub,
 } from 'react-icons/bs';
-import { ImEarth } from 'react-icons/im';
+import { ImEarth, ImFacebook } from 'react-icons/im';
+import { SiMinutemailer } from 'react-icons/si';
 
 export {
   BsCheck2Circle,
@@ -76,4 +79,9 @@ export {
   IoIosWarning,
   MdModeEditOutline,
   AiOutlinePlus,
+  BsTwitter,
+  ImFacebook,
+  RiEarthFill,
+  BsGithub,
+  SiMinutemailer,
 };

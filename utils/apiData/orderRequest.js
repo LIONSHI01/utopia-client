@@ -66,14 +66,6 @@ export const buyerConfirmOrder = async ({ orderId, userId }) => {
 
   return res.data;
 };
-export const sellerConfirmOrder = async ({ orderId, userId }) => {
-  const res = await axios({
-    method: 'GET',
-    url: `${baseURL}/orders/sellerConfirm/${userId}/${orderId}`,
-  });
-
-  return res.data;
-};
 
 export const sellerClaimFund = async ({ orderId, userId }) => {
   const res = await axios({

@@ -65,7 +65,7 @@ const ProductDetailsPage = () => {
     userId: post?.postedBy?.id,
   });
 
-  console.log(post);
+  // console.log(post);
   // STATE MANAGEMENT
 
   const [displayIndex, setDisplayIndex] = useState(0);

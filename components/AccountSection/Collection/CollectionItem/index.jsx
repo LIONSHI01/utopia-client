@@ -27,7 +27,7 @@ const ImageGrid = ({ images }) => {
 
 const CollectionItem = ({ collection, ...otherProps }) => {
   const displayImagesArr = collection?.items?.map((item) => item?.coverImages);
-  // console.log(displayImagesArr);
+
   return (
     <ItemWrapper {...otherProps}>
       {displayImagesArr?.length > 0 ? (

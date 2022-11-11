@@ -1,15 +1,3 @@
-// import { MdLocalOffer } from 'react-icons/md';
-// import { AiTwotoneSetting, AiOutlineGift } from 'react-icons/ai';
-// import { TbFileInvoice } from 'react-icons/tb';
-
-// import { FiSettings } from 'react-icons/fi';
-// import { RiAuctionFill, RiAuctionLine } from 'react-icons/ri';
-// import {
-//   BsFillFileEarmarkTextFill,
-//   BsFillHeartFill,
-//   BsTag,
-// } from 'react-icons/bs';
-
 import {
   MdLocalOffer,
   AiTwotoneSetting,
@@ -21,6 +9,10 @@ import {
   BsFillFileEarmarkTextFill,
   BsFillHeartFill,
   BsTag,
+  BsTwitter,
+  ImFacebook,
+  BsGithub,
+  RiEarthFill,
 } from '../components/ReactIcons';
 
 export const categories = [
@@ -303,3 +295,21 @@ export const ratingScore = {
   4: 'good~ 😁',
   5: 'excellent! 🤩',
 };
+
+export const footerAboutLinks = [
+  { title: 'utopia', link: '/' },
+  { title: 'policies', link: '/' },
+  { title: 'investors', link: '/' },
+  { title: 'careers', link: '/' },
+];
+
+export const footerSocialLinks = [
+  { title: 'homePage', link: '/', icon: <RiEarthFill size={25} /> },
+  {
+    title: 'github',
+    link: 'https://github.com/LIONSHI01',
+    icon: <BsGithub size={25} />,
+  },
+  { title: 'facebook', link: '/', icon: <ImFacebook size={25} /> },
+  { title: 'twitter', link: '/', icon: <BsTwitter size={25} /> },
+];

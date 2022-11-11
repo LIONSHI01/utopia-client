@@ -1,12 +1,12 @@
 import React from 'react';
-import { MainHeader, CategoryBar } from '../index';
+import { MainHeader, Footer } from '../index';
 
 const Layout = ({ children }) => {
   return (
     <>
       <MainHeader />
-      {/* <CategoryBar /> */}
       {children}
+      <Footer />
     </>
   );
 };

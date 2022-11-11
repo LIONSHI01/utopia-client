@@ -21,7 +21,7 @@ const CreateButton = ({ ...otherProps }) => (
 const ListingsMasterSection = ({ user, isAuthenticated }) => {
   // CONFIGURATION
   const router = useRouter();
-  console.log(user);
+  
   // STATE MANAGEMENT
   const [listings, setListings] = useState(null);
 

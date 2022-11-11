@@ -56,9 +56,9 @@ const CollectionProductCard = ({ post, collection, refetchUser }) => {
   };
 
   useEffect(() => {
-    const verifiedResult = user?.profile?._id === post?.postedBy?.id;
+    const verifiedResult = user?.profile?._id === collection?.postedBy;
     setIsAuthenticated(verifiedResult);
-  }, [user, post]);
+  }, [user, collection]);
 
   return (
     <>
