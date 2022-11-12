@@ -39,7 +39,7 @@ import {
   BsTwitter,
   BsGithub,
 } from 'react-icons/bs';
-import { ImEarth, ImFacebook, ImProfile } from 'react-icons/im';
+import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
 
 export {
@@ -85,4 +85,5 @@ export {
   BsGithub,
   SiMinutemailer,
   ImProfile,
+  ImArrowLeft2,
 };

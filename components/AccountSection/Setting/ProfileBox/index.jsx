@@ -114,7 +114,6 @@ const ProfileBox = ({ user, refetchUser }) => {
           name="email"
           onChange={onChangeProfileHandler}
         />
-
         <FormInputComp
           label="Web3 Address"
           fieldName="web3_address"

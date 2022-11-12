@@ -13,9 +13,9 @@ html {
   height: 100%;
   overflow-x: hidden;
 
-  @media only screen and (max-width: 160em) {
+  /* @media only screen and (max-width: 160em) {
     font-size: 80%;
-  }
+  } */
 
   /* @media only screen and (max-width: 90em) {
     font-size: 75%;
@@ -44,7 +44,7 @@ html {
 
 @media only screen and (max-width: 90em) {
   html {
-    font-size: 75%;
+    font-size: 62.5%;
   }
 }
 

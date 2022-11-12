@@ -72,6 +72,7 @@ export const updateUserPhoto = async (data, userId) => {
 };
 
 export const getUser = async (userId) => {
+  if (!userId) return;
   try {
     const res = await axios({
       method: 'GET',

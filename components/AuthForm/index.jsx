@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 import { useMutation } from 'react-query';
 
+import { ImArrowLeft2 } from '../ReactIcons';
+import { useConnectWallet } from '../../utils/reactQueryHooks/useConnectWallet';
 import { signupRequest } from '../../utils/authRequest';
-import { Button, BUTTON_TYPES, Overlay } from '../index';
-import { FormContainer } from './index.styles';
+import {
+  Button,
+  BUTTON_TYPES,
+  Overlay,
+  IconButton,
+  ICON_BUTTON_TYPES,
+} from '../index';
+import { FormContainer, MetaMaskFormBox, EmailFormBox } from './index.styles';
+import MetaMaskIcon from '../../assets/image/meta_mask.png';
 
 const INITIAL_FORM_FIELD = {
   username: '',
@@ -16,10 +26,13 @@ const INITIAL_FORM_FIELD = {
 
 const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   // CONFIGURATION
+  const { walletAddress, connectWalletHandler } = useConnectWallet();
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
+
+  const [hideEmailForm, setHideEmailForm] = useState(false);
   const { username, email, password, passwordConfirm } = formField;
 
   // HANDLERS
@@ -37,8 +50,23 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
       mutateSignup({ username, email, password });
     } else {
-      mutateSignin();
+      signIn('credentials', { email, password, redirect: false }).then((data) =>
+        console.log(data)
+      );
     }
+  };
+
+  const onWalletSigninHandler = async () => {
+    console.log('sign in process...');
+    // METHOD 1
+    signIn('walletAddress', { walletAddress, redirect: false }).then(
+      ({ ok, error }) => {
+        if (ok) {
+          return toast.success('Welcome back!');
+        }
+        return toast.error(error);
+      }
+    );
   };
 
   const { isLoading: isSignningup, mutate: mutateSignup } = useMutation(
@@ -74,13 +102,19 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     }
   );
 
+  const onClickconnectWalletHandler = () => {
+    setHideEmailForm(true);
+    connectWalletHandler();
+  };
+
   return (
     <>
       <FormContainer showUp={showAuthForm}>
         <div className="heading">
           <h2>{isSignup ? 'Sign Up' : 'Sign In'} to Utopia</h2>
         </div>
-        <form className="form" onSubmit={onSubmitHandler}>
+
+        <EmailFormBox onSubmit={onSubmitHandler} showup={hideEmailForm}>
           {isSignup && (
             <input
               name="username"
@@ -129,12 +163,62 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           >
             {isSignup ? 'Sign up' : 'Sign in'}
           </Button>
+
           {!isSignup && (
             <div className="forget">
               <button>Forgot Password?</button>
             </div>
           )}
-        </form>
+          <span className="or_text">or</span>
+        </EmailFormBox>
+
+        <MetaMaskFormBox>
+          <button className="web3_login_btn">
+            <div
+              className="meta_mask_icon"
+              onClick={onClickconnectWalletHandler}
+            >
+              <Image
+                src={MetaMaskIcon}
+                alt="meta_mask"
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
+            </div>
+          </button>
+          {hideEmailForm && (
+            <div className="goback_btn">
+              <IconButton
+                size="x"
+                buttonType={ICON_BUTTON_TYPES.hoverBackground}
+                onClick={() => setHideEmailForm(false)}
+              >
+                <ImArrowLeft2 size={20} />
+              </IconButton>
+            </div>
+          )}
+          {walletAddress && hideEmailForm ? (
+            <div className="selectedBox">
+              <div className="address_display">
+                <span>Selected address :</span>
+                <p className="walletAddress">{walletAddress}</p>
+              </div>
+
+              <Button
+                // isLoading={isWalletSignningin}
+                width="100%"
+                height="4rem"
+                buttonType={BUTTON_TYPES.base}
+                onClick={onWalletSigninHandler}
+              >
+                Sign In
+              </Button>
+            </div>
+          ) : (
+            <p>Sign in with MetaMask Wallet</p>
+          )}
+        </MetaMaskFormBox>
         <div className="switch-box">
           <p>{!isSignup ? 'Not a member yet?' : 'Already a member?'}</p>
           <Button

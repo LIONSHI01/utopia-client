@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import { signinRequest } from '../../../utils/authRequest';
 import connectMongoose from '../../../utils/connectMongo';
 import User from '../../../models/userModel';
 import { verifyPassword } from '../../../utils/hashPassword';
@@ -11,28 +12,72 @@ export const authOptions = {
     strategy: 'jwt',
   },
   providers: [
+    // CredentialsProvider({
+    //   id: 'credentials',
+    //   name: 'credentials',
+    //   credentials: {},
+    //   async authorize(credentials, req) {
+    //     const { email, password } = credentials;
+    //     await connectMongoose();
+
+    //     const user = await User.findOne({ email: email }).select('+password');
+
+    //     if (!user || user === null) {
+    //       throw new Error('No user found with this email');
+    //     }
+
+    //     const isValid = await verifyPassword(password, user.password);
+    //     if (!isValid) {
+    //       throw new Error('Invalid password, please try again!');
+    //     }
+
+    //     if (!user.active) {
+    //       throw new Error(
+    //         'This user is inactive, please contact us to activate your account.'
+    //       );
+    //     }
+
+    //     return { token: user };
+
+    //     // return null;
+    //   },
+    // }),
     CredentialsProvider({
-      name: 'Credentials',
+      id: 'credentials',
+      name: 'credentials',
       credentials: {},
       async authorize(credentials, req) {
         const { email, password } = credentials;
+
+        const res = await signinRequest({ email, password });
+        console.log(res);
+
+        if (res.status !== 200) {
+          throw new Error('Invalid email or password, please try again.');
+        }
+
+        const user = res.data.user;
+
+        if (res.status === 200 && user) {
+          return user;
+        }
+
+        return null;
+      },
+    }),
+    CredentialsProvider({
+      id: 'walletAddress',
+      credentials: {},
+      async authorize(credentials, req) {
+        const { walletAddress } = credentials;
         await connectMongoose();
 
-        const user = await User.findOne({ email: email }).select('+password');
+        console.log(walletAddress);
+
+        const user = await User.findOne({ walletAddress });
 
         if (!user) {
-          throw Error('No user found with this email');
-        }
-
-        const isValid = await verifyPassword(password, user.password);
-        if (!isValid) {
-          throw Error('Invalid password, please try again!');
-        }
-
-        if (!user.active) {
-          throw Error(
-            'This user is inactive, please contact us to activate your account.'
-          );
+          return Error('Your wallet address is not registered.');
         }
 
         return user;
@@ -45,6 +90,7 @@ export const authOptions = {
     async session({ session, token, user }) {
       // Fetch UserProfile from DB
       await connectMongoose();
+
       const userProfile = await User.findOne({ email: token?.email });
 
       const userData = await getUser(userProfile?._id);
