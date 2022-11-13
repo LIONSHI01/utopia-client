@@ -13,7 +13,7 @@ const contentsShowUpStyles = css`
 `;
 
 export const MenuWrapper = styled.div`
-  overflow: hidden;
+  /* overflow: hidden; */
   position: absolute;
   bottom: 0;
   left: 0;
@@ -35,6 +35,8 @@ export const MenuWrapper = styled.div`
   visibility: hidden;
   transition: all 0.3s ease-in-out;
 
+  ${(props) => props.showUp && showUpStyles}
+
   ::after {
     display: block;
     content: '';
@@ -46,8 +48,6 @@ export const MenuWrapper = styled.div`
     width: 2rem;
     transform: translateY(-25%) rotate(45deg);
   }
-
-  ${(props) => props.showUp && showUpStyles}
 
   .userInfo {
     padding: 0.5rem 2rem;

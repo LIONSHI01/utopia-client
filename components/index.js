@@ -48,6 +48,8 @@ import CommentSection from './AccountSection/CommonComps/CommentSection';
 import PostsDisplayList from './PostDetails/PostsDisplayList';
 import Footer from './Footer';
 import EmptyReminderBox from './AccountSection/CommonComps/EmptyReminderBox';
+import AcBalanceBox from './Header/AcBalanceBox';
+import FaucetModal from './Modals/FaucetModal';
 
 export {
   MainHeader,
@@ -101,4 +103,6 @@ export {
   PostsDisplayList,
   Footer,
   EmptyReminderBox,
+  AcBalanceBox,
+  FaucetModal,
 };

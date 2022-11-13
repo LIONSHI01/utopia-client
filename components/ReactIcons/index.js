@@ -8,7 +8,7 @@ import {
   AiTwotoneEdit,
   AiOutlinePlus,
 } from 'react-icons/ai';
-import { BiTimeFive } from 'react-icons/bi';
+import { BiTimeFive, BiWalletAlt } from 'react-icons/bi';
 import { FaWallet } from 'react-icons/fa';
 import {
   MdDelete,
@@ -24,8 +24,14 @@ import { GoLocation } from 'react-icons/go';
 import { HiOutlineMail } from 'react-icons/hi';
 
 import { TbFileInvoice } from 'react-icons/tb';
-import { FiSettings } from 'react-icons/fi';
-import { RiAuctionFill, RiAuctionLine, RiEarthFill } from 'react-icons/ri';
+import { FiSettings, FiHeart, FiEdit } from 'react-icons/fi';
+import {
+  RiAuctionFill,
+  RiAuctionLine,
+  RiEarthFill,
+  RiNotification4Line,
+  RiArrowDownSFill,
+} from 'react-icons/ri';
 import {
   BsCheck2Circle,
   BsXCircleFill,
@@ -38,6 +44,7 @@ import {
   BsThreeDots,
   BsTwitter,
   BsGithub,
+  BsDropletHalf,
 } from 'react-icons/bs';
 import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
@@ -86,4 +93,10 @@ export {
   SiMinutemailer,
   ImProfile,
   ImArrowLeft2,
+  FiHeart,
+  RiNotification4Line,
+  BiWalletAlt,
+  RiArrowDownSFill,
+  FiEdit,
+  BsDropletHalf,
 };

@@ -6,6 +6,7 @@ const boxShowUpStyles = css`
   visibility: visible;
   opacity: 1;
 `;
+
 const contentsShowUpStyles = css`
   visibility: visible;
   opacity: 1;
@@ -14,11 +15,9 @@ const contentsShowUpStyles = css`
 export const DropdownWrapper = styled.div`
   position: absolute;
   z-index: 100;
-  top: 0;
   bottom: 0;
-  left: 0;
   right: 0;
-  transform: translate(-80%, 10%);
+  transform: translate(10%, 105%);
   width: 0rem;
   height: 0rem;
 

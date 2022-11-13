@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { setSelectedOrderBuyer } from '../../../../store/order/order.action';
-import { selectSelectedOrder } from '../../../../store/order/order.selector';
 import { BsCheck2Circle, AiOutlineLink, BiTimeFive } from '../../../ReactIcons';
 import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
 import { sellerClaimFund } from '../../../../utils/apiData/orderRequest';
@@ -26,7 +23,6 @@ import {
 
 const OfferDetailsBox = ({ order, user, refetchUser }) => {
   // CONFIGURATION
-  const dispatch = useDispatch();
 
   // const order = useSelector(selectSelectedOrder);
   const { user: buyer } = useGetUserHook({ userId: order?.postedBy });

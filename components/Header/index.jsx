@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
-import { RiNotification4Line } from 'react-icons/ri';
-import { FiHeart } from 'react-icons/fi';
+
+import { RiNotification4Line, FiHeart } from '../ReactIcons';
 
 import {
   UserIcon,
@@ -13,6 +13,7 @@ import {
   NotificationDropdown,
   Searchbar,
   CategoryBar,
+  AcBalanceBox,
 } from '../index';
 
 import { HeaderWrapper, InnerWrapper, StickyFillinSpace } from './index.styles';
@@ -100,7 +101,12 @@ const MainHeader = () => {
               Sell
             </Button>
 
-            {user && <UserIcon user={user} hasUserMenu={true} />}
+            {user && (
+              <>
+                <UserIcon user={user} hasUserMenu={true} />
+                <AcBalanceBox />
+              </>
+            )}
 
             {!user && (
               <div className="auth-buttons">

@@ -84,3 +84,21 @@ export const getUser = async (userId) => {
     console.log(err);
   }
 };
+
+export const claimFaucet = async ({ userId, walletAddress }) => {
+  if (!userId) return;
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: `${baseURL}/users/claimFaucet/${userId}`,
+      data: {
+        walletAddress,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};

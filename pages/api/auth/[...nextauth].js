@@ -12,36 +12,6 @@ export const authOptions = {
     strategy: 'jwt',
   },
   providers: [
-    // CredentialsProvider({
-    //   id: 'credentials',
-    //   name: 'credentials',
-    //   credentials: {},
-    //   async authorize(credentials, req) {
-    //     const { email, password } = credentials;
-    //     await connectMongoose();
-
-    //     const user = await User.findOne({ email: email }).select('+password');
-
-    //     if (!user || user === null) {
-    //       throw new Error('No user found with this email');
-    //     }
-
-    //     const isValid = await verifyPassword(password, user.password);
-    //     if (!isValid) {
-    //       throw new Error('Invalid password, please try again!');
-    //     }
-
-    //     if (!user.active) {
-    //       throw new Error(
-    //         'This user is inactive, please contact us to activate your account.'
-    //       );
-    //     }
-
-    //     return { token: user };
-
-    //     // return null;
-    //   },
-    // }),
     CredentialsProvider({
       id: 'credentials',
       name: 'credentials',
@@ -49,22 +19,63 @@ export const authOptions = {
       async authorize(credentials, req) {
         const { email, password } = credentials;
 
-        const res = await signinRequest({ email, password });
-        console.log(res);
+        try {
+          await connectMongoose();
 
-        if (res.status !== 200) {
-          throw new Error('Invalid email or password, please try again.');
-        }
+          const user = await User.findOne({ email }).select('+password');
 
-        const user = res.data.user;
+          if (!user || user === null) {
+            throw new Error('No user found with this email');
+          }
 
-        if (res.status === 200 && user) {
+          const isValid = await verifyPassword(password, user.password);
+
+          if (!isValid) {
+            throw new Error('Invalid password, please try again!');
+          }
+
+          if (!user.active) {
+            throw new Error(
+              'This user is inactive, please contact us to activate your account.'
+            );
+          }
+
           return user;
+        } catch (err) {
+          console.log(err);
+          return null;
         }
-
-        return null;
       },
     }),
+    // CredentialsProvider({
+    //   id: 'credentials',
+    //   name: 'credentials',
+    //   credentials: {},
+    //   async authorize(credentials, req) {
+    //     const { email, password } = credentials;
+
+    //     try {
+    //       const res = await signinRequest({ email, password });
+    //       // console.log(res);
+    //       console.log(res.status);
+    //       if (res.status === 401) {
+    //         throw new Error('Invalid email or password, please try again.');
+    //       }
+
+    //       const user = res.data.user;
+
+    //       if (res.status === 200 && user) {
+    //         return user;
+    //       }
+
+    //       return null;
+    //     } catch (err) {
+    //       console.error(err);
+
+    //       return null;
+    //     }
+    //   },
+    // }),
     CredentialsProvider({
       id: 'walletAddress',
       credentials: {},
@@ -72,12 +83,10 @@ export const authOptions = {
         const { walletAddress } = credentials;
         await connectMongoose();
 
-        console.log(walletAddress);
-
         const user = await User.findOne({ walletAddress });
 
         if (!user) {
-          return Error('Your wallet address is not registered.');
+          throw new Error('Your wallet address is not registered.');
         }
 
         return user;

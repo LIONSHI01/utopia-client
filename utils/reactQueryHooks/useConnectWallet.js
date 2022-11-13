@@ -5,9 +5,11 @@ export const useConnectWallet = () => {
 
   const connectWalletHandler = async () => {
     if (window.ethereum) {
-      await window.ethereum.request({ method: 'eth_accounts' }).then((res) => {
-        setWalletAddress(res[0]);
-      });
+      await window.ethereum
+        .request({ method: 'eth_requestAccounts' })
+        .then((res) => {
+          setWalletAddress(res[0]);
+        });
     } else {
       alert('Please install Metamask extension.');
     }
@@ -15,5 +17,3 @@ export const useConnectWallet = () => {
 
   return { walletAddress, connectWalletHandler };
 };
-
-// eth_requestAccounts

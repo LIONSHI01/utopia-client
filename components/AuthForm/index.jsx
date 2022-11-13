@@ -31,7 +31,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
-
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [hideEmailForm, setHideEmailForm] = useState(false);
   const { username, email, password, passwordConfirm } = formField;
 
@@ -50,20 +50,34 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
       mutateSignup({ username, email, password });
     } else {
-      signIn('credentials', { email, password, redirect: false }).then((data) =>
-        console.log(data)
-      );
+      // setIsSigningIn(true);
+      mutateSignin();
+      // signIn('credentials', { email, password, redirect: false }).then(
+      //   ({ ok, error }) => {
+      //     if (ok) {
+      //       setIsSigningIn(false);
+      //       setFormField(INITIAL_FORM_FIELD);
+      //       setShowAuthForm(false);
+      //       return toast.success('Welcome back!');
+      //     }
+      //     setIsSigningIn(false);
+      //     return toast.error('Invalid email or password, please try again.');
+      //   }
+      // );
     }
   };
 
   const onWalletSigninHandler = async () => {
-    console.log('sign in process...');
+    setIsSigningIn(true);
     // METHOD 1
     signIn('walletAddress', { walletAddress, redirect: false }).then(
       ({ ok, error }) => {
         if (ok) {
+          setShowAuthForm(false);
+          setIsSigningIn(false);
           return toast.success('Welcome back!');
         }
+        setIsSigningIn(false);
         return toast.error(error);
       }
     );
@@ -83,7 +97,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     }
   );
 
-  const { isLoading: isSignningin, mutate: mutateSignin } = useMutation(
+  const { isLoading: isEmailLogging, mutate: mutateSignin } = useMutation(
     () =>
       signIn('credentials', {
         email,
@@ -97,6 +111,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         toast.success('Welcome back!');
       },
       onError: (err) => {
+        console.log(err);
         toast.error(`${err.response.data.data.message}`);
       },
     }
@@ -159,66 +174,70 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             height="4rem"
             width="100%"
             type="submit"
-            isLoading={isSignningup || isSignningin}
+            isLoading={isSignningup || isEmailLogging}
           >
             {isSignup ? 'Sign up' : 'Sign in'}
           </Button>
 
           {!isSignup && (
-            <div className="forget">
-              <button>Forgot Password?</button>
-            </div>
+            <>
+              <div className="forget">
+                <button>Forgot Password?</button>
+              </div>
+              <span className="or_text">or</span>
+            </>
           )}
-          <span className="or_text">or</span>
         </EmailFormBox>
 
-        <MetaMaskFormBox>
-          <button className="web3_login_btn">
-            <div
-              className="meta_mask_icon"
-              onClick={onClickconnectWalletHandler}
-            >
-              <Image
-                src={MetaMaskIcon}
-                alt="meta_mask"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-              />
-            </div>
-          </button>
-          {hideEmailForm && (
-            <div className="goback_btn">
-              <IconButton
-                size="x"
-                buttonType={ICON_BUTTON_TYPES.hoverBackground}
-                onClick={() => setHideEmailForm(false)}
+        {!isSignup && (
+          <MetaMaskFormBox>
+            <button className="web3_login_btn">
+              <div
+                className="meta_mask_icon"
+                onClick={onClickconnectWalletHandler}
               >
-                <ImArrowLeft2 size={20} />
-              </IconButton>
-            </div>
-          )}
-          {walletAddress && hideEmailForm ? (
-            <div className="selectedBox">
-              <div className="address_display">
-                <span>Selected address :</span>
-                <p className="walletAddress">{walletAddress}</p>
+                <Image
+                  src={MetaMaskIcon}
+                  alt="meta_mask"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                />
               </div>
+            </button>
+            {hideEmailForm && (
+              <div className="goback_btn">
+                <IconButton
+                  size="x"
+                  buttonType={ICON_BUTTON_TYPES.hoverBackground}
+                  onClick={() => setHideEmailForm(false)}
+                >
+                  <ImArrowLeft2 size={20} />
+                </IconButton>
+              </div>
+            )}
+            {walletAddress && hideEmailForm ? (
+              <div className="selectedBox">
+                <div className="address_display">
+                  <span>Selected address :</span>
+                  <p className="walletAddress">{walletAddress}</p>
+                </div>
 
-              <Button
-                // isLoading={isWalletSignningin}
-                width="100%"
-                height="4rem"
-                buttonType={BUTTON_TYPES.base}
-                onClick={onWalletSigninHandler}
-              >
-                Sign In
-              </Button>
-            </div>
-          ) : (
-            <p>Sign in with MetaMask Wallet</p>
-          )}
-        </MetaMaskFormBox>
+                <Button
+                  isLoading={isSigningIn}
+                  width="100%"
+                  height="4rem"
+                  buttonType={BUTTON_TYPES.base}
+                  onClick={onWalletSigninHandler}
+                >
+                  Sign In
+                </Button>
+              </div>
+            ) : (
+              <p>Sign in with MetaMask Wallet</p>
+            )}
+          </MetaMaskFormBox>
+        )}
         <div className="switch-box">
           <p>{!isSignup ? 'Not a member yet?' : 'Already a member?'}</p>
           <Button
