@@ -1,33 +1,18 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
-import validator from 'validator';
 
 import { selectUser } from '../../../store/user/user.selector';
 import { ModalContainer, MessageContainer, ButtonsGroup } from './index.styles';
 
 import { Button, BUTTON_TYPES, Overlay, FormInputComp } from '../../index';
-import { claimFaucet } from '../../../utils/apiData/userRequest';
 
 const FaucetModal = ({ showup, setShowup, onSubmitClaimHandler }) => {
   const user = useSelector(selectUser);
   const [address, setAddress] = useState('');
 
-  // const onConfirmHandler = () => {
-  //   if (!validator.isEthereumAddress(address))
-  //     return toast.error(
-  //       'Invalid ethereum address, please provide 64 character address whitch starts with "0x".'
-  //     );
-
-  //   mutateClaimFaucet({ userId: user?.id, walletAddress: address });
-  // };
-
   const onChangeHandler = (e) => {
     setAddress(e.target.value);
   };
-
-  // API CALLS
 
   return (
     <>

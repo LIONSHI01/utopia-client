@@ -3,9 +3,7 @@ import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 import validator from 'validator';
 
-// import { ImProfile } from 'react-icons/im';
-
-import { FaWallet, ImProfile } from '../../../index';
+import { FaWallet, ImProfile } from '../../../ReactIcons';
 
 import { updateUserProfile } from '../../../../utils/apiData/userRequest';
 
@@ -25,7 +23,6 @@ const ProfileBox = ({ user, refetchUser }) => {
   const {
     name,
     email,
-    // walletAddress,
     bio,
     location,
     facebook,
@@ -119,7 +116,7 @@ const ProfileBox = ({ user, refetchUser }) => {
           fieldName="web3_address"
           value={walletAddress}
           name="walletAddress"
-          onChange={onChangeProfileHandler}
+          onChange={(e) => setwalletAddress(e.target.value)}
         />
         <FormInputComp
           inputType="textarea"

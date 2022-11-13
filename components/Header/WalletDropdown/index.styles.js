@@ -30,7 +30,7 @@ export const DropdownContainer = styled.div`
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 999;
   transition: all 0.3s ease-in-out;
 
   ${(props) => props.showup && showupStyles}

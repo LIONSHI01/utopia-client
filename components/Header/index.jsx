@@ -103,8 +103,8 @@ const MainHeader = () => {
 
             {user && (
               <>
-                <UserIcon user={user} hasUserMenu={true} />
                 <AcBalanceBox />
+                <UserIcon user={user} hasUserMenu={true} />
               </>
             )}
 

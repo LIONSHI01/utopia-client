@@ -24,7 +24,6 @@ import {
 const OfferDetailsBox = ({ order, user, refetchUser }) => {
   // CONFIGURATION
 
-  // const order = useSelector(selectSelectedOrder);
   const { user: buyer } = useGetUserHook({ userId: order?.postedBy });
   const sellerClaimHashUrl = `https://goerli.etherscan.io/tx/${order?.seller_claim_txHash}`;
 

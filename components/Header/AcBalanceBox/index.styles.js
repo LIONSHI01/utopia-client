@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const BoxContainer = styled.div`
+  position: relative;
   border: 1px solid var(--black-light-3);
   border-radius: var(--br-m);
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 
   :hover {
     border: 1px solid var(--black);
@@ -13,7 +15,6 @@ export const BoxContainer = styled.div`
 `;
 
 export const DetailsWrapper = styled.div`
-  position: relative;
   display: flex;
   gap: 0.5rem;
   align-items: center;

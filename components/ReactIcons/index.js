@@ -17,7 +17,12 @@ import {
   MdModeEditOutline,
   MdLocalOffer,
 } from 'react-icons/md';
-import { IoMdClose, IoMdTrash, IoIosWarning } from 'react-icons/io';
+import {
+  IoMdClose,
+  IoMdTrash,
+  IoIosWarning,
+  IoIosArrowForward,
+} from 'react-icons/io';
 import { CgSandClock } from 'react-icons/cg';
 import { GrFacebookOption } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
@@ -99,4 +104,5 @@ export {
   RiArrowDownSFill,
   FiEdit,
   BsDropletHalf,
+  IoIosArrowForward,
 };

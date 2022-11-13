@@ -13,6 +13,7 @@ export const SearchbarWrapper = styled.div`
   overflow: hidden;
   transition: all 0.3s;
   margin-right: 3rem;
+  padding: 0.15rem;
 
   :has(input:focus) {
     box-shadow: 0 0 0 0.3rem #ff9a77;
@@ -37,15 +38,20 @@ export const SearchbarWrapper = styled.div`
 
   .search-btn {
     background-color: var(--black);
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
     cursor: pointer;
+    border-radius: var(--br-s);
 
     transition: all 0.3s ease-in-out;
+
+    :active {
+      scale: 0.85;
+    }
 
     :hover {
       background-color: var(--primary);
