@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { device } from '../../styles/devices';
 
 const stickyStyles = css`
   position: fixed;
@@ -12,9 +13,12 @@ export const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: var(--white);
-  /* height: 7rem; */
   width: 100%;
   ${(props) => props.sticky && stickyStyles}
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -132,4 +136,8 @@ export const HeaderWrapper = styled.div`
 
 export const StickyFillinSpace = styled.div`
   height: ${(props) => (props.sticky ? '11rem' : 0)};
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;

@@ -54,7 +54,7 @@ export const getPostDetails = async (postId) => {
       method: 'GET',
       url: `${baseURL}/${postId}`,
     });
-    // console.log('from request', res);
+
     return res.data.data.post;
   } catch (err) {
     console.log(err);

@@ -1,10 +1,10 @@
-import React from 'react';
-import { MainHeader, Footer, MainMenuSidebar } from '../index';
+import React, { useState } from 'react';
+import { MainHeader, Footer, MobileNavigation } from '../index';
 
 const Layout = ({ children }) => {
   return (
     <>
-      <MainMenuSidebar />
+      <MobileNavigation />
       <MainHeader />
       {children}
       <Footer />

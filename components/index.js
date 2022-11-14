@@ -51,6 +51,8 @@ import EmptyReminderBox from './AccountSection/CommonComps/EmptyReminderBox';
 import AcBalanceBox from './Header/AcBalanceBox';
 import FaucetModal from './Modals/FaucetModal';
 import MainMenuSidebar from './Sidebars/MainMenuSidebar';
+import MobileNavbar from './Sidebars/MobileNavbar';
+import MobileNavigation from './Sidebars/MobileNavigation';
 
 export {
   MainHeader,
@@ -107,4 +109,6 @@ export {
   AcBalanceBox,
   FaucetModal,
   MainMenuSidebar,
+  MobileNavbar,
+  MobileNavigation,
 };

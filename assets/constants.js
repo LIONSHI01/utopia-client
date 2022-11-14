@@ -13,6 +13,9 @@ import {
   ImFacebook,
   BsGithub,
   RiEarthFill,
+  BsHeart,
+  AiOutlineHeart,
+  HiOutlineDocumentText,
 } from '../components/ReactIcons';
 
 export const categories = [
@@ -312,4 +315,37 @@ export const footerSocialLinks = [
   },
   { title: 'facebook', link: '/', icon: <ImFacebook size={25} /> },
   { title: 'twitter', link: '/', icon: <BsTwitter size={25} /> },
+];
+
+export const profileLinksMobile = [
+  {
+    title: 'collections',
+    path: '/account/collections',
+    icon: <AiOutlineHeart size={20} />,
+    isPublic: true,
+  },
+  {
+    title: 'listings',
+    path: '/account/listings',
+    icon: <RiAuctionLine size={20} />,
+    isPublic: true,
+  },
+  {
+    title: 'orders',
+    path: '/account/orders',
+    icon: <HiOutlineDocumentText size={20} />,
+    isPublic: false,
+  },
+  {
+    title: 'offers',
+    path: '/account/offers',
+    icon: <BsTag size={20} />,
+    isPublic: false,
+  },
+  {
+    title: 'settings',
+    path: '/account/settings',
+    icon: <FiSettings size={20} />,
+    isPublic: false,
+  },
 ];

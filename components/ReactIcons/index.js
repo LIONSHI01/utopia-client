@@ -6,6 +6,7 @@ import {
   AiTwotoneSetting,
   AiOutlineGift,
   AiTwotoneEdit,
+  AiOutlineHeart,
   AiOutlinePlus,
 } from 'react-icons/ai';
 import { BiTimeFive, BiWalletAlt } from 'react-icons/bi';
@@ -27,7 +28,6 @@ import { CgSandClock } from 'react-icons/cg';
 import { GrFacebookOption } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
 import { HiOutlineMail } from 'react-icons/hi';
-
 import { TbFileInvoice } from 'react-icons/tb';
 import { FiSettings, FiHeart, FiEdit } from 'react-icons/fi';
 import {
@@ -43,6 +43,7 @@ import {
   BsCalendar3,
   BsFillFileEarmarkTextFill,
   BsFillHeartFill,
+  BsHeart,
   BsTag,
   BsThreeDotsVertical,
   BsBookmarkStarFill,
@@ -53,6 +54,7 @@ import {
 } from 'react-icons/bs';
 import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
+import { HiOutlineMenu, HiOutlineDocumentText } from 'react-icons/hi';
 
 export {
   BsCheck2Circle,
@@ -105,4 +107,8 @@ export {
   FiEdit,
   BsDropletHalf,
   IoIosArrowForward,
+  HiOutlineMenu,
+  BsHeart,
+  HiOutlineDocumentText,
+  AiOutlineHeart,
 };

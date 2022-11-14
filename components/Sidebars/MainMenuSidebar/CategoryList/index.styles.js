@@ -1,33 +1,28 @@
-import styled, { css } from 'styled-components';
-
-const openSidebarStyles = css`
-  transform: translateX(0%);
-`;
-
-export const MenuContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 50rem;
-  background-color: var(--white);
-  box-shadow: var(--bs-s);
-  z-index: 2000;
-  padding: 2rem;
-  font-size: var(--fs-s);
-  text-transform: capitalize;
-  overflow-y: scroll;
-  transform: translateX(-100%);
-  transition: all 0.3s ease-in-out;
-
-  ${(props) => props.isOpen && openSidebarStyles}
-`;
+import styled from 'styled-components';
 
 export const ListContainer = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: var(--white);
+  border-radius: var(--br-m);
+  box-shadow: var(--bs-xs);
+  display: flex;
+  flex-direction: column;
+
+  .heading {
+    display: block;
+    font-size: var(--fs-ss);
+    font-weight: 100;
+    color: var(--black-light-2);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--grey-light-2);
+  }
+
   .master_list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    overflow-y: scroll;
+    /* gap: 1rem; */
   }
 
   .arrow {
@@ -63,8 +58,8 @@ export const ListContainer = styled.div`
   .category_item {
     display: flex;
     align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: var(--br-s);
+    padding: 1rem 2rem;
+    /* border-radius: var(--br-s); */
     cursor: pointer;
 
     :hover {
@@ -85,7 +80,7 @@ export const ListContainer = styled.div`
   .subCategory_item {
     display: block;
     padding: 0.5rem 2.5rem;
-    border-radius: var(--br-s);
+    /* border-radius: var(--br-s); */
     transition: all 0.3s;
     cursor: pointer;
     :hover {

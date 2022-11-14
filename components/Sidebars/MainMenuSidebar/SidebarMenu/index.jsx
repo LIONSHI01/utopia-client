@@ -4,14 +4,22 @@ import Link from 'next/link';
 import { IoIosArrowForward } from '../../../ReactIcons';
 import { categories } from '../../../../assets/constants';
 import { MenuContainer, ListContainer } from './index.styled';
-const SidebarMenu = ({ isOpen = true }) => {
-  const [categorySelected, setCategorySelected] = useState(true);
+
+const SidebarMenu = ({ isOpen }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedSubcategory, setSelectedSubcategory] = useState('');
+  // console.log({ selectedCategory, selectedSubcategory });
 
   const onSelectCategoryHandler = (category) => {
     setSelectedCategory((prev) => {
       if (category === prev) return '';
       return category;
+    });
+  };
+  const onSelectSubcategoryHandler = (subCategory) => {
+    setSelectedSubcategory((prev) => {
+      if (subCategory === prev) return '';
+      return subCategory;
     });
   };
 
@@ -28,25 +36,38 @@ const SidebarMenu = ({ isOpen = true }) => {
                     ? 'category_list active'
                     : 'category_list'
                 }
-                onClick={() => onSelectCategoryHandler(category)}
               >
-                <div className="category_item">
+                <div
+                  className="category_item"
+                  onClick={() => onSelectCategoryHandler(category)}
+                >
                   <Link href={link}>
                     <a>{category}</a>
                   </Link>
                   <IoIosArrowForward size={20} className="arrow" />
                 </div>
-                <ul className="subCategory_list">
+                <div className="subCategory_list">
                   {subCategories?.map(
                     ({ subCategory, subCategoryValue, link }) => (
-                      <li key={subCategory} className="subCategory_item">
+                      <div key={subCategory}>
                         <Link href={link}>
-                          <a>{subCategory}</a>
+                          <a
+                            className={
+                              selectedSubcategory === subCategory
+                                ? 'subCategory_item active'
+                                : 'subCategory_item'
+                            }
+                            onClick={() =>
+                              onSelectSubcategoryHandler(subCategory)
+                            }
+                          >
+                            {subCategory}
+                          </a>
                         </Link>
-                      </li>
+                      </div>
                     )
                   )}
-                </ul>
+                </div>
               </li>
             )
           )}
