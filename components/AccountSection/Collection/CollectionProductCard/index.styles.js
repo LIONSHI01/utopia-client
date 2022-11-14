@@ -57,7 +57,7 @@ export const ContentContainer = styled.div`
     font-size: var(--fs-s);
     color: var(--black-light-2);
     font-weight: 400;
-    line-height: 0;
+    margin-bottom: var(--mg-s);
   }
 
   .price {

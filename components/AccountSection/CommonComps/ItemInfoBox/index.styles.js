@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../../styles/devices';
 
 export const ItemInfoBoxContainer = styled.div`
   position: relative;
@@ -8,6 +9,10 @@ export const ItemInfoBoxContainer = styled.div`
   border-radius: var(--br-m);
   background-color: var(--grey-light-3);
   padding: 2.5rem;
+
+  @media ${device.mobileL} {
+    padding: 1.5rem;
+  }
 
   .edit-btn {
     position: absolute;
@@ -22,21 +27,34 @@ export const ItemInfoBoxContainer = styled.div`
     gap: 1rem;
     margin-bottom: var(--mg-m);
     line-height: 0;
+
+    @media ${device.tablet} {
+      /* flex-direction: column;
+      align-items: center;
+      gap: 1.5rem; */
+    }
   }
 
   .order_id {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
 
     h4 {
       color: var(--black);
       font-size: var(--fs);
       font-weight: 500;
+      margin-bottom: var(--mg-m);
     }
 
     span {
       font-size: var(--fs-s);
     }
+  }
+
+  .order_details {
+    display: flex;
+    gap: 1rem;
   }
 
   .order_status {

@@ -46,7 +46,6 @@ const ListingsMasterSection = ({ user, isAuthenticated }) => {
   return (
     <SectionContainer>
       <ContentsContainer>
-        {/* <h3 className="heading">Listings</h3> */}
         <DisplayList>
           {listings?.map((item) => (
             <ProductCard key={item?._id} post={item} />

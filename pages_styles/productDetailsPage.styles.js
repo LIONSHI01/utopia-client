@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { device } from '../styles/devices';
 
 export const DetailsPageContainer = styled.div`
   overflow: hidden;
-  min-height: calc(100vh - 10rem);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,30 +11,55 @@ export const DetailsPageContainer = styled.div`
 export const OutterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem 5rem;
+  margin: 1rem auto;
+  padding: 0 14px;
+  max-width: var(--container);
 `;
 
 export const PostDetailsContainer = styled.div`
   display: flex;
+  flex-direction: column;
   margin-bottom: var(--mg-x);
-  gap: 5rem;
 `;
 
-export const LeftContainer = styled.div`
-  width: 60%;
+export const UpperContainer = styled.div`
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  gap: 5rem;
+
+  @media ${device.laptop} {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+`;
+export const UpperLeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const UpperRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const LowerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const GalleryWrapper = styled.div`
   display: flex;
-  gap: 3rem;
-  margin-bottom: var(--mg-x);
+  gap: 2rem;
+  margin-bottom: var(--mg-m);
+
+  @media ${device.laptop} {
+    justify-content: center;
+  }
 
   .thumbnail-col {
     display: flex;
     flex-direction: column;
-    width: 7rem;
+    min-width: 7rem;
     gap: 1rem;
-
     overflow-y: scroll;
   }
 
@@ -54,21 +79,24 @@ export const GalleryWrapper = styled.div`
     }
   }
 
-  .active {
+  .thumbnail.active {
     opacity: 1;
     border: 2px solid var(--black);
   }
 
   .displayed-image-contaienr {
     position: relative;
-    width: 65rem;
+    width: 55rem;
     height: 55rem;
     background-color: var(--white);
-    /* background-color: orangered; */
     border-radius: var(--br-s);
     overflow: hidden;
-
     cursor: zoom-in;
+
+    @media ${device.laptop} {
+      width: 40rem;
+      height: 40rem;
+    }
   }
 `;
 
@@ -99,9 +127,6 @@ export const CTAWrapper = styled.div`
   }
 `;
 
-export const RightContainer = styled.div`
-  width: 40%;
-`;
 export const DetailsWrapper = styled.div`
   width: 100%;
   .upper-box {
@@ -162,19 +187,16 @@ export const DetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
 
-    /* gap: 1rem; */
-
     h3 {
       font-size: var(--fs-x);
       font-weight: 400;
-      line-height: 0;
+      margin-bottom: var(--mg-s);
     }
   }
 
   .list-item {
     display: grid;
     grid-template-columns: 2fr 8fr;
-    /* gap: 2rem; */
     font-size: var(--fs);
     font-weight: 100;
     margin-bottom: var(--mg-s);
@@ -199,7 +221,7 @@ export const DetailsWrapper = styled.div`
     h3 {
       font-size: var(--fs-x);
       font-weight: 400;
-      line-height: 0;
+      margin-bottom: var(--mg-s);
     }
     p {
       font-size: var(--fs-s);

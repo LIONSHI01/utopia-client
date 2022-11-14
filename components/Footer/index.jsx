@@ -84,8 +84,9 @@ const Footer = () => {
             </form>
           </EmailBarContainer>
           <div className="socials_col_links">
-            {footerSocialLinks?.map(({ link, icon }) => (
+            {footerSocialLinks?.map(({ link, icon }, i) => (
               <a
+                key={i}
                 href={link}
                 target="_blank"
                 rel="noreferrer noopener"

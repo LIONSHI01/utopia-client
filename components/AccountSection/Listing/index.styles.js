@@ -5,6 +5,7 @@ export const SectionContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
+  margin: 2rem 0;
 `;
 
 export const ContentsContainer = styled.div`
@@ -23,9 +24,12 @@ export const ContentsContainer = styled.div`
 `;
 
 export const DisplayList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 25rem));
+  justify-items: center;
+  gap: 3rem;
+  margin: 0 auto;
 `;
 
 export const CreateButtonWrapper = styled.div`

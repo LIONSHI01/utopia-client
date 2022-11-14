@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BoxContainer = styled.div`
-  margin-bottom: var(--mg-m);
+  margin-bottom: var(--mg-x);
   .heading {
     display: flex;
     justify-content: space-between;
@@ -10,7 +10,7 @@ export const BoxContainer = styled.div`
     h3 {
       font-size: var(--fs-xxl);
       font-weight: 300;
-      line-height: 0;
+      margin-bottom: var(--mg-m);
     }
   }
 

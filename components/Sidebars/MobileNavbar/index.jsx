@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import React from 'react';
 
 import { UserIcon, Searchbar } from '../../index';
 import { NavbarContainer } from './index.styles';

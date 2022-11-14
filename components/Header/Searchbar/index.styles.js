@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const SearchbarWrapper = styled.div`
   height: 4rem;
-  min-width: 50%;
-  max-width: 65%;
+  /* min-width: 30%; */
+  width: 100%;
 
   display: flex;
   align-items: center;

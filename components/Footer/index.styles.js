@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import { device } from '../../styles/devices';
 
 export const FooterContainer = styled.div`
-  /* temple */
-  /* height: 20rem; */
   background-color: var(--black);
   display: flex;
   color: var(--white);
@@ -14,6 +13,18 @@ export const MasterFramworkWrapper = styled.div`
   margin: 5rem auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  @media ${device.tablet} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 4rem;
+  }
+  @media ${device.mobileL} {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
 `;
 
 export const LogoColWrapper = styled.div`

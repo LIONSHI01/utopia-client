@@ -33,12 +33,14 @@ import {
   DetailsPageContainer,
   OutterContainer,
   PostDetailsContainer,
-  LeftContainer,
   GalleryWrapper,
-  RightContainer,
   DetailsWrapper,
   CTAWrapper,
   LoadingPageContainer,
+  UpperContainer,
+  LowerContainer,
+  UpperLeftContainer,
+  UpperRightContainer,
 } from '../../../../../pages_styles/productDetailsPage.styles';
 
 const ProductDetailsPage = () => {
@@ -136,150 +138,154 @@ const ProductDetailsPage = () => {
             postTitle={post?.title}
           />
           <PostDetailsContainer>
-            <LeftContainer>
-              <GalleryWrapper>
-                <div className="thumbnail-col">
-                  {post?.images?.map((image, i) => (
-                    <div
-                      key={i}
-                      className={
-                        displayIndex === i ? 'thumbnail active' : 'thumbnail'
-                      }
-                      onClick={() => setDisplayIndex(i)}
-                    >
+            <UpperContainer>
+              <UpperLeftContainer>
+                <GalleryWrapper>
+                  <div className="thumbnail-col">
+                    {post?.images?.map((image, i) => (
+                      <div
+                        key={i}
+                        className={
+                          displayIndex === i ? 'thumbnail active' : 'thumbnail'
+                        }
+                        onClick={() => setDisplayIndex(i)}
+                      >
+                        <Image
+                          src={image}
+                          alt="post"
+                          layout="fill"
+                          objectFit="contain"
+                          objectPosition="center"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div
+                    className="displayed-image-contaienr"
+                    onClick={() => setShowDisplayModal(true)}
+                  >
+                    {post?.images && (
                       <Image
-                        src={image}
-                        alt="post"
+                        src={post?.images[displayIndex]}
+                        alt="image"
                         layout="fill"
                         objectFit="contain"
                         objectPosition="center"
                       />
-                    </div>
-                  ))}
-                </div>
-                <div
-                  className="displayed-image-contaienr"
-                  onClick={() => setShowDisplayModal(true)}
-                >
-                  {post?.images && (
-                    <Image
-                      src={post?.images[displayIndex]}
-                      alt="image"
-                      layout="fill"
-                      objectFit="contain"
-                      objectPosition="center"
+                    )}
+                  </div>
+                  {showDisplayModal && (
+                    <ImageDisplayModal
+                      images={post?.images}
+                      setShowDisplayModal={setShowDisplayModal}
                     />
                   )}
-                </div>
-                {showDisplayModal && (
-                  <ImageDisplayModal
-                    images={post?.images}
-                    setShowDisplayModal={setShowDisplayModal}
-                  />
-                )}
-              </GalleryWrapper>
-              <CTAWrapper>
-                <div className="cta">
-                  <p>Have a similar item?</p>
-                  <Link href="/create-post">
-                    <a>Sell yours</a>
-                  </Link>
-                </div>
-              </CTAWrapper>
-              <MeetSellerColumn sellerId={post?.postedBy?.id} />
-              <ReviewBox reviews={post?.reviews} />
-            </LeftContainer>
-            <RightContainer>
-              <SellerInfoBox
-                user={user}
-                seller={seller}
-                refetchUser={refetchUser}
-                refetchSeller={refetchSeller}
-                isFollowing={isFollowing}
-                post={post}
-                isAuthenticated={isAuthenticated}
-              />
-              <DetailsWrapper>
-                <div className="upper-box">
-                  <div className="title">{post?.title}</div>
-                  <div className="price">
-                    <div className="icon-wrapper">
-                      <Image
-                        src={ethIcon}
-                        alt="eth-icon"
-                        objectFit="cover"
-                        objectPosition="center"
-                        layout="fill"
-                      />
-                    </div>
-                    <div className="value-info">
-                      <span className="eth-value">{post?.price}</span>
-                      <span className="item-value">
-                        $ {(ethQuote * +post?.price).toFixed(2)}
-                      </span>
-                    </div>
+                </GalleryWrapper>
+                <CTAWrapper>
+                  <div className="cta">
+                    <p>Have a similar item?</p>
+                    <Link href="/create-post">
+                      <a>Sell yours</a>
+                    </Link>
                   </div>
-                  <div className="buttons-group">
-                    <Button
-                      size="full"
-                      buttonType={
-                        isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
-                      }
-                      onClick={onClickAddToCollectionHandler}
-                    >
-                      {isLiked ? 'Liked' : 'Add to collection'}
-                    </Button>
-                    <Button
-                      isLoading={isOrdering}
-                      size="full"
-                      onClick={onClickBuyHandler}
-                    >
-                      {isOrderSuccess ? 'Ordered' : 'Buy now'}
-                    </Button>
-                  </div>
-                </div>
-                <div className="lower-box">
-                  <div className="overview">
-                    <h3>Overview</h3>
-                    <div className="list-item">
-                      <p className="list-title">Condition</p>
-                      <p className="list-content">Brand new</p>
-                    </div>
-                    <div className="list-item">
-                      <p className="list-title">Brand</p>
-                      <p className="list-content">{post?.brand}</p>
-                    </div>
-                    <div className="list-item">
-                      <p className="list-title">Category</p>
-                      <div className="list-category">
-                        <Link href={`/products/${category}`}>
-                          <a>{post?.category?.replace('-', ' & ')}</a>
-                        </Link>
-                        <Link href={`/products/${category}/${subCategory}`}>
-                          <a>{post?.subCategory?.replace('-', ' & ')}</a>
-                        </Link>
+                </CTAWrapper>
+              </UpperLeftContainer>
+              <UpperRightContainer>
+                <SellerInfoBox
+                  user={user}
+                  seller={seller}
+                  refetchUser={refetchUser}
+                  refetchSeller={refetchSeller}
+                  isFollowing={isFollowing}
+                  post={post}
+                  isAuthenticated={isAuthenticated}
+                />
+                <DetailsWrapper>
+                  <div className="upper-box">
+                    <div className="title">{post?.title}</div>
+                    <div className="price">
+                      <div className="icon-wrapper">
+                        <Image
+                          src={ethIcon}
+                          alt="eth-icon"
+                          objectFit="cover"
+                          objectPosition="center"
+                          layout="fill"
+                        />
+                      </div>
+                      <div className="value-info">
+                        <span className="eth-value">{post?.price}</span>
+                        <span className="item-value">
+                          $ {(ethQuote * +post?.price).toFixed(2)}
+                        </span>
                       </div>
                     </div>
-                    <div className="list-item">
-                      <p className="list-title">Posted</p>
-                      <p className="list-content">
-                        {new Date(
-                          Date.parse(post?.createdAt)
-                        )?.toLocaleDateString('en-us', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: '2-digit',
-                        })}
-                      </p>
+                    <div className="buttons-group">
+                      <Button
+                        size="full"
+                        buttonType={
+                          isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
+                        }
+                        onClick={onClickAddToCollectionHandler}
+                      >
+                        {isLiked ? 'Liked' : 'Add to collection'}
+                      </Button>
+                      <Button
+                        isLoading={isOrdering}
+                        size="full"
+                        onClick={onClickBuyHandler}
+                      >
+                        {isOrderSuccess ? 'Ordered' : 'Buy now'}
+                      </Button>
                     </div>
                   </div>
-                  <div className="description">
-                    <h3>Description</h3>
-                    <p>{post?.description}</p>
+                  <div className="lower-box">
+                    <div className="overview">
+                      <h3>Overview</h3>
+                      <div className="list-item">
+                        <p className="list-title">Condition</p>
+                        <p className="list-content">Brand new</p>
+                      </div>
+                      <div className="list-item">
+                        <p className="list-title">Brand</p>
+                        <p className="list-content">{post?.brand}</p>
+                      </div>
+                      <div className="list-item">
+                        <p className="list-title">Category</p>
+                        <div className="list-category">
+                          <Link href={`/products/${category}`}>
+                            <a>{post?.category?.replace('-', ' & ')}</a>
+                          </Link>
+                          <Link href={`/products/${category}/${subCategory}`}>
+                            <a>{post?.subCategory?.replace('-', ' & ')}</a>
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="list-item">
+                        <p className="list-title">Posted</p>
+                        <p className="list-content">
+                          {new Date(
+                            Date.parse(post?.createdAt)
+                          )?.toLocaleDateString('en-us', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: '2-digit',
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="description">
+                      <h3>Description</h3>
+                      <p>{post?.description}</p>
+                    </div>
                   </div>
-                </div>
-              </DetailsWrapper>
-            </RightContainer>
+                </DetailsWrapper>
+              </UpperRightContainer>
+            </UpperContainer>
+            <LowerContainer>
+              <MeetSellerColumn sellerId={post?.postedBy?.id} />
+              <ReviewBox reviews={post?.reviews} />
+            </LowerContainer>
           </PostDetailsContainer>
 
           {moreSellerPosts?.length > 0 && (

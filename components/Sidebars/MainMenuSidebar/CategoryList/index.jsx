@@ -5,7 +5,7 @@ import { IoIosArrowForward } from '../../../ReactIcons';
 import { categories } from '../../../../assets/constants';
 import { MenuContainer, ListContainer } from './index.styles.js';
 
-const CategoryList = () => {
+const CategoryList = ({ setSidebarOpen }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   // console.log({ selectedCategory, selectedSubcategory });
@@ -17,6 +17,7 @@ const CategoryList = () => {
     });
   };
   const onSelectSubcategoryHandler = (subCategory) => {
+    setSidebarOpen(false);
     setSelectedSubcategory((prev) => {
       if (subCategory === prev) return '';
       return subCategory;

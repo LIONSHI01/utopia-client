@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const SectionContainer = styled.div`
   width: 100%;
@@ -8,6 +9,13 @@ export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5rem;
+
+  @media ${device.laptop} {
+    margin: 5rem;
+  }
+  @media ${device.tablet} {
+    margin: 5rem;
+  }
 
   & > * {
     padding: 3rem;

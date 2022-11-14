@@ -47,7 +47,6 @@ const CollectionMasterSection = ({ user, refetchUser, isAuthenticated }) => {
     <SectionContainer>
       <ContentsContainer>
         <CollectionSection>
-          {/* <h3 className="heading">Collections</h3> */}
           {itemCollections?.length > 0 ? (
             <div className="display-zone">
               {itemCollections?.map((itemCollection) => (

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { device } from '../../../../styles/devices';
 
 export const ListContainer = styled.div`
-  height: 20rem;
-
+  min-height: 30rem;
   display: flex;
   flex-direction: column;
   margin-bottom: var(--mg-m);
@@ -33,16 +33,18 @@ export const SelectionContainer = styled.div`
 `;
 
 export const ListTable = styled.div`
-  /* height: 100%; */
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-weight: 100;
+  /* gap: 1rem; */
 `;
 
 export const TableHeader = styled.div`
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
   font-weight: 400;
   border-bottom: 1px solid var(--black-light-3);
   padding-bottom: 1rem;
@@ -50,6 +52,10 @@ export const TableHeader = styled.div`
 
   text-transform: capitalize;
   font-size: var(--fs-s);
+
+  @media ${device.laptop} {
+    font-size: var(--fs-sss);
+  }
 `;
 
 export const ListItemWrapper = styled.div`
@@ -57,12 +63,17 @@ export const ListItemWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-weight: 100;
+  gap: 1rem;
   color: var(--black-light-2);
   text-transform: capitalize;
   font-size: var(--fs-ss);
   padding: 0.5rem 0;
   border-radius: var(--br-s);
   cursor: pointer;
+
+  @media ${device.laptop} {
+    font-size: var(--fs-sss);
+  }
 
   :hover {
     background-color: var(--grey-light-1);

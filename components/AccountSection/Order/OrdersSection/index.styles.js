@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../../styles/devices';
 
 export const PageContainer = styled.div`
   display: flex;
@@ -11,6 +12,10 @@ export const ContentsContainer = styled.div`
   flex-direction: column;
   padding: 3rem;
   width: 100%;
+
+  @media ${device.mobileL} {
+    padding: 3rem 14px;
+  }
   .heading {
     font-size: var(--fs-xl);
     font-weight: 500;

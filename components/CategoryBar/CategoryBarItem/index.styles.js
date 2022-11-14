@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const ItemWrapper = styled.div`
   position: relative;
@@ -19,6 +20,10 @@ export const ItemWrapper = styled.div`
     font-weight: 300;
     color: var(--black-light-2);
     text-transform: capitalize;
+
+    @media ${device.laptop} {
+      font-size: var(--fs-ss);
+    }
   }
 `;
 
@@ -30,18 +35,19 @@ export const DropdownWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  /* gap: 1rem; */
 
   min-width: 25rem;
-
   background-color: var(--white);
   box-shadow: var(--bs-s);
   border-radius: var(--br-x);
-
-  /* background-color: orangered; */
   padding: 2rem 2rem 2rem 3rem;
 
   z-index: 100;
+
+  @media ${device.laptop} {
+    min-width: 20rem;
+    padding: 1rem 1rem 1rem 2rem;
+  }
 
   .subCategory-name {
     display: flex;
@@ -52,6 +58,10 @@ export const DropdownWrapper = styled.div`
     padding: 0.8rem 0;
     font-weight: 100;
     text-transform: capitalize;
+
+    @media ${device.laptop} {
+      font-size: var(--fs-ss);
+    }
 
     :hover {
       color: var(--black);

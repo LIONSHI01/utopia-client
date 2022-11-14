@@ -10,13 +10,21 @@ import { useGetEthHook } from '../utils/reactQueryHooks/ethQueryHook';
 import { useGetUserHook } from '../utils/reactQueryHooks/fetchUserHook';
 import { useGetAllPostsHook } from '../utils/reactQueryHooks/postQueryHook';
 import { DisplayList, Spinner } from '../components';
+import { device } from '../styles/devices';
 
 const ContentContainer = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin: 5rem 10rem;
-  padding: 2rem 1.4rem;
+  margin: 5rem;
+  padding: 0 1.4rem;
+
+  @media ${device.desktop} {
+    margin: 5rem 2rem;
+  }
+  @media ${device.tablet_portrait} {
+    margin: 2rem 0;
+  }
 `;
 
 const LoadingPageContainer = styled.div`

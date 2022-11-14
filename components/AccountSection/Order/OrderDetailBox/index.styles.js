@@ -1,10 +1,20 @@
 import styled from 'styled-components';
+import { device } from '../../../../styles/devices';
 
 export const DetailsBoxContainer = styled.div`
   display: grid;
   grid-template-columns: 4fr 1.25fr;
-  height: 100%;
   gap: 2rem;
+
+  @media ${device.laptop} {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  @media ${device.mobileL} {
+    font-size: var(--fs-ss);
+    padding: 1.5rem;
+  }
 `;
 
 export const LeftContentBox = styled.div`
@@ -20,6 +30,11 @@ export const UserInfoBox = styled.div`
   border-radius: var(--br-m);
   background-color: var(--grey-light-3);
   padding: 1.5rem;
+
+  @media ${device.mobileL} {
+    font-size: var(--fs-ss);
+    padding: 1.5rem;
+  }
 
   .heading {
     font-size: var(--fs);
@@ -59,6 +74,11 @@ export const TransactionInfoBox = styled.div`
   & > * {
     display: flex;
     gap: 2rem;
+  }
+
+  @media ${device.mobileL} {
+    font-size: var(--fs-ss);
+    padding: 1.5rem;
   }
 
   .heading {

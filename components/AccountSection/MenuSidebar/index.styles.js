@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const SidebarContainer = styled.div`
   width: 30rem;
   padding: 2rem;
   box-shadow: 2px 0 10px -2px rgba(0, 0, 0, 0.15);
   clip-path: inset(0px -15px 0px 0px);
-  /* background-color: red; */
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const UserInfoSection = styled.div`
@@ -85,7 +89,7 @@ export const UserInfoSection = styled.div`
       font-size: var(--fs-x);
       font-weight: 400;
       letter-spacing: -1px;
-      line-height: 0;
+      margin-bottom: var(--mg-s);
       text-align: center;
     }
   }
@@ -148,6 +152,7 @@ export const MenuList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  list-style: none;
 
   .listItem {
     display: flex;

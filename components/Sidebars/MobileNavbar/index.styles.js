@@ -29,10 +29,3 @@ export const NavbarContainer = styled.div`
     display: flex;
   } ;
 `;
-
-// export const UserSummaryWrapper = styled.div``;
-// export const ProfileSectionWrapper = styled.div``;
-// export const ExploreSectionWrapper = styled.div``;
-// export const AuthSectionWrapper = styled.div``;
-// export const UserSectionWrapper = styled.div``;
-// export const UserSectionWrapper = styled.div``;

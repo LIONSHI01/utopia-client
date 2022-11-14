@@ -25,6 +25,10 @@ import {
 const MainMenuSidebar = ({ isOpen, setIsOpen }) => {
   const { data } = useSession();
   const { user } = useGetUserHook({ userId: data?.profile?.id });
+
+  const onClickCloseHandler = () => {
+    setIsOpen(false);
+  };
   // console.log('sidebar-user:', user);
   return (
     <>
@@ -38,7 +42,7 @@ const MainMenuSidebar = ({ isOpen, setIsOpen }) => {
         </UserSummaryWrapper>
         <ProfileSectionWrapper>
           {profileLinksMobile?.map(({ title, path, icon, isPublic }) => (
-            <ProfileItemWrapper key={title}>
+            <ProfileItemWrapper key={title} onClick={onClickCloseHandler}>
               <Link href={`/users/${user?.id}/${title}`}>
                 <a className="item">
                   {icon}
@@ -51,7 +55,7 @@ const MainMenuSidebar = ({ isOpen, setIsOpen }) => {
             </ProfileItemWrapper>
           ))}
         </ProfileSectionWrapper>
-        <CategoryList />
+        <CategoryList setSidebarOpen={setIsOpen} />
         <AuthSectionWrapper>
           <div className="buttons_group">
             <Button

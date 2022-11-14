@@ -1,10 +1,15 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const BoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: var(--mg-m);
+
+  @media ${device.laptop} {
+    display: none;
+  }
 
   .upperBox {
     display: flex;

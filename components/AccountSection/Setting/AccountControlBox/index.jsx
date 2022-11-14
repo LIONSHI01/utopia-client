@@ -75,7 +75,7 @@ const AccountControlBox = ({ user }) => {
         </p>
       </div>
       <Button
-        width="12rem"
+        width="15rem"
         height="4rem"
         buttonType={BUTTON_TYPES.outlineGrey}
         onClick={() => setShowModal(true)}

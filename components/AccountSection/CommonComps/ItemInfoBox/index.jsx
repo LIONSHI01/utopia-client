@@ -101,14 +101,18 @@ const ItemInfoBox = ({
         <div className="heading">
           <div className="order_id">
             <h4>Order Details</h4>
-            <span>#{order?.id}</span>
+            <div className="order_details">
+              <span>#{order?.id}</span>
+              <div
+                className={
+                  order?.active ? 'order_status active' : 'order_status'
+                }
+              >
+                <span>{order?.active ? 'Active' : 'Inactive'}</span>
+              </div>
+            </div>
           </div>
 
-          <div
-            className={order?.active ? 'order_status active' : 'order_status'}
-          >
-            <span>{order?.active ? 'Active' : 'Inactive'}</span>
-          </div>
           <div
             className={
               order?.status === 'completed'
