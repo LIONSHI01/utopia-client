@@ -14,7 +14,6 @@ const WaitingModal = ({
   url,
   showup,
   setShowup,
-  onConfirmHandler,
   isLoading,
 }) => {
   if (isLoading) {

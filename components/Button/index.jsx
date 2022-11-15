@@ -7,21 +7,27 @@ import {
   OutlineRedButton,
   OutlineGreyButton,
   RawButton,
+  BlackButton,
+  Web3Button,
 } from './index.styles';
 
 export const BUTTON_TYPES = {
   base: 'base',
+  black: 'black',
   outlineRed: 'outlined-red',
   outlineGrey: 'outlined-grey',
   raw: 'raw',
+  web3: 'web3',
 };
 
 const getButton = (buttonType = BUTTON_TYPES.base) =>
   ({
     [BUTTON_TYPES.base]: BaseButton,
+    [BUTTON_TYPES.black]: BlackButton,
     [BUTTON_TYPES.outlineRed]: OutlineRedButton,
     [BUTTON_TYPES.outlineGrey]: OutlineGreyButton,
     [BUTTON_TYPES.raw]: RawButton,
+    [BUTTON_TYPES.web3]: Web3Button,
   }[buttonType]);
 
 const Button = ({
@@ -34,24 +40,9 @@ const Button = ({
   height,
   ...otherProps
 }) => {
-  /* Capture the dimensions of the button before the loading happens
-  so it doesn’t change size when showing the loader */
   const [showLoader, setShowLoader] = useState(false);
-  // const [width, setWidth] = useState(0);
-  // const [height, setHeight] = useState(0);
   const ref = useRef(null);
-
   const CustomButton = getButton(buttonType);
-
-  // Save the dimensions here
-  // useEffect(() => {
-  //   if (ref.current && ref.current.getBoundingClientRect().width) {
-  //     setWidth(ref.current.getBoundingClientRect().width);
-  //   }
-  //   if (ref.current && ref.current.getBoundingClientRect().height) {
-  //     setHeight(ref.current.getBoundingClientRect().height);
-  //   }
-  // }, [children]);
 
   useEffect(() => {
     if (isLoading) {
@@ -79,14 +70,6 @@ const Button = ({
       width={width}
       height={height}
       showLoader={showLoader}
-      // style={
-      //   width && height
-      //     ? {
-      //         width: `${width}px`,
-      //         height: `${height}px`,
-      //       }
-      //     : {}
-      // }
       {...otherProps}
     >
       {showLoader ? <ButtonLoader /> : children}

@@ -193,29 +193,32 @@ export const MetaMaskFormBox = styled.div`
     gap: 1rem;
   }
 
-  .address_display {
+  /* .address_display {
     display: flex;
     flex-direction: column;
 
     span {
+      display: block;
       font-size: var(--fs-ss);
       font-weight: 500;
+      word-break: break-all;
     }
-  }
+  } */
 
   .walletAddress {
-    font-size: 0.8rem;
-    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    width: 100%;
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    border-radius: var(--br-m);
 
-    font-weight: 400;
-    background-color: #4ca23030;
-    border-radius: 100px;
-    padding: 0.2rem 0.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-
-    :hover {
-      background-color: #4ca23045;
+    span {
+      word-break: break-all;
+      font-size: var(--fs-s);
+      font-weight: 500;
     }
   }
 

@@ -40,9 +40,11 @@ export const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   h3 {
     font-size: var(--fs-xl);
     color: var(--black);
+    margin-bottom: var(--mg-m);
   }
   p {
     font-size: var(--fs);
