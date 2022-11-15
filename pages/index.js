@@ -13,17 +13,22 @@ import { DisplayList, Spinner } from '../components';
 import { device } from '../styles/devices';
 
 const ContentContainer = styled.div`
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  margin: 5rem;
+  width: 100%;
+`;
+
+const FrameworkContainer = styled.div`
+  max-width: var(--container);
+
+  /* display: flex; */
+  /* flex-direction: column; */
+  margin: 5rem auto;
   padding: 0 1.4rem;
 
   @media ${device.desktop} {
-    margin: 5rem 2rem;
+    margin: 5rem auto;
   }
   @media ${device.tablet_portrait} {
-    margin: 2rem 0;
+    margin: 2rem auto;
   }
 `;
 
@@ -59,7 +64,9 @@ const Home = () => {
 
   return (
     <ContentContainer>
-      <DisplayList posts={posts} />
+      <FrameworkContainer>
+        <DisplayList posts={posts} />
+      </FrameworkContainer>
     </ContentContainer>
   );
 };

@@ -89,7 +89,10 @@ const OfferDetailsBox = ({ order, user, refetchUser }) => {
               <span>Transaction Hash:</span>
             </div>
             <div className="content_col">
-              {order?.transaction_hash?.[0]?.hash || 'Pending for buyer entry.'}
+              <span>
+                {order?.transaction_hash?.[0]?.hash ||
+                  'Pending for buyer entry.'}
+              </span>
             </div>
           </div>
           <div className="details_box">

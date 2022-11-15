@@ -34,7 +34,7 @@ export const ModalContainer = styled.div`
       font-size: var(--fs-xxl);
       font-weight: 100;
       text-align: center;
-      line-height: 0;
+      margin-bottom: var(--mg-s);
     }
   }
 

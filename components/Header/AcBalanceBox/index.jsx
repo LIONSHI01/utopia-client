@@ -26,23 +26,36 @@ const AcBalanceBox = () => {
     getbalHandler();
   }, [user]);
 
+  // useEffect(() => {
+  //   const checkIfClickOutside = (e) => {
+  //     if (showDropdown && !ref?.current?.contains(e.target)) {
+  //       setShowDropdown(false);
+  //     }
+  //   };
+
+  //   window.addEventListener('mousedown', checkIfClickOutside, true);
+
+  //   return () => {
+  //     window.removeEventListener('mousedown', checkIfClickOutside);
+  //   };
+  // }, [showDropdown]);
+
   useEffect(() => {
     const checkIfClickOutside = (e) => {
       if (showDropdown && !ref.current.contains(e.target)) {
         setShowDropdown(false);
       }
     };
-
     window.addEventListener('mousedown', checkIfClickOutside, true);
 
     return () => {
-      window.removeEventListener('mousedown', checkIfClickOutside);
+      window.removeEventListener('mousedown', checkIfClickOutside, true);
     };
   }, [showDropdown]);
 
   if (!user?.walletAddress)
     return (
-      <BoxContainer ref={ref} onClick={() => setShowDropdown(!showDropdown)}>
+      <BoxContainer ref={ref} onClick={() => setShowDropdown((prev) => !prev)}>
         <DetailsWrapper>
           <BiWalletAlt size={17} />
           <RiArrowDownSFill size={17} />
@@ -56,7 +69,7 @@ const AcBalanceBox = () => {
     );
 
   return (
-    <BoxContainer ref={ref} onClick={() => setShowDropdown(!showDropdown)}>
+    <BoxContainer ref={ref} onClick={() => setShowDropdown((prev) => !prev)}>
       <DetailsWrapper>
         <div className="icon_container">
           <Image

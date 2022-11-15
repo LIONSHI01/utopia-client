@@ -24,21 +24,18 @@ const EditDropdownMenu = ({ showup, setShowup, post }) => {
     setShowDeleteAlert(false);
   };
 
-  const { isLoading: isDeleting, mutate: mutateDeletePost } = useMutation(
-    inactivePost,
-    {
-      onSuccess: () => {
-        router.push('/');
-        toast.success('Item is deleted successfully.');
-      },
-      onError: (err) => {
-        console.log(err);
-        toast.error(
-          'Something went wrong during deleting the item, please try again later.'
-        );
-      },
-    }
-  );
+  const { mutate: mutateDeletePost } = useMutation(inactivePost, {
+    onSuccess: () => {
+      router.push('/');
+      toast.success('Item is deleted successfully.');
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(
+        'Something went wrong during deleting the item, please try again later.'
+      );
+    },
+  });
 
   return (
     <>

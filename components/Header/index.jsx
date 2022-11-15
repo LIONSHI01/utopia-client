@@ -14,6 +14,7 @@ import {
   Searchbar,
   CategoryBar,
   AcBalanceBox,
+  Overlay,
 } from '../index';
 
 import { HeaderWrapper, InnerWrapper, StickyFillinSpace } from './index.styles';
@@ -27,6 +28,7 @@ const MainHeader = () => {
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [showNotiDropdown, setShowNotiDropdown] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const [sticky, setSticky] = useState(false);
 
@@ -78,7 +80,10 @@ const MainHeader = () => {
               </a>
             </Link>
           </div>
-          <Searchbar />
+          <Searchbar
+            setShowOverlay={setShowOverlay}
+            showOverlay={showOverlay}
+          />
           <div className="links">
             <FiHeart size={23} className="icon_btn" onClick={onClickHeartBtn} />
             <div
@@ -111,14 +116,16 @@ const MainHeader = () => {
             {!user && (
               <div className="auth-buttons">
                 <Button
-                  size="x"
+                  height="4rem"
+                  width="10rem"
                   buttonType={BUTTON_TYPES.outlineGrey}
                   onClick={() => setShowAuthForm(true)}
                 >
                   Sign In
                 </Button>
                 <Button
-                  size="x"
+                  height="4rem"
+                  width="10rem"
                   buttonType={BUTTON_TYPES.base}
                   onClick={() => setShowAuthForm(true)}
                 >
@@ -132,6 +139,7 @@ const MainHeader = () => {
       </InnerWrapper>
 
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
+      <Overlay zIndex={100} setShowUp={setShowOverlay} showUp={showOverlay} />
     </>
   );
 };

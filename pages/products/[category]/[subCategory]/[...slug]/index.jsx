@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
@@ -18,6 +18,9 @@ import {
   Spinner,
   ReviewBox,
   AuthForm,
+  IconButton,
+  ICON_BUTTON_TYPES,
+  EditDropdownMenu,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
@@ -28,6 +31,7 @@ import {
   isItemLiked,
   validateFollowingUser,
 } from '../../../../../utils/profileCalculator';
+import { BsThreeDotsVertical } from '../../../../../components/ReactIcons';
 
 import {
   DetailsPageContainer,
@@ -45,6 +49,7 @@ import {
 
 const ProductDetailsPage = () => {
   // CONFIGURATION
+  const ref = useRef();
   const router = useRouter();
   const { query } = router;
   const { data } = useSession();
@@ -76,6 +81,7 @@ const ProductDetailsPage = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [showEditDropdown, setShowEditDropdown] = useState(false);
 
   useEffect(() => {
     // Check if Post is liked by current user
@@ -91,6 +97,20 @@ const ProductDetailsPage = () => {
     setIsFollowing(ifFollowing);
     setIsAuthenticated(user?._id === post?.postedBy?.id);
   }, [post, user]);
+
+  // Set Edit post button onclick effect
+  useEffect(() => {
+    const checkIfClickOutside = (e) => {
+      if (showEditDropdown && !ref.current.contains(e.target)) {
+        setShowEditDropdown(false);
+      }
+    };
+    window.addEventListener('mousedown', checkIfClickOutside, true);
+
+    return () => {
+      window.removeEventListener('mousedown', checkIfClickOutside, true);
+    };
+  }, [showEditDropdown]);
 
   const {
     mutate: mutateBuying,
@@ -237,6 +257,22 @@ const ProductDetailsPage = () => {
                       >
                         {isOrderSuccess ? 'Ordered' : 'Buy now'}
                       </Button>
+                      {isAuthenticated && (
+                        <div className="editing-btn" ref={ref}>
+                          <IconButton
+                            size="x"
+                            buttonType={ICON_BUTTON_TYPES.hoverBackground}
+                            onClick={() => setShowEditDropdown((prev) => !prev)}
+                          >
+                            <BsThreeDotsVertical size={22} />
+                          </IconButton>
+                          <EditDropdownMenu
+                            post={post}
+                            showup={showEditDropdown}
+                            setShowup={setShowEditDropdown}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="lower-box">

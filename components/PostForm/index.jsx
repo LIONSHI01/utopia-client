@@ -203,7 +203,12 @@ const PostForm = ({ images }) => {
                 </div>
               </div>
             </div>
-            <Button isLoading={isListing} type="submit" size="x">
+            <Button
+              isLoading={isListing}
+              type="submit"
+              width="100%"
+              height="4rem"
+            >
               List now
             </Button>
           </>

@@ -17,7 +17,7 @@ const OverlayWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.347);
   backdrop-filter: blur(10px);
 
-  z-index: 1000;
+  z-index: ${(props) => props.zIndex};
 
   opacity: 0;
   visibility: hidden;
@@ -28,8 +28,14 @@ const OverlayWrapper = styled.div`
   ${(props) => props.showUp && showUpStyles}
 `;
 
-const Overlay = ({ showUp, setShowUp }) => {
-  return <OverlayWrapper showUp={showUp} onClick={() => setShowUp(false)} />;
+const Overlay = ({ showUp, setShowUp, zIndex = 1000 }) => {
+  return (
+    <OverlayWrapper
+      zIndex={zIndex}
+      showUp={showUp}
+      onClick={() => setShowUp(false)}
+    />
+  );
 };
 
 export default Overlay;

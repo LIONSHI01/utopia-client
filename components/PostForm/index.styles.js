@@ -37,7 +37,7 @@ export const FormContainer = styled.div`
       ::placeholder {
         font-size: var(--fs-s);
         font-family: inherit;
-        color: inherit;
+        color: var(--black-light-3);
       }
     }
 

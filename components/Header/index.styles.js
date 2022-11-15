@@ -14,6 +14,8 @@ export const InnerWrapper = styled.div`
   flex-direction: column;
   background-color: var(--white);
   width: 100%;
+  z-index: 1000;
+
   ${(props) => props.sticky && stickyStyles}
 
   @media ${device.tablet} {
@@ -28,6 +30,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   background-color: var(--white);
+  z-index: 1000;
 
   .logo {
     margin-right: 5rem;

@@ -128,6 +128,7 @@ export const CTAWrapper = styled.div`
 `;
 
 export const DetailsWrapper = styled.div`
+  position: relative;
   width: 100%;
   .upper-box {
     border-bottom: 1px solid var(--black-light-3);
@@ -175,6 +176,12 @@ export const DetailsWrapper = styled.div`
     display: flex;
     gap: 2rem;
     margin-bottom: var(--mg-m);
+  }
+
+  .editing-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .lower-box {

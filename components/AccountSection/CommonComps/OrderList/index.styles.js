@@ -6,12 +6,14 @@ export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: var(--mg-m);
+  border-bottom: 1px solid var(--black-light-3);
+  padding-bottom: 1rem;
 `;
 
 export const SelectionContainer = styled.div`
   display: flex;
   gap: 4rem;
-  border-bottom: 1px solid var(--black-light-3);
+  border-bottom: 1px solid var(--grey-light-2);
   height: 3rem;
   margin-bottom: var(--mg-m);
 

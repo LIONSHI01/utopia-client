@@ -118,9 +118,11 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                 </EditTxHashBox>
               ) : (
                 <>
-                  <div className="transactionHash">
-                    {txHash ||
-                      'Please provide your payment transaction hash for payment validation'}
+                  <div className="content_col_transactionHash">
+                    <span>
+                      {txHash ||
+                        'Please provide your payment transaction hash for payment validation'}
+                    </span>
                   </div>
                   {!paymentCompleted && (
                     <IconButton
@@ -173,7 +175,8 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
               {!paymentCompleted && (
                 <Button
                   disable={!order?.active ? true : false}
-                  size="x"
+                  height="4rem"
+                  width="8rem"
                   isLoading={isValidating}
                   buttonType={BUTTON_TYPES.outlineRed}
                   onClick={() =>

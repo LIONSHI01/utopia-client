@@ -175,7 +175,8 @@ const ItemInfoBox = ({
             <div className="buyer_confirmation">
               <Button
                 disable={!order?.active ? true : false}
-                size="x"
+                height="4rem"
+                width="13rem"
                 buttonType={BUTTON_TYPES.outlineRed}
                 onClick={() => setShowBuyerConfirm(true)}
               >
@@ -230,13 +231,37 @@ const ItemInfoBox = ({
       <ItemInfoBoxContainer>
         <div className="heading">
           <div className="order_id">
-            <h4>Order </h4>
-            <span>#{order?.id}</span>
+            <h4>Order Details</h4>
+            <div className="order_details">
+              <span>#{order?.id}</span>
+              <div
+                className={
+                  order?.active ? 'order_status active' : 'order_status'
+                }
+              >
+                <span>{order?.active ? 'Active' : 'Inactive'}</span>
+              </div>
+            </div>
           </div>
+
           <div
-            className={order?.active ? 'order_status active' : 'order_status'}
+            className={
+              order?.status === 'completed'
+                ? 'order_activity order_completed'
+                : 'order_activity'
+            }
           >
-            <span>{order?.active ? 'Active' : 'Inactive'}</span>
+            {order?.status === 'completed' ? (
+              <>
+                <MdDoneAll size={20} />
+                <span>{order?.status}</span>
+              </>
+            ) : (
+              <>
+                <CgSandClock size={20} />
+                <span>{order?.status}</span>
+              </>
+            )}
           </div>
         </div>
         <ItemDetailsWrapper isItemActive={active}>
@@ -271,14 +296,7 @@ const ItemInfoBox = ({
               {description?.slice(0, 100) + '...'}
             </p>
           </div>
-          {/* <div className="details_description">
-            <span className="item-title">{title}</span>
-            <p>
-              {category?.replace('-', ' & ')},&nbsp;
-              {subCategory?.replace('-', ' & ')}
-            </p>
-            <p>{description?.slice(0, 100) + '...'}</p>
-          </div> */}
+
           <div className="details_value">
             <span className="details_value_eth">{value} ETH</span>
             <span className="details_value_usd">

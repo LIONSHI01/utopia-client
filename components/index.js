@@ -53,6 +53,7 @@ import FaucetModal from './Modals/FaucetModal';
 import MainMenuSidebar from './Sidebars/MainMenuSidebar';
 import MobileNavbar from './Sidebars/MobileNavbar';
 import MobileNavigation from './Sidebars/MobileNavigation';
+import EditDropdownMenu from './PostDetails/EditDropdownMenu';
 
 export {
   MainHeader,
@@ -111,4 +112,5 @@ export {
   MainMenuSidebar,
   MobileNavbar,
   MobileNavigation,
+  EditDropdownMenu,
 };

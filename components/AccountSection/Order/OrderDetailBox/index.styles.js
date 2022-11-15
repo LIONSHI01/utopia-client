@@ -23,42 +23,6 @@ export const LeftContentBox = styled.div`
   gap: 2rem;
 `;
 
-export const UserInfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: var(--black);
-  border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
-  padding: 1.5rem;
-
-  @media ${device.mobileL} {
-    font-size: var(--fs-ss);
-    padding: 1.5rem;
-  }
-
-  .heading {
-    font-size: var(--fs);
-    font-weight: 500;
-    margin-bottom: var(--mg-s);
-  }
-  .userInfo_top {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-bottom: 1px solid var(--black-light-3);
-    padding-bottom: 2rem;
-  }
-
-  .username {
-    font-size: var(--fs-s);
-    font-weight: 400;
-  }
-  .shippingAddress {
-    border-bottom: 1px solid var(--black-light-3);
-    padding-bottom: 2rem;
-  }
-`;
-
 export const TransactionInfoBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,16 +54,22 @@ export const TransactionInfoBox = styled.div`
 
   .details_box {
     display: grid;
-    grid-template-columns: 2fr 8fr;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, max-content));
   }
+
   .title_col {
+    font-weight: 400;
   }
 
   .content_col {
-    width: 100%;
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    span {
+      display: block;
+      word-break: break-all;
+    }
   }
 
   .icon {
@@ -117,6 +87,13 @@ export const TransactionInfoBox = styled.div`
 
   .completedStatus {
     color: var(--green);
+  }
+
+  .content_col_transactionHash {
+    span {
+      display: block;
+      word-break: break-all;
+    }
   }
 `;
 

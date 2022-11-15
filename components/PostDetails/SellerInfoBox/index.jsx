@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useSession } from 'next-auth/react';
 
-import { BsThreeDotsVertical, BsBookmarkStarFill } from '../../ReactIcons';
+import { BsBookmarkStarFill } from '../../ReactIcons';
 import { updateUserProfile } from '../../../utils/apiData/userRequest';
 import { newFollowingsCalculator } from '../../../utils/profileCalculator';
 
@@ -12,44 +12,22 @@ import {
   UserIcon,
   Button,
   BUTTON_TYPES,
-  IconButton,
-  ICON_BUTTON_TYPES,
   AuthForm,
   RatingItem,
 } from '../../index';
-import EditDropdownMenu from '../EditDropdownMenu';
+
 import { BoxWrapper } from './index.styles';
 
-const SellerInfoBox = ({
-  user,
-  seller,
-  isAuthenticated,
-  post,
-  isFollowing,
-}) => {
+const SellerInfoBox = ({ user, seller, post, isFollowing }) => {
   // CONFIGURATION
-  const ref = useRef();
+
   const sales = seller?.offers?.filter(
     (offer) => offer.status === 'completed'
   )?.length;
   const { data } = useSession();
 
   // STATE MANAGEMENT
-  const [showEditDropdown, setShowEditDropdown] = useState(false);
   const [showAuthForm, setShowAuthForm] = useState(false);
-
-  useEffect(() => {
-    const checkIfClickOutside = (e) => {
-      if (showEditDropdown && !ref.current.contains(e.target)) {
-        setShowEditDropdown(false);
-      }
-    };
-    window.addEventListener('mousedown', checkIfClickOutside, true);
-
-    return () => {
-      window.removeEventListener('mousedown', checkIfClickOutside, true);
-    };
-  }, [showEditDropdown]);
 
   // API CALLS
 
@@ -99,23 +77,6 @@ const SellerInfoBox = ({
           >
             {seller?.followers.length || 0} <BsBookmarkStarFill size={15} />
           </Button>
-
-          {isAuthenticated && (
-            <div className="editing-btn" ref={ref}>
-              <IconButton
-                size="x"
-                buttonType={ICON_BUTTON_TYPES.hoverBackground}
-                onClick={() => setShowEditDropdown((prev) => !prev)}
-              >
-                <BsThreeDotsVertical size={22} />
-              </IconButton>
-              <EditDropdownMenu
-                post={post}
-                showup={showEditDropdown}
-                setShowup={setShowEditDropdown}
-              />
-            </div>
-          )}
         </div>
         <div className="lowerBox">
           <div className="sales">{sales} sales</div>

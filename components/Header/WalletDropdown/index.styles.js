@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
 
 const showupStyles = css`
-  width: 14rem;
-  height: 10.5rem;
+  width: 15rem;
+  /* height: 12rem; */
+  height: auto;
   visibility: visible;
   opacity: 1;
 `;
@@ -18,20 +19,20 @@ export const DropdownContainer = styled.div`
   right: 0;
   transform: translate(0%, 110%);
 
-  height: 0rem;
+  height: auto;
   width: 0rem;
   background-color: var(--white);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: var(--br-m);
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 2rem 0 1rem 0;
 
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
   z-index: 999;
-  transition: all 0.3s ease-in-out;
+  /* overflow-x: hidden; */
 
   ${(props) => props.showup && showupStyles}
 
@@ -46,6 +47,10 @@ export const DropdownContainer = styled.div`
     width: 2rem;
     transform: translateY(-25%) rotate(45deg);
   }
+
+  ul {
+    list-style: none;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -53,7 +58,8 @@ export const ContentWrapper = styled.div`
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
-  overflow-x: hidden;
+  overflow: hidden;
+
   ${(props) => props.showup && contentsShowUpStyles}
 
   .item {

@@ -15,7 +15,7 @@ export const MenuWrapper = styled.div`
   top: 0;
   left: 0;
   width: 10rem;
-  transform: translate(-45%, 43%);
+  transform: translate(-45%, 35%);
 
   background-color: var(--white);
   padding: 1rem;
@@ -27,22 +27,9 @@ export const MenuWrapper = styled.div`
   visibility: hidden;
 
   ${(props) => props.showup && boxShowUpStyles}
-
-  ::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 25px;
-    background-color: var(--white);
-    height: 2rem;
-    width: 2rem;
-    transform: translateY(-25%) rotate(45deg);
-  }
 `;
 
 export const ContentWrapper = styled.div`
-  /* min-width: 10rem; */
-  /* min-height: 20rem; */
   visibility: hidden;
   opacity: 0;
 

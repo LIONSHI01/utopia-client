@@ -80,7 +80,7 @@ const CommentSection = ({
       <CommentSectionContainer>
         {order?.buyer_review?.length > 0 && (
           <div className="comment_wrapper">
-            <p className="heading">Buyer Comment:</p>
+            <p className="comment_wrapper_heading">Buyer Comment:</p>
             <div className="comment_user">
               <UserIcon size="s" user={buyer} />
               <span className="username">{buyer?.name}</span>

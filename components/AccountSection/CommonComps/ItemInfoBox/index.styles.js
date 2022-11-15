@@ -27,12 +27,6 @@ export const ItemInfoBoxContainer = styled.div`
     gap: 1rem;
     margin-bottom: var(--mg-m);
     line-height: 0;
-
-    @media ${device.tablet} {
-      /* flex-direction: column;
-      align-items: center;
-      gap: 1.5rem; */
-    }
   }
 
   .order_id {
@@ -91,14 +85,10 @@ export const ItemInfoBoxContainer = styled.div`
 
 export const ItemDetailsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1.5fr;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
   gap: 2rem;
   font-size: var(--fs-s);
   font-weight: 100;
-
-  @media ${device.tablet_portrait} {
-    grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
-  }
 
   .details_description {
     display: flex;

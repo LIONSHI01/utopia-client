@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
+
 import { HiOutlineSearch } from 'react-icons/hi';
 
 import { SearchbarWrapper } from './index.styles';
 
-const Searchbar = () => {
+const Searchbar = ({ setShowOverlay }) => {
   const [query, setQuery] = useState('');
 
   const onChangeHandler = (e) => setQuery(e.target.value);
@@ -16,7 +17,12 @@ const Searchbar = () => {
 
   return (
     <SearchbarWrapper>
-      <input placeholder="Search..." value={query} onChange={onChangeHandler} />
+      <input
+        onFocus={() => setShowOverlay(true)}
+        placeholder="Search..."
+        value={query}
+        onChange={onChangeHandler}
+      />
       <button className="search-btn">
         <HiOutlineSearch
           size={20}

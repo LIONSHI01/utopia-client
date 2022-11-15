@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
 export const CommentSectionContainer = styled.div`
+  margin-top: var(--mg-m);
   .comment_wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-
     gap: 1rem;
   }
+
+  .comment_wrapper_heading {
+    font-size: var(--fs-s);
+  }
+
   .comment_user {
     display: flex;
     align-items: center;
@@ -43,10 +48,6 @@ export const CommentSectionContainer = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-  }
-
-  .heading {
-    font-size: var(--fs-s);
   }
 `;
 

@@ -1,8 +1,9 @@
 import moment from 'moment';
 
 export const timePeriod = (updatedAt) => {
+  // console.log(Date.parse(updatedAt));
   const nowTime = moment(new Date());
-  const updatedTime = moment(updatedAt);
+  const updatedTime = moment(Date.parse(updatedAt));
 
   const secondsDiff = nowTime.diff(updatedTime, 'seconds');
   const minutesDiff = nowTime.diff(updatedTime, 'minutes');
