@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { IoMdClose } from 'react-icons/io';
 import { useSession } from 'next-auth/react';
+import { useMutation } from 'react-query';
 
 import { ModalContainer } from './index.styles';
 import {
@@ -25,20 +27,29 @@ const CreateCollectionModal = ({
   // STATE MANAGEMENT
   const [name, setName] = useState('');
 
-  const onSubmitHandler = async () => {
-    const res = await createCollection(name, user?.profile?._id);
-
-    if (res.status === 201) {
-      setName('');
-      refetchUser();
-      setShowCreateCollectionModal(false);
-    }
+  const onSubmitHandler = () => {
+    mutateCreateCollection({
+      data: name,
+      userId: user?.profile?._id,
+    });
   };
 
   const closeHandler = () => {
     setShowCreateCollectionModal(false);
     setName('');
   };
+
+  const { mutate: mutateCreateCollection } = useMutation(createCollection, {
+    onSuccess: () => {
+      setName('');
+      refetchUser();
+      setShowCreateCollectionModal(false);
+      toast.success('New collection created.');
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   return (
     <>

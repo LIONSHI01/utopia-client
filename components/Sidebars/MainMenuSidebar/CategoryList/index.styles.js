@@ -22,7 +22,6 @@ export const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    /* gap: 1rem; */
   }
 
   .arrow {
@@ -59,7 +58,6 @@ export const ListContainer = styled.div`
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
-    /* border-radius: var(--br-s); */
     cursor: pointer;
 
     :hover {
@@ -79,8 +77,7 @@ export const ListContainer = styled.div`
 
   .subCategory_item {
     display: block;
-    padding: 0.5rem 2.5rem;
-    /* border-radius: var(--br-s); */
+    padding: 1rem 2.5rem;
     transition: all 0.3s;
     cursor: pointer;
     :hover {

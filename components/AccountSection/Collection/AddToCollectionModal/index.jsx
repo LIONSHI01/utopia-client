@@ -111,7 +111,10 @@ const AddToCollectionModal = ({
         <CollectionsContainer>
           <button
             className="addCollection"
-            onClick={() => setShowCreateModal(true)}
+            onClick={() => {
+              setShowAddToColModal(false);
+              setShowCreateModal(true);
+            }}
           >
             <div className="placeHolder">
               <AiOutlinePlus size={30} color="var(--white)" />

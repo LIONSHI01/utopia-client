@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL = 'http://localhost:3001/api/v1';
 
-export const createCollection = async (data, userId) => {
+export const createCollection = async ({ data, userId }) => {
   const res = await axios({
     method: 'POST',
     url: `${baseURL}/itemCollections/create/${userId}`,

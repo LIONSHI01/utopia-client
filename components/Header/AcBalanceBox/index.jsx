@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 import { BiWalletAlt, RiArrowDownSFill } from '../../ReactIcons';
 import { getAccountBalance } from '../../../utils/fetchAddressBalance';
-import { selectUser } from '../../../store/user/user.selector';
+
 import { BoxContainer, DetailsWrapper } from './index.styles';
 import ethIcon from '../../../assets/image/eth-icon.png';
 import WalletDropdown from '../WalletDropdown';
 
 const AcBalanceBox = () => {
-  const user = useSelector(selectUser);
   const ref = useRef();
+  const { data } = useSession();
+  const user = data?.profile;
 
   // STATES
   const [ethBalance, setEthBalance] = useState(0);

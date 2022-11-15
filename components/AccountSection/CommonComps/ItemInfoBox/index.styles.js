@@ -96,6 +96,10 @@ export const ItemDetailsWrapper = styled.div`
   font-size: var(--fs-s);
   font-weight: 100;
 
+  @media ${device.tablet_portrait} {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
+  }
+
   .details_description {
     display: flex;
     flex-direction: column;

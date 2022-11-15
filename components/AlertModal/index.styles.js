@@ -43,6 +43,7 @@ export const MessageContainer = styled.div`
   h3 {
     font-size: var(--fs-xl);
     color: var(--black);
+    margin-bottom: var(--mg-m);
   }
   p {
     font-size: var(--fs);

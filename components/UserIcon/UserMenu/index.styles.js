@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 const showUpStyles = css`
   width: 23rem;
+
   height: 34rem;
   opacity: 1;
   visibility: visible;

@@ -3,12 +3,11 @@ import Link from 'next/link';
 
 import { IoIosArrowForward } from '../../../ReactIcons';
 import { categories } from '../../../../assets/constants';
-import { MenuContainer, ListContainer } from './index.styles.js';
+import { ListContainer } from './index.styles.js';
 
 const CategoryList = ({ setSidebarOpen }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
-  // console.log({ selectedCategory, selectedSubcategory });
 
   const onSelectCategoryHandler = (category) => {
     setSelectedCategory((prev) => {

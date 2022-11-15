@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
@@ -50,7 +51,7 @@ const IconWrapper = styled.div`
   }
 `;
 
-const UserIcon = ({ user, size, hasUserMenu = false }) => {
+const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
   const ref = useRef();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -69,7 +70,7 @@ const UserIcon = ({ user, size, hasUserMenu = false }) => {
   }, [showUserMenu]);
 
   return (
-    <IconWrapper size={size} ref={ref}>
+    <IconWrapper size={size} ref={ref} {...otherProps}>
       <div
         className="icon-container"
         onClick={() => setShowUserMenu((prev) => !prev)}

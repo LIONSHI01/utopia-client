@@ -31,12 +31,14 @@ export const SidebarContainer = styled.div`
 `;
 export const UserSummaryWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
+  /* justify-content: space-between; */
 
   .user_info {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-right: auto;
   }
   .user_name {
     font-weight: 400;
@@ -68,7 +70,7 @@ export const ProfileItemWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.3rem;
+    padding: 1.3rem 2rem;
     height: 100%;
     width: 100%;
   }
