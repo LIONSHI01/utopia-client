@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import ImageUploading from 'react-images-uploading';
 import Image from 'next/image';
 import { BsArrowClockwise } from 'react-icons/bs';

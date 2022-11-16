@@ -55,6 +55,8 @@ import MobileNavbar from './Sidebars/MobileNavbar';
 import MobileNavigation from './Sidebars/MobileNavigation';
 import EditDropdownMenu from './PostDetails/EditDropdownMenu';
 import ForgotPasswordModal from './Modals/ForgotPasswordModal';
+import BuyNowModal from './Modals/BuyNowModal';
+import MetaMaskButton from './MetaMaskButton';
 
 export {
   MainHeader,
@@ -115,4 +117,6 @@ export {
   MobileNavigation,
   EditDropdownMenu,
   ForgotPasswordModal,
+  BuyNowModal,
+  MetaMaskButton,
 };

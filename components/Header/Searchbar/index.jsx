@@ -22,6 +22,7 @@ const Searchbar = ({ setShowOverlay }) => {
         placeholder="Search..."
         value={query}
         onChange={onChangeHandler}
+        autocomplete="off"
       />
       <button className="search-btn">
         <HiOutlineSearch

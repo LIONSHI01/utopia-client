@@ -78,17 +78,6 @@ const ProfileBox = ({ user, refetchUser }) => {
     });
 
   // HANDLERS
-  const connectWalletHandler = async () => {
-    if (window.ethereum) {
-      await window.ethereum
-        .request({ method: 'eth_requestAccounts' })
-        .then((res) => {
-          setwalletAddress(res[0]);
-        });
-    } else {
-      alert('Please install Metamask extension.');
-    }
-  };
 
   return (
     <ProfileWrapper>

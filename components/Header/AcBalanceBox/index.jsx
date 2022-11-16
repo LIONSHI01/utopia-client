@@ -83,17 +83,36 @@ const AcBalanceBox = () => {
 
   if (!user?.walletAddress)
     return (
-      <BoxContainer ref={ref} onClick={() => setShowDropdown((prev) => !prev)}>
-        <DetailsWrapper>
-          <BiWalletAlt size={17} />
-          <RiArrowDownSFill size={17} />
-        </DetailsWrapper>
-        <WalletDropdown
-          user={user}
-          showup={showDropdown}
-          setShowup={setShowDropdown}
+      <>
+        <BoxContainer
+          ref={ref}
+          onClick={() => setShowDropdown((prev) => !prev)}
+        >
+          <DetailsWrapper>
+            <BiWalletAlt size={17} />
+            <RiArrowDownSFill size={17} />
+          </DetailsWrapper>
+          <WalletDropdown
+            user={user}
+            showup={showDropdown}
+            setShowup={setShowDropdown}
+            setShowFaucetModal={setShowFaucetModal}
+          />
+        </BoxContainer>
+        <FaucetModal
+          showup={showFaucetModal}
+          setShowup={setShowFaucetModal}
+          onSubmitClaimHandler={onSubmitClaimHandler}
         />
-      </BoxContainer>
+        <WaitingModal
+          title={waitModalTitle}
+          message={waitModalMsg}
+          url={waitingModalLink}
+          isLoading={isClaiming}
+          showup={showWaitingModal}
+          setShowup={setShowWaitingModal}
+        />
+      </>
     );
 
   return (

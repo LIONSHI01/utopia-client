@@ -105,7 +105,7 @@ const MainHeader = () => {
             <Button
               height="4rem"
               width="8rem"
-              fonsSize="2rem"
+              fonsSize="1.6rem"
               onClick={onClickSellBtn}
             >
               Sell
@@ -121,22 +121,22 @@ const MainHeader = () => {
             {!user && (
               <div className="auth-buttons">
                 <Button
-                  height="4.5rem"
-                  width="10rem"
-                  fonsSize="2rem"
+                  height="4rem"
+                  width="8rem"
+                  fonsSize="1.6rem"
                   buttonType={BUTTON_TYPES.outlineGrey}
                   onClick={() => setShowAuthForm(true)}
                 >
                   Sign In
                 </Button>
                 <Button
-                  height="4.5rem"
-                  width="12rem"
-                  fonsSize="2rem"
+                  height="4rem"
+                  width="11rem"
+                  fonsSize="1.6rem"
                   buttonType={BUTTON_TYPES.base}
                   onClick={() => setShowAuthForm(true)}
                 >
-                  Get Start
+                  Get Started
                 </Button>
               </div>
             )}

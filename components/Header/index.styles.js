@@ -40,7 +40,7 @@ export const HeaderWrapper = styled.div`
     h2 {
       line-height: 0;
       font-family: var(--ff-display);
-      font-size: 4.2rem;
+      font-size: 3.8rem;
     }
   }
 

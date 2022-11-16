@@ -42,30 +42,28 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
         </TitleContainer>
       )}
 
-      <ItemsListContainer>
-        {collection?.items?.length > 0 ? (
-          <>
-            {collection?.items?.map((item) => (
-              <CollectionProductCard
-                key={item?._id}
-                post={item}
-                collection={collection}
-                refetchUser={refetchUser}
-              />
-            ))}
-          </>
-        ) : (
-          <EmptyReminderBox
-            message="No item yet."
-            fontSize="2rem"
-            buttonText="Let's Explore"
-            buttonHeight="4rem"
-            buttonWidth="12rem"
-            link="/"
-            isAuthenticated={isAuthenticated}
-          />
-        )}
-      </ItemsListContainer>
+      {collection?.items?.length > 0 ? (
+        <ItemsListContainer>
+          {collection?.items?.map((item) => (
+            <CollectionProductCard
+              key={item?._id}
+              post={item}
+              collection={collection}
+              refetchUser={refetchUser}
+            />
+          ))}
+        </ItemsListContainer>
+      ) : (
+        <EmptyReminderBox
+          message="No item yet."
+          fontSize="2rem"
+          buttonText="Let's Explore"
+          buttonHeight="4rem"
+          buttonWidth="12rem"
+          link="/"
+          isAuthenticated={isAuthenticated}
+        />
+      )}
       {collection && (
         <EditCollectionModal
           collection={collection}

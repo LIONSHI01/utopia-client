@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { signinRequest } from '../../../utils/authRequest';
+// import { signinRequest } from '../../../utils/authRequest';
 import connectMongoose from '../../../utils/connectMongo';
 import User from '../../../models/userModel';
 import { verifyPassword } from '../../../utils/hashPassword';

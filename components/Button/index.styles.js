@@ -37,6 +37,7 @@ export const BaseButton = styled.button`
 
   :hover {
     background-color: var(--primary-dark);
+    box-shadow: var(--bs-s);
   }
 
   ${(props) => props.size === 'm' && mediumSizeStyles}
@@ -82,6 +83,7 @@ export const RawButton = styled(BaseButton)`
   :hover {
     text-decoration: underline;
     background-color: unset;
+    box-shadow: unset;
   }
 
   ${(props) => props.disable && disableStyles}

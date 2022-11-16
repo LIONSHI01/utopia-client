@@ -32,15 +32,13 @@ export const TitleContainer = styled.div`
 `;
 
 export const ItemsListContainer = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 2rem; */
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 30rem));
   justify-items: center;
   gap: 3rem;
   margin: 0 auto;
+
   .empty_reminder {
     margin: 0 auto;
     font-size: 2.8rem;

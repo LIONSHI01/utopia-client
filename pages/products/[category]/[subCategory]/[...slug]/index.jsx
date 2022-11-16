@@ -21,11 +21,13 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
   EditDropdownMenu,
+  BuyNowModal,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
 import { usePostDetailsHook } from '../../../../../utils/reactQueryHooks/postQueryHook';
 import { useGetEthHook } from '../../../../../utils/reactQueryHooks/ethQueryHook';
+import { useCreatePayment } from '../../../../../utils/reactQueryHooks/useCreatePayment';
 import { createOrder } from '../../../../../utils/apiData/orderRequest';
 import {
   isItemLiked,
@@ -73,6 +75,11 @@ const ProductDetailsPage = () => {
     userId: post?.postedBy?.id,
   });
 
+  /************************** */
+
+  // console.log('Post details:', post);
+  /************************** */
+
   // STATE MANAGEMENT
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
@@ -82,6 +89,7 @@ const ProductDetailsPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const [showEditDropdown, setShowEditDropdown] = useState(false);
+  const [showBuyNowModal, setShowBuyNowModal] = useState(false);
 
   useEffect(() => {
     // Check if Post is liked by current user
@@ -140,6 +148,10 @@ const ProductDetailsPage = () => {
       postId: post?._id,
       value: post?.price,
     });
+  };
+
+  const onBuyWithWalletHandler = () => {
+    setShowBuyNowModal(true);
   };
 
   if (isLoadingPost)
@@ -257,6 +269,7 @@ const ProductDetailsPage = () => {
                       >
                         {isOrderSuccess ? 'Ordered' : 'Buy now'}
                       </Button>
+                      <Button onClick={onBuyWithWalletHandler}>Buy</Button>
                       {isAuthenticated && (
                         <div className="editing-btn" ref={ref}>
                           <IconButton
@@ -348,6 +361,12 @@ const ProductDetailsPage = () => {
         setShowAddToColModal={setShowAddToColModal}
       />
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
+      <BuyNowModal
+        showup={showBuyNowModal}
+        setShowup={setShowBuyNowModal}
+        post={post}
+        // user={user}
+      />
     </>
   );
 };

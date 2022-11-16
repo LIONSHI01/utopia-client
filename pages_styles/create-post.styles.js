@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { device } from '../styles/devices';
 
 const draggingStyles = css`
   background-color: var(--primary-light-2);
@@ -17,6 +18,11 @@ export const OutterContainer = styled.div`
   display: grid;
   grid-template-columns: 40fr 60fr;
   gap: 2rem;
+
+  @media ${device.tablet_portrait} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const ImageSection = styled.div`
@@ -32,6 +38,9 @@ export const ImageSection = styled.div`
 
 export const UploadImageWrapper = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: 20rem;
   max-height: 40%;
@@ -39,14 +48,14 @@ export const UploadImageWrapper = styled.div`
   background-color: var(--uploadbg);
   border-radius: var(--br-s);
 
+  ${(props) => props.isDragging && draggingStyles}
+
   .dropping-area {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    ${(props) => props.isDragging && draggingStyles}
   }
 
   .inner-box {

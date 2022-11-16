@@ -114,7 +114,6 @@ export const getUser = async (userId) => {
 };
 
 export const claimFaucet = async ({ userId, walletAddress }) => {
-  if (!userId) return;
   try {
     return axios({
       method: 'POST',

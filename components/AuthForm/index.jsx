@@ -128,6 +128,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               onChange={onChangeHandler}
               className="input-field"
               required
+              autocomplete="off"
             />
           )}
           <input
@@ -138,6 +139,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             onChange={onChangeHandler}
             className="input-field"
             required
+            autocomplete="off"
           />
           <input
             name="password"
@@ -147,6 +149,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             onChange={onChangeHandler}
             className="input-field"
             required
+            autocomplete="off"
           />
           {isSignup && (
             <input
@@ -157,6 +160,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               onChange={onChangeHandler}
               className="input-field"
               required
+              autocomplete="off"
             />
           )}
           <Button
