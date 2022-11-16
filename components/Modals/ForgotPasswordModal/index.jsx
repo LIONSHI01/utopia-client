@@ -20,7 +20,7 @@ const ForgotPasswordModal = ({ showup, setShowup, setShowAuthForm }) => {
         );
       },
       onError: (err) => {
-        toast.error(`${err.message}`);
+        toast.error(`${err.response.data.data.message}`);
       },
     });
 

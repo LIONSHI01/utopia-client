@@ -60,8 +60,20 @@ export const forgotPasswordRequest = async (email) => {
         email,
       },
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    // return res;
+export const resetPasswordRequest = async ({ token, password }) => {
+  try {
+    return axios({
+      url: `${baseURL}/users/resetPassword/${token}`,
+      method: 'PATCH',
+      data: {
+        password,
+      },
+    });
   } catch (err) {
     console.log(err);
   }
@@ -104,15 +116,13 @@ export const getUser = async (userId) => {
 export const claimFaucet = async ({ userId, walletAddress }) => {
   if (!userId) return;
   try {
-    const res = await axios({
+    return axios({
       method: 'POST',
       url: `${baseURL}/users/claimFaucet/${userId}`,
       data: {
         walletAddress,
       },
     });
-
-    return res;
   } catch (err) {
     console.log(err);
     return err;

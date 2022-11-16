@@ -53,7 +53,7 @@ const Footer = () => {
           <h4 className="category_col_heading">Category</h4>
           <div className="category_col_links">
             {categories?.map(({ category, link }) => (
-              <Link href={link}>
+              <Link key={category} href={link}>
                 <a className="category_col_link">{category}</a>
               </Link>
             ))}
@@ -63,7 +63,7 @@ const Footer = () => {
           <h4 className="about_col_heading">About</h4>
           <div className="about_col_links">
             {footerAboutLinks?.map(({ title, link }) => (
-              <Link href={link}>
+              <Link key={title} href={link}>
                 <a className="about_col_link">{title}</a>
               </Link>
             ))}
