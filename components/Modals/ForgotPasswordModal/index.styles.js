@@ -15,8 +15,7 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  min-width: 20rem;
-  max-width: 50rem;
+  width: 40rem;
   min-height: 30rem;
 
   border-radius: var(--br-x);
