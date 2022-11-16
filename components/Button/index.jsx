@@ -35,6 +35,7 @@ const Button = ({
   isLoading,
   disable = false,
   size = 'm',
+  fonsSize = '1.6rem',
   buttonType,
   width,
   height,
@@ -67,6 +68,7 @@ const Button = ({
       disable={disable}
       ref={ref}
       size={size}
+      fonsSize={fonsSize}
       width={width}
       height={height}
       showLoader={showLoader}

@@ -24,7 +24,7 @@ export const InnerWrapper = styled.div`
 `;
 
 export const HeaderWrapper = styled.div`
-  height: 7rem;
+  height: 9rem;
   width: 100%;
   padding: 1rem 5rem;
   display: flex;
@@ -40,7 +40,7 @@ export const HeaderWrapper = styled.div`
     h2 {
       line-height: 0;
       font-family: var(--ff-display);
-      font-size: 3.2rem;
+      font-size: 4.2rem;
     }
   }
 

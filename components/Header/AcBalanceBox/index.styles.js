@@ -27,6 +27,6 @@ export const DetailsWrapper = styled.div`
   }
 
   .eth_number {
-    font-size: 1.4rem !important;
+    font-size: 1.6rem !important;
   }
 `;

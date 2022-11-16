@@ -51,6 +51,22 @@ export const changePasswordRequest = async ({
   return res;
 };
 
+export const forgotPasswordRequest = async (email) => {
+  try {
+    return axios({
+      url: `${baseURL}/users/forgotPassword`,
+      method: 'POST',
+      data: {
+        email,
+      },
+    });
+
+    // return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const inactivateUserRequest = async ({ userId, password }) => {
   const res = await axios({
     method: 'PATCH',

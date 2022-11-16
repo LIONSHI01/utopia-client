@@ -21,20 +21,13 @@ const disableStyles = css`
   background-color: var(--black-light-3);
 `;
 
-// const web3ButtonDisableStyles = css`
-//   border: 1px solid var(--black-light-3);
-//   color: var(--white);
-//   pointer-events: none;
-//   background-color: var(--black-light-3);
-// `;
-
 export const BaseButton = styled.button`
   border: none;
   background-color: var(--primary);
   color: var(--white);
   border-radius: var(--br-m);
   transition: all 0.3s;
-  font-size: var(--fs-s);
+  font-size: ${(props) => props.fonsSize};
 
   cursor: pointer;
 

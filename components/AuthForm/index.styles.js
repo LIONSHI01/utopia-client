@@ -71,7 +71,6 @@ export const EmailFormBox = styled.form`
     position: relative;
     text-align: center;
     z-index: 10;
-    /* margin-bottom: var(--mg-s); */
     font-weight: 400;
     font-size: var(--fs);
 
@@ -192,18 +191,6 @@ export const MetaMaskFormBox = styled.div`
     align-items: center;
     gap: 1rem;
   }
-
-  /* .address_display {
-    display: flex;
-    flex-direction: column;
-
-    span {
-      display: block;
-      font-size: var(--fs-ss);
-      font-weight: 500;
-      word-break: break-all;
-    }
-  } */
 
   .walletAddress {
     display: flex;

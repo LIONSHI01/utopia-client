@@ -54,6 +54,7 @@ import MainMenuSidebar from './Sidebars/MainMenuSidebar';
 import MobileNavbar from './Sidebars/MobileNavbar';
 import MobileNavigation from './Sidebars/MobileNavigation';
 import EditDropdownMenu from './PostDetails/EditDropdownMenu';
+import ForgotPasswordModal from './Modals/ForgotPasswordModal';
 
 export {
   MainHeader,
@@ -113,4 +114,5 @@ export {
   MobileNavbar,
   MobileNavigation,
   EditDropdownMenu,
+  ForgotPasswordModal,
 };

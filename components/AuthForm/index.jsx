@@ -4,16 +4,9 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useMutation } from 'react-query';
 
-import { ImArrowLeft2 } from '../ReactIcons';
 import { useConnectWallet } from '../../utils/reactQueryHooks/useConnectWallet';
 import { signupRequest } from '../../utils/authRequest';
-import {
-  Button,
-  BUTTON_TYPES,
-  Overlay,
-  IconButton,
-  ICON_BUTTON_TYPES,
-} from '../index';
+import { Button, BUTTON_TYPES, Overlay, ForgotPasswordModal } from '../index';
 import { FormContainer, MetaMaskFormBox, EmailFormBox } from './index.styles';
 import MetaMaskIcon from '../../assets/image/meta_mask.png';
 
@@ -33,13 +26,11 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     connectWalletHandler,
   } = useConnectWallet();
 
-  console.log({ isConnectedWallet, isMetamaskInstalled, walletAddress });
-
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
   const [isSigningIn, setIsSigningIn] = useState(false);
-
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const { username, email, password, passwordConfirm } = formField;
 
   // HANDLERS
@@ -63,7 +54,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
   const onWalletSigninHandler = async () => {
     setIsSigningIn(true);
-    // METHOD 1
+
     signIn('walletAddress', { walletAddress, redirect: false }).then(
       ({ ok, error }) => {
         if (ok) {
@@ -75,6 +66,11 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         return toast.error(error);
       }
     );
+  };
+
+  const onResetHandler = () => {
+    setShowAuthForm(false);
+    setIsForgotPassword(true);
   };
 
   const { isLoading: isSignningup, mutate: mutateSignup } = useMutation(
@@ -164,6 +160,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             />
           )}
           <Button
+            fonsSize="1.8rem"
             height="4rem"
             width="100%"
             type="submit"
@@ -175,7 +172,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           {!isSignup && (
             <>
               <div className="forget">
-                <button>Forgot Password?</button>
+                <button onClick={onResetHandler}>Forgot Password?</button>
               </div>
               <span className="or_text">or</span>
             </>
@@ -218,6 +215,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               isLoading={isSigningIn}
               width="100%"
               height="4rem"
+              fonsSize="1.8rem"
               buttonType={BUTTON_TYPES.web3}
               onClick={onWalletSigninHandler}
             >
@@ -231,6 +229,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           <p>{!isSignup ? 'Not a member yet?' : 'Already a member?'}</p>
           <Button
             size="x"
+            fonsSize="1.8rem"
             onClick={() => setIsSignup((prev) => !prev)}
             buttonType={BUTTON_TYPES.raw}
           >
@@ -238,6 +237,11 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           </Button>
         </div>
       </FormContainer>
+      <ForgotPasswordModal
+        showup={isForgotPassword}
+        setShowup={setIsForgotPassword}
+        setShowAuthForm={setShowAuthForm}
+      />
       <Overlay showUp={showAuthForm} setShowUp={setShowAuthForm} />
     </>
   );

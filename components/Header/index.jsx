@@ -85,13 +85,13 @@ const MainHeader = () => {
             showOverlay={showOverlay}
           />
           <div className="links">
-            <FiHeart size={23} className="icon_btn" onClick={onClickHeartBtn} />
+            <FiHeart size={25} className="icon_btn" onClick={onClickHeartBtn} />
             <div
               className="notification"
               onClick={() => setShowNotiDropdown((prev) => !prev)}
               ref={ref}
             >
-              <RiNotification4Line size={23} color="var(--black-light-2)" />
+              <RiNotification4Line size={25} color="var(--black-light-2)" />
               <div className="noti-number">
                 <span>{user?.notifications.length || 0}</span>
               </div>
@@ -102,7 +102,12 @@ const MainHeader = () => {
               />
             </div>
 
-            <Button size="x" onClick={onClickSellBtn}>
+            <Button
+              height="4rem"
+              width="8rem"
+              fonsSize="2rem"
+              onClick={onClickSellBtn}
+            >
               Sell
             </Button>
 
@@ -116,16 +121,18 @@ const MainHeader = () => {
             {!user && (
               <div className="auth-buttons">
                 <Button
-                  height="4rem"
+                  height="4.5rem"
                   width="10rem"
+                  fonsSize="2rem"
                   buttonType={BUTTON_TYPES.outlineGrey}
                   onClick={() => setShowAuthForm(true)}
                 >
                   Sign In
                 </Button>
                 <Button
-                  height="4rem"
-                  width="10rem"
+                  height="4.5rem"
+                  width="12rem"
+                  fonsSize="2rem"
                   buttonType={BUTTON_TYPES.base}
                   onClick={() => setShowAuthForm(true)}
                 >
