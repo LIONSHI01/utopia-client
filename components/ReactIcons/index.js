@@ -54,6 +54,7 @@ import {
 } from 'react-icons/bs';
 import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
+import { VscFoldDown } from 'react-icons/vsc';
 import { HiOutlineMenu, HiOutlineDocumentText } from 'react-icons/hi';
 
 export {
@@ -111,4 +112,5 @@ export {
   BsHeart,
   HiOutlineDocumentText,
   AiOutlineHeart,
+  VscFoldDown,
 };

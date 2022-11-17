@@ -40,13 +40,13 @@ const WaitingModal = ({
           </a>
         </MessageContainer>
         <ButtonsGroup>
-          <Button
+          {/* <Button
             size="x"
             buttonType={BUTTON_TYPES.outlineGrey}
             onClick={() => setShowup(false)}
           >
             Back
-          </Button>
+          </Button> */}
           <Button
             size="x"
             buttonType={BUTTON_TYPES.outlineRed}

@@ -365,7 +365,7 @@ const ProductDetailsPage = () => {
         showup={showBuyNowModal}
         setShowup={setShowBuyNowModal}
         post={post}
-        // user={user}
+        user={user}
       />
     </>
   );

@@ -43,6 +43,7 @@ export const BaseButton = styled.button`
   ${(props) => props.size === 'm' && mediumSizeStyles}
   ${(props) => props.size === 'x' && largeSizeStyles}
   ${(props) => props.size === 'full' && fullSizeStyles}
+  ${(props) => props.disable && disableStyles}
 
 
   width: ${(props) => props.width};
