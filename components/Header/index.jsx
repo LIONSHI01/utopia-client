@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
+import ReactTooltip from 'react-tooltip';
 
 import { RiNotification4Line, FiHeart } from '../ReactIcons';
 
@@ -85,13 +86,23 @@ const MainHeader = () => {
             showOverlay={showOverlay}
           />
           <div className="links">
-            <FiHeart size={25} className="icon_btn" onClick={onClickHeartBtn} />
+            <FiHeart
+              data-tip="Collections"
+              size={25}
+              className="icon_btn"
+              onClick={onClickHeartBtn}
+            />
             <div
               className="notification"
               onClick={() => setShowNotiDropdown((prev) => !prev)}
               ref={ref}
             >
-              <RiNotification4Line size={25} color="var(--black-light-2)" />
+              <RiNotification4Line
+                data-tip="Notification"
+                size={25}
+                color="var(--black-light-2)"
+              />
+
               <div className="noti-number">
                 <span>{user?.notifications.length || 0}</span>
               </div>
@@ -143,8 +154,13 @@ const MainHeader = () => {
           </div>
         </HeaderWrapper>
         <CategoryBar />
+        <ReactTooltip
+          className="react_tool_tip_styles"
+          place="top"
+          type="dark"
+          effect="solid"
+        />
       </InnerWrapper>
-
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
       <Overlay zIndex={100} setShowUp={setShowOverlay} showUp={showOverlay} />
     </>

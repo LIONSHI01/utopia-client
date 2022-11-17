@@ -8,6 +8,7 @@ export const useCreatePayment = (txValue) => {
   const [transactionHash, setTransactionHash] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
   const [isTxCompleted, setIsTxCompleted] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
   useEffect(() => {
     checkIsMetamaskInstalled();
     getCurrentWalletConnected();
@@ -24,6 +25,7 @@ export const useCreatePayment = (txValue) => {
 
   /* CONNECT WALLET */
   const connectWalletHandler = async () => {
+    setIsConnecting(true);
     if (
       typeof window !== 'undefined' &&
       typeof window.ethereum !== 'undefined'
@@ -54,8 +56,10 @@ export const useCreatePayment = (txValue) => {
         setWalletAddress(accounts?.[0]);
         setChainId(chainId);
         setEthBalance(eth);
+        setIsConnecting(false);
       } catch (err) {
         console.log(err.message);
+        setIsConnecting(false);
       }
     } else {
       alert('Please install Metamask extension.');
@@ -180,6 +184,7 @@ export const useCreatePayment = (txValue) => {
   };
 
   return {
+    isConnecting,
     chainId,
     ethBalance,
     isMetamaskInstalled,

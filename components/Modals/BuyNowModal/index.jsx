@@ -45,6 +45,7 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
   // 5) Allow to process tx
 
   const {
+    isConnecting,
     ethBalance,
     chainId,
     isMetamaskInstalled,
@@ -68,9 +69,8 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
   // Popup Waiting modal when tx complete
   const [showWaitingModal, setShowWaitingModal] = useState(false);
 
-  console.log('buynowbtn:', post);
   const onConfirmHandler = async () => {
-    sendTransactionRequest().then((res) => {
+    sendTransactionRequest().then(async (res) => {
       if (res.code === 4001) return toast.warn('Transaction cancelled.');
 
       console.log({
@@ -78,14 +78,21 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
         sellerId: post?.postedBy?.id,
         postId: post?.id,
         value: post?.price,
+        hash: res,
       });
 
-      createOrder({
-        userId: user?.id,
-        sellerId: post?.postedBy?.id,
-        postId: post?.id,
-        value: post?.price,
-      });
+      try {
+        await createOrder({
+          userId: user?.id,
+          sellerId: post?.postedBy?.id,
+          postId: post?.id,
+          value: post?.price,
+          hash: res,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
       // console.log('UI response:', res.code);
 
       // console.log(res);
@@ -194,7 +201,10 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
                 )}
               </>
             ) : (
-              <MetaMaskButton onClick={connectWalletHandler} />
+              <MetaMaskButton
+                isLoading={isConnecting}
+                onClick={connectWalletHandler}
+              />
             )}
           </ButtonsGroup>
         </ContentsContainer>
@@ -228,7 +238,9 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
             onClick={onConfirmHandler}
             buttonType={BUTTON_TYPES.base}
           >
-            {isSufficient ? 'Buy' : `Insufficient fund: ${difference} ETH`}
+            {isSufficient
+              ? 'Buy'
+              : `Insufficient fund: ${difference} GoerliETH`}
           </Button>
           {/* <p>{transactionHash}</p> */}
         </PaymentSection>

@@ -5,6 +5,7 @@ import { useMutation } from 'react-query';
 import Link from 'next/link';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip';
 
 import {
   ImageDisplayModal,
@@ -75,11 +76,6 @@ const ProductDetailsPage = () => {
     userId: post?.postedBy?.id,
   });
 
-  /************************** */
-
-  // console.log('Post details:', post);
-  /************************** */
-
   // STATE MANAGEMENT
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
@@ -120,20 +116,20 @@ const ProductDetailsPage = () => {
     };
   }, [showEditDropdown]);
 
-  const {
-    mutate: mutateBuying,
-    isSuccess: isOrderSuccess,
-    isLoading: isOrdering,
-  } = useMutation(createOrder, {
-    onSuccess: () => {
-      toast.success(
-        `Successfully ordered < ${post?.title} >, please check your order list`
-      );
-    },
-    onError: (err) => {
-      console.log(err);
-    },
-  });
+  // const {
+  //   mutate: mutateBuying,
+  //   isSuccess: isOrderSuccess,
+  //   isLoading: isOrdering,
+  // } = useMutation(createOrder, {
+  //   onSuccess: () => {
+  //     toast.success(
+  //       `Successfully ordered < ${post?.title} >, please check your order list`
+  //     );
+  //   },
+  //   onError: (err) => {
+  //     console.log(err);
+  //   },
+  // });
 
   // HANDLERS
   const onClickAddToCollectionHandler = () => {
@@ -142,15 +138,6 @@ const ProductDetailsPage = () => {
   };
   const onClickBuyHandler = () => {
     if (!data) return setShowAuthForm(true);
-    mutateBuying({
-      userId: user?._id,
-      sellerId: post?.postedBy?._id,
-      postId: post?._id,
-      value: post?.price,
-    });
-  };
-
-  const onBuyWithWalletHandler = () => {
     setShowBuyNowModal(true);
   };
 
@@ -236,7 +223,11 @@ const ProductDetailsPage = () => {
                   <div className="upper-box">
                     <div className="title">{post?.title}</div>
                     <div className="price">
-                      <div className="icon-wrapper">
+                      <div
+                        className="icon-wrapper"
+                        data-tip="ETH"
+                        // data-padding="8px 8px"
+                      >
                         <Image
                           src={ethIcon}
                           alt="eth-icon"
@@ -245,6 +236,7 @@ const ProductDetailsPage = () => {
                           layout="fill"
                         />
                       </div>
+
                       <div className="value-info">
                         <span className="eth-value">{post?.price}</span>
                         <span className="item-value">
@@ -262,14 +254,10 @@ const ProductDetailsPage = () => {
                       >
                         {isLiked ? 'Liked' : 'Add to collection'}
                       </Button>
-                      <Button
-                        isLoading={isOrdering}
-                        size="full"
-                        onClick={onClickBuyHandler}
-                      >
-                        {isOrderSuccess ? 'Ordered' : 'Buy now'}
+                      <Button size="full" onClick={onClickBuyHandler}>
+                        Buy now
                       </Button>
-                      <Button onClick={onBuyWithWalletHandler}>Buy</Button>
+
                       {isAuthenticated && (
                         <div className="editing-btn" ref={ref}>
                           <IconButton
@@ -352,6 +340,12 @@ const ProductDetailsPage = () => {
             />
           )}
         </OutterContainer>
+        <ReactTooltip
+          className="react_tool_tip_styles"
+          place="top"
+          type="dark"
+          effect="solid"
+        />
       </DetailsPageContainer>
       <AddToCollectionModal
         refetchUser={refetchUser}

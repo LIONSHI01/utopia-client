@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import ReactTooltip from 'react-tooltip';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
@@ -70,7 +70,13 @@ const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
   }, [showUserMenu]);
 
   return (
-    <IconWrapper size={size} ref={ref} {...otherProps}>
+    <IconWrapper
+      size={size}
+      ref={ref}
+      {...otherProps}
+      data-tip="Your account"
+      data-padding="8px 8px"
+    >
       <div
         className="icon-container"
         onClick={() => setShowUserMenu((prev) => !prev)}
@@ -98,6 +104,12 @@ const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
           setShowUp={setShowUserMenu}
         />
       )}
+      <ReactTooltip
+        className="react_tool_tip_styles"
+        place="top"
+        type="dark"
+        effect="solid"
+      />
     </IconWrapper>
   );
 };

@@ -20,7 +20,13 @@ export const getUserOffers = async (userId) => {
   return res.data.data.offers;
 };
 
-export const createOrder = async ({ userId, sellerId, postId, value }) => {
+export const createOrder = async ({
+  userId,
+  sellerId,
+  postId,
+  value,
+  hash,
+}) => {
   const res = await axios({
     method: 'POST',
     url: `${baseURL}/orders/`,
@@ -29,6 +35,7 @@ export const createOrder = async ({ userId, sellerId, postId, value }) => {
       seller: sellerId,
       post: postId,
       value: value,
+      hash,
     },
   });
 

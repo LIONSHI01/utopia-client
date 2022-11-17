@@ -21,6 +21,14 @@ export const InnerWrapper = styled.div`
   @media ${device.tablet} {
     display: none;
   }
+
+  .react_tool_tip_styles {
+    background-color: var(--black);
+    color: var(--white);
+    z-index: 1100;
+    padding: 8px;
+    opacity: 1 !important;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
