@@ -56,9 +56,9 @@ const ForgotPasswordModal = ({ showup, setShowup, setShowAuthForm }) => {
         <ButtonsGroup>
           <Button
             isLoading={isRequestingReset}
-            height="4.5rem"
+            height="4rem"
             width="100%"
-            fonsSize="2rem"
+            fonsSize="1.8rem"
             buttonType={BUTTON_TYPES.base}
             onClick={onSubmitHandler}
           >

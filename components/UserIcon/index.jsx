@@ -70,13 +70,7 @@ const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
   }, [showUserMenu]);
 
   return (
-    <IconWrapper
-      size={size}
-      ref={ref}
-      {...otherProps}
-      data-tip="Your account"
-      data-padding="8px 8px"
-    >
+    <IconWrapper size={size} ref={ref} {...otherProps}>
       <div
         className="icon-container"
         onClick={() => setShowUserMenu((prev) => !prev)}
@@ -104,12 +98,6 @@ const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
           setShowUp={setShowUserMenu}
         />
       )}
-      <ReactTooltip
-        className="react_tool_tip_styles"
-        place="top"
-        type="dark"
-        effect="solid"
-      />
     </IconWrapper>
   );
 };

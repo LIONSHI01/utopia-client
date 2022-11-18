@@ -47,11 +47,11 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
     {
       onSuccess: (res) => {
         refetchUser();
-        toast.success(`Validation ${res?.data?.validationResult}`);
+        toast.success(`Validation completed.`);
       },
       onError: (err) => {
         console.log('from mutation err', err);
-        toast.error(`${err?.response.data?.data?.message}`);
+        toast.error(`${err?.response?.data?.message}`);
       },
     }
   );

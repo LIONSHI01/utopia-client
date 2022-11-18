@@ -86,22 +86,13 @@ const MainHeader = () => {
             showOverlay={showOverlay}
           />
           <div className="links">
-            <FiHeart
-              data-tip="Collections"
-              size={25}
-              className="icon_btn"
-              onClick={onClickHeartBtn}
-            />
+            <FiHeart size={25} className="icon_btn" onClick={onClickHeartBtn} />
             <div
               className="notification"
               onClick={() => setShowNotiDropdown((prev) => !prev)}
               ref={ref}
             >
-              <RiNotification4Line
-                data-tip="Notification"
-                size={25}
-                color="var(--black-light-2)"
-              />
+              <RiNotification4Line size={25} color="var(--black-light-2)" />
 
               <div className="noti-number">
                 <span>{user?.notifications.length || 0}</span>

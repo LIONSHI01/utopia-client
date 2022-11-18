@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useMutation } from 'react-query';
 
+import { GrPowerCycle } from '../ReactIcons';
 import { useConnectWallet } from '../../utils/reactQueryHooks/useConnectWallet';
 import { signupRequest } from '../../utils/authRequest';
 import { Button, BUTTON_TYPES, Overlay, ForgotPasswordModal } from '../index';
@@ -24,12 +25,15 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     isMetamaskInstalled,
     walletAddress,
     connectWalletHandler,
+    switchAccountsHandler,
+    personalSignHandler,
   } = useConnectWallet();
 
   // STATE MANAGEMENT
   const [isSignup, setIsSignup] = useState(true);
   const [formField, setFormField] = useState(INITIAL_FORM_FIELD);
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isEmailSigningIn, setIsEmailSigningIn] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const { username, email, password, passwordConfirm } = formField;
 
@@ -48,14 +52,35 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
       mutateSignup({ username, email, password });
     } else {
-      mutateSignin();
+      setIsEmailSigningIn(true);
+      signIn('credentials', { email, password, redirect: false }).then(
+        ({ ok, error }) => {
+          if (ok) {
+            setShowAuthForm(false);
+            setIsEmailSigningIn(false);
+            return toast.success('Welcome back!');
+          }
+          console.log(error);
+          setIsEmailSigningIn(false);
+          return toast.error(error);
+        }
+      );
     }
   };
 
   const onWalletSigninHandler = async () => {
     setIsSigningIn(true);
 
-    signIn('walletAddress', { walletAddress, redirect: false }).then(
+    // Request for wallet authentication(confirm wallet owner)
+    const res = await personalSignHandler();
+
+    if (res.code === 4001) {
+      setIsSigningIn(false);
+      return toast.warn('Authorization failed, please try again.');
+    }
+
+    // Sign in after authentication
+    await signIn('walletAddress', { walletAddress, redirect: false }).then(
       ({ ok, error }) => {
         if (ok) {
           setShowAuthForm(false);
@@ -66,6 +91,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         return toast.error(error);
       }
     );
+    setIsSigningIn(false);
   };
 
   const onResetHandler = () => {
@@ -82,27 +108,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         toast.success('Signup successfully, you may login now!');
       },
       onError: (err) => {
-        toast.error(`${err.response.data.data.message}`);
-      },
-    }
-  );
-
-  const { isLoading: isEmailLogging, mutate: mutateSignin } = useMutation(
-    () =>
-      signIn('credentials', {
-        email,
-        password,
-        redirect: false,
-      }),
-    {
-      onSuccess: () => {
-        setFormField(INITIAL_FORM_FIELD);
-        setShowAuthForm(false);
-        toast.success('Welcome back!');
-      },
-      onError: (err) => {
-        console.log(err);
-        toast.error(`${err.response.data.data.message}`);
+        toast.error(`${err.response.data.message}`);
       },
     }
   );
@@ -168,7 +174,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             height="4rem"
             width="100%"
             type="submit"
-            isLoading={isSignningup || isEmailLogging}
+            isLoading={isSignningup || isEmailSigningIn}
           >
             {isSignup ? 'Sign up' : 'Sign in'}
           </Button>
@@ -176,7 +182,9 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
           {!isSignup && (
             <>
               <div className="forget">
-                <button onClick={onResetHandler}>Forgot Password?</button>
+                <button type="button" onClick={onResetHandler}>
+                  Forgot Password?
+                </button>
               </div>
               <span className="or_text">or</span>
             </>
@@ -204,14 +212,23 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
                 </div>
               </button>
             ) : (
-              <div className="walletAddress">
-                <span>
-                  Connected&nbsp;
-                  {`${walletAddress?.substring(
-                    0,
-                    6
-                  )}...${walletAddress?.substring(38)}`}
-                </span>
+              <div className="wallet_connected_box">
+                <div className="walletAddress">
+                  <span>
+                    Connected&nbsp;
+                    {`${walletAddress?.substring(
+                      0,
+                      6
+                    )}...${walletAddress?.substring(38)}`}
+                  </span>
+                </div>
+                <button
+                  className="wallet_switch_btn"
+                  type="button"
+                  onClick={switchAccountsHandler}
+                >
+                  <GrPowerCycle size={20} />
+                </button>
               </div>
             )}
             <Button

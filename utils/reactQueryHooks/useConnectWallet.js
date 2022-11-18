@@ -73,10 +73,42 @@ export const useConnectWallet = () => {
     }
   };
 
+  const switchAccountsHandler = async () => {
+    await window.ethereum.request({
+      method: 'wallet_requestPermissions',
+      params: [
+        {
+          eth_accounts: {},
+        },
+      ],
+    });
+  };
+
+  const personalSignHandler = async () => {
+    console.log('Personal Sign Ac:', walletAddress);
+
+    const message = [
+      'This site is requesting your signature to approve login authorization.',
+      'I have read and accept the terms and conditions(https://utopia.org/terms) of this app.',
+      'Please sign me in!',
+    ].join('\n\n');
+
+    try {
+      return await window.ethereum.request({
+        method: 'personal_sign',
+        params: [message, walletAddress],
+      });
+    } catch (err) {
+      return err;
+    }
+  };
+
   return {
     isMetamaskInstalled,
     isConnectedWallet,
     walletAddress,
     connectWalletHandler,
+    switchAccountsHandler,
+    personalSignHandler,
   };
 };

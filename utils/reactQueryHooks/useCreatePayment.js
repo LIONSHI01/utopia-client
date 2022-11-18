@@ -106,6 +106,17 @@ export const useCreatePayment = (txValue) => {
       return err;
     }
   };
+  /* SWITCH WALLET */
+  const switchAccountsHandler = async () => {
+    await window.ethereum.request({
+      method: 'wallet_requestPermissions',
+      params: [
+        {
+          eth_accounts: {},
+        },
+      ],
+    });
+  };
 
   // CHECK IF WALLET INSTALLED
   const checkIsMetamaskInstalled = () => {
@@ -195,5 +206,6 @@ export const useCreatePayment = (txValue) => {
     transactionHash,
     connectWalletHandler,
     sendTransactionRequest,
+    switchAccountsHandler,
   };
 };

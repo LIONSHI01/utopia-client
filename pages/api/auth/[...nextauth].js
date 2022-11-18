@@ -19,32 +19,27 @@ export const authOptions = {
       async authorize(credentials, req) {
         const { email, password } = credentials;
 
-        try {
-          await connectMongoose();
+        await connectMongoose();
 
-          const user = await User.findOne({ email }).select('+password');
+        const user = await User.findOne({ email }).select('+password');
 
-          if (!user || user === null) {
-            throw new Error('No user found with this email');
-          }
-
-          const isValid = await verifyPassword(password, user.password);
-
-          if (!isValid) {
-            throw new Error('Invalid password, please try again!');
-          }
-
-          if (!user.active) {
-            throw new Error(
-              'This user is inactive, please contact us to activate your account.'
-            );
-          }
-
-          return user;
-        } catch (err) {
-          console.log(err);
-          return null;
+        if (!user || user === null) {
+          throw new Error('No user found with this email');
         }
+
+        const isValid = await verifyPassword(password, user.password);
+
+        if (!isValid) {
+          throw new Error('Invalid password, please try again!');
+        }
+
+        if (!user.active) {
+          throw new Error(
+            'This user is inactive, please contact us to activate your account.'
+          );
+        }
+
+        return user;
       },
     }),
     // CredentialsProvider({

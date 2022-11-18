@@ -25,7 +25,7 @@ import {
   IoIosArrowForward,
 } from 'react-icons/io';
 import { CgSandClock } from 'react-icons/cg';
-import { GrFacebookOption } from 'react-icons/gr';
+import { GrFacebookOption, GrPowerCycle } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
 import { HiOutlineMail } from 'react-icons/hi';
 import { TbFileInvoice } from 'react-icons/tb';
@@ -113,4 +113,5 @@ export {
   HiOutlineDocumentText,
   AiOutlineHeart,
   VscFoldDown,
+  GrPowerCycle,
 };

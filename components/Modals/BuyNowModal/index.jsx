@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
-import { IoMdClose, VscFoldDown } from '../../ReactIcons';
+import { selectEthPrice } from '../../../store/post/post.selector';
+import { IoMdClose, VscFoldDown, GrPowerCycle } from '../../ReactIcons';
 import { useCreatePayment } from '../../../utils/reactQueryHooks/useCreatePayment';
-import { useGetEthHook } from '../../../utils/reactQueryHooks/ethQueryHook';
+
 import { createOrder } from '../../../utils/apiData/orderRequest';
 import {
   ModalContainer,
@@ -56,9 +58,11 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
     transactionHash,
     connectWalletHandler,
     sendTransactionRequest,
+    switchAccountsHandler,
   } = useCreatePayment(post?.price);
 
-  const ethQuote = useGetEthHook();
+  const ethQuote = useSelector(selectEthPrice);
+
   const itemUsdValue = (post?.price * ethQuote).toFixed(2);
   const { difference, isSufficient } = verifyBalanceSufficient(
     ethBalance,
@@ -92,10 +96,6 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
       } catch (err) {
         console.log(err);
       }
-
-      // console.log('UI response:', res.code);
-
-      // console.log(res);
     });
   };
 
@@ -107,7 +107,7 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
   }, [isTxCompleted, setShowup]);
 
   const waitModalTitle = 'Purchase Completed!';
-  const waitModalMsg = `You have bought ${post?.title}. You may view the transaction on chain.`;
+  const waitModalMsg = `Transaction to buy ${post?.title} is being processing. Please validate the transaction in your dashboard a few minutes later. You may view the transaction on chain.`;
   const waitingModalLink = `https://goerli.etherscan.io/tx/${transactionHash}`;
 
   return (
@@ -184,22 +184,31 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
               )}
             </div>
             {walletAddress ? (
-              <>
-                <div className="walletAddress">
-                  <span>
-                    Connected&nbsp;
-                    {`${walletAddress?.substring(
-                      0,
-                      6
-                    )}...${walletAddress?.substring(38)}`}
-                  </span>
+              <div className="account_balance_box">
+                <div className="account_balance_details">
+                  <div className="walletAddress">
+                    <span>
+                      Connected&nbsp;
+                      {`${walletAddress?.substring(
+                        0,
+                        6
+                      )}...${walletAddress?.substring(38)}`}
+                    </span>
+                  </div>
+                  <button
+                    className="wallet_switch_btn"
+                    type="button"
+                    onClick={switchAccountsHandler}
+                  >
+                    <GrPowerCycle size={20} />
+                  </button>
                 </div>
                 {chainId === '0x5' ? null : (
                   <p className="network_warning">
                     Wrong network! Please switch to Goerli Testnet.
                   </p>
                 )}
-              </>
+              </div>
             ) : (
               <MetaMaskButton
                 isLoading={isConnecting}

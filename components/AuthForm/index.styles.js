@@ -192,6 +192,11 @@ export const MetaMaskFormBox = styled.div`
     gap: 1rem;
   }
 
+  .wallet_connected_box {
+    display: flex;
+    gap: 1rem;
+  }
+
   .walletAddress {
     display: flex;
     align-items: center;
@@ -206,6 +211,31 @@ export const MetaMaskFormBox = styled.div`
       word-break: break-all;
       font-size: var(--fs-s);
       font-weight: 500;
+    }
+  }
+
+  .wallet_switch_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: var(--br-m);
+    transition: all 0.3s;
+    border: 2px solid var(--black);
+    height: 4rem;
+    width: 4rem;
+
+    cursor: pointer;
+
+    :active {
+      scale: 0.85;
+    }
+
+    :hover {
+      background-color: var(--grey-light-2);
+      box-shadow: var(--bs-s);
     }
   }
 

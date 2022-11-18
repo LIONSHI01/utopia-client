@@ -145,6 +145,16 @@ export const ButtonsGroup = styled.div`
     }
   }
 
+  .account_balance_box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .account_balance_details {
+    display: flex;
+    gap: 1rem;
+  }
+
   .account_balance {
     margin-left: auto;
     display: flex;
@@ -191,6 +201,31 @@ export const ButtonsGroup = styled.div`
     color: var(--red);
     text-align: center;
     word-break: break-all;
+  }
+
+  .wallet_switch_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: var(--br-m);
+    transition: all 0.3s;
+    border: 2px solid var(--black);
+    height: 4.5rem;
+    width: 4.5rem;
+
+    cursor: pointer;
+
+    :active {
+      scale: 0.85;
+    }
+
+    :hover {
+      background-color: var(--grey-light-2);
+      box-shadow: var(--bs-s);
+    }
   }
 `;
 

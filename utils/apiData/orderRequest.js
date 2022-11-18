@@ -53,7 +53,7 @@ export const deleteOrder = async (orderId) => {
 };
 
 export const validateOrder = async ({ orderId, transaction_hash, from }) => {
-  const res = await axios({
+  return axios({
     method: 'PATCH',
     url: `${baseURL}/orders/validate/${orderId}`,
     data: {
@@ -61,8 +61,6 @@ export const validateOrder = async ({ orderId, transaction_hash, from }) => {
       from,
     },
   });
-
-  return res.data;
 };
 
 export const buyerConfirmOrder = async ({ orderId, userId }) => {
