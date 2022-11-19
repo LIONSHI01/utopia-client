@@ -109,7 +109,7 @@ export const EmailFormBox = styled.form`
     font-family: inherit;
 
     ::placeholder {
-      color: var(--black-light-2);
+      color: var(--black-light-3);
       font-family: inherit;
     }
 

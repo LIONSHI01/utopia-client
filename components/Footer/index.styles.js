@@ -44,6 +44,7 @@ export const LogoColWrapper = styled.div`
 
 export const CategoriesColWrapper = styled.div`
   .category_col_links {
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -73,6 +74,7 @@ export const BusinessColWrapper = styled.div`
   }
   .about_col_links {
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     gap: 1.5rem;
     text-transform: capitalize;
@@ -90,6 +92,7 @@ export const BusinessColWrapper = styled.div`
 export const SocialsColWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1.5rem;
 
   a {

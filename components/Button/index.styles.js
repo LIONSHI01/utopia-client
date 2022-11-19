@@ -28,6 +28,7 @@ export const BaseButton = styled.button`
   border-radius: var(--br-m);
   transition: all 0.3s;
   font-size: ${(props) => props.fonsSize};
+  font-family: inherit;
 
   cursor: pointer;
 

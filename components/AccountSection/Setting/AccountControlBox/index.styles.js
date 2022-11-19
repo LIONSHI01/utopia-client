@@ -18,8 +18,13 @@ export const AccountControlWrapper = styled.div`
   }
 
   .contents {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-bottom: var(--mg-m);
-
+    .reminder {
+      margin-top: var(--mg-m);
+    }
     p {
       font-size: var(--fs);
       font-weight: 500;

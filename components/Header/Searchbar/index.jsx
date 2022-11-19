@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Router from 'next/router';
 
 import { HiOutlineSearch } from 'react-icons/hi';
-
 import { SearchbarWrapper } from './index.styles';
 
 const Searchbar = ({ setShowOverlay }) => {
@@ -10,27 +9,27 @@ const Searchbar = ({ setShowOverlay }) => {
 
   const onChangeHandler = (e) => setQuery(e.target.value);
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     setQuery('');
+    setShowOverlay(false);
     Router.push(`/search/${query}`);
   };
 
   return (
     <SearchbarWrapper>
-      <input
-        onFocus={() => setShowOverlay(true)}
-        placeholder="Search..."
-        value={query}
-        onChange={onChangeHandler}
-        autocomplete="off"
-      />
-      <button className="search-btn">
-        <HiOutlineSearch
-          size={20}
-          color="var(--white)"
-          onClick={onSubmitHandler}
+      <form onSubmit={onSubmitHandler}>
+        <input
+          onFocus={() => setShowOverlay(true)}
+          placeholder="Search..."
+          value={query}
+          onChange={onChangeHandler}
+          autocomplete="off"
         />
-      </button>
+        <button className="search-btn">
+          <HiOutlineSearch type="submit" size={20} color="var(--white)" />
+        </button>
+      </form>
     </SearchbarWrapper>
   );
 };

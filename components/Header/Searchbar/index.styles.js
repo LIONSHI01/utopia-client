@@ -1,22 +1,24 @@
 import styled from 'styled-components';
 
 export const SearchbarWrapper = styled.div`
-  height: 4rem;
-  /* min-width: 30%; */
   width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  border-radius: var(--br-s);
-  border: 1px solid var(--black);
-  overflow: hidden;
-  transition: all 0.3s;
   margin-right: 3rem;
-  padding: 0.15rem;
+  form {
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
 
-  :has(input:focus) {
-    box-shadow: 0 0 0 0.3rem #ff9a77;
+    border-radius: var(--br-s);
+    border: 1px solid var(--black);
+    overflow: hidden;
+    transition: all 0.3s;
+
+    padding: 0.15rem;
+
+    :has(input:focus) {
+      box-shadow: 0 0 0 0.3rem #ff9a77;
+    }
   }
 
   input {

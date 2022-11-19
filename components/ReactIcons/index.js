@@ -51,6 +51,8 @@ import {
   BsTwitter,
   BsGithub,
   BsDropletHalf,
+  BsEyeSlashFill,
+  BsEyeFill,
 } from 'react-icons/bs';
 import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
@@ -114,4 +116,6 @@ export {
   AiOutlineHeart,
   VscFoldDown,
   GrPowerCycle,
+  BsEyeSlashFill,
+  BsEyeFill,
 };

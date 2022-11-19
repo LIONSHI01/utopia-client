@@ -58,26 +58,26 @@ const AuthenticationBox = ({ user, refetchUser }) => {
       <FormInputComp
         label="Current password"
         fieldName="currentPassword"
-        type="password"
         name="currentPassword"
         value={currentPassword}
         onChange={onChangeHandler}
+        isPasswordBtn={true}
       />
       <FormInputComp
         label="New password"
         fieldName="password"
-        type="password"
         name="password"
         value={password}
         onChange={onChangeHandler}
+        isPasswordBtn={true}
       />
       <FormInputComp
         label="Confirm new password"
         fieldName="confirm_password"
-        type="password"
         name="confirmPassword"
         value={confirmPassword}
         onChange={onChangeHandler}
+        isPasswordBtn={true}
       />
       <div className="profile-buttons-group">
         <Button
@@ -95,7 +95,7 @@ const AuthenticationBox = ({ user, refetchUser }) => {
           buttonType={BUTTON_TYPES.outlineGrey}
           onClick={restoreHandler}
         >
-          Cancel
+          Clear
         </Button>
       </div>
     </AuthenticationWrapper>

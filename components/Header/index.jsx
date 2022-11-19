@@ -106,7 +106,7 @@ const MainHeader = () => {
 
             <Button
               height="4rem"
-              width="8rem"
+              width="6rem"
               fonsSize="1.6rem"
               onClick={onClickSellBtn}
             >

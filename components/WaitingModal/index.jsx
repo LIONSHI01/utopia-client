@@ -36,17 +36,10 @@ const WaitingModal = ({
           <h3>{title}</h3>
           <p>{message}</p>
           <a target="_blank" rel="noreferrer" href={url}>
-            View transaction on block explorer.
+            View transaction on block explorer
           </a>
         </MessageContainer>
         <ButtonsGroup>
-          {/* <Button
-            size="x"
-            buttonType={BUTTON_TYPES.outlineGrey}
-            onClick={() => setShowup(false)}
-          >
-            Back
-          </Button> */}
           <Button
             size="x"
             buttonType={BUTTON_TYPES.outlineRed}

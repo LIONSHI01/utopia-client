@@ -14,7 +14,6 @@ const contentsShowUpStyles = css`
 `;
 
 export const MenuWrapper = styled.div`
-  /* overflow: hidden; */
   position: absolute;
   bottom: 0;
   left: 0;
@@ -56,6 +55,7 @@ export const MenuWrapper = styled.div`
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.5rem;
+    font-family: inherit;
 
     :hover {
       background-color: var(--grey-light-1);

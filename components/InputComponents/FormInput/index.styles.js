@@ -4,6 +4,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
 
   label {
     font-size: var(--fs-s);
@@ -45,5 +46,16 @@ export const InputWrapper = styled.div`
 
   textarea {
     resize: vertical;
+  }
+
+  .pw_input_filed {
+    position: relative;
+  }
+
+  .pw_icon {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
   }
 `;

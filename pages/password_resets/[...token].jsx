@@ -77,16 +77,16 @@ const ResetPasswordPage = () => {
               name="password"
               value={password}
               placeholder="New password"
-              type="password"
               onChange={onChangeHandler}
+              isPasswordBtn={true}
             />
             <FormInputComp
               label="Confirm password"
               name="confirmPassword"
               value={confirmPassword}
               placeholder="Confirm password"
-              type="password"
               onChange={onChangeHandler}
+              isPasswordBtn={true}
             />
           </div>
           <Button

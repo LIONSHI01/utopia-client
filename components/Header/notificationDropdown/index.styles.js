@@ -89,6 +89,7 @@ export const MessageItemWrapper = styled.div`
   font-size: var(--fs-ss);
   font-weight: 100;
   border-bottom: 1px solid var(--black-light-3);
+  word-break: break-all;
 
   :hover {
     background-color: var(--grey-light-1);

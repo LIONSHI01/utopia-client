@@ -57,6 +57,7 @@ import EditDropdownMenu from './PostDetails/EditDropdownMenu';
 import ForgotPasswordModal from './Modals/ForgotPasswordModal';
 import BuyNowModal from './Modals/BuyNowModal';
 import MetaMaskButton from './MetaMaskButton';
+import TogglePwButton from './TogglePwButton';
 
 export {
   MainHeader,
@@ -119,4 +120,5 @@ export {
   ForgotPasswordModal,
   BuyNowModal,
   MetaMaskButton,
+  TogglePwButton,
 };

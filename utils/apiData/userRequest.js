@@ -80,13 +80,11 @@ export const resetPasswordRequest = async ({ token, password }) => {
 };
 
 export const inactivateUserRequest = async ({ userId, password }) => {
-  const res = await axios({
+  return axios({
     method: 'PATCH',
     url: `${baseURL}/users/inactivateAccount/${userId}`,
     data: { password },
   });
-
-  return res;
 };
 
 export const updateUserPhoto = async (data, userId) => {

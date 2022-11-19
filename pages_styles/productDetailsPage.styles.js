@@ -138,7 +138,6 @@ export const DetailsWrapper = styled.div`
   .title {
     font-size: var(--fs-xxl);
     font-weight: 400;
-    letter-spacing: -1px;
     margin-bottom: var(--mg-m);
     color: var(--black-light-2);
   }

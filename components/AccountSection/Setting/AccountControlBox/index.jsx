@@ -23,6 +23,7 @@ const AccountControlBox = ({ user }) => {
 
   // HANDLERS
   const onSubmitHandler = () => {
+    console.log({ userId: user._id, password });
     mutateInactivateUser({ userId: user._id, password });
   };
 
@@ -46,7 +47,8 @@ const AccountControlBox = ({ user }) => {
         Router.push('/');
       },
       onError: (err) => {
-        toast.error(`${err?.response.data.data.message}`);
+        console.log('error from modal:', err);
+        toast.error(`${err?.response.data.message}`);
       },
     }
   );
@@ -69,7 +71,7 @@ const AccountControlBox = ({ user }) => {
             use your username.
           </li>
         </ul>
-        <p>
+        <p className="reminder">
           You can reopen your account anytime. Just sign back in to Utopia or
           contact Utopia support for help.
         </p>
@@ -89,14 +91,16 @@ const AccountControlBox = ({ user }) => {
           </h3>
           <FormInputComp
             label="Enter Your Password"
-            type="password"
             value={password}
             onChange={onChangeHandler}
+            isPasswordBtn={true}
           />
         </ModalMessageContainer>
         <ButtonsGroup>
           <Button
-            size="x"
+            height="4rem"
+            width="8rem"
+            fonsSize="1.6rem"
             buttonType={BUTTON_TYPES.outlineGrey}
             onClick={onCloseHandler}
           >
@@ -104,7 +108,9 @@ const AccountControlBox = ({ user }) => {
           </Button>
           <Button
             isLoading={isLoading}
-            size="x"
+            height="4rem"
+            width="14rem"
+            fonsSize="1.6rem"
             buttonType={BUTTON_TYPES.outlineRed}
             onClick={onSubmitHandler}
           >

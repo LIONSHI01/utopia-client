@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import ReactTooltip from 'react-tooltip';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 

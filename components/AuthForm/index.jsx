@@ -4,10 +4,17 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useMutation } from 'react-query';
 
-import { GrPowerCycle } from '../ReactIcons';
+import { GrPowerCycle, BsEyeSlashFill, BsEyeFill } from '../ReactIcons';
 import { useConnectWallet } from '../../utils/reactQueryHooks/useConnectWallet';
 import { signupRequest } from '../../utils/authRequest';
-import { Button, BUTTON_TYPES, Overlay, ForgotPasswordModal } from '../index';
+import {
+  Button,
+  BUTTON_TYPES,
+  Overlay,
+  ForgotPasswordModal,
+  TogglePwButton,
+  FormInputComp,
+} from '../index';
 import { FormContainer, MetaMaskFormBox, EmailFormBox } from './index.styles';
 import MetaMaskIcon from '../../assets/image/meta_mask.png';
 
@@ -36,6 +43,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   const [isEmailSigningIn, setIsEmailSigningIn] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const { username, email, password, passwordConfirm } = formField;
+  const [showPassword, setShowPassword] = useState(false);
 
   // HANDLERS
 
@@ -126,7 +134,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
 
         <EmailFormBox onSubmit={onSubmitHandler}>
           {isSignup && (
-            <input
+            <FormInputComp
               name="username"
               value={username}
               type="text"
@@ -136,8 +144,18 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               required
               autocomplete="off"
             />
+            // <input
+            //   name="username"
+            //   value={username}
+            //   type="text"
+            //   placeholder="Username"
+            //   onChange={onChangeHandler}
+            //   className="input-field"
+            //   required
+            //   autocomplete="off"
+            // />
           )}
-          <input
+          <FormInputComp
             name="email"
             value={email}
             type="email"
@@ -147,7 +165,28 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             required
             autocomplete="off"
           />
-          <input
+          {/* <input
+            name="email"
+            value={email}
+            type="email"
+            placeholder="Email"
+            onChange={onChangeHandler}
+            className="input-field"
+            required
+            autocomplete="off"
+          /> */}
+          <FormInputComp
+            name="password"
+            value={password}
+            // type="password"
+            placeholder="Password"
+            onChange={onChangeHandler}
+            className="input-field"
+            required
+            autocomplete="off"
+            isPasswordBtn={true}
+          />
+          {/* <input
             name="password"
             value={password}
             type="password"
@@ -156,18 +195,29 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             className="input-field"
             required
             autocomplete="off"
-          />
+          /> */}
           {isSignup && (
-            <input
+            <FormInputComp
               name="passwordConfirm"
               value={passwordConfirm}
-              type="password"
+              // type="password"
               placeholder="Confirm Password"
               onChange={onChangeHandler}
               className="input-field"
               required
               autocomplete="off"
+              isPasswordBtn={true}
             />
+            // <input
+            //   name="passwordConfirm"
+            //   value={passwordConfirm}
+            //   type="password"
+            //   placeholder="Confirm Password"
+            //   onChange={onChangeHandler}
+            //   className="input-field"
+            //   required
+            //   autocomplete="off"
+            // />
           )}
           <Button
             fonsSize="1.8rem"
