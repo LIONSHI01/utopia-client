@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  color: var(--black);
+  color: ${({ theme }) => theme.textDark};
   border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
+  background-color: ${({ theme }) => theme.dropdownBG};
   padding: 2.5rem;
+  box-shadow: var(--bs-s);
 
   .heading {
     font-size: var(--fs);
@@ -17,7 +18,7 @@ export const BoxContainer = styled.div`
   .info_box {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid var(--black-light-3);
+    border-bottom: 1px solid ${({ theme }) => theme.textLight3};
     padding-bottom: 1rem;
     margin-bottom: var(--mg-s);
     gap: 1rem;
@@ -28,7 +29,6 @@ export const BoxContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    /* margin-bottom: var(--mg-s); */
   }
 
   .userInfo_top_details {
@@ -36,6 +36,7 @@ export const BoxContainer = styled.div`
     flex-direction: column;
     gap: 0.5rem;
   }
+
   .username {
     font-size: var(--fs-s);
     font-weight: 400;
@@ -49,7 +50,7 @@ export const BoxContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-    border-bottom: 1px solid var(--black-light-3);
+    border-bottom: 1px solid ${({ theme }) => theme.textLight3};
     padding-bottom: 2rem;
 
     p {
@@ -62,12 +63,12 @@ export const BoxContainer = styled.div`
     font-size: var(--fs-ss);
 
     font-weight: 400;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     margin-bottom: var(--mg-s);
   }
 
   p {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-weight: 100;
   }
 
@@ -76,13 +77,13 @@ export const BoxContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .follow_info {
     display: flex;
     gap: 1rem;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .social_links {
@@ -94,14 +95,15 @@ export const BoxContainer = styled.div`
       cursor: pointer;
 
       :hover {
-        color: var(--black);
+        color: ${({ theme }) => theme.textPrimary};
+  }
       }
     }
   }
 
   .bio {
     font-size: var(--fs-ss);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .bio_heading {
@@ -114,7 +116,7 @@ export const BoxContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .sales_reviews {

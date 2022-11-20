@@ -10,10 +10,6 @@ import { FaucetModal, WaitingModal } from '../../index';
 import { claimFaucet } from '../../../utils/apiData/userRequest';
 
 const WalletDropdown = ({ showup, setShowup, user, setShowFaucetModal }) => {
-  // const [showFaucetModal, setShowFaucetModal] = useState(false);
-  // const [showWaitingModal, setShowWaitingModal] = useState(false);
-  // const [claimHash, setClaimHash] = useState('');
-
   const onClaimHandler = () => {
     setShowup(false);
     setShowFaucetModal(true);

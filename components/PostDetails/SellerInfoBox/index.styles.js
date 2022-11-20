@@ -42,7 +42,7 @@ export const BoxWrapper = styled.div`
 
   .sales {
     font-size: var(--fs-ss);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
   .rates {
   }

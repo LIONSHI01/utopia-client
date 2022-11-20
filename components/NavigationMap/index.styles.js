@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const MapWrapper = styled.div`
   font-size: 1.4rem;
   font-weight: 100;
-  color: var(--black-light-2);
-  /* background-color: orangered; */
+  color: ${({ theme }) => theme.textLight2};
+
   padding: 2rem 0;
 
   .links {
@@ -14,12 +14,12 @@ export const MapWrapper = styled.div`
   }
 
   .post-title {
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
   }
 
   a {
     :hover {
-      color: var(--black);
+      ${({ theme }) => theme.textDark};
       text-decoration: underline;
     }
   }

@@ -27,9 +27,9 @@ export const TransactionInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  color: var(--black-light-2);
+  color: ${({ theme }) => theme.textLight2};
   border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
+  background-color: ${({ theme }) => theme.dropdownBG};
   padding: 2.5rem;
   font-size: var(--fs-s);
   font-weight: 100;
@@ -49,7 +49,7 @@ export const TransactionInfoBox = styled.div`
     font-size: var(--fs);
     font-weight: 500;
     margin-bottom: var(--mg-s);
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
   }
 
   .details_box {

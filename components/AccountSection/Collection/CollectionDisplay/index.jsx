@@ -36,7 +36,7 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
             )}
           </div>
           <div className="items-count">
-            <ImEarth size={15} color="var(--black-light-2)" />
+            <ImEarth size={15} />
             <span>{collection?.items?.length || 0}&nbsp;Items</span>
           </div>
         </TitleContainer>

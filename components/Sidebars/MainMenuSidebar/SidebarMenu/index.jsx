@@ -8,7 +8,6 @@ import { MenuContainer, ListContainer } from './index.styled';
 const SidebarMenu = ({ isOpen }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
-  // console.log({ selectedCategory, selectedSubcategory });
 
   const onSelectCategoryHandler = (category) => {
     setSelectedCategory((prev) => {

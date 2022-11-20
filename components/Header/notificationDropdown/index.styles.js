@@ -21,7 +21,7 @@ export const DropdownWrapper = styled.div`
   width: 0rem;
   height: 0rem;
 
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   box-shadow: var(--bs-s);
   border-radius: var(--br-m);
 
@@ -30,7 +30,7 @@ export const DropdownWrapper = styled.div`
   opacity: 0;
   visibility: hidden;
 
-  ::after {
+  /* ::after {
     content: '';
     position: absolute;
     top: 0;
@@ -39,7 +39,7 @@ export const DropdownWrapper = styled.div`
     height: 2rem;
     width: 2rem;
     transform: translateY(-25%) rotate(45deg);
-  }
+  } */
 
   ${(props) => props.showUp && boxShowUpStyles}
 `;

@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
   height: 50rem;
   padding: 3rem;
   border-radius: 2.4rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s;
   box-shadow: var(--bs-m);
@@ -24,7 +24,6 @@ export const ModalContainer = styled.div`
   /* Hide before activate */
   opacity: 0;
   visibility: hidden;
-  /* display: none; */
 
   ${(props) => props.showUp && showUpStyles}
 
@@ -54,24 +53,24 @@ export const CollectionsContainer = styled.div`
     border: 2px solid transparent;
     cursor: pointer;
     width: 100%;
-    background-color: var(--white);
-
+    background-color: transparent;
+    color: ${({ theme }) => theme.textDark};
     display: flex;
 
     gap: 1.5rem;
     align-items: center;
 
     :hover {
-      border: 2px solid var(--black-light-3);
+      border: 2px solid ${({ theme }) => theme.textLight3};
     }
   }
 
   .placeHolder {
     height: 5rem;
     width: 10rem;
-    background-color: var(--black);
+    background-color: ${({ theme }) => theme.textDark};
     border-radius: var(--br-m);
-
+    color: ${({ theme }) => theme.background};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,6 +78,7 @@ export const CollectionsContainer = styled.div`
 
   .name {
     font-size: var(--fs);
+    color: ${({ theme }) => theme.textDark};
   }
 `;
 
@@ -94,15 +94,15 @@ export const CollectionWrapper = styled.div`
   align-items: center;
 
   :hover {
-    border: 2px solid var(--black-light-3);
+    border: 2px solid ${({ theme }) => theme.textLight3};
   }
 
   .placeHolder {
     height: 5rem;
     width: 10rem;
-    background-color: var(--black-light-3);
+    background-color: ${({ theme }) => theme.textLight3};
     border-radius: var(--br-m);
-
+    color: ${({ theme }) => theme.background};
     display: flex;
     align-items: center;
     justify-content: center;

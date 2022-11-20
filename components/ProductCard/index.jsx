@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useSession } from 'next-auth/react';
+import { productLinkGenerator } from '../../utils/productLinkGenerator';
 
 import { BsFillHeartFill } from 'react-icons/bs';
 import ethIcon from '../../assets/image/eth-icon.png';
@@ -30,7 +31,7 @@ import {
 const ProductCard = ({ post }) => {
   // CONFIGURATION
   const router = useRouter();
-
+  const productLink = productLinkGenerator(post);
   let hoverTimer;
 
   // STATE MANAGEMENT
@@ -126,11 +127,7 @@ const ProductCard = ({ post }) => {
               size="m"
               type="button"
               buttonType={BUTTON_TYPES.base}
-              onClick={() =>
-                router.replace(
-                  ` /products/${post?.category}/${post?.subCategory}/${post?.slug}/${post?._id}`
-                )
-              }
+              onClick={() => router.replace(productLink)}
             >
               Details
             </Button>

@@ -24,6 +24,7 @@ export const BaseButton = styled.button`
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.3s;
+  color: ${({ theme }) => theme.textDark};
 
   :active {
     scale: 0.85;
@@ -36,14 +37,15 @@ export const BaseButton = styled.button`
 
 export const HoverBackgroundButton = styled(BaseButton)`
   :hover {
-    background-color: var(--grey-light-2);
+    background-color: ${({ theme }) => theme.textLight2};
+    color: ${({ theme }) => theme.dropdownBG};
   }
 `;
 export const WhiteBackgroundButton = styled(BaseButton)`
-  background-color: var(--white);
-  border: 1px solid var(--black-light-2);
+  background-color: ${({ theme }) => theme.background};
+  border: 1px solid ${({ theme }) => theme.textLight2};
 
   :hover {
-    background-color: var(--grey-light-2);
+    background-color: ${({ theme }) => theme.dropdownHover};
   }
 `;

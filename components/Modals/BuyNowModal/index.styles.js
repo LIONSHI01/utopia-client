@@ -23,7 +23,7 @@ export const ModalContainer = styled.div`
   box-shadow: var(--bs-m);
 
   padding: 3rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s ease-in-out 0.1s;
 
@@ -36,7 +36,7 @@ export const ModalContainer = styled.div`
     font-size: var(--fs-s);
     font-weight: 400;
     text-transform: uppercase;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 `;
 
@@ -57,7 +57,7 @@ export const ContentsContainer = styled.div`
   .heading {
     font-size: var(--fs-xxl);
     font-weight: 500;
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
   }
 `;
 
@@ -112,7 +112,7 @@ export const ButtonsGroup = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  border-bottom: 1px solid var(--grey-light-2);
+  border-bottom: 1px solid ${({ theme }) => theme.textLight2};
   padding: 3rem 0;
 
   .remind_connection_box {
@@ -125,7 +125,7 @@ export const ButtonsGroup = styled.div`
 
   .remind_connection_text {
     font-size: var(--fs-s);
-    color: var(--white);
+    color: ${({ theme }) => theme.dropdownBG};
     text-align: center;
   }
 
@@ -137,6 +137,7 @@ export const ButtonsGroup = styled.div`
     border-radius: var(--br-m);
     align-items: center;
     padding: 1rem 2rem;
+    /* color: ${({ theme }) => theme.textLight2}; */
 
     span {
       font-size: var(--fs);
@@ -170,7 +171,6 @@ export const ButtonsGroup = styled.div`
     width: 2rem;
     background-color: var(--white);
     border-radius: 100px;
-    /* padding: 0.5rem; */
   }
 
   .account_eth_image {
@@ -185,7 +185,7 @@ export const ButtonsGroup = styled.div`
     justify-content: center;
     height: 4.5rem;
     width: 100%;
-    background-color: var(--white);
+    background-color: ${({ theme }) => theme.dropdownBG};
     border: 2px solid var(--black);
     border-radius: var(--br-m);
 
@@ -208,8 +208,7 @@ export const ButtonsGroup = styled.div`
     align-items: center;
     justify-content: center;
     border: none;
-    background-color: var(--white);
-    color: var(--black);
+    background-color: ${({ theme }) => theme.dropdownBG};
     border-radius: var(--br-m);
     transition: all 0.3s;
     border: 2px solid var(--black);

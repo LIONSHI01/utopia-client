@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const CardContainer = styled.div`
   width: 25rem;
   height: 38rem;
-  border: 1px solid var(--black-light-3);
+  border: 1px solid ${({ theme }) => theme.textLight3};
   border-radius: var(--br-m);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 
   :hover {
-    border: 1px solid var(--black);
+    border: 1px solid ${({ theme }) => theme.textDark};
   }
 `;
 
@@ -55,7 +55,7 @@ export const ContentContainer = styled.div`
 
   .title {
     font-size: var(--fs-s);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-weight: 400;
     margin-bottom: var(--mg-s);
   }
@@ -63,7 +63,7 @@ export const ContentContainer = styled.div`
   .price {
     font-weight: 500;
     font-size: var(--fs);
-    color: var(--black);
+    color: ${({ theme }) => theme.textLight2};
     margin-bottom: var(--mg-s);
     display: flex;
     align-items: center;
@@ -82,14 +82,14 @@ export const ContentContainer = styled.div`
   .item-value {
     margin-left: 0.8rem;
     font-size: 1.2rem;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
 
     font-weight: 100;
   }
 
   .status {
     font-size: var(--fs-ss);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .buttons-group {
@@ -109,7 +109,7 @@ export const ContentContainer = styled.div`
   }
 
   .icon {
-    color: var(--black-light-3);
+    color: ${({ theme }) => theme.textLight3};
 
     :hover {
       color: var(--primary);

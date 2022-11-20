@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MainHeader, Footer, MobileNavigation } from '../index';
 
-
-const Layout = ({ children }) => {
+const Layout = ({ children, theme, themeToggler }) => {
   return (
     <>
       <MobileNavigation />
-      <MainHeader />
+      <MainHeader theme={theme} setTheme={themeToggler} />
       {children}
       <Footer />
     </>

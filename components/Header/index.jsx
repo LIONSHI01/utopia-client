@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import Router from 'next/router';
 import ReactTooltip from 'react-tooltip';
 
+import { ThemeToggler } from '../index';
 import { RiNotification4Line, FiHeart } from '../ReactIcons';
 
 import {
@@ -20,7 +21,7 @@ import {
 
 import { HeaderWrapper, InnerWrapper, StickyFillinSpace } from './index.styles';
 
-const MainHeader = () => {
+const MainHeader = ({ theme, setTheme }) => {
   // CONFIGURATION
   const ref = useRef();
   const { data } = useSession();
@@ -92,12 +93,13 @@ const MainHeader = () => {
               onClick={() => setShowNotiDropdown((prev) => !prev)}
               ref={ref}
             >
-              <RiNotification4Line size={25} color="var(--black-light-2)" />
+              <RiNotification4Line size={25} />
 
               <div className="noti-number">
                 <span>{user?.notifications.length || 0}</span>
               </div>
               <NotificationDropdown
+                user={user}
                 notifications={user?.notifications}
                 showUp={showNotiDropdown}
                 setShowUp={setShowNotiDropdown}
@@ -142,6 +144,7 @@ const MainHeader = () => {
                 </Button>
               </div>
             )}
+            <ThemeToggler size={25} theme={theme} setTheme={setTheme} />
           </div>
         </HeaderWrapper>
         <CategoryBar />

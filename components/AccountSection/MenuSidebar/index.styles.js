@@ -29,7 +29,7 @@ export const UserInfoSection = styled.div`
     width: 8rem;
     border-radius: 100px;
     overflow: hidden;
-    border: 1px solid var(--black-light-3);
+    border: 1px solid ${({ theme }) => theme.textLight3};
   }
 
   .placeholder {
@@ -63,6 +63,7 @@ export const UserInfoSection = styled.div`
     height: 4rem;
     width: 4rem;
     background-color: var(--white);
+    /* background-color: ${({ theme }) => theme.background}; */
 
     display: flex;
     justify-content: center;
@@ -73,10 +74,11 @@ export const UserInfoSection = styled.div`
     box-shadow: var(--bs-m);
     transition: all 0.3s;
     border: 1px solid transparent;
+    color: var(--black);
 
     :hover {
       box-shadow: var(--bs-s);
-      border: 1px solid var(--black-light-2);
+      border: 1px solid ${({ theme }) => theme.textLight2};
     }
   }
 
@@ -100,7 +102,7 @@ export const UserInfoSection = styled.div`
     margin-bottom: var(--mg-s);
 
     & > * {
-      color: var(--black-light-2);
+      color: ${({ theme }) => theme.textLight2};
       transition: all 0.3s ease-in-out;
 
       :hover {
@@ -116,21 +118,22 @@ export const UserInfoSection = styled.div`
     margin-bottom: var(--mg-m);
 
     p {
-      color: var(--black-light-2);
+      color: ${({ theme }) => theme.textLight2};
     }
 
     span {
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
       margin-right: 0.5rem;
     }
   }
 
   .bio {
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     font-size: var(--fs-ss);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
 
     span {
       font-weight: 500;
@@ -138,12 +141,12 @@ export const UserInfoSection = styled.div`
   }
 
   .edit-profile {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
 
     font-size: var(--fs-ss);
     text-decoration: underline;
     :hover {
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
     }
   }
 `;
@@ -168,12 +171,13 @@ export const MenuList = styled.ul`
     cursor: pointer;
 
     :hover {
-      background-color: var(--black-light-3);
+      background-color: ${({ theme }) => theme.dropdownHover};
+      color: ${({ theme }) => theme.textPrimary};
     }
   }
 
   .active {
-    background-color: var(--black-light-3);
+    background-color: ${({ theme }) => theme.textLight3};
     color: var(--primary);
     font-weight: 500;
   }

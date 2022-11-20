@@ -6,14 +6,14 @@ export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: var(--mg-m);
-  border-bottom: 1px solid var(--black-light-3);
+  border-bottom: 1px solid ${({ theme }) => theme.textLight3};
   padding-bottom: 1rem;
 `;
 
 export const SelectionContainer = styled.div`
   display: flex;
   gap: 4rem;
-  border-bottom: 1px solid var(--grey-light-2);
+  border-bottom: 1px solid ${({ theme }) => theme.dropdownHover};
   height: 3rem;
   margin-bottom: var(--mg-m);
 
@@ -22,14 +22,14 @@ export const SelectionContainer = styled.div`
     font-size: var(--fs);
     text-transform: capitalize;
     font-weight: 100;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
 
     cursor: pointer;
     border-bottom: 2px solid transparent;
   }
 
   .selected {
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
     border-bottom: 2px solid var(--primary);
   }
 `;
@@ -39,7 +39,6 @@ export const ListTable = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-weight: 100;
-  /* gap: 1rem; */
 `;
 
 export const TableHeader = styled.div`
@@ -48,10 +47,9 @@ export const TableHeader = styled.div`
   grid-template-columns: repeat(7, 1fr);
   gap: 1rem;
   font-weight: 400;
-  border-bottom: 1px solid var(--black-light-3);
+  border-bottom: 1px solid ${({ theme }) => theme.textLight3};
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-
   text-transform: capitalize;
   font-size: var(--fs-s);
 
@@ -66,7 +64,7 @@ export const ListItemWrapper = styled.div`
   grid-template-columns: repeat(7, 1fr);
   font-weight: 100;
   gap: 1rem;
-  color: var(--black-light-2);
+  color: ${({ theme }) => theme.textLight2};
   text-transform: capitalize;
   font-size: var(--fs-ss);
   padding: 0.5rem 0;
@@ -78,7 +76,8 @@ export const ListItemWrapper = styled.div`
   }
 
   :hover {
-    background-color: var(--grey-light-1);
+    background-color: var(--grey-light-2);
+    color: var(--black);
   }
 
   .order_id {
@@ -89,7 +88,7 @@ export const ListItemWrapper = styled.div`
     font-weight: 400;
   }
   .order_inactive {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-weight: 400;
   }
 

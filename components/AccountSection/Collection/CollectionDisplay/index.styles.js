@@ -26,7 +26,7 @@ export const TitleContainer = styled.div`
     align-items: center;
     gap: 0.5rem;
     font-size: var(--fs-s);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-weight: 500;
   }
 `;

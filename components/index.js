@@ -58,6 +58,7 @@ import ForgotPasswordModal from './Modals/ForgotPasswordModal';
 import BuyNowModal from './Modals/BuyNowModal';
 import MetaMaskButton from './MetaMaskButton';
 import TogglePwButton from './TogglePwButton';
+import ThemeToggler from './ThemeToggler';
 
 export {
   MainHeader,
@@ -121,4 +122,5 @@ export {
   BuyNowModal,
   MetaMaskButton,
   TogglePwButton,
+  ThemeToggler,
 };

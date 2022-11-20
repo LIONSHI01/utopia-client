@@ -88,7 +88,7 @@ export const GalleryWrapper = styled.div`
     position: relative;
     width: 55rem;
     height: 55rem;
-    background-color: var(--white);
+    background-color: transparent;
     border-radius: var(--br-s);
     overflow: hidden;
     cursor: zoom-in;
@@ -139,7 +139,7 @@ export const DetailsWrapper = styled.div`
     font-size: var(--fs-xxl);
     font-weight: 400;
     margin-bottom: var(--mg-m);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textDark};
   }
 
   .price {
@@ -148,10 +148,6 @@ export const DetailsWrapper = styled.div`
     gap: 0.5rem;
     margin-bottom: var(--mg-m);
   }
-
-  /* .value-info {
-    display: flex;
-  } */
 
   .eth-value {
     font-size: var(--fs-xl);
@@ -209,7 +205,7 @@ export const DetailsWrapper = styled.div`
   }
 
   .list-title {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .list-content,

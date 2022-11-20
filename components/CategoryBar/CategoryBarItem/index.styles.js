@@ -18,7 +18,7 @@ export const ItemWrapper = styled.div`
   span {
     font-size: var(--fs);
     font-weight: 300;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     text-transform: capitalize;
 
     @media ${device.laptop} {
@@ -37,7 +37,7 @@ export const DropdownWrapper = styled.div`
   flex-direction: column;
 
   min-width: 25rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   box-shadow: var(--bs-s);
   border-radius: var(--br-x);
   padding: 2rem 2rem 2rem 3rem;
@@ -53,7 +53,7 @@ export const DropdownWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-size: var(--fs-s);
     padding: 0.8rem 0;
     font-weight: 100;
@@ -64,10 +64,11 @@ export const DropdownWrapper = styled.div`
     }
 
     :hover {
-      color: var(--black);
+      color: ${({ theme }) => theme.textPrimary};
     }
+
     :hover .arrow-icon {
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
     }
   }
 

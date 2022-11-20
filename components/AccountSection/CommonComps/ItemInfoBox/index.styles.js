@@ -5,10 +5,11 @@ export const ItemInfoBoxContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  color: var(--black-light-2);
+  color: ${({ theme }) => theme.textLight2};
   border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
+  background-color: ${({ theme }) => theme.dropdownBG};
   padding: 2.5rem;
+  box-shadow: var(--bs-s);
 
   @media ${device.mobileL} {
     padding: 1.5rem;
@@ -35,7 +36,7 @@ export const ItemInfoBoxContainer = styled.div`
     gap: 0.5rem;
 
     h4 {
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
       font-size: var(--fs);
       font-weight: 500;
       margin-bottom: var(--mg-m);
@@ -52,7 +53,7 @@ export const ItemInfoBoxContainer = styled.div`
   }
 
   .order_status {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-size: var(--fs-ss);
     font-weight: 100;
   }
@@ -65,11 +66,11 @@ export const ItemInfoBoxContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: var(--fs-s);
+    font-size: var(--fs-ss);
     margin-left: auto;
     line-height: 0;
-    background-color: var(--black-light-3);
-    padding: 0.8rem;
+    background-color: ${({ theme }) => theme.dropdownHover};
+    padding: 0.5rem 0.8rem;
     border-radius: var(--br-x);
 
     span {
@@ -85,7 +86,7 @@ export const ItemInfoBoxContainer = styled.div`
 
 export const ItemDetailsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(17rem, max-content));
   gap: 2rem;
   font-size: var(--fs-s);
   font-weight: 100;
@@ -115,9 +116,14 @@ export const ItemDetailsWrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
   }
+
   .item-title {
     font-size: var(--fs);
     font-weight: 400;
+    cursor: pointer;
+    :hover {
+      text-decoration: underline;
+    }
   }
 
   .details_value {
@@ -147,11 +153,11 @@ export const ItemDetailsWrapper = styled.div`
 
   .image_container {
     position: relative;
-    height: 20rem;
+    height: 15rem;
     width: 15rem;
     border-radius: var(--br-m);
     overflow: hidden;
-    /* filter: grayscale(); */
+
     filter: ${(props) => (props.isItemActive ? 'none' : 'grayscale(80%)')};
   }
 

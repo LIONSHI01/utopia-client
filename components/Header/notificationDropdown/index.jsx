@@ -1,9 +1,6 @@
 import React from 'react';
-
-import { RiAuctionFill } from 'react-icons/ri';
-
-import { MdLocalOffer } from 'react-icons/md';
-import { BsHouseFill } from 'react-icons/bs';
+import Router from 'next/router';
+import { RiAuctionFill, MdLocalOffer, BsHouseFill } from '../../ReactIcons';
 import { timePeriod } from '../../../utils/timeCalculator';
 
 import {
@@ -16,8 +13,9 @@ import {
   OfferIcon,
 } from './index.styles';
 
-const MessageItem = ({ message }) => {
+const MessageItem = ({ user, message }) => {
   const { content, type, createdAt } = message || {};
+
   const period = timePeriod(createdAt);
   const getIcon = (messageType) => {
     if (messageType === 'system')
@@ -27,13 +25,13 @@ const MessageItem = ({ message }) => {
         </HostIcon>
       );
 
-    if (messageType === 'order')
+    if (messageType === 'orders')
       return (
         <OrderIcon>
           <RiAuctionFill size={15} className="icon" />
         </OrderIcon>
       );
-    if (messageType === 'offer')
+    if (messageType === 'offers')
       return (
         <OfferIcon>
           <MdLocalOffer size={15} className="icon" />
@@ -44,7 +42,9 @@ const MessageItem = ({ message }) => {
   const CustomIcon = getIcon(type);
 
   return (
-    <MessageItemWrapper>
+    <MessageItemWrapper
+      onClick={() => Router.push(`/users/${user?.id}/${type}`)}
+    >
       <div className="type">{CustomIcon}</div>
       <div className="contents">{content}</div>
       <div className="period">{period}</div>
@@ -52,14 +52,14 @@ const MessageItem = ({ message }) => {
   );
 };
 
-const NotificationDropdown = ({ notifications, showUp, setShowUp }) => {
+const NotificationDropdown = ({ user, notifications, showUp, setShowUp }) => {
   return (
     <DropdownWrapper showUp={showUp}>
       <MasterContainer showUp={showUp}>
         <div className="heading">Notifications</div>
         <ContentContainer showUp={showUp}>
           {notifications?.map((item) => (
-            <MessageItem key={item?._id} message={item} />
+            <MessageItem key={item?._id} user={user} message={item} />
           ))}
           {notifications?.length === 0 && (
             <div className="no-message">No message yet.</div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { IoMdClose, IoMdTrash } from 'react-icons/io';
 
 import { IoMdClose, IoMdTrash } from '../../../ReactIcons';
 
@@ -64,10 +63,10 @@ const EditCollectionModal = ({
         <div className="heading">
           <h3>Edit Your Collection</h3>
         </div>
+        <p className="regular_text">Collection Name: </p>
 
         <FormInputComp
           fieldName="collectionName"
-          label="Collection name"
           placeholder="Artwork,Chrismas Gift List, etc."
           maxLength="50"
           value={name}

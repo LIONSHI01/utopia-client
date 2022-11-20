@@ -117,7 +117,7 @@ const AddToCollectionModal = ({
             }}
           >
             <div className="placeHolder">
-              <AiOutlinePlus size={30} color="var(--white)" />
+              <AiOutlinePlus size={30} />
             </div>
             <span className="name">Create new collection</span>
           </button>

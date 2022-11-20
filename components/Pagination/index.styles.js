@@ -14,15 +14,12 @@ export const PaginationContainer = styled.div`
   list-style-type: none;
   font-size: var(--fs-s);
 
-  /* ${(props) => props.fontSize === 'm' && mdFontSizeStyles}
-  ${(props) => props.fontSize === 's' && smFontSizeStyles} */
-
   .pagination-item {
     padding: 0 12px;
     height: 32px;
     text-align: center;
     margin: auto 4px;
-    color: rgba(0, 0, 0, 0.87);
+    color: ${({ theme }) => theme.textDark};
     display: flex;
     box-sizing: border-box;
     align-items: center;
@@ -37,7 +34,8 @@ export const PaginationContainer = styled.div`
     ${(props) => props.fontSize === 's' && smFontSizeStyles}
 
     :hover {
-      background-color: rgba(0, 0, 0, 0.04);
+      background-color: ${({ theme }) => theme.textLight3};
+      color: ${({ theme }) => theme.textPrimary};
       cursor: pointer;
     }
 
@@ -47,7 +45,8 @@ export const PaginationContainer = styled.div`
     }
 
     &.selected {
-      background-color: rgba(0, 0, 0, 0.08);
+      color: ${({ theme }) => theme.textPrimary};
+      background-color: ${({ theme }) => theme.textLight3};
     }
 
     .arrow {

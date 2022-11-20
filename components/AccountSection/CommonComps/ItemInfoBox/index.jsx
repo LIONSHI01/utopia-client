@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
@@ -29,6 +30,7 @@ import {
 } from '../../../index';
 
 import { ItemInfoBoxContainer, ItemDetailsWrapper } from './index.styles';
+import { productLinkGenerator } from '../../../../utils/productLinkGenerator';
 
 const ItemInfoBox = ({
   order,
@@ -42,10 +44,11 @@ const ItemInfoBox = ({
   const { category, title, coverImages, subCategory, description, active } =
     post || {};
   const ethPrice = useSelector(selectEthPrice);
-
+  console.log(order);
   // STATE MANAGEMENT
   const [showBuyerConfirm, setShowBuyerConfirm] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const productLink = productLinkGenerator(post);
 
   // Modal Message
   const buyerConfirmTitle = 'Confirm Order';
@@ -71,7 +74,7 @@ const ItemInfoBox = ({
       },
       onError: (err) => {
         console.log('from mutation err', err);
-        toast.error(`${err?.response.data?.data?.message}`);
+        toast.error(`${err?.response?.data?.message}`);
       },
     }
   );
@@ -139,13 +142,15 @@ const ItemInfoBox = ({
               alt={title}
               src={coverImages}
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
               objectPosition="center"
             />
           </div>
           <div className="details_description">
             <div className="details_header">
-              <span className="item-title">{title}</span>
+              <Link href={productLink}>
+                <a className="item-title">{title}</a>
+              </Link>
               <div className="item-status">
                 {active ? (
                   <span>Listing</span>
@@ -174,13 +179,14 @@ const ItemInfoBox = ({
           {!order?.buyer_confirmation ? (
             <div className="buyer_confirmation">
               <Button
+                isLoading={isConfirming}
                 disable={!order?.active ? true : false}
                 height="4rem"
                 width="13rem"
                 buttonType={BUTTON_TYPES.outlineRed}
                 onClick={() => setShowBuyerConfirm(true)}
               >
-                {isConfirming ? 'Confirming' : 'Buyer confirm'}
+                Buyer confirm
               </Button>
               <p className="buyer_confirmation_reminder">
                 Please confirm order status, if you have received item /
@@ -208,7 +214,7 @@ const ItemInfoBox = ({
               buttonType={ICON_BUTTON_TYPES.hoverBackground}
               onClick={() => setShowDeleteAlert(true)}
             >
-              <MdDelete size={20} color="var(--black-light-2)" />
+              <MdDelete size={20} />
             </IconButton>
             <AlertModal
               title={deleteAlertTitle}
@@ -270,7 +276,7 @@ const ItemInfoBox = ({
               alt={title}
               src={coverImages}
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
               objectPosition="center"
             />
           </div>

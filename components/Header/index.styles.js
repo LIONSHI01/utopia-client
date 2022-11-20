@@ -12,7 +12,8 @@ const stickyStyles = css`
 export const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: var(--white);
+  /* background-color: var(--white); */
+  background-color: ${(props) => props.theme.background};
   width: 100%;
   z-index: 1000;
 
@@ -23,8 +24,8 @@ export const InnerWrapper = styled.div`
   }
 
   .react_tool_tip_styles {
-    background-color: var(--black);
-    color: var(--white);
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.textDark};
     z-index: 1100;
     padding: 8px;
     opacity: 1 !important;
@@ -37,7 +38,7 @@ export const HeaderWrapper = styled.div`
   padding: 1rem 5rem;
   display: flex;
   align-items: center;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.background};
   z-index: 1000;
 
   .logo {
@@ -52,51 +53,6 @@ export const HeaderWrapper = styled.div`
     }
   }
 
-  .searchBar {
-    height: 4rem;
-    min-width: 50%;
-    max-width: 65%;
-
-    display: flex;
-    align-items: center;
-
-    border-radius: var(--br-s);
-    border: 1px solid var(--black);
-    overflow: hidden;
-    transition: all 0.3s;
-    margin-right: 3rem;
-
-    :has(input:focus) {
-      box-shadow: 0 0 0 0.3rem #ff9a77;
-    }
-
-    input {
-      width: 100%;
-      height: 4rem;
-      border: none;
-      font-size: var(--fs);
-      padding: 1rem;
-
-      ::placeholder {
-        font-size: var(--fs-s);
-      }
-
-      :focus {
-        outline: none;
-      }
-    }
-  }
-
-  .search-btn {
-    background-color: var(--black);
-    width: 4rem;
-    height: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-  }
-
   .links {
     display: flex;
     align-items: center;
@@ -105,13 +61,13 @@ export const HeaderWrapper = styled.div`
 
     span {
       font-size: var(--fs);
-      color: var(--black-light-2);
+      color: ${({ theme }) => theme.textLight2};
     }
   }
 
   .icon_btn {
     cursor: pointer;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .auth-buttons {
@@ -123,6 +79,7 @@ export const HeaderWrapper = styled.div`
     position: relative;
     border-radius: 100px;
     cursor: pointer;
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .noti-number {

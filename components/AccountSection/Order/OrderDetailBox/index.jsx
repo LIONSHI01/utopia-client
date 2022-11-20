@@ -45,7 +45,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
   const { isLoading: isValidating, mutate: mutateValidateOrder } = useMutation(
     validateOrder,
     {
-      onSuccess: (res) => {
+      onSuccess: () => {
         refetchUser();
         toast.success(`Validation completed.`);
       },
@@ -101,14 +101,18 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                   />
                   <div className="edit-buttons">
                     <Button
-                      size="x"
+                      height="3rem"
+                      width="8rem"
+                      fonsSize="1.4rem"
                       buttonType={BUTTON_TYPES.outlineGrey}
                       onClick={() => setShowEditTxHashInput(false)}
                     >
                       Cancel
                     </Button>
                     <Button
-                      size="x"
+                      height="3rem"
+                      width="8rem"
+                      fonsSize="1.4rem"
                       buttonType={BUTTON_TYPES.outlineRed}
                       onClick={() => setShowEditTxHashInput(false)}
                     >
@@ -129,32 +133,26 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
                       buttonType={ICON_BUTTON_TYPES.hoverBackground}
                       onClick={() => setShowEditTxHashInput(true)}
                     >
-                      <AiTwotoneEdit size={20} className="icon" />
+                      <AiTwotoneEdit size={20} />
                     </IconButton>
                   )}
                 </>
               )}
             </div>
           </div>
-          <div className="details_box">
-            <div className="title_col">
-              <span>Payment Address:</span>
+          {address && (
+            <div className="details_box">
+              <div className="title_col">
+                <span>Payment Address:</span>
+              </div>
+              <div className="content_col">
+                <span className="payment_address">
+                  {address ||
+                    'Please log in with MetaMask to register your payment address for this transaction.'}
+                </span>
+              </div>
             </div>
-            <div className="content_col">
-              <span>
-                {address ||
-                  'Please log in with MetaMask to register your payment address for this transaction.'}
-              </span>
-              {!paymentCompleted && (
-                <IconButton
-                  buttonType={ICON_BUTTON_TYPES.hoverBackground}
-                  onClick={connectWalletHandler}
-                >
-                  <FaWallet size={15} className="icon" />
-                </IconButton>
-              )}
-            </div>
-          </div>
+          )}
           <div className="details_box">
             <div className="title_col">
               <span>Validation:</span>
@@ -175,7 +173,7 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
               {!paymentCompleted && (
                 <Button
                   disable={!order?.active ? true : false}
-                  height="4rem"
+                  height="3.5rem"
                   width="8rem"
                   isLoading={isValidating}
                   buttonType={BUTTON_TYPES.outlineRed}

@@ -7,10 +7,10 @@ const ButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   border: none;
   background-color: transparent;
   color: var(--black-light-2);
+  cursor: pointer;
 `;
 
 const TogglePwButton = ({

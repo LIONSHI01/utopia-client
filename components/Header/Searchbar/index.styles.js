@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SearchbarWrapper = styled.div`
   width: 100%;
   margin-right: 3rem;
+
   form {
     height: 4rem;
     width: 100%;
@@ -10,7 +11,7 @@ export const SearchbarWrapper = styled.div`
     align-items: center;
 
     border-radius: var(--br-s);
-    border: 1px solid var(--black);
+    border: 1px solid ${({ theme }) => theme.textDark};
     overflow: hidden;
     transition: all 0.3s;
 
@@ -46,8 +47,8 @@ export const SearchbarWrapper = styled.div`
     justify-content: center;
     align-items: center;
     border: none;
-    cursor: pointer;
     border-radius: var(--br-s);
+    cursor: pointer;
 
     transition: all 0.3s ease-in-out;
 

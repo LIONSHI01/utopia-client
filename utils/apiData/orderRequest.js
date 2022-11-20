@@ -64,12 +64,10 @@ export const validateOrder = async ({ orderId, transaction_hash, from }) => {
 };
 
 export const buyerConfirmOrder = async ({ orderId, userId }) => {
-  const res = await axios({
+  return axios({
     method: 'GET',
     url: `${baseURL}/orders/buyerConfirm/${userId}/${orderId}`,
   });
-
-  return res.data;
 };
 
 export const sellerClaimFund = async ({ orderId, userId }) => {

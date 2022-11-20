@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 const showupStyles = css`
   width: 15rem;
-  /* height: 12rem; */
   height: auto;
   visibility: visible;
   opacity: 1;
@@ -18,10 +17,10 @@ export const DropdownContainer = styled.div`
   bottom: 0;
   right: 0;
   transform: translate(0%, 110%);
-
+  overflow: hidden;
   height: auto;
   width: 0rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: var(--br-m);
   display: flex;
@@ -32,11 +31,10 @@ export const DropdownContainer = styled.div`
   visibility: hidden;
   transition: all 0.3s ease-in-out;
   z-index: 999;
-  /* overflow-x: hidden; */
 
   ${(props) => props.showup && showupStyles}
 
-  ::after {
+  /* ::after {
     display: block;
     content: '';
     position: absolute;
@@ -46,7 +44,7 @@ export const DropdownContainer = styled.div`
     height: 2rem;
     width: 2rem;
     transform: translateY(-25%) rotate(45deg);
-  }
+  } */
 
   ul {
     list-style: none;
@@ -54,7 +52,7 @@ export const DropdownContainer = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  min-width: 13rem;
+  min-width: 15rem;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
@@ -69,11 +67,11 @@ export const ContentWrapper = styled.div`
     padding: 0.8rem 1rem;
     font-size: var(--fs-ss);
     font-weight: 400;
-    color: var(--black);
+    color: ${({ theme }) => theme.textLight2};
     cursor: pointer;
 
     :hover {
-      background-color: var(--grey-light-1);
+      background-color: ${({ theme }) => theme.dropdownHover};
     }
   }
 

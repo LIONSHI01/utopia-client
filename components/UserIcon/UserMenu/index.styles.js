@@ -25,19 +25,19 @@ export const MenuWrapper = styled.div`
 
   border-radius: var(--br-m);
   box-shadow: var(--bs-s);
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 1000;
 
   display: flex;
   flex-direction: column;
-
+  overflow: hidden;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
 
   ${(props) => props.showUp && showUpStyles}
 
-  ::after {
+  /* ::after {
     display: block;
     content: '';
     position: absolute;
@@ -47,7 +47,7 @@ export const MenuWrapper = styled.div`
     height: 2rem;
     width: 2rem;
     transform: translateY(-25%) rotate(45deg);
-  }
+  } */
 
   .userInfo {
     padding: 0.5rem 2rem;
@@ -58,11 +58,11 @@ export const MenuWrapper = styled.div`
     font-family: inherit;
 
     :hover {
-      background-color: var(--grey-light-1);
+      background-color: ${({ theme }) => theme.dropdownHover};
     }
 
     span {
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
       text-transform: capitalize;
       font-size: 1.6rem;
     }
@@ -90,17 +90,18 @@ export const MenuWrapper = styled.div`
     gap: 1rem;
     font-size: var(--fs-ss);
     font-weight: 400;
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
     cursor: pointer;
+
     :hover {
-      background-color: var(--grey-light-1);
+      background-color: ${({ theme }) => theme.dropdownHover};
     }
   }
 
   .signout-btn {
     cursor: pointer;
     font-size: var(--fs-ss) !important;
-    color: var(--black) !important;
+    color: ${({ theme }) => theme.textDark} !important;
   }
 `;
 

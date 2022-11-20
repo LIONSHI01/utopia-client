@@ -34,18 +34,30 @@ const UserInfoBox = ({ seller, buyer }) => {
           </Link>
           <div className="social_links">
             {buyer?.instagram && (
-              <a href={buyer?.instagram} target="_blank" rel="noreferrer">
-                <AiFillInstagram size={15} color="var(--black-light-2)" />
+              <a
+                href={`https://${buyer?.instagram}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiFillInstagram size={15} />
               </a>
             )}
             {buyer?.twitter && (
-              <a href={buyer?.twitter} target="_blank" rel="noreferrer">
-                <AiOutlineTwitter size={15} color="var(--black-light-2)" />
+              <a
+                href={`https://${buyer?.twitter}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiOutlineTwitter size={15} />
               </a>
             )}
             {buyer?.facebook && (
-              <a href={buyer?.facebook} target="_blank" rel="noreferrer">
-                <GrFacebookOption size={15} color="var(--black-light-2)" />
+              <a
+                href={`https://${buyer?.facebook}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GrFacebookOption size={15} />
               </a>
             )}
           </div>

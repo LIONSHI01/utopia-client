@@ -53,9 +53,9 @@ export const BaseButton = styled.button`
 
 export const OutlineRedButton = styled(BaseButton)`
   background-color: ${(props) =>
-    props.showLoader ? 'var(--primary)' : 'var(--white)'};
+    props.showLoader ? 'var(--primary)' : 'var(--transparent)'};
   border: 1px solid var(--primary);
-  color: var(--black);
+  color: ${({ theme }) => theme.textDark};
 
   :hover {
     background-color: var(--primary);
@@ -67,16 +67,17 @@ export const OutlineRedButton = styled(BaseButton)`
 
 export const OutlineGreyButton = styled(BaseButton)`
   background-color: ${(props) =>
-    props.showLoader ? 'var(--black)' : 'var(--white)'};
-  border: 1px solid var(--black-light-3);
-  color: var(--black);
+    props.showLoader ? 'var(--black)' : 'transparent'};
+  border: 1px solid ${({ theme }) => theme.textLight3};
+  color: ${({ theme }) => theme.textDark};
 
   :hover {
-    border: 1px solid var(--black);
+    border: 1px solid ${({ theme }) => theme.textDark};
     background-color: transparent;
   }
   ${(props) => props.disable && disableStyles}
 `;
+
 export const RawButton = styled(BaseButton)`
   background-color: ${(props) =>
     props.showLoader ? 'var(--primary)' : 'transparent'};
@@ -91,12 +92,12 @@ export const RawButton = styled(BaseButton)`
   ${(props) => props.disable && disableStyles}
 `;
 export const BlackButton = styled(BaseButton)`
-  background-color: var(--black);
-  color: var(--white);
-  border: 1px solid var(--black);
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.textDark};
+  border: 1px solid ${({ theme }) => theme.textDark};
 
   :hover {
-    background-color: var(--black-light-2);
+    background-color: ${({ theme }) => theme.textLight2};
   }
 
   ${(props) => props.disable && disableStyles}

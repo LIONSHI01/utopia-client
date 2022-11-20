@@ -82,10 +82,10 @@ const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
           </div>
           <div className="follow-info">
             <p>
-              <span>22</span>Followings
+              <span>{user?.followings?.length || 0}</span>Followings
             </p>
             <p>
-              <span>100</span>Followers
+              <span>{user?.followers?.length || 0}</span>Followers
             </p>
           </div>
           {user?.bio && (

@@ -27,13 +27,14 @@ export const TransactionInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  color: var(--black-light-2);
+  color: ${({ theme }) => theme.textLight2};
   border-radius: var(--br-m);
-  background-color: var(--grey-light-3);
+  background-color: ${({ theme }) => theme.dropdownBG};
   padding: 2.5rem;
   font-size: var(--fs-s);
   font-weight: 100;
   height: 100%;
+  box-shadow: var(--bs-s);
 
   & > * {
     display: flex;
@@ -49,12 +50,13 @@ export const TransactionInfoBox = styled.div`
     font-size: var(--fs);
     font-weight: 500;
     margin-bottom: var(--mg-s);
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
   }
 
   .details_box {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, max-content));
+    /* grid-template-columns: repeat(auto-fit, minmax(15rem, max-content)); */
+    grid-template-columns: 15rem 1fr;
   }
 
   .title_col {
@@ -72,10 +74,6 @@ export const TransactionInfoBox = styled.div`
     }
   }
 
-  .icon {
-    cursor: pointer;
-  }
-
   .validation {
     display: flex;
     align-items: center;
@@ -84,6 +82,9 @@ export const TransactionInfoBox = styled.div`
     font-style: italic;
     color: var(--red);
   }
+  .payment_address {
+    font-size: var(--fs-ss);
+  }
 
   .completedStatus {
     color: var(--green);
@@ -91,6 +92,7 @@ export const TransactionInfoBox = styled.div`
 
   .content_col_transactionHash {
     span {
+      font-size: var(--fs-ss);
       display: block;
       word-break: break-all;
     }
@@ -98,6 +100,7 @@ export const TransactionInfoBox = styled.div`
 `;
 
 export const EditTxHashBox = styled.div`
+  /* grid-column: 1/-1; */
   width: 100%;
   display: flex;
   flex-direction: column;
