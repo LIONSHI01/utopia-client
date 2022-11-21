@@ -50,7 +50,7 @@ const ForgotPasswordModal = ({ showup, setShowup, setShowAuthForm }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            autocomplete="off"
+            autoComplete="off"
           />
         </MessageContainer>
         <ButtonsGroup>

@@ -21,26 +21,24 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
 
   return (
     <DisplaySection>
-      {collection?.items?.length > 0 && (
-        <TitleContainer>
-          <div className="title">
-            <h3>{collection?.name}</h3>
-            {isAuthenticated && (
-              <IconButton
-                size="x"
-                buttonType={ICON_BUTTON_TYPES.hoverBackground}
-                onClick={() => setShowEditModal(true)}
-              >
-                <MdModeEditOutline size={20} />
-              </IconButton>
-            )}
-          </div>
-          <div className="items-count">
-            <ImEarth size={15} />
-            <span>{collection?.items?.length || 0}&nbsp;Items</span>
-          </div>
-        </TitleContainer>
-      )}
+      <TitleContainer>
+        <div className="title">
+          <h3>{collection?.name}</h3>
+          {isAuthenticated && (
+            <IconButton
+              size="x"
+              buttonType={ICON_BUTTON_TYPES.hoverBackground}
+              onClick={() => setShowEditModal(true)}
+            >
+              <MdModeEditOutline size={20} />
+            </IconButton>
+          )}
+        </div>
+        <div className="items-count">
+          <ImEarth size={15} />
+          <span>{collection?.items?.length || 0}&nbsp;Items</span>
+        </div>
+      </TitleContainer>
 
       {collection?.items?.length > 0 ? (
         <ItemsListContainer>

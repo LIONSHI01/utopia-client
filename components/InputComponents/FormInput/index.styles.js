@@ -8,7 +8,7 @@ export const InputWrapper = styled.div`
 
   label {
     font-size: var(--fs-s);
-    color: var(--black);
+    color: ${({ theme }) => theme.textLight2};
     margin-bottom: 0.5rem;
     font-weight: 500;
   }

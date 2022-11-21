@@ -34,6 +34,9 @@ const ProductCard = ({ post }) => {
   const productLink = productLinkGenerator(post);
   let hoverTimer;
 
+  const postTitle =
+    post?.title.length < 30 ? post?.title : `${post?.title?.slice(0, 25)}...`;
+
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAddCollectionModal, setShowAddCollectionModal] = useState(false);
@@ -96,7 +99,7 @@ const ProductCard = ({ post }) => {
         </Link>
         <ContentContainer>
           <div className="details">
-            <h3 className="title">{post?.title}</h3>
+            <h3 className="title">{postTitle}</h3>
             <div className="price">
               <div className="icon-wrapper">
                 <Image

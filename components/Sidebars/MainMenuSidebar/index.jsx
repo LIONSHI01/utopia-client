@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useSession, signOut } from 'next-auth/react';
 
-import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
+// import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
 import { IoIosArrowForward } from 'react-icons/io';
 import { profileLinksMobile } from '../../../assets/constants';
 import {
@@ -13,6 +13,7 @@ import {
   Button,
   BUTTON_TYPES,
   AuthForm,
+  ThemeToggler,
 } from '../../index';
 import CategoryList from './CategoryList';
 
@@ -24,7 +25,7 @@ import {
   AuthSectionWrapper,
 } from './index.styles.js';
 
-const MainMenuSidebar = ({ isOpen, setIsOpen }) => {
+const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
   // CONFIGURATION
   const { data } = useSession();
   const user = data?.profile;
@@ -82,6 +83,7 @@ const MainMenuSidebar = ({ isOpen, setIsOpen }) => {
             )}
             <h4 className="user_name">{user?.name}</h4>
           </div>
+          <ThemeToggler theme={theme} setTheme={setTheme} size={15} />
           <AcBalanceBox />
           <Button
             height="100%"

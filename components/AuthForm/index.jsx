@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useMutation } from 'react-query';
 
-import { GrPowerCycle, BsEyeSlashFill, BsEyeFill } from '../ReactIcons';
+import { FaExchangeAlt } from '../ReactIcons';
 import { useConnectWallet } from '../../utils/reactQueryHooks/useConnectWallet';
 import { signupRequest } from '../../utils/authRequest';
 import {
@@ -12,7 +12,6 @@ import {
   BUTTON_TYPES,
   Overlay,
   ForgotPasswordModal,
-  TogglePwButton,
   FormInputComp,
 } from '../index';
 import { FormContainer, MetaMaskFormBox, EmailFormBox } from './index.styles';
@@ -142,18 +141,8 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               onChange={onChangeHandler}
               className="input-field"
               required
-              autocomplete="off"
+              autoComplete="off"
             />
-            // <input
-            //   name="username"
-            //   value={username}
-            //   type="text"
-            //   placeholder="Username"
-            //   onChange={onChangeHandler}
-            //   className="input-field"
-            //   required
-            //   autocomplete="off"
-            // />
           )}
           <FormInputComp
             name="email"
@@ -163,39 +152,20 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             onChange={onChangeHandler}
             className="input-field"
             required
-            autocomplete="off"
+            autoComplete="off"
           />
-          {/* <input
-            name="email"
-            value={email}
-            type="email"
-            placeholder="Email"
-            onChange={onChangeHandler}
-            className="input-field"
-            required
-            autocomplete="off"
-          /> */}
+
           <FormInputComp
             name="password"
             value={password}
-            // type="password"
             placeholder="Password"
             onChange={onChangeHandler}
             className="input-field"
             required
-            autocomplete="off"
+            autoComplete="off"
             isPasswordBtn={true}
           />
-          {/* <input
-            name="password"
-            value={password}
-            type="password"
-            placeholder="Password"
-            onChange={onChangeHandler}
-            className="input-field"
-            required
-            autocomplete="off"
-          /> */}
+
           {isSignup && (
             <FormInputComp
               name="passwordConfirm"
@@ -205,19 +175,9 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
               onChange={onChangeHandler}
               className="input-field"
               required
-              autocomplete="off"
+              autoComplete="off"
               isPasswordBtn={true}
             />
-            // <input
-            //   name="passwordConfirm"
-            //   value={passwordConfirm}
-            //   type="password"
-            //   placeholder="Confirm Password"
-            //   onChange={onChangeHandler}
-            //   className="input-field"
-            //   required
-            //   autocomplete="off"
-            // />
           )}
           <Button
             fonsSize="1.8rem"
@@ -277,7 +237,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
                   type="button"
                   onClick={switchAccountsHandler}
                 >
-                  <GrPowerCycle size={20} />
+                  <FaExchangeAlt size={20} />
                 </button>
               </div>
             )}

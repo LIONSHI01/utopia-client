@@ -20,9 +20,8 @@ export const NavbarContainer = styled.div`
   display: none;
   flex-direction: column;
   width: 100%;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.background};
   padding: 2rem 3rem;
-  /* z-index: 999; */
 
   @media ${device.tablet} {
     display: flex;
@@ -48,7 +47,7 @@ export const NavbarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     height: 100%;
     cursor: pointer;
   }

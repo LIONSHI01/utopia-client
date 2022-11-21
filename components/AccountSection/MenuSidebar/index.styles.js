@@ -6,6 +6,7 @@ export const SidebarContainer = styled.div`
   padding: 2rem;
   box-shadow: 2px 0 10px -2px rgba(0, 0, 0, 0.15);
   clip-path: inset(0px -15px 0px 0px);
+  border-right: 1px solid ${({ theme }) => theme.border};
 
   @media ${device.tablet} {
     display: none;

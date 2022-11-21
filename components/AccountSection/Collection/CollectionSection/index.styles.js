@@ -45,6 +45,7 @@ export const CreateButtonWrapper = styled.div`
   border-radius: 100px;
   box-shadow: var(--bs-m);
   z-index: 1000;
+  border: 1px solid ${({ theme }) => theme.border};
   cursor: pointer;
 
   span {

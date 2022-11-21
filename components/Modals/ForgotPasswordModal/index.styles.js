@@ -22,7 +22,7 @@ export const ModalContainer = styled.div`
   box-shadow: var(--bs-m);
 
   padding: 3rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s ease-in-out 0.1s;
 
@@ -46,7 +46,7 @@ export const MessageContainer = styled.div`
 
   h3 {
     font-size: var(--fs-xl);
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
     margin-bottom: var(--mg-s);
   }
   p {

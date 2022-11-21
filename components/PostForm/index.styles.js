@@ -12,7 +12,7 @@ export const FormContainer = styled.div`
 
     label {
       font-size: var(--fs-s);
-      color: var(--black-light-2);
+      color: ${({ theme }) => theme.textLight2};
       margin-bottom: var(--mg-s);
     }
 

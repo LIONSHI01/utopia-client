@@ -80,6 +80,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const MessageItemWrapper = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   padding: 1.5rem;
@@ -89,10 +90,13 @@ export const MessageItemWrapper = styled.div`
   font-size: var(--fs-ss);
   font-weight: 100;
   border-bottom: 1px solid var(--black-light-3);
-  word-break: break-all;
 
   :hover {
     background-color: var(--grey-light-1);
+  }
+
+  :hover .delete_btn {
+    display: flex;
   }
 
   .contents {
@@ -100,11 +104,43 @@ export const MessageItemWrapper = styled.div`
     margin-right: 1.5rem;
     letter-spacing: 0.5px;
     color: var(--black-light-2);
+    word-break: break-all;
   }
 
-  .period {
+  .period_box {
     color: var(--black-light-2);
-    font-size: var(--fs-ss);
+    p {
+      font-size: var(--fs-ss);
+    }
+  }
+
+  .delete_btn {
+    /* Hide before hover */
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100px;
+    border: none;
+    background-color: transparent;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--red);
+
+    :active {
+      scale: 0.85;
+    }
+
+    :hover {
+      background-color: var(--white);
+    }
   }
 `;
 

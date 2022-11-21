@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
 import ReactTooltip from 'react-tooltip';
+import { useGetUserHook } from '../../utils/reactQueryHooks/fetchUserHook';
 
 import { ThemeToggler } from '../index';
 import { RiNotification4Line, FiHeart } from '../ReactIcons';
@@ -25,13 +26,15 @@ const MainHeader = ({ theme, setTheme }) => {
   // CONFIGURATION
   const ref = useRef();
   const { data } = useSession();
-  const user = data?.profile;
+  // const user = data?.profile;
+  const { user, refetch: refetchUser } = useGetUserHook({
+    userId: data?.profile?._id,
+  });
 
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [showNotiDropdown, setShowNotiDropdown] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-
   const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -87,9 +90,11 @@ const MainHeader = ({ theme, setTheme }) => {
             showOverlay={showOverlay}
           />
           <div className="links">
-            <FiHeart size={25} className="icon_btn" onClick={onClickHeartBtn} />
+            <div className="link">
+              <FiHeart size={25} onClick={onClickHeartBtn} />
+            </div>
             <div
-              className="notification"
+              className="link"
               onClick={() => setShowNotiDropdown((prev) => !prev)}
               ref={ref}
             >
@@ -100,12 +105,13 @@ const MainHeader = ({ theme, setTheme }) => {
               </div>
               <NotificationDropdown
                 user={user}
+                refetchUser={refetchUser}
                 notifications={user?.notifications}
                 showUp={showNotiDropdown}
                 setShowUp={setShowNotiDropdown}
               />
             </div>
-
+            <ThemeToggler size={25} theme={theme} setTheme={setTheme} />
             <Button
               height="4rem"
               width="6rem"
@@ -144,7 +150,6 @@ const MainHeader = ({ theme, setTheme }) => {
                 </Button>
               </div>
             )}
-            <ThemeToggler size={25} theme={theme} setTheme={setTheme} />
           </div>
         </HeaderWrapper>
         <CategoryBar />

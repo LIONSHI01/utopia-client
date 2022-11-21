@@ -3,7 +3,12 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
 import { selectEthPrice } from '../../../store/post/post.selector';
-import { IoMdClose, VscFoldDown, GrPowerCycle } from '../../ReactIcons';
+import {
+  IoMdClose,
+  VscFoldDown,
+  GrPowerCycle,
+  BsArrowCounterclockwise,
+} from '../../ReactIcons';
 import { useCreatePayment } from '../../../utils/reactQueryHooks/useCreatePayment';
 
 import { createOrder } from '../../../utils/apiData/orderRequest';
@@ -39,7 +44,7 @@ const verifyBalanceSufficient = (balance, itemValue) => {
   return { difference, isSufficient };
 };
 
-const BuyNowModal = ({ showup, setShowup, post, user }) => {
+const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
   // 1) Check if connected to wallet
   // 2) if not, ask to connect
   // 3) Check if connected to chain 0x5
@@ -50,7 +55,6 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
     isConnecting,
     ethBalance,
     chainId,
-    isMetamaskInstalled,
     isConnectedWallet,
     walletAddress,
     isBuying,
@@ -77,7 +81,7 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
     sendTransactionRequest().then(async (res) => {
       if (res.code === 4001) return toast.warn('Transaction cancelled.');
 
-      console.log({
+      console.log('From BuyNowModal:', {
         userId: user?.id,
         sellerId: post?.postedBy?.id,
         postId: post?.id,
@@ -93,6 +97,7 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
           value: post?.price,
           hash: res,
         });
+        refetchUser();
       } catch (err) {
         console.log(err);
       }
@@ -200,7 +205,7 @@ const BuyNowModal = ({ showup, setShowup, post, user }) => {
                     type="button"
                     onClick={switchAccountsHandler}
                   >
-                    <GrPowerCycle size={20} />
+                    <BsArrowCounterclockwise size={23} />
                   </button>
                 </div>
                 {chainId === '0x5' ? null : (

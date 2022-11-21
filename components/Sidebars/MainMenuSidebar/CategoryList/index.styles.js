@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ListContainer = styled.div`
   width: 100%;
   height: auto;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   border-radius: var(--br-m);
   box-shadow: var(--bs-xs);
   display: flex;
@@ -13,15 +13,21 @@ export const ListContainer = styled.div`
     display: block;
     font-size: var(--fs-ss);
     font-weight: 100;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight3};
     padding: 1rem 2rem;
-    border-bottom: 1px solid var(--grey-light-2);
+    border-bottom: 1px solid ${({ theme }) => theme.textLight2};
   }
 
   .master_list {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+
+    & > *:last-child {
+      border-bottom-left-radius: var(--br-m);
+      border-bottom-right-radius: var(--br-m);
+      overflow: hidden;
+    }
   }
 
   .arrow {
@@ -32,7 +38,7 @@ export const ListContainer = styled.div`
   .category_list {
     display: flex;
     flex-direction: column;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     transition: all 0.3s;
   }
 
@@ -43,7 +49,7 @@ export const ListContainer = styled.div`
   }
 
   .category_list.active .category_item {
-    background-color: var(--grey-light-2);
+    background-color: ${({ theme }) => theme.dropdownHover};
 
     a {
       color: var(--primary);
@@ -61,7 +67,7 @@ export const ListContainer = styled.div`
     cursor: pointer;
 
     :hover {
-      background-color: var(--grey-light-2);
+      background-color: ${({ theme }) => theme.dropdownHover};
     }
 
     a {
@@ -80,8 +86,9 @@ export const ListContainer = styled.div`
     padding: 1rem 2.5rem;
     transition: all 0.3s;
     cursor: pointer;
+
     :hover {
-      background-color: var(--grey-light-2);
+      background-color: ${({ theme }) => theme.dropdownHover};
     }
   }
 

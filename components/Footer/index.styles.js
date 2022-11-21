@@ -5,6 +5,7 @@ export const FooterContainer = styled.div`
   background-color: var(--black);
   display: flex;
   color: var(--white);
+  border-top: 1px solid ${({ theme }) => theme.border}; ;
 `;
 
 export const MasterFramworkWrapper = styled.div`

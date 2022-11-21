@@ -21,7 +21,7 @@ export const FormContainer = styled.div`
 
   width: 40rem;
   padding: 3rem 3rem 0rem 3rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   border-radius: var(--br-m);
   z-index: 2000;
   transition: all 0.3s ease-in-out;
@@ -37,7 +37,7 @@ export const FormContainer = styled.div`
     h2 {
       font-size: var(--fs-xl);
       font-weight: 500;
-      color: var(--black-light-2);
+      color: ${({ theme }) => theme.textLight2};
       text-align: center;
     }
   }
@@ -49,7 +49,7 @@ export const FormContainer = styled.div`
     align-items: center;
     justify-content: center;
     font-size: var(--fs-s);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-weight: 100;
   }
 `;
@@ -73,6 +73,7 @@ export const EmailFormBox = styled.form`
     z-index: 10;
     font-weight: 400;
     font-size: var(--fs);
+    color: var(--black);
 
     ::after,
     ::before {
@@ -85,7 +86,7 @@ export const EmailFormBox = styled.form`
       left: 0;
       height: 2px;
       width: 100%;
-      background-color: var(--black-light-3);
+      background-color: ${({ theme }) => theme.textLight3};
       z-index: -10;
     }
 
@@ -100,6 +101,7 @@ export const EmailFormBox = styled.form`
       border-radius: var(--br-m);
     }
   }
+
   .input-field {
     border: 1px solid var(--black-light-3);
     border-radius: var(--br-s);
@@ -132,7 +134,7 @@ export const EmailFormBox = styled.form`
       background-color: transparent;
       font-size: var(--fs-s);
       font-weight: 100;
-      color: var(--black-light-2);
+      color: ${({ theme }) => theme.textLight2};
       cursor: pointer;
 
       :hover {
@@ -203,7 +205,7 @@ export const MetaMaskFormBox = styled.div`
     justify-content: center;
     height: 4rem;
     width: 100%;
-    background-color: var(--white);
+    background-color: ${({ theme }) => theme.background};
     border: 2px solid var(--black);
     border-radius: var(--br-m);
 
@@ -219,8 +221,8 @@ export const MetaMaskFormBox = styled.div`
     align-items: center;
     justify-content: center;
     border: none;
-    background-color: var(--white);
-    color: var(--black);
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.textDark};
     border-radius: var(--br-m);
     transition: all 0.3s;
     border: 2px solid var(--black);
@@ -234,7 +236,8 @@ export const MetaMaskFormBox = styled.div`
     }
 
     :hover {
-      background-color: var(--grey-light-2);
+      background-color: ${({ theme }) => theme.textDark};
+      color: ${({ theme }) => theme.background};
       box-shadow: var(--bs-s);
     }
   }

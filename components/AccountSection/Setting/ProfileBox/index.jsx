@@ -101,7 +101,7 @@ const ProfileBox = ({ user, refetchUser }) => {
           onChange={onChangeProfileHandler}
         />
         <FormInputComp
-          label="Web3 Address"
+          label="Wallet Address"
           fieldName="web3_address"
           value={walletAddress}
           name="walletAddress"

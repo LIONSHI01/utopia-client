@@ -6,7 +6,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { IoIosArrowDown } from 'react-icons/io';
 
-import { Button, BUTTON_TYPES } from '../index';
+import { Button } from '../index';
 
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
@@ -56,12 +56,12 @@ const PostForm = ({ images }) => {
     setFormFields({ ...formFields, [name]: value });
   };
   const onSubmitHandler = (e) => {
+    e.preventDefault();
     if (images.length === 0)
       return toast.error(
         'It is highly recommended to provide images for your item.'
       );
 
-    e.preventDefault();
     let form = new FormData();
     // Append Images into FormData
     images.forEach((image) => form.append('images', image.file));

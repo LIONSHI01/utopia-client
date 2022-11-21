@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { UserIcon, Searchbar } from '../../index';
+import { UserIcon, Searchbar, ThemeToggler } from '../../index';
 import { NavbarContainer, StickyFillinSpace } from './index.styles';
 import { HiOutlineMenu } from '../../ReactIcons';
 

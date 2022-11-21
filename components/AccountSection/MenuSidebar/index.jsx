@@ -65,17 +65,29 @@ const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
           <h3>{user?.name}</h3>
           <div className="social_links">
             {user?.instagram && (
-              <a href={user?.instagram} target="_blank" rel="noreferrer">
+              <a
+                href={`https://${user?.instagram}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <AiFillInstagram size={20} />
               </a>
             )}
             {user?.twitter && (
-              <a href={user?.twitter} target="_blank" rel="noreferrer">
+              <a
+                href={`https://${user?.twitter}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <AiOutlineTwitter size={20} />
               </a>
             )}
             {user?.facebook && (
-              <a href={user?.facebook} target="_blank" rel="noreferrer">
+              <a
+                href={`https://${user?.facebook}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <GrFacebookOption size={20} />
               </a>
             )}

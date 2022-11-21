@@ -40,7 +40,9 @@ const CategoryPage = () => {
     <CategoryPageContainer>
       <FrameWorkContainer>
         <NavigationMap categoryValue={category} />
-        {posts && <DisplayList posts={posts} />}
+        <div className="list_container">
+          {posts && <DisplayList posts={posts} />}
+        </div>
       </FrameWorkContainer>
     </CategoryPageContainer>
   );

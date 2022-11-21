@@ -116,21 +116,6 @@ const ProductDetailsPage = () => {
     };
   }, [showEditDropdown]);
 
-  // const {
-  //   mutate: mutateBuying,
-  //   isSuccess: isOrderSuccess,
-  //   isLoading: isOrdering,
-  // } = useMutation(createOrder, {
-  //   onSuccess: () => {
-  //     toast.success(
-  //       `Successfully ordered < ${post?.title} >, please check your order list`
-  //     );
-  //   },
-  //   onError: (err) => {
-  //     console.log(err);
-  //   },
-  // });
-
   // HANDLERS
   const onClickAddToCollectionHandler = () => {
     if (!data) return setShowAuthForm(true);
@@ -360,6 +345,7 @@ const ProductDetailsPage = () => {
         setShowup={setShowBuyNowModal}
         post={post}
         user={user}
+        refetchUser={refetchUser}
       />
     </>
   );

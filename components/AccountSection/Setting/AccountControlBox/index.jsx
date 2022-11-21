@@ -86,7 +86,7 @@ const AccountControlBox = ({ user }) => {
       </Button>
       <ModalContainer showup={showModal}>
         <ModalMessageContainer>
-          <h3 className="heading">
+          <h3 className="modal_heading">
             Are you sure you want to close your account?
           </h3>
           <FormInputComp

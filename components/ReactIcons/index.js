@@ -10,7 +10,7 @@ import {
   AiOutlinePlus,
 } from 'react-icons/ai';
 import { BiTimeFive, BiWalletAlt } from 'react-icons/bi';
-import { FaWallet } from 'react-icons/fa';
+import { FaWallet, FaExchangeAlt } from 'react-icons/fa';
 import {
   MdDelete,
   MdDoneAll,
@@ -55,6 +55,7 @@ import {
   BsEyeFill,
   BsHouseFill,
   BsSun,
+  BsArrowCounterclockwise,
 } from 'react-icons/bs';
 import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
@@ -124,4 +125,6 @@ export {
   BsHouseFill,
   BsSun,
   BiMoon,
+  BsArrowCounterclockwise,
+  FaExchangeAlt,
 };

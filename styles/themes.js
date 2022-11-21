@@ -4,10 +4,11 @@ export const lightTheme = {
   textDark: 'var(--black)',
   textLight2: 'var(--black-light-2)',
   textLight3: 'var(--black-light-3)',
-  toggleBorder: '#FFF',
   background: 'var(--white)',
   dropdownBG: 'var(--white)',
   dropdownHover: 'var(--grey-light-2)',
+  overlayColor: 'rgba(0, 0, 0, 0.347)',
+  border: 'var(--black-light-3)',
 };
 
 export const darkTheme = {
@@ -16,8 +17,9 @@ export const darkTheme = {
   textDark: 'var(--white)',
   textLight2: '#e3e3e3',
   textLight3: '#e3e3e3',
-  toggleBorder: 'var(--primary)',
   background: 'var(--black)',
   dropdownBG: '#3b3f48',
   dropdownHover: '#92959a',
+  overlayColor: '#eaeaea05',
+  border: '#eaeaea40',
 };

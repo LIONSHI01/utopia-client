@@ -27,7 +27,7 @@ export const OutterContainer = styled.div`
 
 export const ImageSection = styled.div`
   padding: 2rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   box-shadow: var(--bs-s);
   border-radius: var(--br-m);
 
@@ -85,9 +85,9 @@ export const PreviewWrapper = styled.div`
     display: flex;
     gap: 1rem;
     align-items: center;
-    /* padding: 1rem 0; */
+
     font-size: var(--fs-s);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     margin: 2rem 0;
     align-self: center;
   }
@@ -201,7 +201,7 @@ export const ImageItem = styled.div`
 
 export const FormSection = styled.div`
   /* padding: 2rem; */
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   box-shadow: var(--bs-s);
   border-radius: var(--br-m);
 `;

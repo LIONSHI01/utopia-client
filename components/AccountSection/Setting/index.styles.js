@@ -19,10 +19,10 @@ export const ContentsContainer = styled.div`
 
   & > * {
     padding: 3rem;
-    background-color: var(--grey-light-3);
+    background-color: ${({ theme }) => theme.dropdownBG};
     border-radius: var(--br-x);
     box-shadow: var(--bs-s);
-    border: 1px solid var(--black-light-3);
+    /* border: 1px solid var(--black-light-3); */
   }
 
   h3 {
@@ -30,7 +30,7 @@ export const ContentsContainer = styled.div`
     line-height: 0;
   }
   label {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
   .profile-buttons-group {
     margin-top: var(--mg-m);

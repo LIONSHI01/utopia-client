@@ -4,7 +4,7 @@ import { device } from '../../styles/devices';
 export const CardContainer = styled.div`
   width: 25rem;
   height: 38rem;
-  border: 1px solid ${({ theme }) => theme.textLight3};
+  border: 1px solid ${({ theme }) => theme.border};
   border-radius: var(--br-m);
   transition: all 0.3s ease-in-out;
   cursor: pointer;

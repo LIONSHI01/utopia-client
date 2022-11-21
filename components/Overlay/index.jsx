@@ -14,7 +14,8 @@ const OverlayWrapper = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: rgba(0, 0, 0, 0.347);
+  /* background-color: rgba(0, 0, 0, 0.347); */
+  background-color: ${({ theme }) => theme.overlayColor};
   backdrop-filter: blur(10px);
 
   z-index: ${(props) => props.zIndex};

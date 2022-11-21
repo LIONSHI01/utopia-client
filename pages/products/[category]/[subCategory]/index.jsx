@@ -25,6 +25,7 @@ const SubCategoryPage = () => {
       enabled: !!category && !!subCategory,
     }
   );
+
   if (isLoadingPosts)
     return (
       <LoadingPageContainer>
@@ -39,7 +40,9 @@ const SubCategoryPage = () => {
           categoryValue={category}
           subCategoryValue={subCategory}
         />
-        <DisplayList posts={posts} />
+        <div className="list_container">
+          {posts && <DisplayList posts={posts} />}
+        </div>
       </FrameWorkContainer>
     </SubCategoryPageContainer>
   );

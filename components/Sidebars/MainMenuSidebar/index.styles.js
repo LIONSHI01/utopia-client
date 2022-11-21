@@ -25,14 +25,14 @@ export const SidebarContainer = styled.div`
   text-transform: capitalize;
   transform: translateX(-100%);
   transition: all 0.3s ease-in-out;
-  background-color: var(--grey-light-3);
+  background-color: ${({ theme }) => theme.background};
 
   ${(props) => props.isOpen && openSidebarStyles}
 `;
 export const UserSummaryWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 2rem;
-  /* justify-content: space-between; */
 
   .user_info {
     display: flex;
@@ -50,7 +50,7 @@ export const ProfileSectionWrapper = styled.div`
   min-height: 27.5rem;
   display: flex;
   flex-direction: column;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   border-radius: var(--br-m);
 
   box-shadow: var(--bs-xs);
@@ -58,12 +58,12 @@ export const ProfileSectionWrapper = styled.div`
 `;
 
 export const ProfileItemWrapper = styled.div`
-  color: var(--black-light-2);
+  color: ${({ theme }) => theme.textLight2};
   font-size: var(--fs-ss);
   cursor: pointer;
 
   :hover {
-    background-color: var(--grey-light-2);
+    background-color: ${({ theme }) => theme.dropdownHover};
   }
 
   .item {
@@ -84,11 +84,10 @@ export const AuthSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   border-radius: var(--br-m);
   box-shadow: var(--bs-xs);
   padding: 2rem;
-  /* margin-top: auto; */
 
   .buttons_group {
     display: flex;

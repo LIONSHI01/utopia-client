@@ -4,7 +4,7 @@ export const AccountControlWrapper = styled.div`
   p,
   li {
     font-size: var(--fs-s);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     letter-spacing: 0.5px;
   }
 
@@ -28,7 +28,7 @@ export const AccountControlWrapper = styled.div`
     p {
       font-size: var(--fs);
       font-weight: 500;
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
     }
     ul {
       list-style: inside;
@@ -53,14 +53,13 @@ export const ModalContainer = styled.div`
 
   min-width: 20rem;
   max-width: 60rem;
-  min-height: 30rem;
-  /* max-height: 60rem; */
+  /* min-height: 25rem; */
 
   border-radius: var(--br-x);
   box-shadow: var(--bs-m);
 
   padding: 3rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s ease-in-out 0.1s;
 
@@ -76,10 +75,14 @@ export const ModalMessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: var(--mg-m);
 
-  h3 {
+  .modal_heading {
     font-size: var(--fs-xl);
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
+    line-height: 1.2;
+    margin-bottom: var(--mg-m);
+    word-break: normal;
   }
 
   p {
@@ -87,6 +90,7 @@ export const ModalMessageContainer = styled.div`
     font-weight: 100;
   }
 `;
+
 export const ButtonsGroup = styled.div`
   display: flex;
   justify-content: center;

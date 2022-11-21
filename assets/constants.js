@@ -30,9 +30,9 @@ export const categories = [
         link: '/products/fashion/tops',
       },
       {
-        subCategory: 'bottoms',
-        subCategoryValue: 'bottoms',
-        link: '/products/fashion/bottoms',
+        subCategory: 'dresses',
+        subCategoryValue: 'dresses',
+        link: '/products/fashion/dresses',
       },
       {
         subCategory: 'footwears',
@@ -40,9 +40,9 @@ export const categories = [
         link: '/products/fashion/footwears',
       },
       {
-        subCategory: 'coats & jackets',
-        subCategoryValue: 'coats-jackets',
-        link: '/products/fashion/coats-jackets',
+        subCategory: 'bags',
+        subCategoryValue: 'bags',
+        link: '/products/fashion/bags',
       },
       {
         subCategory: 'Others',
@@ -126,9 +126,9 @@ export const categories = [
         link: '/products/living/health-nutrition',
       },
       {
-        subCategory: 'babies & kids',
-        subCategoryValue: 'babies-kids',
-        link: '/products/living/babies-kids',
+        subCategory: 'skincare',
+        subCategoryValue: 'skincare',
+        link: '/products/living/skincare',
       },
       {
         subCategory: 'food & drinks',
@@ -136,9 +136,9 @@ export const categories = [
         link: '/products/living/food-drinks',
       },
       {
-        subCategory: 'pet supplies',
-        subCategoryValue: 'pet supplies',
-        link: '/products/living/pet-supplies',
+        subCategory: 'sun glasses',
+        subCategoryValue: 'sun-glasses',
+        link: '/products/living/sun-glasses',
       },
       {
         subCategory: 'others',
@@ -153,19 +153,19 @@ export const categories = [
     link: '/products/hobbies',
     subCategories: [
       {
-        subCategory: 'music',
-        subCategoryValue: 'music',
-        link: '/products/hobbies/music',
+        subCategory: 'jewellery',
+        subCategoryValue: 'jewellery',
+        link: '/products/hobbies/jewellery',
       },
       {
-        subCategory: 'books & magazings',
-        subCategoryValue: 'books-magazings',
-        link: '/products/hobbies/books-magazines',
+        subCategory: 'womens watches',
+        subCategoryValue: 'womens-watches',
+        link: '/products/hobbies/womens-watches',
       },
       {
-        subCategory: 'tickets & vouchers',
-        subCategoryValue: 'tickets-vouchers',
-        link: '/products/hobbies/tickets-vouchers',
+        subCategory: 'mens watches',
+        subCategoryValue: 'mens-watches',
+        link: '/products/hobbies/mens-watches',
       },
       {
         subCategory: 'sport equipments',
@@ -190,9 +190,9 @@ export const categories = [
         link: '/products/cars-properties/cars',
       },
       {
-        subCategory: 'property for sale',
-        subCategoryValue: 'property-for-sale',
-        link: '/products/cars-properties/property-sale',
+        subCategory: 'motorcycle',
+        subCategoryValue: 'motorcycle',
+        link: '/products/cars-properties/motorcycle',
       },
       {
         subCategory: 'property for rental',

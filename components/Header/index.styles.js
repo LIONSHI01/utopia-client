@@ -56,7 +56,7 @@ export const HeaderWrapper = styled.div`
   .links {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1.5rem;
     margin-left: auto;
 
     span {
@@ -65,27 +65,32 @@ export const HeaderWrapper = styled.div`
     }
   }
 
-  .icon_btn {
-    cursor: pointer;
-    color: ${({ theme }) => theme.textLight2};
-  }
-
   .auth-buttons {
     display: flex;
     gap: 1rem;
   }
 
-  .notification {
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.7rem;
+    width: 3.7rem;
+    color: ${({ theme }) => theme.textLight2};
     position: relative;
     border-radius: 100px;
     cursor: pointer;
-    color: ${({ theme }) => theme.textLight2};
+
+    :hover {
+      background-color: ${({ theme }) => theme.dropdownHover};
+      color: ${({ theme }) => theme.textDark};
+    }
   }
 
   .noti-number {
     position: absolute;
-    top: -0.5rem;
-    right: -1rem;
+    top: 0.1rem;
+    right: -0.1rem;
     background-color: red;
     height: 2rem;
     width: 2rem;

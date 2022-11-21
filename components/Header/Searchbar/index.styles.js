@@ -9,12 +9,11 @@ export const SearchbarWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-
     border-radius: var(--br-s);
     border: 1px solid ${({ theme }) => theme.textDark};
     overflow: hidden;
     transition: all 0.3s;
-
+    background-color: var(--white);
     padding: 0.15rem;
 
     :has(input:focus) {

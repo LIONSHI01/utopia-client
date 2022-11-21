@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
 export const SubCategoryPageContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 `;
 export const FrameWorkContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem 5rem;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 14px;
+
+  .list_container {
+    margin: 2rem 0 5rem 0;
+  }
 `;
 
 export const LoadingPageContainer = styled.div`

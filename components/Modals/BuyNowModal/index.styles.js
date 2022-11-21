@@ -125,7 +125,7 @@ export const ButtonsGroup = styled.div`
 
   .remind_connection_text {
     font-size: var(--fs-s);
-    color: ${({ theme }) => theme.dropdownBG};
+    color: var(--white);
     text-align: center;
   }
 
@@ -209,12 +209,12 @@ export const ButtonsGroup = styled.div`
     justify-content: center;
     border: none;
     background-color: ${({ theme }) => theme.dropdownBG};
+    color: ${({ theme }) => theme.textDark};
     border-radius: var(--br-m);
     transition: all 0.3s;
     border: 2px solid var(--black);
     height: 4.5rem;
     width: 4.5rem;
-
     cursor: pointer;
 
     :active {
@@ -222,7 +222,8 @@ export const ButtonsGroup = styled.div`
     }
 
     :hover {
-      background-color: var(--grey-light-2);
+      background-color: ${({ theme }) => theme.dropdownHover};
+      color: var(--black);
       box-shadow: var(--bs-s);
     }
   }
@@ -250,7 +251,7 @@ export const PaymentSection = styled.div`
   .item_usd_value {
     align-self: flex-end;
     font-size: var(--fs-ss);
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     font-weight: 100;
   }
 
