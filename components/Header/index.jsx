@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
 import ReactTooltip from 'react-tooltip';
-import { useGetUserHook } from '../../utils/reactQueryHooks/fetchUserHook';
+import { useGetUserHook } from '../../utils/customHooks/fetchUserHook';
 
 import { ThemeToggler } from '../index';
 import { RiNotification4Line, FiHeart } from '../ReactIcons';
@@ -121,14 +121,14 @@ const MainHeader = ({ theme, setTheme }) => {
               Sell
             </Button>
 
-            {user && (
+            {data && (
               <>
                 <AcBalanceBox />
-                <UserIcon user={user} hasUserMenu={true} />
+                <UserIcon user={user} hasUserMenu={true} outline={true} />
               </>
             )}
 
-            {!user && (
+            {!data && (
               <div className="auth-buttons">
                 <Button
                   height="4rem"
@@ -161,7 +161,7 @@ const MainHeader = ({ theme, setTheme }) => {
         />
       </InnerWrapper>
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
-      <Overlay zIndex={100} setShowUp={setShowOverlay} showUp={showOverlay} />
+      <Overlay zIndex={101} setShowUp={setShowOverlay} showUp={showOverlay} />
     </>
   );
 };

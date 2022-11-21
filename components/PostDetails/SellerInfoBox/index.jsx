@@ -18,7 +18,14 @@ import {
 
 import { BoxWrapper } from './index.styles';
 
-const SellerInfoBox = ({ user, seller, post, isFollowing }) => {
+const SellerInfoBox = ({
+  user,
+  seller,
+  post,
+  isFollowing,
+  refetchUser,
+  refetchSeller,
+}) => {
   // CONFIGURATION
 
   const sales = seller?.offers?.filter(
@@ -37,6 +44,7 @@ const SellerInfoBox = ({ user, seller, post, isFollowing }) => {
       onSuccess: () => {
         toast.success(`You have updated following list.`);
         refetchUser();
+        refetchSeller();
       },
       onError: (err) => {
         console.log(err);

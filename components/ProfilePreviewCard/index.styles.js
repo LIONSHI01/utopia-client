@@ -11,11 +11,11 @@ export const CardContaienr = styled.div`
   width: 27rem;
   height: 25rem;
 
-  border: 1px solid var(--grey-light-1);
+  border: 1px solid ${({ theme }) => theme.border};
   border-radius: var(--br-m);
   box-shadow: var(--bs-m);
 
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 100;
 `;
 
@@ -25,14 +25,13 @@ export const InfoContainer = styled.div`
   align-items: center;
   gap: 1rem;
   width: 100%;
-  border-bottom: 1px solid var(--grey-light-1);
+  border-bottom: 1px solid ${({ theme }) => theme.border};
 
   .user-details {
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: space-between; */
   }
+
   .name {
     font-size: var(--fs-ss);
     font-weight: 500;
@@ -54,7 +53,7 @@ export const InfoContainer = styled.div`
   }
 
   .social_icon {
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
     :hover {
       color: var(--primary);
     }
@@ -64,21 +63,20 @@ export const InfoContainer = styled.div`
 export const ProfileContainer = styled.div`
   height: 5rem;
   padding: 2rem;
-  /* background-color: orangered; */
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-bottom: 1px solid var(--grey-light-1);
+  border-bottom: 1px solid ${({ theme }) => theme.border};
 
   .section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
 
   .numbers {
-    color: var(--black);
+    color: ${({ theme }) => theme.textDark};
     font-weight: 600;
   }
 `;
@@ -100,5 +98,4 @@ export const ButtonsContainer = styled.div`
   display: flex;
   gap: 1.5rem;
   justify-content: center;
-  /* background-color: orangered; */
 `;

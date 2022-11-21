@@ -8,4 +8,9 @@ export const DisplayContainer = styled.main`
   justify-items: center;
   gap: 3rem;
   margin: 0 auto;
+
+  .pagination_box {
+    grid-column: 1/-1;
+    align-self: center;
+  }
 `;

@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
   /* height: 40rem; */
   padding: 3rem;
   border-radius: 2.4rem;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s;
   box-shadow: var(--bs-m);

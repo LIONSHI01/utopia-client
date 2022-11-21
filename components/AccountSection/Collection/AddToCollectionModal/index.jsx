@@ -25,7 +25,7 @@ import {
 } from '../../../index';
 import { updateCollection } from '../../../../utils/collectionRequest';
 import { newCollectionItems } from '../../../../utils/profileCalculator';
-import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
+import { useGetUserHook } from '../../../../utils/customHooks/fetchUserHook';
 
 const Collection = ({ isLoading, collection, ...otherProps }) => {
   if (isLoading)

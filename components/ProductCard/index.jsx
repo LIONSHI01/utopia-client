@@ -35,7 +35,7 @@ const ProductCard = ({ post }) => {
   let hoverTimer;
 
   const postTitle =
-    post?.title.length < 30 ? post?.title : `${post?.title?.slice(0, 25)}...`;
+    post?.title.length < 25 ? post?.title : `${post?.title?.slice(0, 25)} ...`;
 
   // STATE MANAGEMENT
   const [showProfilePreview, setShowProfilePreview] = useState(false);

@@ -10,7 +10,7 @@ import { Button, BUTTON_TYPES } from '../index';
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
 import { updatePost } from '../../utils/postRequest';
-import { useGetEthHook } from '../../utils/reactQueryHooks/ethQueryHook';
+import { useGetEthHook } from '../../utils/customHooks/ethQueryHook';
 import EthIcon from '../../assets/image/eth-icon.png';
 
 const INITIAL_FORM_FIELDS = {

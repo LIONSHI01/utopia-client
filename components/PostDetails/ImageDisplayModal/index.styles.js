@@ -6,12 +6,13 @@ export const DisplayModalContainer = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.background};
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   z-index: 1000;
+  padding: 5rem;
 
   .close-btn {
     position: absolute;

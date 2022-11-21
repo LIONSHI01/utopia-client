@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
@@ -25,11 +25,10 @@ import {
   BuyNowModal,
 } from '../../../../../components';
 import ethIcon from '../../../../../assets/image/eth-icon.png';
-import { useGetUserHook } from '../../../../../utils/reactQueryHooks/fetchUserHook';
-import { usePostDetailsHook } from '../../../../../utils/reactQueryHooks/postQueryHook';
-import { useGetEthHook } from '../../../../../utils/reactQueryHooks/ethQueryHook';
-import { useCreatePayment } from '../../../../../utils/reactQueryHooks/useCreatePayment';
-import { createOrder } from '../../../../../utils/apiData/orderRequest';
+import { useGetUserHook } from '../../../../../utils/customHooks/fetchUserHook';
+import { usePostDetailsHook } from '../../../../../utils/customHooks/postQueryHook';
+import { useGetEthHook } from '../../../../../utils/customHooks/ethQueryHook';
+
 import {
   isItemLiked,
   validateFollowingUser,
@@ -208,11 +207,7 @@ const ProductDetailsPage = () => {
                   <div className="upper-box">
                     <div className="title">{post?.title}</div>
                     <div className="price">
-                      <div
-                        className="icon-wrapper"
-                        data-tip="ETH"
-                        // data-padding="8px 8px"
-                      >
+                      <div className="icon-wrapper" data-tip="ETH">
                         <Image
                           src={ethIcon}
                           alt="eth-icon"

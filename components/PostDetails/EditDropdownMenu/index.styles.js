@@ -17,7 +17,7 @@ export const MenuWrapper = styled.div`
   width: 10rem;
   transform: translate(-45%, 35%);
 
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.dropdownBG};
   padding: 1rem;
   border-radius: var(--br-x);
   box-shadow: var(--bs-m);
@@ -40,7 +40,7 @@ export const ContentWrapper = styled.div`
     cursor: pointer;
 
     :hover {
-      background-color: var(--black-light-3);
+      background-color: ${({ theme }) => theme.dropdownHover};
     }
   }
 

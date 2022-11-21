@@ -12,7 +12,7 @@ import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';
 import { createPost } from '../../utils/postRequest';
 import EthIcon from '../../assets/image/eth-icon.png';
-import { useGetEthHook } from '../../utils/reactQueryHooks/ethQueryHook';
+import { useGetEthHook } from '../../utils/customHooks/ethQueryHook';
 
 const INITIAL_FORM_FIELDS = {
   category: '',

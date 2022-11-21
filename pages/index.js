@@ -6,9 +6,9 @@ import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../store/user/user.action';
 import { setEthPrice } from '../store/post/post.action';
 
-import { useGetEthHook } from '../utils/reactQueryHooks/ethQueryHook';
-import { useGetUserHook } from '../utils/reactQueryHooks/fetchUserHook';
-import { useGetAllPostsHook } from '../utils/reactQueryHooks/postQueryHook';
+import { useGetEthHook } from '../utils/customHooks/ethQueryHook';
+import { useGetUserHook } from '../utils/customHooks/fetchUserHook';
+import { useGetAllPostsHook } from '../utils/customHooks/postQueryHook';
 import { DisplayList, Spinner } from '../components';
 import { device } from '../styles/devices';
 

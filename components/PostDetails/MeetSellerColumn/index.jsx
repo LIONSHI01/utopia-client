@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Router from 'next/router';
 
-import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
+import { useGetUserHook } from '../../../utils/customHooks/fetchUserHook';
 import { Button, BUTTON_TYPES, RatingItem } from '../../index';
 import { ColumnWrapper } from './index.styles';
 
@@ -29,10 +29,7 @@ const MeetSellerColumn = ({ sellerId }) => {
           <span className="name">{seller?.name}</span>
           <div className="details">
             <RatingItem rating={4} />
-            {/* <div className="item">
-              <span>10</span>
-              reviews
-            </div> */}
+
             <div className="item">
               <span>{seller?.posts?.length || 0}</span>
               listed

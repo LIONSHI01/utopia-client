@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ReviewItemContainer, PostedByInfo } from './index.styles';
 import { UserIcon, RatingItem } from '../../../index';
 import { timePeriod } from '../../../../utils/timeCalculator';
-import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
+import { useGetUserHook } from '../../../../utils/customHooks/fetchUserHook';
 
 const ReviewItem = ({ review }) => {
   // CONFIGURATION

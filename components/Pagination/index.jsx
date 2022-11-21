@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
-import { usePagination, DOTS } from '../../utils/reactQueryHooks/usePagination';
+import { usePagination, DOTS } from '../../utils/customHooks/usePagination';
 
 import { PaginationContainer } from './index.styles';
 

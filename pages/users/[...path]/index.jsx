@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
-import { useGetEthHook } from '../../../utils/reactQueryHooks/ethQueryHook';
+import { useGetUserHook } from '../../../utils/customHooks/fetchUserHook';
+import { useGetEthHook } from '../../../utils/customHooks/ethQueryHook';
 import { setEthPrice } from '../../../store/post/post.action';
 
 import {
@@ -66,6 +66,7 @@ const AccountPage = () => {
   return (
     <PageContainer>
       <MenuSidebar
+        refetchUser={refetchUser}
         user={user}
         setDisplaySection={setDisplaySection}
         isAuthenticated={isAuthenticated}

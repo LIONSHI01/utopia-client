@@ -9,7 +9,7 @@ import {
   GrPowerCycle,
   BsArrowCounterclockwise,
 } from '../../ReactIcons';
-import { useCreatePayment } from '../../../utils/reactQueryHooks/useCreatePayment';
+import { useCreatePayment } from '../../../utils/customHooks/useCreatePayment';
 
 import { createOrder } from '../../../utils/apiData/orderRequest';
 import {

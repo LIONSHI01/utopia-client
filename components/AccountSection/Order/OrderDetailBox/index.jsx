@@ -10,7 +10,7 @@ import {
   BiTimeFive,
 } from '../../../ReactIcons';
 
-import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
+import { useGetUserHook } from '../../../../utils/customHooks/fetchUserHook';
 
 import {
   FormInputComp,

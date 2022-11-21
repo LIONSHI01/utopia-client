@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useMutation } from 'react-query';
 
 import { FaExchangeAlt } from '../ReactIcons';
-import { useConnectWallet } from '../../utils/reactQueryHooks/useConnectWallet';
+import { useConnectWallet } from '../../utils/customHooks/useConnectWallet';
 import { signupRequest } from '../../utils/authRequest';
 import {
   Button,

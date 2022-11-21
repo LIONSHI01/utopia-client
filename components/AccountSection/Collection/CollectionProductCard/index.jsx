@@ -8,7 +8,7 @@ import { useSession } from 'next-auth/react';
 import ethIcon from '../../../../assets/image/eth-icon.png';
 import { selectEthPrice } from '../../../../store/post/post.selector';
 import { removeItemFromCollection } from '../../../../utils/profileCalculator';
-import { useUpdateCollection } from '../../../../utils/reactQueryHooks/collectionHooks/updateCollectionHook';
+import { useUpdateCollection } from '../../../../utils/customHooks/collectionHooks/updateCollectionHook';
 
 import { IoMdTrash } from '../../../ReactIcons';
 

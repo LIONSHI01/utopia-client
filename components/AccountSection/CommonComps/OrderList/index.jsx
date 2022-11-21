@@ -13,7 +13,7 @@ import {
   PaginationWrapper,
 } from './index.styles';
 
-import { useSelectOrders } from '../../../../utils/reactQueryHooks/useSelectOrders';
+import { useSelectOrders } from '../../../../utils/customHooks/useSelectOrders';
 
 const orderStatus = ['all orders', 'completed', 'continuing', 'cancelled'];
 const tableHeader = [

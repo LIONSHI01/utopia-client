@@ -11,7 +11,7 @@ import {
   AlertModal,
 } from '../../../index';
 import { CommentSectionContainer, MenuWrapper } from './index.styles';
-import { useDeleteReview } from '../../../../utils/reactQueryHooks/reviewHooks';
+import { useDeleteReview } from '../../../../utils/customHooks/reviewHooks';
 import { timePeriod } from '../../../../utils/timeCalculator';
 
 const DropdownMenu = ({ setShowup, setShowEdit, setShowDelete }) => {

@@ -12,7 +12,12 @@ import { profileLinks } from '../../../assets/constants';
 import { SidebarContainer, UserInfoSection, MenuList } from './index.styles';
 import { updateUserPhoto } from '../../../utils/apiData/userRequest';
 
-const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
+const MenuSidebar = ({
+  user,
+  refetchUser,
+  isAuthenticated,
+  displaySection,
+}) => {
   const router = useRouter();
 
   const updateUserPicHandler = async (e) => {
@@ -23,7 +28,7 @@ const MenuSidebar = ({ user, isAuthenticated, displaySection }) => {
       form.append('images', e.target.files[0]);
 
       const res = await updateUserPhoto(form, user?._id);
-      if (res.status === 200) router.reload();
+      if (res.status === 200) refetchUser();
     }
   };
 

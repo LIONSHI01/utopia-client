@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Router from 'next/router';
 import Link from 'next/link';
 import { useQuery } from 'react-query';
 import Image from 'next/image';
@@ -109,7 +109,7 @@ const ProfilePreviewCard = ({ postByUser }) => {
               <Image
                 src={item?.image}
                 alt="Preview"
-                objectFit="contain"
+                objectFit="cover"
                 objectPosition="center"
                 layout="fill"
               />
@@ -121,7 +121,11 @@ const ProfilePreviewCard = ({ postByUser }) => {
         <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
           Follow
         </Button>
-        <Button size="full" buttonType={BUTTON_TYPES.outlineGrey}>
+        <Button
+          size="full"
+          buttonType={BUTTON_TYPES.outlineGrey}
+          onClick={() => Router.push(`/users/${postByUser?.id}/collections`)}
+        >
           View more
         </Button>
       </ButtonsContainer>

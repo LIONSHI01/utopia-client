@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 
 import { BsCheck2Circle, AiOutlineLink, BiTimeFive } from '../../../ReactIcons';
-import { useGetUserHook } from '../../../../utils/reactQueryHooks/fetchUserHook';
+import { useGetUserHook } from '../../../../utils/customHooks/fetchUserHook';
 import { sellerClaimFund } from '../../../../utils/apiData/orderRequest';
 
 import {

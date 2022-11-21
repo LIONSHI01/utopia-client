@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession, signOut } from 'next-auth/react';
 
-// import { useGetUserHook } from '../../../utils/reactQueryHooks/fetchUserHook';
+// import { useGetUserHook } from '../../../utils/customHooks/fetchUserHook';
 import { IoIosArrowForward } from 'react-icons/io';
 import { profileLinksMobile } from '../../../assets/constants';
 import {

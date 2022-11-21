@@ -48,8 +48,9 @@ export const LowerContainer = styled.div`
 
 export const GalleryWrapper = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   margin-bottom: var(--mg-m);
+  justify-content: center;
 
   @media ${device.laptop} {
     justify-content: center;
@@ -68,7 +69,7 @@ export const GalleryWrapper = styled.div`
     width: 7rem;
     height: 7rem;
     border-radius: var(--br-s);
-    border: 2px solid var(--black-light-2);
+    border: 2px solid ${({ theme }) => theme.border};
     transition: all 0.3s;
     overflow: hidden;
     cursor: pointer;
@@ -81,7 +82,7 @@ export const GalleryWrapper = styled.div`
 
   .thumbnail.active {
     opacity: 1;
-    border: 2px solid var(--black);
+    border: 2px solid ${({ theme }) => theme.textDark};
   }
 
   .displayed-image-contaienr {
@@ -102,7 +103,7 @@ export const GalleryWrapper = styled.div`
 
 export const CTAWrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid var(--grey-light-2);
+  border-bottom: 1px solid ${({ theme }) => theme.border};
   padding-bottom: 2rem;
   margin-bottom: 2rem;
 

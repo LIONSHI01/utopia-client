@@ -4,7 +4,7 @@ export const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: var(--mg-m);
-  border-bottom: 1px solid var(--grey-light-1);
+  border-bottom: 1px solid ${({ theme }) => theme.border};
   padding-bottom: 2.5rem;
 
   .heading {
@@ -34,19 +34,22 @@ export const ColumnWrapper = styled.div`
     font-size: var(--fs);
     margin-bottom: var(--mg-s);
   }
+
   .details {
     display: flex;
+    align-items: center;
     gap: 1rem;
-    color: var(--black-light-2);
+    color: ${({ theme }) => theme.textLight2};
   }
   .item {
     display: flex;
     gap: 0.2rem;
     font-size: 1.3rem;
     font-weight: 100;
+
     span {
       font-weight: 500;
-      color: var(--black);
+      color: ${({ theme }) => theme.textDark};
     }
   }
   .buttons-group {

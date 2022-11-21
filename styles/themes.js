@@ -9,6 +9,7 @@ export const lightTheme = {
   dropdownHover: 'var(--grey-light-2)',
   overlayColor: 'rgba(0, 0, 0, 0.347)',
   border: 'var(--black-light-3)',
+  productCardHover: 'var(--black)',
 };
 
 export const darkTheme = {
@@ -22,4 +23,5 @@ export const darkTheme = {
   dropdownHover: '#92959a',
   overlayColor: '#eaeaea05',
   border: '#eaeaea40',
+  productCardHover: 'var(--primary)',
 };

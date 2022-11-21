@@ -13,6 +13,7 @@ import { useDarkMode } from '../utils/useDarkMode';
 
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/nprogress.css';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // FOR useQuery

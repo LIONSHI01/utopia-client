@@ -14,6 +14,11 @@ const xsSizeStyles = css`
   width: 2rem;
 `;
 
+const outlineStyles = css`
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+`;
+
 const IconWrapper = styled.div`
   position: relative;
 
@@ -25,7 +30,9 @@ const IconWrapper = styled.div`
     position: relative;
     height: 3.7rem;
     width: 3.7rem;
+    outline: 2px solid ${({ theme }) => theme.textLight3};
 
+    ${(props) => props.outline && outlineStyles}
     ${(props) => props.size === 's' && smallSizeStyles}
     ${(props) => props.size === 'xs' && xsSizeStyles}
     border-radius: 100px;
@@ -50,7 +57,13 @@ const IconWrapper = styled.div`
   }
 `;
 
-const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
+const UserIcon = ({
+  user,
+  size,
+  hasUserMenu = false,
+  outline = false,
+  ...otherProps
+}) => {
   const ref = useRef();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -69,7 +82,7 @@ const UserIcon = ({ user, size, hasUserMenu = false, ...otherProps }) => {
   }, [showUserMenu]);
 
   return (
-    <IconWrapper size={size} ref={ref} {...otherProps}>
+    <IconWrapper size={size} ref={ref} outline={outline} {...otherProps}>
       <div
         className="icon-container"
         onClick={() => setShowUserMenu((prev) => !prev)}

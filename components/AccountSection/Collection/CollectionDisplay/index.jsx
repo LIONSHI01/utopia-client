@@ -24,7 +24,7 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
       <TitleContainer>
         <div className="title">
           <h3>{collection?.name}</h3>
-          {isAuthenticated && (
+          {isAuthenticated && collection && (
             <IconButton
               size="x"
               buttonType={ICON_BUTTON_TYPES.hoverBackground}
@@ -34,10 +34,12 @@ const CollectionDisplay = ({ collection, refetchUser, isAuthenticated }) => {
             </IconButton>
           )}
         </div>
-        <div className="items-count">
-          <ImEarth size={15} />
-          <span>{collection?.items?.length || 0}&nbsp;Items</span>
-        </div>
+        {collection && (
+          <div className="items-count">
+            <ImEarth size={15} />
+            <span>{collection?.items?.length || 0}&nbsp;Items</span>
+          </div>
+        )}
       </TitleContainer>
 
       {collection?.items?.length > 0 ? (
