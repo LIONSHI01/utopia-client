@@ -26,9 +26,18 @@ const ProfilePreviewCardSkeleton = () => {
         </InfoContainer>
 
         <ProfileContainer>
-          <Skeleton height="1.4rem" width="5rem" />
-          <Skeleton height="1.4rem" width="5rem" />
-          <Skeleton height="1.4rem" width="5rem" />
+          <div className="num_section">
+            <Skeleton height="1.4rem" width="1.5rem" />
+            <Skeleton height="1.4rem" width="5rem" />
+          </div>
+          <div className="num_section">
+            <Skeleton height="1.4rem" width="1.5rem" />
+            <Skeleton height="1.4rem" width="5rem" />
+          </div>
+          <div className="num_section">
+            <Skeleton height="1.4rem" width="1.5rem" />
+            <Skeleton height="1.4rem" width="5rem" />
+          </div>
         </ProfileContainer>
 
         <ImagesContainer>

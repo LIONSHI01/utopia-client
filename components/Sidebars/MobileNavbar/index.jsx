@@ -48,7 +48,6 @@ const MobileNavbar = ({ setIsSidebarOpen }) => {
 
         <Searchbar setShowOverlay={setShowOverlay} />
       </NavbarContainer>
-      {/* <Overlay zIndex={100} showUp={showOverlay} setShowUp={setShowOverlay} /> */}
     </>
   );
 };

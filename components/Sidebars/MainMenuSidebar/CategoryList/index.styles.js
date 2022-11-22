@@ -15,7 +15,7 @@ export const ListContainer = styled.div`
     font-weight: 100;
     color: ${({ theme }) => theme.textLight3};
     padding: 1rem 2rem;
-    border-bottom: 1px solid ${({ theme }) => theme.textLight2};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
   }
 
   .master_list {

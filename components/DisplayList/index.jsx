@@ -12,7 +12,6 @@ const DisplayList = ({ posts, isLoading = true }) => {
     const lastPageIndex = firstPageIndex + PageSize;
     return posts?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, posts]);
-  console.log(currentTableData?.length);
 
   if (isLoading)
     return (
@@ -28,7 +27,7 @@ const DisplayList = ({ posts, isLoading = true }) => {
   return (
     <DisplayContainer>
       {currentTableData?.map((post) => (
-        <ProductCard key={post._id} post={post} isLoading={isLoading} />
+        <ProductCard key={post._id} post={post} />
       ))}
       <div className="pagination_box">
         <Pagination

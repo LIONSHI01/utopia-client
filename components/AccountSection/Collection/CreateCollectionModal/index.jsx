@@ -64,7 +64,6 @@ const CreateCollectionModal = ({
         </div>
 
         <FormInputComp
-          fieldName="collectionName"
           label="Collection name"
           placeholder="Artwork,Chrismas Gift List, etc."
           maxLength="50"

@@ -30,13 +30,13 @@ const FrameworkContainer = styled.div`
   }
 `;
 
-const LoadingPageContainer = styled.div`
-  min-height: 100vh;
-  min-width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+// const LoadingPageContainer = styled.div`
+//   min-height: 100vh;
+//   min-width: 100vw;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 const Home = () => {
   // CONFIGURATION
@@ -47,19 +47,11 @@ const Home = () => {
   const { isLoading: isLoadingPosts, posts } = useGetAllPostsHook();
 
   // API CALLS
-  console.log(isLoadingPosts);
+
   useEffect(() => {
     dispatch(setCurrentUser(user));
     dispatch(setEthPrice(ethQuote));
   }, [dispatch, user, ethQuote]);
-
-  // if (isLoadingPosts) {
-  //   return (
-  //     <LoadingPageContainer>
-  //       <Spinner message="Loading page..." />
-  //     </LoadingPageContainer>
-  //   );
-  // }
 
   return (
     <ContentContainer>

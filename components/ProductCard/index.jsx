@@ -4,13 +4,14 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useSession } from 'next-auth/react';
-import { productLinkGenerator } from '../../utils/productLinkGenerator';
 
-import { BsFillHeartFill } from 'react-icons/bs';
-import ethIcon from '../../assets/image/eth-icon.png';
+import { productLinkGenerator } from '../../utils/productLinkGenerator';
+import { BsFillHeartFill } from '../ReactIcons';
 import { selectUser } from '../../store/user/user.selector';
 import { selectEthPrice } from '../../store/post/post.selector';
 import { isItemLiked } from '../../utils/profileCalculator';
+import ethIcon from '../../assets/image/eth-icon.png';
+import { image_error_placeholder } from '../../assets/image/image_error_placeholder.png';
 
 import {
   UserIcon,
@@ -19,7 +20,6 @@ import {
   ProfilePreviewCard,
   AddToCollectionModal,
   AuthForm,
-  ProductCardSkeleton,
 } from '../index';
 
 import {
@@ -46,6 +46,7 @@ const ProductCard = ({ post }) => {
   const user = useSelector(selectUser);
   const ethPrice = useSelector(selectEthPrice);
   const { data } = useSession();
+  const [src, setSrc] = useState(post?.images[0]);
 
   useEffect(() => {
     const result = isItemLiked(post?.collectionsLike, user?._id);
@@ -83,17 +84,16 @@ const ProductCard = ({ post }) => {
             )}
           </div>
         </HeaderContaienr>
-        <Link
-          href={`/products/${post?.category}/${post?.subCategory}/${post?.slug}/${post?._id}`}
-        >
+        <Link href={productLink}>
           <a>
             <ImageContainer>
               <Image
-                src={post?.images[0]}
+                src={src}
                 alt="PRODUCT"
                 objectFit="contain"
                 objectPosition="center"
                 layout="fill"
+                onError={() => setSrc(image_error_placeholder)}
               />
             </ImageContainer>
           </a>

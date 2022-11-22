@@ -47,6 +47,12 @@ export const ProfileContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   border-bottom: 1px solid ${({ theme }) => theme.border};
+
+  .num_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const ImagesContainer = styled.div`

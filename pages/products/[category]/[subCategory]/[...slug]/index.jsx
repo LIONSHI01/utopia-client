@@ -87,7 +87,6 @@ const ProductDetailsPage = () => {
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const [showEditDropdown, setShowEditDropdown] = useState(false);
   const [showBuyNowModal, setShowBuyNowModal] = useState(false);
 

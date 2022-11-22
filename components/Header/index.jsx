@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
-import ReactTooltip from 'react-tooltip';
-import { useGetUserHook } from '../../utils/customHooks/fetchUserHook';
 
 import { ThemeToggler } from '../index';
+import { useGetUserHook } from '../../utils/customHooks/fetchUserHook';
 import { RiNotification4Line, FiHeart } from '../ReactIcons';
 
 import {
@@ -26,7 +25,6 @@ const MainHeader = ({ theme, setTheme }) => {
   // CONFIGURATION
   const ref = useRef();
   const { data } = useSession();
-  // const user = data?.profile;
   const { user, refetch: refetchUser } = useGetUserHook({
     userId: data?.profile?._id,
   });
@@ -153,12 +151,6 @@ const MainHeader = ({ theme, setTheme }) => {
           </div>
         </HeaderWrapper>
         <CategoryBar />
-        <ReactTooltip
-          className="react_tool_tip_styles"
-          place="top"
-          type="dark"
-          effect="solid"
-        />
       </InnerWrapper>
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
       <Overlay zIndex={101} setShowUp={setShowOverlay} showUp={showOverlay} />

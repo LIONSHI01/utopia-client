@@ -41,6 +41,7 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 18rem;
+  background-color: var(--white);
 `;
 
 export const ContentContainer = styled.div`

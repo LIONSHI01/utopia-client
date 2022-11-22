@@ -27,7 +27,7 @@ const CategoryList = ({ setSidebarOpen }) => {
     <ListContainer>
       <h3 className="heading">Explore</h3>
       <ul className="master_list">
-        {categories?.map(({ category, categoryValue, link, subCategories }) => (
+        {categories?.map(({ category, link, subCategories }) => (
           <li
             key={category}
             className={
@@ -46,7 +46,7 @@ const CategoryList = ({ setSidebarOpen }) => {
               <IoIosArrowForward size={20} className="arrow" />
             </div>
             <div className="subCategory_list">
-              {subCategories?.map(({ subCategory, subCategoryValue, link }) => (
+              {subCategories?.map(({ subCategory, link }) => (
                 <div key={subCategory}>
                   <Link href={link}>
                     <a
