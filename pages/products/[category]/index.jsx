@@ -29,19 +29,19 @@ const CategoryPage = () => {
     }
   );
 
-  if (isLoadingPosts)
-    return (
-      <LoadingPageContainer>
-        <Spinner message="Loading items for you ..." />
-      </LoadingPageContainer>
-    );
+  // if (isLoadingPosts)
+  //   return (
+  //     <LoadingPageContainer>
+  //       <Spinner message="Loading items for you ..." />
+  //     </LoadingPageContainer>
+  //   );
 
   return (
     <CategoryPageContainer>
       <FrameWorkContainer>
         <NavigationMap categoryValue={category} />
         <div className="list_container">
-          {posts && <DisplayList posts={posts} />}
+          {posts && <DisplayList posts={posts} isLoading={isLoadingPosts} />}
         </div>
       </FrameWorkContainer>
     </CategoryPageContainer>

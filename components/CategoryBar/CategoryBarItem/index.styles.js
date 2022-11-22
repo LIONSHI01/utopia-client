@@ -68,11 +68,11 @@ export const DropdownWrapper = styled.div`
     }
 
     :hover .arrow-icon {
-      color: ${({ theme }) => theme.textDark};
+      color: ${({ theme }) => theme.textPrimary};
     }
   }
 
   .arrow-icon {
-    color: var(--white);
+    color: ${({ theme }) => theme.dropdownBG};
   }
 `;

@@ -59,6 +59,8 @@ import BuyNowModal from './Modals/BuyNowModal';
 import MetaMaskButton from './MetaMaskButton';
 import TogglePwButton from './TogglePwButton';
 import ThemeToggler from './ThemeToggler';
+import ProductCardSkeleton from './LoadingSkeletons/ProductCardSkeleton';
+import ProfilePreviewCardSkeleton from './LoadingSkeletons/ProfilePreviewCardSkeleton';
 
 export {
   MainHeader,
@@ -123,4 +125,6 @@ export {
   MetaMaskButton,
   TogglePwButton,
   ThemeToggler,
+  ProductCardSkeleton,
+  ProfilePreviewCardSkeleton,
 };

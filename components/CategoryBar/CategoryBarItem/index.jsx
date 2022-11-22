@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { IoIosArrowForward } from 'react-icons/io';
+import { IoIosArrowForward } from '../../ReactIcons';
 
 import { ItemWrapper, DropdownWrapper } from './index.styles';
 

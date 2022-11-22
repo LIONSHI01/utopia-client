@@ -19,6 +19,7 @@ import {
   ProfilePreviewCard,
   AddToCollectionModal,
   AuthForm,
+  ProductCardSkeleton,
 } from '../index';
 
 import {

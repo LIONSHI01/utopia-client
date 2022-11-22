@@ -5,13 +5,6 @@ export const CardContainer = styled.div`
   height: 38rem;
   border: 2px solid ${({ theme }) => theme.border};
   border-radius: var(--br-m);
-  transition: all 0.3s ease-in-out;
-
-  cursor: pointer;
-
-  :hover {
-    border: 2px solid ${({ theme }) => theme.productCardHover};
-  }
 `;
 
 export const HeaderContaienr = styled.div`
@@ -26,12 +19,14 @@ export const HeaderContaienr = styled.div`
   }
 
   .user-info {
-    position: relative;
     display: flex;
     gap: 1rem;
     align-items: center;
   }
-
+  .user_details {
+    display: flex;
+    flex-direction: column;
+  }
   .postedBy-name {
     text-transform: capitalize;
   }
@@ -62,16 +57,10 @@ export const ContentContainer = styled.div`
   }
 
   .price {
-    font-weight: 500;
-    font-size: var(--fs);
-    color: ${({ theme }) => theme.textLight2};
-    margin-bottom: var(--mg-s);
+    margin: var(--mg-s) 0;
     display: flex;
     align-items: center;
-
-    span {
-      line-height: 0;
-    }
+    gap: 0.5rem;
   }
 
   .icon-wrapper {

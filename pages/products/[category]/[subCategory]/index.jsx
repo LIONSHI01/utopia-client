@@ -26,12 +26,12 @@ const SubCategoryPage = () => {
     }
   );
 
-  if (isLoadingPosts)
-    return (
-      <LoadingPageContainer>
-        <Spinner message="Loading items for you ..." />
-      </LoadingPageContainer>
-    );
+  // if (isLoadingPosts)
+  //   return (
+  //     <LoadingPageContainer>
+  //       <Spinner message="Loading items for you ..." />
+  //     </LoadingPageContainer>
+  //   );
 
   return (
     <SubCategoryPageContainer>
@@ -41,7 +41,7 @@ const SubCategoryPage = () => {
           subCategoryValue={subCategory}
         />
         <div className="list_container">
-          {posts && <DisplayList posts={posts} />}
+          <DisplayList posts={posts} isLoading={isLoadingPosts} />
         </div>
       </FrameWorkContainer>
     </SubCategoryPageContainer>

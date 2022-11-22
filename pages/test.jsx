@@ -1,15 +1,34 @@
 import React, { useState } from 'react';
-import { Button } from '../components';
+import { Button, ProductCardSkeleton } from '../components';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import styled from 'styled-components';
+
+const TestPageWrapper = styled.div`
+  .item-img {
+    height: 140px;
+    width: 140px;
+  }
+`;
 
 const test = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
   return (
-    <div>
-      <Button size="x" isLoading={isLoading} onClick={() => setIsLoading(true)}>
+    <TestPageWrapper>
+      {/* <SkeletonTheme color="#F5F5F5" highlightColor="#ffffff">
+        <div className="item-img">
+          <Skeleton width={140} height={140} />
+        </div>
+      </SkeletonTheme> */}
+
+      <ProductCardSkeleton />
+
+      {/* <Button
+        size="x"
+        isLoading={isLoading}
+        onClick={() => setIsLoading(!isLoading)}
+      >
         Button
-      </Button>
-    </div>
+      </Button> */}
+    </TestPageWrapper>
   );
 };
 

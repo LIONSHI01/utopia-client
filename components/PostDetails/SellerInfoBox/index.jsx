@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { useMutation } from 'react-query';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
+
 import { useSession } from 'next-auth/react';
 
 import { BsBookmarkStarFill } from '../../ReactIcons';
-import { updateUserProfile } from '../../../utils/apiData/userRequest';
-import { newFollowingsCalculator } from '../../../utils/profileCalculator';
 
 import {
   UserIcon,
@@ -19,12 +16,10 @@ import {
 import { BoxWrapper } from './index.styles';
 
 const SellerInfoBox = ({
-  user,
   seller,
-  post,
   isFollowing,
-  refetchUser,
-  refetchSeller,
+  isLoadingFollow,
+  mutateFollowerHandler,
 }) => {
   // CONFIGURATION
 
@@ -37,31 +32,24 @@ const SellerInfoBox = ({
   const [showAuthForm, setShowAuthForm] = useState(false);
 
   // API CALLS
-
-  const { isLoading: isLoadingFollow, mutate: mutateFollowUser } = useMutation(
-    updateUserProfile,
-    {
-      onSuccess: () => {
-        toast.success(`You have updated following list.`);
-        refetchUser();
-        refetchSeller();
-      },
-      onError: (err) => {
-        console.log(err);
-      },
-    }
-  );
+  // const { isLoading: isLoadingFollow, mutate: mutateFollowUser } = useMutation(
+  //   updateUserProfile,
+  //   {
+  //     onSuccess: () => {
+  //       toast.success(`You have updated following list.`);
+  //       refetchUser();
+  //       refetchSeller();
+  //     },
+  //     onError: (err) => {
+  //       console.log(err);
+  //     },
+  //   }
+  // );
 
   // HANDLERS
   const onFollowHandler = () => {
     if (!data) return setShowAuthForm(true);
-
-    const newFollowingsArr = newFollowingsCalculator(
-      user?.followings,
-      post?.postedBy?.id
-    );
-
-    mutateFollowUser({ userId: user?._id, followings: newFollowingsArr });
+    mutateFollowerHandler();
   };
 
   return (

@@ -14,6 +14,7 @@ import { useDarkMode } from '../utils/useDarkMode';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/nprogress.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // FOR useQuery

@@ -16,7 +16,7 @@ const UserMenuDropdown = ({ user, showUp, setShowUp }) => {
       <ContentWrapper showUp={showUp}>
         <Link href={`/users/${user?._id}/collections`}>
           <a className="userInfo" onClick={() => setShowUp(false)}>
-            <UserIcon user={user} size="s" />
+            <UserIcon user={user} size="s" outline={true} />
             <div className="info-box">
               <span className="name">{user?.name}</span>
               <p>View your profile</p>

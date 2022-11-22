@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { toast } from 'react-toastify';
 import ReactTooltip from 'react-tooltip';
 
 import {
@@ -28,11 +26,9 @@ import ethIcon from '../../../../../assets/image/eth-icon.png';
 import { useGetUserHook } from '../../../../../utils/customHooks/fetchUserHook';
 import { usePostDetailsHook } from '../../../../../utils/customHooks/postQueryHook';
 import { useGetEthHook } from '../../../../../utils/customHooks/ethQueryHook';
+import { useFollowHook } from '../../../../../utils/customHooks/useFollowHook';
 
-import {
-  isItemLiked,
-  validateFollowingUser,
-} from '../../../../../utils/profileCalculator';
+import { isItemLiked } from '../../../../../utils/profileCalculator';
 import { BsThreeDotsVertical } from '../../../../../components/ReactIcons';
 
 import {
@@ -75,6 +71,15 @@ const ProductDetailsPage = () => {
     userId: post?.postedBy?.id,
   });
 
+  const { isFollowing, isLoadingFollow, mutateFollowerHandler } = useFollowHook(
+    {
+      currentUserProfile: user,
+      postCreatorId: seller?.id,
+      refetchUser,
+      refetchSeller,
+    }
+  );
+
   // STATE MANAGEMENT
   const [displayIndex, setDisplayIndex] = useState(0);
   const [showDisplayModal, setShowDisplayModal] = useState(false);
@@ -82,7 +87,7 @@ const ProductDetailsPage = () => {
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isFollowing, setIsFollowing] = useState(false);
+
   const [showEditDropdown, setShowEditDropdown] = useState(false);
   const [showBuyNowModal, setShowBuyNowModal] = useState(false);
 
@@ -91,13 +96,6 @@ const ProductDetailsPage = () => {
     const ifLiked = isItemLiked(post?.collectionsLike, user?._id);
     setIsLiked(ifLiked);
 
-    // API CALLS
-    // Check if PostCreator is follower by current user
-    const ifFollowing = validateFollowingUser(
-      user?.followings,
-      post?.postedBy?.id
-    );
-    setIsFollowing(ifFollowing);
     setIsAuthenticated(user?._id === post?.postedBy?.id);
   }, [post, user]);
 
@@ -131,6 +129,7 @@ const ProductDetailsPage = () => {
         <Spinner message="Loading item for you ..." />
       </LoadingPageContainer>
     );
+
   return (
     <>
       <DetailsPageContainer>
@@ -197,11 +196,10 @@ const ProductDetailsPage = () => {
                 <SellerInfoBox
                   user={user}
                   seller={seller}
-                  refetchUser={refetchUser}
-                  refetchSeller={refetchSeller}
                   isFollowing={isFollowing}
-                  post={post}
                   isAuthenticated={isAuthenticated}
+                  isLoadingFollow={isLoadingFollow}
+                  mutateFollowerHandler={mutateFollowerHandler}
                 />
                 <DetailsWrapper>
                   <div className="upper-box">

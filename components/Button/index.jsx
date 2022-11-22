@@ -31,6 +31,7 @@ const getButton = (buttonType = BUTTON_TYPES.base) =>
   }[buttonType]);
 
 const Button = ({
+  loaderColor,
   children,
   isLoading,
   disable = false,
@@ -74,7 +75,7 @@ const Button = ({
       showLoader={showLoader}
       {...otherProps}
     >
-      {showLoader ? <ButtonLoader /> : children}
+      {showLoader ? <ButtonLoader loaderColor={loaderColor} /> : children}
     </CustomButton>
   );
 };

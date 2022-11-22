@@ -75,6 +75,7 @@ export const OutlineGreyButton = styled(BaseButton)`
     border: 1px solid ${({ theme }) => theme.textDark};
     background-color: transparent;
   }
+
   ${(props) => props.disable && disableStyles}
 `;
 

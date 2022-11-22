@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 
 import { DisplayContainer } from './index.styles';
-import { ProductCard, Pagination } from '../index';
+import { ProductCard, Pagination, ProductCardSkeleton } from '../index';
 
 const PageSize = 20;
-const DisplayList = ({ posts }) => {
+const DisplayList = ({ posts, isLoading = true }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentTableData = useMemo(() => {
@@ -12,11 +12,23 @@ const DisplayList = ({ posts }) => {
     const lastPageIndex = firstPageIndex + PageSize;
     return posts?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, posts]);
+  console.log(currentTableData?.length);
+
+  if (isLoading)
+    return (
+      <DisplayContainer>
+        {Array.from(Array(currentTableData?.length || 20).keys())?.map(
+          (_, i) => (
+            <ProductCardSkeleton key={i} />
+          )
+        )}
+      </DisplayContainer>
+    );
 
   return (
     <DisplayContainer>
       {currentTableData?.map((post) => (
-        <ProductCard key={post._id} post={post} />
+        <ProductCard key={post._id} post={post} isLoading={isLoading} />
       ))}
       <div className="pagination_box">
         <Pagination

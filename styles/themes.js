@@ -10,6 +10,7 @@ export const lightTheme = {
   overlayColor: 'rgba(0, 0, 0, 0.347)',
   border: 'var(--black-light-3)',
   productCardHover: 'var(--black)',
+  buttonLoaderColor: 'var(--primary)',
 };
 
 export const darkTheme = {
@@ -24,4 +25,5 @@ export const darkTheme = {
   overlayColor: '#eaeaea05',
   border: '#eaeaea40',
   productCardHover: 'var(--primary)',
+  buttonLoaderColor: 'var(--white)',
 };

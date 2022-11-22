@@ -19,8 +19,6 @@ const ContentContainer = styled.div`
 const FrameworkContainer = styled.div`
   max-width: var(--container);
 
-  /* display: flex; */
-  /* flex-direction: column; */
   margin: 5rem auto;
   padding: 0 1.4rem;
 
@@ -47,25 +45,26 @@ const Home = () => {
   const ethQuote = useGetEthHook();
   const { user } = useGetUserHook({ userId: data?.profile?._id });
   const { isLoading: isLoadingPosts, posts } = useGetAllPostsHook();
-  // API CALLS
 
+  // API CALLS
+  console.log(isLoadingPosts);
   useEffect(() => {
     dispatch(setCurrentUser(user));
     dispatch(setEthPrice(ethQuote));
   }, [dispatch, user, ethQuote]);
 
-  if (isLoadingPosts) {
-    return (
-      <LoadingPageContainer>
-        <Spinner message="Loading page..." />
-      </LoadingPageContainer>
-    );
-  }
+  // if (isLoadingPosts) {
+  //   return (
+  //     <LoadingPageContainer>
+  //       <Spinner message="Loading page..." />
+  //     </LoadingPageContainer>
+  //   );
+  // }
 
   return (
     <ContentContainer>
       <FrameworkContainer>
-        <DisplayList posts={posts} />
+        <DisplayList posts={posts} isLoading={isLoadingPosts} />
       </FrameworkContainer>
     </ContentContainer>
   );
