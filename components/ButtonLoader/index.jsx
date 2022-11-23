@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PuffLoader from 'react-spinners/PuffLoader';
-import MoonLoader from 'react-spinners/MoonLoader';
+import { Oval } from 'react-loader-spinner';
 
 const SpinnerWrapper = styled.div`
   width: 100%;
@@ -11,16 +10,25 @@ const SpinnerWrapper = styled.div`
   align-items: center;
 `;
 
-const ButtonLoader = ({ size = 20, loaderColor = 'var(--white)' }) => {
+const ButtonLoader = ({
+  height = 25,
+  width = 25,
+  loaderColor = 'var(--primary)',
+  loaderRingColor = 'var(--white)',
+}) => {
   return (
     <SpinnerWrapper>
-      <MoonLoader
+      <Oval
+        height={height}
+        width={width}
         color={loaderColor}
-        size={size}
-        margin={100}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        speedMultiplier={1}
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="oval-loading"
+        secondaryColor={loaderRingColor}
+        strokeWidth={5}
+        strokeWidthSecondary={5}
       />
     </SpinnerWrapper>
   );

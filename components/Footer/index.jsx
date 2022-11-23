@@ -70,6 +70,7 @@ const Footer = () => {
           </div>
         </BusinessColWrapper>
         <SocialsColWrapper>
+          <div className="socials_heading">Subscribe to our news letter</div>
           <EmailBarContainer>
             <form onSubmit={onSubmitHandler}>
               <input

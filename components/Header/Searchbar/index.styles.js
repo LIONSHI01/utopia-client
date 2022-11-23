@@ -14,7 +14,7 @@ export const SearchbarWrapper = styled.div`
     overflow: hidden;
     transition: all 0.3s;
     background-color: var(--white);
-    padding: 0.15rem;
+    padding: 0.1rem;
 
     :has(input:focus) {
       box-shadow: 0 0 0 0.3rem #ff9a77;
@@ -40,8 +40,8 @@ export const SearchbarWrapper = styled.div`
 
   .search-btn {
     background-color: var(--black);
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.7rem;
+    height: 3.7rem;
     display: flex;
     justify-content: center;
     align-items: center;

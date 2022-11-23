@@ -100,6 +100,11 @@ export const SocialsColWrapper = styled.div`
     display: block;
   }
 
+  .socials_heading {
+    font-size: var(--fs-x);
+    text-transform: capitalize;
+  }
+
   .socials_col_icon_box {
     display: flex;
     align-items: center;

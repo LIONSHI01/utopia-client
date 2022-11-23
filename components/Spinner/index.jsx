@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BeatLoader from 'react-spinners/BeatLoader';
+import { ThreeDots } from 'react-loader-spinner';
 
 const SpinnerWrapper = styled.div`
   width: 100%;
@@ -17,16 +17,18 @@ const SpinnerWrapper = styled.div`
   }
 `;
 
-const Spinner = ({ size = 30, message }) => {
+const Spinner = ({ message }) => {
   return (
     <SpinnerWrapper>
-      <BeatLoader
+      <ThreeDots
+        height="80"
+        width="80"
+        radius="9"
         color="var(--primary)"
-        // loading={loading}
-        // cssOverride={override}
-        size={size}
-        aria-label="Loading Spinner"
-        data-testid="loader"
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
       />
       <p>{message}</p>
     </SpinnerWrapper>
