@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3001/api/v1/posts';
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const getAllPosts = async () => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}`,
+    url: `${baseURL}/posts`,
   });
 
   return res.data.data.posts;
@@ -14,7 +14,7 @@ export const getAllPosts = async () => {
 export const getCategoryPosts = async (category) => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}/category/${category}`,
+    url: `${baseURL}/posts/category/${category}`,
   });
 
   return res.data.posts;
@@ -23,7 +23,7 @@ export const getCategoryPosts = async (category) => {
 export const getSubCategoryPosts = async ({ category, subCategory }) => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}/subCategory/${category}/${subCategory}`,
+    url: `${baseURL}/posts/subCategory/${category}/${subCategory}`,
   });
 
   return res.data.posts;
@@ -33,7 +33,7 @@ export const getOnePost = async (category, subCategory, postId) => {
   try {
     const res = await axios({
       method: 'GET',
-      url: `${baseURL}/${category}/${subCategory}/${postId}`,
+      url: `${baseURL}/posts/${category}/${subCategory}/${postId}`,
     });
 
     const results = {
@@ -52,7 +52,7 @@ export const getPostDetails = async (postId) => {
   try {
     const res = await axios({
       method: 'GET',
-      url: `${baseURL}/${postId}`,
+      url: `${baseURL}/posts/${postId}`,
     });
 
     return res.data.data.post;
@@ -64,7 +64,7 @@ export const getPostDetails = async (postId) => {
 export const createPost = async ({ data }) => {
   const res = await axios({
     method: 'POST',
-    url: `${baseURL}/`,
+    url: `${baseURL}/posts`,
     data,
   });
 
@@ -74,7 +74,7 @@ export const createPost = async ({ data }) => {
 export const updatePost = async ({ data, postId }) => {
   const res = await axios({
     method: 'PATCH',
-    url: `${baseURL}/${postId}`,
+    url: `${baseURL}/posts/${postId}`,
     data: data,
   });
 
@@ -84,7 +84,7 @@ export const updatePost = async ({ data, postId }) => {
 export const inactivePost = async ({ postId }) => {
   const res = await axios({
     method: 'PATCH',
-    url: `${baseURL}/inactivate/${postId}`,
+    url: `${baseURL}/posts/inactivate/${postId}`,
   });
 
   return res;
@@ -93,7 +93,7 @@ export const inactivePost = async ({ postId }) => {
 export const searchPostsRequest = async (query) => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}/search?q=${query}`,
+    url: `${baseURL}/posts/search?q=${query}`,
   });
 
   return res.data;
@@ -102,7 +102,7 @@ export const searchPostsRequest = async (query) => {
 export const getEthPrice = async () => {
   const res = await axios({
     method: 'GET',
-    url: `${baseURL}/price`,
+    url: `${baseURL}/posts/price`,
   });
 
   return res.data.data.price;

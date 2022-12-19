@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3001/api/v1';
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // API to Server Backend Mongo (Not NEXTJS BACKEND)
 export const signupRequest = async ({ username, email, password }) => {
@@ -15,7 +15,7 @@ export const signupRequest = async ({ username, email, password }) => {
 export const signinRequest = async ({ email, password }) => {
   const res = await axios({
     method: 'POST',
-    url: `http://localhost:3001/api/v1/users/signin`,
+    url: `${baseURL}/users/signin`,
     data: { email, password },
   });
 

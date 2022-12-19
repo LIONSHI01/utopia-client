@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3001/api/v1';
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const deleteNotiRequest = async (notificationId) => {
   return await axios({

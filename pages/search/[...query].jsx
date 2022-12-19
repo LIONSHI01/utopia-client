@@ -16,7 +16,7 @@ const SearchPage = ({ searchPosts, searchWords }) => {
           <p>search results for</p>
           <span>{`" ${searchWords} "`}</span>
         </div>
-        <DisplayList posts={searchPosts} />
+        <DisplayList posts={searchPosts} isLoading={false} />
       </FrameworkContainer>
     </SearchPageContainer>
   );
