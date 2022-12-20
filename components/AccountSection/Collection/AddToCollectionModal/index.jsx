@@ -17,11 +17,11 @@ import {
   UpdateLoaderContainer,
 } from './index.styles';
 import {
-  Overlay,
   IconButton,
   ICON_BUTTON_TYPES,
   CreateCollectionModal,
   Spinner,
+  MasterModalFramework,
 } from '../../../index';
 import { updateCollection } from '../../../../utils/collectionRequest';
 import { newCollectionItems } from '../../../../utils/profileCalculator';
@@ -94,8 +94,11 @@ const AddToCollectionModal = ({
   );
 
   return (
-    <>
-      <ModalContainer showUp={showAddToColModal}>
+    <MasterModalFramework
+      showup={showAddToColModal}
+      setShowup={setShowAddToColModal}
+    >
+      <ModalContainer>
         <div className="close-btn">
           <IconButton
             size="x"
@@ -136,8 +139,8 @@ const AddToCollectionModal = ({
         showCreateCollectionModal={showCreateModal}
         setShowCreateCollectionModal={setShowCreateModal}
       />
-      <Overlay showUp={showAddToColModal} setShowUp={setShowAddToColModal} />
-    </>
+      {/* <Overlay showUp={showAddToColModal} setShowUp={setShowAddToColModal} /> */}
+    </MasterModalFramework>
   );
 };
 

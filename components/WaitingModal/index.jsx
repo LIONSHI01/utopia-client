@@ -6,7 +6,13 @@ import {
   SpinnerContainer,
 } from './index.styles';
 
-import { Button, BUTTON_TYPES, Overlay, Spinner } from '../index';
+import {
+  Button,
+  BUTTON_TYPES,
+  Overlay,
+  Spinner,
+  MasterModalFramework,
+} from '../index';
 
 const WaitingModal = ({
   title,
@@ -18,20 +24,20 @@ const WaitingModal = ({
 }) => {
   if (isLoading) {
     return (
-      <>
-        <ModalContainer showup={showup}>
+      <MasterModalFramework showup={showup} setShowup={() => {}}>
+        <ModalContainer>
           <SpinnerContainer>
             <Spinner message="Transaction may take a few minutes, please wait until transaction complete." />
           </SpinnerContainer>
         </ModalContainer>
-        <Overlay showUp={showup} setShowUp={() => {}} />
-      </>
+        {/* <Overlay showUp={showup} setShowUp={() => {}} /> */}
+      </MasterModalFramework>
     );
   }
 
   return (
-    <>
-      <ModalContainer showup={showup}>
+    <MasterModalFramework showup={showup} setShowup={setShowup}>
+      <ModalContainer>
         <MessageContainer>
           <h3>{title}</h3>
           <p>{message}</p>
@@ -49,8 +55,8 @@ const WaitingModal = ({
           </Button>
         </ButtonsGroup>
       </ModalContainer>
-      <Overlay showUp={showup} setShowUp={setShowup} />
-    </>
+      {/* <Overlay showUp={showup} setShowUp={setShowup} /> */}
+    </MasterModalFramework>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalContainer, MessageContainer, ButtonsGroup } from './index.styles';
 
-import { Button, BUTTON_TYPES, Overlay, MasterModalFramework } from '../index';
+import { Button, BUTTON_TYPES, MasterModalFramework } from '../index';
 
 const AlertModal = ({
   title,
@@ -34,7 +34,6 @@ const AlertModal = ({
           </Button>
         </ButtonsGroup>
       </ModalContainer>
-      {/* <Overlay showUp={showup} setShowUp={setShowup} /> */}
     </MasterModalFramework>
   );
 };

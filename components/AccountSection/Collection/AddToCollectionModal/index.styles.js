@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
-const showUpStyles = css`
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  visibility: visible;
-`;
+// const showUpStyles = css`
+//   opacity: 1;
+//   transform: translate(-50%, -50%);
+//   visibility: visible;
+// `;
 
 export const ModalContainer = styled.div`
-  position: fixed;
+  /* position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -45%);
@@ -19,13 +19,13 @@ export const ModalContainer = styled.div`
   background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s;
-  box-shadow: var(--bs-m);
+  box-shadow: var(--bs-m); */
 
   /* Hide before activate */
-  opacity: 0;
+  /* opacity: 0;
   visibility: hidden;
 
-  ${(props) => props.showUp && showUpStyles}
+  ${(props) => props.showUp && showUpStyles} */
 
   .heading {
     h3 {

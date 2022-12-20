@@ -5,7 +5,7 @@ import { ModalContainer } from './index.styles';
 const MasterModalFramework = ({ children, showup, setShowup }) => {
   return (
     <>
-      <ModalContainer showUp={showup}>{children}</ModalContainer>;
+      <ModalContainer showUp={showup}>{children}</ModalContainer>
       <Overlay showUp={showup} setShowUp={setShowup} />
     </>
   );

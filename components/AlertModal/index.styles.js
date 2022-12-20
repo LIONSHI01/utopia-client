@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-const showUpStyles = css`
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  visibility: visible;
-`;
+// const showUpStyles = css`
+//   opacity: 1;
+//   transform: translate(-50%, -50%);
+//   visibility: visible;
+// `;
 
 export const ModalContainer = styled.div`
   /* position: fixed;
