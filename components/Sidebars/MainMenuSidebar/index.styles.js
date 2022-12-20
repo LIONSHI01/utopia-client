@@ -8,13 +8,13 @@ export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 50rem;
+  width: 80%;
 
   padding: 2rem;
 

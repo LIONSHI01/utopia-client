@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession, signOut } from 'next-auth/react';
 
-// import { useGetUserHook } from '../../../utils/customHooks/fetchUserHook';
 import { IoIosArrowForward } from 'react-icons/io';
 import { profileLinksMobile } from '../../../assets/constants';
 import {
@@ -81,7 +80,11 @@ const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
                 </Button>
               </>
             )}
-            <h4 className="user_name">{user?.name}</h4>
+            <h4 className="user_name">
+              {user?.name.length > 10
+                ? user?.name.slice(0, 5) + '...'
+                : user?.name}
+            </h4>
           </div>
           <ThemeToggler theme={theme} setTheme={setTheme} size={15} />
           <AcBalanceBox />
@@ -116,7 +119,7 @@ const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
               <Button
                 onClick={onSignOutHandler}
                 height="4rem"
-                width="10rem"
+                width="15rem"
                 buttonType={BUTTON_TYPES.outlineGrey}
               >
                 Sign Out

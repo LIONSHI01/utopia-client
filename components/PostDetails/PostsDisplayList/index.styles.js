@@ -7,11 +7,11 @@ export const BoxContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: var(--mg-m);
 
-    h3 {
+    p {
       font-size: var(--fs-xxl);
       font-weight: 300;
-      margin-bottom: var(--mg-m);
     }
   }
 

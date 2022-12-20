@@ -8,7 +8,7 @@ const PostsDisplayList = ({ posts, heading, viewMoreLink }) => {
   return (
     <BoxContainer>
       <div className="heading">
-        <h3>{heading}</h3>
+        <p>{heading}</p>
         <Button
           size="x"
           buttonType={BUTTON_TYPES.outlineGrey}

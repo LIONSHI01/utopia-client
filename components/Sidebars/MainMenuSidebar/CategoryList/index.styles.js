@@ -21,7 +21,7 @@ export const ListContainer = styled.div`
   .master_list {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     & > *:last-child {
       border-bottom-left-radius: var(--br-m);

@@ -164,7 +164,7 @@ const ProfileBox = ({ user, refetchUser }) => {
             Save
           </Button>
           <Button
-            width="14rem"
+            width="20rem"
             height="4rem"
             buttonType={BUTTON_TYPES.outlineGrey}
             onClick={restoreProfileHandler}
