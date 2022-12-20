@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../styles/devices';
 
 export const CardContainer = styled.div`
   width: 25rem;
@@ -6,11 +7,15 @@ export const CardContainer = styled.div`
   border: 2px solid ${({ theme }) => theme.border};
   border-radius: var(--br-m);
   transition: all 0.3s ease-in-out;
-
   cursor: pointer;
 
   :hover {
     border: 2px solid ${({ theme }) => theme.productCardHover};
+  }
+
+  @media ${device.mobileL} {
+    width: 35rem;
+    height: 48rem;
   }
 `;
 
@@ -42,6 +47,10 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 18rem;
   background-color: var(--white);
+
+  @media ${device.mobileL} {
+    height: 23rem;
+  }
 `;
 
 export const ContentContainer = styled.div`

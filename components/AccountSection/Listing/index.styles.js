@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const SectionContainer = styled.div`
   overflow: hidden;
@@ -30,6 +31,12 @@ export const DisplayList = styled.div`
   justify-items: center;
   gap: 3rem;
   margin: 0 auto;
+
+  @media ${device.mobileL} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const CreateButtonWrapper = styled.div`

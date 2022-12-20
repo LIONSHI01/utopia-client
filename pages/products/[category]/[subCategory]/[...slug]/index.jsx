@@ -223,7 +223,8 @@ const ProductDetailsPage = () => {
                     </div>
                     <div className="buttons-group">
                       <Button
-                        size="full"
+                        height="4rem"
+                        width="100%"
                         buttonType={
                           isLiked ? BUTTON_TYPES.base : BUTTON_TYPES.outlineGrey
                         }
@@ -231,7 +232,11 @@ const ProductDetailsPage = () => {
                       >
                         {isLiked ? 'Liked' : 'Add to collection'}
                       </Button>
-                      <Button size="full" onClick={onClickBuyHandler}>
+                      <Button
+                        height="4rem"
+                        width="100%"
+                        onClick={onClickBuyHandler}
+                      >
                         Buy now
                       </Button>
 

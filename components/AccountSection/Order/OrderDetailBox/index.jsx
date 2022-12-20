@@ -3,12 +3,7 @@ import { useMutation } from 'react-query';
 
 import { toast } from 'react-toastify';
 
-import {
-  FaWallet,
-  BsCheck2Circle,
-  AiTwotoneEdit,
-  BiTimeFive,
-} from '../../../ReactIcons';
+import { BsCheck2Circle, AiTwotoneEdit, BiTimeFive } from '../../../ReactIcons';
 
 import { useGetUserHook } from '../../../../utils/customHooks/fetchUserHook';
 

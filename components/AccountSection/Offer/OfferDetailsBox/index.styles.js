@@ -34,6 +34,7 @@ export const TransactionInfoBox = styled.div`
   font-size: var(--fs-s);
   font-weight: 100;
   height: 100%;
+  box-shadow: var(--bs-s);
 
   & > * {
     display: flex;

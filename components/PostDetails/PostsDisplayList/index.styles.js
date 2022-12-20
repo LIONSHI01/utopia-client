@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const BoxContainer = styled.div`
   margin-bottom: var(--mg-x);
@@ -18,5 +19,11 @@ export const BoxContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+
+    @media ${device.mobileL} {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
   }
 `;

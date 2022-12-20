@@ -14,6 +14,10 @@ export const OutterContainer = styled.div`
   margin: 1rem auto;
   padding: 0 14px;
   max-width: var(--container);
+
+  @media ${device.laptop} {
+    margin: 1rem 0;
+  }
 `;
 
 export const PostDetailsContainer = styled.div`
@@ -61,7 +65,7 @@ export const GalleryWrapper = styled.div`
     flex-direction: column;
     min-width: 7rem;
     gap: 1rem;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .thumbnail {
@@ -131,9 +135,14 @@ export const CTAWrapper = styled.div`
 export const DetailsWrapper = styled.div`
   position: relative;
   width: 100%;
+
   .upper-box {
     border-bottom: 1px solid var(--black-light-3);
     margin-bottom: var(--mg-m);
+
+    @media ${device.laptop} {
+      margin: var(--mg-s) 0;
+    }
   }
 
   .title {
@@ -168,10 +177,13 @@ export const DetailsWrapper = styled.div`
   }
 
   .buttons-group {
-    height: 4rem;
     display: flex;
     gap: 2rem;
     margin-bottom: var(--mg-m);
+
+    @media ${device.mobileL} {
+      flex-direction: column;
+    }
   }
 
   .editing-btn {

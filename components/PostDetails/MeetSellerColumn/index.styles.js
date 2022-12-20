@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const ColumnWrapper = styled.div`
   display: flex;
@@ -6,6 +7,10 @@ export const ColumnWrapper = styled.div`
   margin-bottom: var(--mg-m);
   border-bottom: 1px solid ${({ theme }) => theme.border};
   padding-bottom: 2.5rem;
+
+  @media ${device.mobileL} {
+    margin: var(--mg-m) 0;
+  }
 
   .heading {
     font-size: var(--fs);
@@ -16,6 +21,11 @@ export const ColumnWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    @media ${device.mobileL} {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   .seller-image {
@@ -60,5 +70,11 @@ export const ColumnWrapper = styled.div`
     margin-left: auto;
     height: 3rem;
     width: 30rem;
+
+    @media ${device.mobileL} {
+      align-self: unset;
+      margin-left: unset;
+      width: unset;
+    }
   }
 `;

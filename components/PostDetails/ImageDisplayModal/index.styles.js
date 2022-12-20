@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../styles/devices';
 
 export const DisplayModalContainer = styled.div`
   position: fixed;
@@ -13,6 +14,10 @@ export const DisplayModalContainer = styled.div`
   gap: 2rem;
   z-index: 1000;
   padding: 5rem;
+
+  @media ${device.mobileL} {
+    padding: 15rem 5rem;
+  }
 
   .close-btn {
     position: absolute;

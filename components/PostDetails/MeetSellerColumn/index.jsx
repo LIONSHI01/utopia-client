@@ -42,8 +42,8 @@ const MeetSellerColumn = ({ sellerId }) => {
         </div>
         <div className="buttons-group">
           <Button
-            height="3rem"
-            width="15rem"
+            height="4rem"
+            width="20rem"
             buttonType={BUTTON_TYPES.outlineGrey}
             onClick={() => Router.push(`/users/${seller?.id}/listings`)}
           >
