@@ -58,28 +58,7 @@ const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
       <SidebarContainer isOpen={isOpen}>
         <UserSummaryWrapper>
           <div className="user_info">
-            {user ? (
-              <UserIcon user={user} />
-            ) : (
-              <>
-                <Button
-                  onClick={onClickAuthBtns}
-                  height="100%"
-                  width="9rem"
-                  buttonType={BUTTON_TYPES.outlineGrey}
-                >
-                  Sign In
-                </Button>
-                <Button
-                  onClick={onClickAuthBtns}
-                  height="100%"
-                  width="9rem"
-                  buttonType={BUTTON_TYPES.base}
-                >
-                  Get Start
-                </Button>
-              </>
-            )}
+            {user && <UserIcon user={user} />}
             <h4 className="user_name">
               {user?.name.length > 10
                 ? user?.name.slice(0, 5) + '...'
@@ -113,20 +92,41 @@ const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
           ))}
         </ProfileSectionWrapper>
         <CategoryList setSidebarOpen={setIsOpen} />
-        {user && (
-          <AuthSectionWrapper>
-            <div className="buttons_group">
-              <Button
-                onClick={onSignOutHandler}
-                height="4rem"
-                width="15rem"
-                buttonType={BUTTON_TYPES.outlineGrey}
-              >
-                Sign Out
-              </Button>
-            </div>
-          </AuthSectionWrapper>
-        )}
+        <AuthSectionWrapper>
+          <div className="buttons_group">
+            {user ? (
+              <>
+                <Button
+                  onClick={onSignOutHandler}
+                  height="4rem"
+                  width="15rem"
+                  buttonType={BUTTON_TYPES.outlineGrey}
+                >
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  onClick={onClickAuthBtns}
+                  height="100%"
+                  width="9rem"
+                  buttonType={BUTTON_TYPES.outlineGrey}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  onClick={onClickAuthBtns}
+                  height="100%"
+                  width="9rem"
+                  buttonType={BUTTON_TYPES.base}
+                >
+                  Get Start
+                </Button>
+              </>
+            )}
+          </div>
+        </AuthSectionWrapper>
       </SidebarContainer>
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
       <Overlay showUp={isOpen} setShowUp={setIsOpen} />

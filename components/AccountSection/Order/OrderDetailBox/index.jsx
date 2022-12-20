@@ -51,17 +51,17 @@ const OrderDetailBox = ({ order, user, refetchUser }) => {
     }
   );
 
-  const connectWalletHandler = async () => {
-    if (window.ethereum) {
-      await window.ethereum
-        .request({ method: 'eth_requestAccounts' })
-        .then((res) => {
-          setAddress(res[0]);
-        });
-    } else {
-      alert('Please install Metamask extension.');
-    }
-  };
+  // const connectWalletHandler = async () => {
+  //   if (window.ethereum) {
+  //     await window.ethereum
+  //       .request({ method: 'eth_requestAccounts' })
+  //       .then((res) => {
+  //         setAddress(res[0]);
+  //       });
+  //   } else {
+  //     alert('Please install Metamask extension.');
+  //   }
+  // };
 
   useEffect(() => {
     setTxHash(order?.transaction_hash?.[0]?.hash);

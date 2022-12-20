@@ -63,7 +63,7 @@ export const MasterContainer = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: auto;
   min-width: 30rem;
   min-height: 30rem;
   max-width: 30rem;

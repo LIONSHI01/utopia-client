@@ -120,10 +120,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     }
   );
 
-  const onClickconnectWalletHandler = () => {
-    connectWalletHandler();
-  };
-
+  const onClickconnectWalletHandler = () => connectWalletHandler();
   return (
     <>
       <FormContainer showUp={showAuthForm}>

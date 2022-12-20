@@ -22,13 +22,7 @@ import {
 
 const MessageItem = ({ user, message, refetchUser }) => {
   // CONFIGURATION
-  // const queryClient = new QueryClient({
-  //   defaultOptions: {
-  //     queries: {
-  //       staleTime: Infinity,
-  //     },
-  //   },
-  // });
+
   const { content, type, createdAt } = message || {};
 
   const period = timePeriod(createdAt);

@@ -217,7 +217,7 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
             ) : (
               <MetaMaskButton
                 isLoading={isConnecting}
-                onClick={connectWalletHandler}
+                onClick={() => connectWalletHandler()}
               />
             )}
           </ButtonsGroup>
