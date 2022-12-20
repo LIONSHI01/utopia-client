@@ -15,7 +15,7 @@ export const CardContainer = styled.div`
 
   @media ${device.mobileL} {
     width: 35rem;
-    height: 48rem;
+    height: 45rem;
   }
 `;
 

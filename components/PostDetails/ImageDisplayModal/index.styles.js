@@ -46,6 +46,10 @@ export const ThumbnailColumn = styled.div`
   display: flex;
   gap: 1rem;
 
+  @media ${device.mobileL} {
+    overflow-x: auto;
+  }
+
   .thumbnail {
     position: relative;
     width: 10rem;
