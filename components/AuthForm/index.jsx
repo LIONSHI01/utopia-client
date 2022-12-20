@@ -13,6 +13,7 @@ import {
   Overlay,
   ForgotPasswordModal,
   FormInputComp,
+  AlertModal,
 } from '../index';
 import { FormContainer, MetaMaskFormBox, EmailFormBox } from './index.styles';
 import MetaMaskIcon from '../../assets/image/meta_mask.png';
@@ -42,7 +43,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
   const [isEmailSigningIn, setIsEmailSigningIn] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const { username, email, password, passwordConfirm } = formField;
-  const [showPassword, setShowPassword] = useState(false);
+  const [showInstallWalletAlert, setShowInstallWalletAlert] = useState(false);
 
   // HANDLERS
 
@@ -120,7 +121,18 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     }
   );
 
-  const onClickconnectWalletHandler = () => connectWalletHandler();
+  const onClickconnectWalletHandler = () => {
+    if (
+      typeof window === 'undefined' ||
+      typeof window.ethereum === 'undefined' ||
+      !!Boolean(window?.ethereum?.isMetaMask)
+    ) {
+      setShowInstallWalletAlert(true);
+    } else {
+      connectWalletHandler();
+    }
+  };
+
   return (
     <>
       <FormContainer showUp={showAuthForm}>
@@ -269,6 +281,14 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         showup={isForgotPassword}
         setShowup={setIsForgotPassword}
         setShowAuthForm={setShowAuthForm}
+      />
+      {/* Showup if not installed metamask */}
+      <AlertModal
+        title="Reminder"
+        message="Please install MetaMask Wallet first!"
+        showup={showInstallWalletAlert}
+        setShowup={setShowInstallWalletAlert}
+        onConfirmHandler={setShowInstallWalletAlert}
       />
       <Overlay showUp={showAuthForm} setShowUp={setShowAuthForm} />
     </>
