@@ -49,8 +49,6 @@ export const useConnectWallet = () => {
       } catch (err) {
         console.log(err.message);
       }
-    } else {
-      alert('Please install Metamask extension.');
     }
   };
   const addWalletListener = async () => {
@@ -66,8 +64,6 @@ export const useConnectWallet = () => {
         setWalletAddress('');
         console.log(err.message);
       }
-    } else {
-      alert('Please install Metamask extension.');
     }
   };
 

@@ -148,8 +148,6 @@ export const useCreatePayment = (txValue) => {
       } catch (err) {
         console.log(err.message);
       }
-    } else {
-      alert('Please install Metamask extension.');
     }
   };
 
@@ -187,8 +185,6 @@ export const useCreatePayment = (txValue) => {
 
         console.log(err.message);
       }
-    } else {
-      alert('Please install Metamask extension.');
     }
   };
 
