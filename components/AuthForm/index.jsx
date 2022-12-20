@@ -125,7 +125,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
     if (
       typeof window === 'undefined' ||
       typeof window.ethereum === 'undefined' ||
-      !!Boolean(window?.ethereum?.isMetaMask)
+      !window.ethereum.isMetaMask
     ) {
       setShowInstallWalletAlert(true);
     } else {
@@ -179,7 +179,6 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
             <FormInputComp
               name="passwordConfirm"
               value={passwordConfirm}
-              // type="password"
               placeholder="Confirm Password"
               onChange={onChangeHandler}
               className="input-field"
@@ -288,7 +287,7 @@ const AuthForm = ({ showAuthForm, setShowAuthForm }) => {
         message="Please install MetaMask Wallet first!"
         showup={showInstallWalletAlert}
         setShowup={setShowInstallWalletAlert}
-        onConfirmHandler={setShowInstallWalletAlert}
+        onConfirmHandler={() => setShowInstallWalletAlert(false)}
       />
       <Overlay showUp={showAuthForm} setShowUp={setShowAuthForm} />
     </>

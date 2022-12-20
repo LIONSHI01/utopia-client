@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-
+import { isDesktop } from 'react-device-detect';
 import { selectEthPrice } from '../../../store/post/post.selector';
 import {
   IoMdClose,
@@ -75,6 +75,26 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
   // STATE
   // Popup Waiting modal when tx complete
   const [showWaitingModal, setShowWaitingModal] = useState(false);
+
+  const connectWalletBtnHandler = () => {
+    if (!isDesktop) {
+      alert('Please switch to desktop to perform purchase action, thank you.');
+
+      return;
+    }
+
+    if (
+      typeof window === 'undefined' ||
+      typeof window.ethereum === 'undefined' ||
+      !window.ethereum.isMetaMask
+    ) {
+      alert(
+        'Please install MetaMask wallet to perform purchase action, thank you.'
+      );
+      return;
+    }
+    connectWalletHandler();
+  };
 
   const onConfirmHandler = async () => {
     sendTransactionRequest().then(async (res) => {
@@ -208,7 +228,7 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
             ) : (
               <MetaMaskButton
                 isLoading={isConnecting}
-                onClick={() => connectWalletHandler()}
+                onClick={connectWalletBtnHandler}
               />
             )}
           </ButtonsGroup>

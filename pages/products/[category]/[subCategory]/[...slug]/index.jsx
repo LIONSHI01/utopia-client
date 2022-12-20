@@ -119,6 +119,7 @@ const ProductDetailsPage = () => {
   };
   const onClickBuyHandler = () => {
     if (!data) return setShowAuthForm(true);
+
     setShowBuyNowModal(true);
   };
 
