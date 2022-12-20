@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { useSession } from 'next-auth/react';
-
 import { BsBookmarkStarFill } from '../../ReactIcons';
 
 import {
@@ -30,21 +29,6 @@ const SellerInfoBox = ({
 
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
-
-  // API CALLS
-  // const { isLoading: isLoadingFollow, mutate: mutateFollowUser } = useMutation(
-  //   updateUserProfile,
-  //   {
-  //     onSuccess: () => {
-  //       toast.success(`You have updated following list.`);
-  //       refetchUser();
-  //       refetchSeller();
-  //     },
-  //     onError: (err) => {
-  //       console.log(err);
-  //     },
-  //   }
-  // );
 
   // HANDLERS
   const onFollowHandler = () => {

@@ -24,7 +24,6 @@ export const updateCollection = async ({ name, items, collectionId }) => {
     },
   });
 
-  // console.log(res);
   return res;
 };
 

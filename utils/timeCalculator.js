@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export const timePeriod = (updatedAt) => {
-  // console.log(Date.parse(updatedAt));
+  
   const nowTime = moment(new Date());
   const updatedTime = moment(Date.parse(updatedAt));
 

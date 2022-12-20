@@ -44,7 +44,7 @@ const ItemInfoBox = ({
   const { category, title, coverImages, subCategory, description, active } =
     post || {};
   const ethPrice = useSelector(selectEthPrice);
-  console.log(order);
+
   // STATE MANAGEMENT
   const [showBuyerConfirm, setShowBuyerConfirm] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);

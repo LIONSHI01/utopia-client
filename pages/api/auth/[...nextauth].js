@@ -1,7 +1,6 @@
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-// import { signinRequest } from '../../../utils/authRequest';
 import connectMongoose from '../../../utils/connectMongo';
 import User from '../../../models/userModel';
 import { verifyPassword } from '../../../utils/hashPassword';
@@ -42,35 +41,7 @@ export const authOptions = {
         return user;
       },
     }),
-    // CredentialsProvider({
-    //   id: 'credentials',
-    //   name: 'credentials',
-    //   credentials: {},
-    //   async authorize(credentials, req) {
-    //     const { email, password } = credentials;
 
-    //     try {
-    //       const res = await signinRequest({ email, password });
-    //       // console.log(res);
-    //       console.log(res.status);
-    //       if (res.status === 401) {
-    //         throw new Error('Invalid email or password, please try again.');
-    //       }
-
-    //       const user = res.data.user;
-
-    //       if (res.status === 200 && user) {
-    //         return user;
-    //       }
-
-    //       return null;
-    //     } catch (err) {
-    //       console.error(err);
-
-    //       return null;
-    //     }
-    //   },
-    // }),
     CredentialsProvider({
       id: 'walletAddress',
       credentials: {},

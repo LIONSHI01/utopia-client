@@ -6,7 +6,6 @@ import { selectEthPrice } from '../../../store/post/post.selector';
 import {
   IoMdClose,
   VscFoldDown,
-  GrPowerCycle,
   BsArrowCounterclockwise,
 } from '../../ReactIcons';
 import { useCreatePayment } from '../../../utils/customHooks/useCreatePayment';
@@ -80,14 +79,6 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
   const onConfirmHandler = async () => {
     sendTransactionRequest().then(async (res) => {
       if (res.code === 4001) return toast.warn('Transaction cancelled.');
-
-      console.log('From BuyNowModal:', {
-        userId: user?.id,
-        sellerId: post?.postedBy?.id,
-        postId: post?.id,
-        value: post?.price,
-        hash: res,
-      });
 
       try {
         await createOrder({
@@ -256,7 +247,6 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
               ? 'Buy'
               : `Insufficient fund: ${difference} GoerliETH`}
           </Button>
-          {/* <p>{transactionHash}</p> */}
         </PaymentSection>
       </ModalContainer>
 

@@ -24,8 +24,6 @@ export const useConnectWallet = () => {
       } catch (err) {
         console.log(err.message);
       }
-    } else {
-      alert('Please install Metamask extension.');
     }
   };
 
@@ -85,8 +83,6 @@ export const useConnectWallet = () => {
   };
 
   const personalSignHandler = async () => {
-    console.log('Personal Sign Ac:', walletAddress);
-
     const message = [
       'This site is requesting your signature to approve login authorization.',
       'I have read and accept the terms and conditions(https://utopia.org/terms) of this app.',

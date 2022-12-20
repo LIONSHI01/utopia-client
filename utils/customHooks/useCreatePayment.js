@@ -61,8 +61,6 @@ export const useCreatePayment = (txValue) => {
         console.log(err.message);
         setIsConnecting(false);
       }
-    } else {
-      alert('Please install Metamask extension.');
     }
   };
 

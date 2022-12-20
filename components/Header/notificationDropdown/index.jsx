@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
-import { useMutation, QueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 
 import { deleteNotiRequest } from '../../../utils/apiData/notificationRequest';
 import {
@@ -53,8 +53,6 @@ const MessageItem = ({ user, message, refetchUser }) => {
   // API CALLS
   const { mutate: mutateDeleteNoti } = useMutation(deleteNotiRequest, {
     onSuccess: () => {
-      // console.log('noti deleted');
-      // queryClient.refetchQueries(['user']);
       refetchUser();
     },
     onError: (err) => {
@@ -64,7 +62,7 @@ const MessageItem = ({ user, message, refetchUser }) => {
 
   const deleteNotiHandler = (e) => {
     e.stopPropagation();
-    console.log(message?._id);
+
     mutateDeleteNoti(message?._id);
   };
 

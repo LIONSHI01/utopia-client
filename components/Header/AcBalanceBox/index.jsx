@@ -92,13 +92,13 @@ const AcBalanceBox = () => {
             <BiWalletAlt size={17} />
             <RiArrowDownSFill size={17} />
           </DetailsWrapper>
-          <WalletDropdown
-            user={user}
-            showup={showDropdown}
-            setShowup={setShowDropdown}
-            setShowFaucetModal={setShowFaucetModal}
-          />
         </BoxContainer>
+        <WalletDropdown
+          user={user}
+          showup={showDropdown}
+          setShowup={setShowDropdown}
+          setShowFaucetModal={setShowFaucetModal}
+        />
         <FaucetModal
           showup={showFaucetModal}
           setShowup={setShowFaucetModal}

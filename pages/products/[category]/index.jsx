@@ -3,12 +3,11 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 
 import { getCategoryPosts } from '../../../utils/postRequest';
-import { DisplayList, NavigationMap, Spinner } from '../../../components';
+import { DisplayList, NavigationMap } from '../../../components';
 
 import {
   CategoryPageContainer,
   FrameWorkContainer,
-  LoadingPageContainer,
 } from '../../../pages_styles/category.styles';
 
 const CategoryPage = () => {
@@ -28,13 +27,6 @@ const CategoryPage = () => {
       enabled: !!category,
     }
   );
-
-  // if (isLoadingPosts)
-  //   return (
-  //     <LoadingPageContainer>
-  //       <Spinner message="Loading items for you ..." />
-  //     </LoadingPageContainer>
-  //   );
 
   return (
     <CategoryPageContainer>

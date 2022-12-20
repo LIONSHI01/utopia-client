@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
-import validator from 'validator';
+import React from 'react';
 import Link from 'next/link';
-import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
 
 import { FiEdit, BsDropletHalf } from '../../ReactIcons';
 import { DropdownContainer, ContentWrapper } from './index.styles';
-import { FaucetModal, WaitingModal } from '../../index';
-import { claimFaucet } from '../../../utils/apiData/userRequest';
 
 const WalletDropdown = ({ showup, setShowup, user, setShowFaucetModal }) => {
   const onClaimHandler = () => {
-    setShowup(false);
+    setShowup(true);
     setShowFaucetModal(true);
   };
 
@@ -23,7 +18,7 @@ const WalletDropdown = ({ showup, setShowup, user, setShowFaucetModal }) => {
             <BsDropletHalf size={15} />
             <p>Claim Test Eth</p>
           </li>
-          <li onClick={() => setShowup(false)}>
+          <li onClick={() => setShowup(true)}>
             <Link href={`/users/${user?.id}/settings`}>
               <a className="item">
                 <FiEdit size={15} />

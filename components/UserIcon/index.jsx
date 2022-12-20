@@ -30,7 +30,6 @@ const IconWrapper = styled.div`
     position: relative;
     height: 3.7rem;
     width: 3.7rem;
-    /* outline: 2px solid ${({ theme }) => theme.textLight3}; */
 
     ${(props) => props.outline && outlineStyles}
     ${(props) => props.size === 's' && smallSizeStyles}
