@@ -12,11 +12,11 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
   FormInputComp,
+  MasterModalFramework,
 } from '../../../index';
 import { createCollection } from '../../../../utils/collectionRequest';
 
 const CreateCollectionModal = ({
-  // user,
   refetchUser,
   showCreateCollectionModal,
   setShowCreateCollectionModal,
@@ -52,8 +52,11 @@ const CreateCollectionModal = ({
   });
 
   return (
-    <>
-      <ModalContainer showUp={showCreateCollectionModal}>
+    <MasterModalFramework
+      showup={showCreateCollectionModal}
+      setShowup={setShowCreateCollectionModal}
+    >
+      <ModalContainer>
         <div className="close-btn" onClick={closeHandler}>
           <IconButton size="x" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
             <IoMdClose size={25} />
@@ -80,11 +83,7 @@ const CreateCollectionModal = ({
           <Button onClick={onSubmitHandler}>Create collection</Button>
         </div>
       </ModalContainer>
-      <Overlay
-        showUp={showCreateCollectionModal}
-        setShowUp={setShowCreateCollectionModal}
-      />
-    </>
+    </MasterModalFramework>
   );
 };
 

@@ -3,7 +3,12 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 
 import { forgotPasswordRequest } from '../../../utils/apiData/userRequest';
-import { FormInputComp, Button, BUTTON_TYPES, Overlay } from '../../index';
+import {
+  FormInputComp,
+  Button,
+  BUTTON_TYPES,
+  MasterModalFramework,
+} from '../../index';
 import { ModalContainer, MessageContainer, ButtonsGroup } from './index.styles';
 
 const ForgotPasswordModal = ({ showup, setShowup, setShowAuthForm }) => {
@@ -38,8 +43,8 @@ const ForgotPasswordModal = ({ showup, setShowup, setShowAuthForm }) => {
   };
 
   return (
-    <>
-      <ModalContainer showup={showup}>
+    <MasterModalFramework showup={showup} setShowup={setShowup}>
+      <ModalContainer>
         <MessageContainer>
           <h3>Reset Password</h3>
           <p>
@@ -77,8 +82,7 @@ const ForgotPasswordModal = ({ showup, setShowup, setShowAuthForm }) => {
           </Button>
         </div>
       </ModalContainer>
-      <Overlay showUp={showup} setShowUp={setShowup} />
-    </>
+    </MasterModalFramework>
   );
 };
 

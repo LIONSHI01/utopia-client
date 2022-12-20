@@ -7,28 +7,8 @@ const showUpStyles = css`
 `;
 
 export const ModalContainer = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
-
-  width: 55rem;
-  /* height: 40rem; */
-  padding: 3rem;
-  border-radius: 2.4rem;
-  background-color: ${({ theme }) => theme.dropdownBG};
-  z-index: 2000;
-  transition: all 0.3s;
-  box-shadow: var(--bs-m);
   display: flex;
   flex-direction: column;
-
-  /* Hide before activate */
-  opacity: 0;
-  visibility: hidden;
-  /* display: none; */
-
-  ${(props) => props.showUp && showUpStyles}
 
   .heading {
     h3 {
@@ -47,6 +27,7 @@ export const ModalContainer = styled.div`
 
   .buttons-group {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
     height: 5rem;
     margin-top: var(--mg-m);

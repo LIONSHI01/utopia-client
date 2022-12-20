@@ -4,7 +4,13 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../../store/user/user.selector';
 import { ModalContainer, MessageContainer, ButtonsGroup } from './index.styles';
 
-import { Button, BUTTON_TYPES, Overlay, FormInputComp } from '../../index';
+import {
+  Button,
+  BUTTON_TYPES,
+  Overlay,
+  FormInputComp,
+  MasterModalFramework,
+} from '../../index';
 
 const FaucetModal = ({ showup, setShowup, onSubmitClaimHandler }) => {
   const user = useSelector(selectUser);
@@ -15,8 +21,8 @@ const FaucetModal = ({ showup, setShowup, onSubmitClaimHandler }) => {
   };
 
   return (
-    <>
-      <ModalContainer showup={showup}>
+    <MasterModalFramework showup={showup} setShowup={setShowup}>
+      <ModalContainer>
         <MessageContainer>
           <h3>Claim Test GoerliETH</h3>
           <p>
@@ -51,8 +57,7 @@ const FaucetModal = ({ showup, setShowup, onSubmitClaimHandler }) => {
           </Button>
         </ButtonsGroup>
       </ModalContainer>
-      <Overlay showUp={showup} setShowUp={setShowup} />
-    </>
+    </MasterModalFramework>
   );
 };
 

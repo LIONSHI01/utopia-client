@@ -15,6 +15,7 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
   FormInputComp,
+  MasterModalFramework,
 } from '../../../index';
 
 const EditCollectionModal = ({
@@ -54,40 +55,42 @@ const EditCollectionModal = ({
 
   return (
     <>
-      <ModalContainer showUp={showUp}>
-        <div className="close-btn" onClick={closeModalHandler}>
-          <IconButton size="x" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
-            <IoMdClose size={25} />
-          </IconButton>
-        </div>
-        <div className="heading">
-          <h3>Edit Your Collection</h3>
-        </div>
-        <p className="regular_text">Collection Name: </p>
+      <MasterModalFramework setShowup={setShowUp} showup={showUp}>
+        <ModalContainer>
+          <div className="close-btn" onClick={closeModalHandler}>
+            <IconButton size="x" buttonType={ICON_BUTTON_TYPES.hoverBackground}>
+              <IoMdClose size={25} />
+            </IconButton>
+          </div>
+          <div className="heading">
+            <h3>Edit Your Collection</h3>
+          </div>
+          <p className="regular_text">Collection Name: </p>
 
-        <FormInputComp
-          fieldName="collectionName"
-          placeholder="Artwork,Chrismas Gift List, etc."
-          maxLength="50"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <div className="buttons-group">
-          <button size="x" className="delete-btn" onClick={deleteHandler}>
-            <IoMdTrash size={20} />
-            Delete collection
-          </button>
+          <FormInputComp
+            fieldName="collectionName"
+            placeholder="Artwork,Chrismas Gift List, etc."
+            maxLength="50"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <div className="buttons-group">
+            <button size="x" className="delete-btn" onClick={deleteHandler}>
+              <IoMdTrash size={20} />
+              Delete collection
+            </button>
 
-          <Button
-            buttonType={BUTTON_TYPES.outlineGrey}
-            onClick={closeModalHandler}
-          >
-            Cancel
-          </Button>
-          <Button onClick={onSubmitHandler}>Save</Button>
-        </div>
-      </ModalContainer>
-      <Overlay showUp={showUp} setShowUp={setShowUp} />
+            <Button
+              buttonType={BUTTON_TYPES.outlineGrey}
+              onClick={closeModalHandler}
+            >
+              Cancel
+            </Button>
+            <Button onClick={onSubmitHandler}>Save</Button>
+          </div>
+        </ModalContainer>
+      </MasterModalFramework>
+      {/* <Overlay showUp={showUp} setShowUp={setShowUp} /> */}
     </>
   );
 };

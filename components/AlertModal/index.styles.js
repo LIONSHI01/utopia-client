@@ -7,13 +7,11 @@ const showUpStyles = css`
 `;
 
 export const ModalContainer = styled.div`
-  position: fixed;
+  /* position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -45%);
 
-  display: flex;
-  flex-direction: column;
 
   min-width: 20rem;
   max-width: 60rem;
@@ -30,7 +28,10 @@ export const ModalContainer = styled.div`
   opacity: 0;
   visibility: hidden;
 
-  ${(props) => props.showup && showUpStyles}
+  ${(props) => props.showup && showUpStyles} */
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const MessageContainer = styled.div`
@@ -39,6 +40,7 @@ export const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 3rem 0;
 
   h3 {
     font-size: var(--fs-xl);
@@ -48,8 +50,10 @@ export const MessageContainer = styled.div`
   p {
     font-size: var(--fs);
     font-weight: 100;
+    text-align: center;
   }
 `;
+
 export const ButtonsGroup = styled.div`
   display: flex;
   justify-content: center;

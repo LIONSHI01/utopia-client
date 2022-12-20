@@ -1,19 +1,18 @@
 import styled, { css } from 'styled-components';
 
-const showUpStyles = css`
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  visibility: visible;
-`;
+// const showUpStyles = css`
+//   opacity: 1;
+//   transform: translate(-50%, -50%);
+//   visibility: visible;
+// `;
 
 export const ModalContainer = styled.div`
-  position: fixed;
+  /* position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -45%);
+  transform: translate(-50%, -45%); */
 
-  display: flex;
-  flex-direction: column;
+  /* 
 
   min-width: 20rem;
   max-width: 80rem;
@@ -30,7 +29,10 @@ export const ModalContainer = styled.div`
   opacity: 0;
   visibility: hidden;
 
-  ${(props) => props.showup && showUpStyles}
+  ${(props) => props.showup && showUpStyles} */
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const MessageContainer = styled.div`

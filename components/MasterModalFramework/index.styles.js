@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-
+import { device } from '../../styles/devices';
 const showUpStyles = css`
   opacity: 1;
   transform: translate(-50%, -50%);
@@ -7,27 +7,31 @@ const showUpStyles = css`
 `;
 
 export const ModalContainer = styled.div`
-  /* position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -45%); */
+  transform: translate(-50%, -45%);
 
-  /* width: 55rem;
+  width: 55rem;
   padding: 3rem;
   border-radius: 2.4rem;
   background-color: ${({ theme }) => theme.dropdownBG};
   z-index: 2000;
   transition: all 0.3s;
-  box-shadow: var(--bs-m); */
-  /* color: ${({ theme }) => theme.textDark}; */
+  box-shadow: var(--bs-m);
   display: flex;
   flex-direction: column;
+  color: ${({ theme }) => theme.textDark};
 
   /* Hide before activate */
-  /* opacity: 0;
-  visibility: hidden; */
+  opacity: 0;
+  visibility: hidden;
 
-  /* ${(props) => props.showUp && showUpStyles} */
+  @media ${device.mobileL} {
+    width: 90%;
+  }
+
+  ${(props) => props.showUp && showUpStyles}
 
   .heading {
     margin-bottom: var(--mg-m);

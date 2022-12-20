@@ -7,13 +7,12 @@ const showUpStyles = css`
 `;
 
 export const ModalContainer = styled.div`
-  position: fixed;
+  /* position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -45%);
 
-  display: flex;
-  flex-direction: column;
+
 
   width: 40rem;
   min-height: 30rem;
@@ -27,7 +26,10 @@ export const ModalContainer = styled.div`
   transition: all 0.3s ease-in-out 0.1s;
 
   opacity: 0;
-  visibility: hidden;
+  visibility: hidden; */
+
+  display: flex;
+  flex-direction: column;
 
   ${(props) => props.showup && showUpStyles}
 
