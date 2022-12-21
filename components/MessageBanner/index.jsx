@@ -7,11 +7,11 @@ const MessageBanner = ({ setShowup, popOutFn }) => {
   return (
     <BannerWrapper onClick={() => popOutFn(true)}>
       <p>
-        Please claim test GoerliETH to test the application by clicking this
-        banner on desktop !
+        Please claim test GoerliETH to BUY anything in the application by
+        clicking this banner on desktop !
       </p>
       <IoMdClose
-        size={15}
+        size={18}
         className="close-btn"
         onClick={(e) => {
           e.stopPropagation();

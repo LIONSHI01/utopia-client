@@ -6,7 +6,7 @@ export const BannerWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 2rem;
+  padding: 0.8rem 4rem;
   background-color: var(--primary);
 
   cursor: pointer;
@@ -18,7 +18,7 @@ export const BannerWrapper = styled.div`
   .close-btn {
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 1rem;
     transform: translate(-50%, -50%);
     margin-left: auto;
     cursor: pointer;

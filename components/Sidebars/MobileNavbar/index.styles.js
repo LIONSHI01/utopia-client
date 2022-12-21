@@ -18,9 +18,14 @@ const navBarStickyStyles = css`
 `;
 
 export const MasterWrapper = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100%;
+
+  @media ${device.tablet} {
+    display: flex;
+    z-index: 999;
+  }
 
   ${(props) => props.sticky && navBarStickyStyles}
 `;

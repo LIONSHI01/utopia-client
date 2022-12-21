@@ -109,16 +109,16 @@ const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
               <>
                 <Button
                   onClick={onClickAuthBtns}
-                  height="100%"
-                  width="9rem"
+                  height="4rem"
+                  width="12rem"
                   buttonType={BUTTON_TYPES.outlineGrey}
                 >
                   Sign In
                 </Button>
                 <Button
                   onClick={onClickAuthBtns}
-                  height="100%"
-                  width="9rem"
+                  height="4rem"
+                  width="12rem"
                   buttonType={BUTTON_TYPES.base}
                 >
                   Get Start
