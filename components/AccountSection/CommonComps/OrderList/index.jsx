@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { CgSandClock } from 'react-icons/cg';
-import { MdDoneAll } from 'react-icons/md';
 
+import { CgSandClock, MdDoneAll } from '../../../ReactIcons';
 import { Pagination } from '../../../index';
 
 import {

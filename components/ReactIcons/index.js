@@ -8,9 +8,17 @@ import {
   AiTwotoneEdit,
   AiOutlineHeart,
   AiOutlinePlus,
+  AiOutlineUserDelete,
+  AiFillCloseCircle,
 } from 'react-icons/ai';
 import { BiTimeFive, BiWalletAlt } from 'react-icons/bi';
-import { FaWallet, FaExchangeAlt, FaUserCircle } from 'react-icons/fa';
+import {
+  FaWallet,
+  FaExchangeAlt,
+  FaUserCircle,
+  FaChevronRight,
+  FaChevronLeft,
+} from 'react-icons/fa';
 import {
   MdDelete,
   MdDoneAll,
@@ -23,13 +31,18 @@ import {
   IoMdTrash,
   IoIosWarning,
   IoIosArrowForward,
+  IoIosArrowDown,
 } from 'react-icons/io';
 import { CgSandClock } from 'react-icons/cg';
 import { GrFacebookOption, GrPowerCycle } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
-import { HiOutlineMail } from 'react-icons/hi';
+import {
+  HiOutlineMail,
+  HiOutlineSearch,
+  HiOutlineLightBulb,
+} from 'react-icons/hi';
 import { TbFileInvoice } from 'react-icons/tb';
-import { FiSettings, FiHeart, FiEdit } from 'react-icons/fi';
+import { FiSettings, FiHeart, FiEdit, FiTrash } from 'react-icons/fi';
 import {
   RiAuctionFill,
   RiAuctionLine,
@@ -37,8 +50,10 @@ import {
   RiNotification4Line,
   RiArrowDownSFill,
   RiUserFill,
+  RiLockPasswordLine,
 } from 'react-icons/ri';
 import {
+  BsArrowClockwise,
   BsCheck2Circle,
   BsXCircleFill,
   BsCalendar3,
@@ -56,11 +71,12 @@ import {
   BsEyeFill,
   BsHouseFill,
   BsSun,
+  BsShop,
   BsArrowCounterclockwise,
 } from 'react-icons/bs';
 import { ImEarth, ImFacebook, ImProfile, ImArrowLeft2 } from 'react-icons/im';
 import { SiMinutemailer } from 'react-icons/si';
-import { VscFoldDown } from 'react-icons/vsc';
+import { VscFoldDown, VscSignOut } from 'react-icons/vsc';
 import { BiMoon } from 'react-icons/bi';
 import { HiOutlineMenu, HiOutlineDocumentText } from 'react-icons/hi';
 
@@ -130,4 +146,16 @@ export {
   FaExchangeAlt,
   FaUserCircle,
   RiUserFill,
+  BsShop,
+  AiOutlineUserDelete,
+  RiLockPasswordLine,
+  HiOutlineSearch,
+  FaChevronRight,
+  FaChevronLeft,
+  AiFillCloseCircle,
+  IoIosArrowDown,
+  VscSignOut,
+  FiTrash,
+  BsArrowClockwise,
+  HiOutlineLightBulb,
 };

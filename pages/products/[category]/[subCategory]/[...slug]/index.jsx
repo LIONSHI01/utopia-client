@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Head from 'next/head';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -133,6 +134,9 @@ const ProductDetailsPage = () => {
   return (
     <>
       <DetailsPageContainer>
+        <Head>
+          <title>Utopia - {post?.title}</title>
+        </Head>
         <OutterContainer>
           <NavigationMap
             categoryValue={category}

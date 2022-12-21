@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import ImageUploading from 'react-images-uploading';
 import Image from 'next/image';
-import { BsArrowClockwise } from 'react-icons/bs';
-import { HiOutlineLightBulb } from 'react-icons/hi';
-import { FiTrash } from 'react-icons/fi';
+import Head from 'next/head';
+import ImageUploading from 'react-images-uploading';
+
+import {
+  FiTrash,
+  BsArrowClockwise,
+  HiOutlineLightBulb,
+} from '../components/ReactIcons';
 
 import { Button, PostForm } from '../components';
 
@@ -32,6 +36,9 @@ const CreatePost = () => {
 
   return (
     <CreatePostContainer>
+      <Head>
+        <title>Utopia - Create post</title>
+      </Head>
       <OutterContainer>
         <ImageUploading
           multiple
@@ -62,7 +69,7 @@ const CreatePost = () => {
                       Select Images
                     </Button>
                     <p>or drag photos here</p>
-                    <span>(up to 10 photos)</span>
+                    <span>(up to 10 photos, accept JPG, PNG only)</span>
                   </div>
                 </div>
               </UploadImageWrapper>

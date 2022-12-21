@@ -1,11 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { BsShop } from 'react-icons/bs';
-import { ImEarth } from 'react-icons/im';
-
+import { BsShop, ImEarth } from '../../../ReactIcons';
 import { ItemWrapper, ImageGridWrapper } from './index.styles';
-import placeholderImage from '../../../../assets/image/salad.jpg';
 
 const ImageGrid = ({ images }) => {
   return (

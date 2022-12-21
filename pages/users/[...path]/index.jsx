@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -65,6 +66,9 @@ const AccountPage = () => {
 
   return (
     <PageContainer>
+      <Head>
+        <title>Utopia - Dashboard</title>
+      </Head>
       <MenuSidebar
         refetchUser={refetchUser}
         user={user}

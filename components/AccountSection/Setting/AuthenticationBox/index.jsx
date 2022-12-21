@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
-import { RiLockPasswordLine } from 'react-icons/ri';
 
+import { RiLockPasswordLine } from '../../../ReactIcons';
 import { changePasswordRequest } from '../../../../utils/apiData/userRequest';
 import { FormInputComp, Button, BUTTON_TYPES } from '../../../index';
 import { AuthenticationWrapper } from './index.styles';

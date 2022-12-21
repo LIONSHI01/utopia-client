@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 
@@ -30,6 +31,9 @@ const CategoryPage = () => {
 
   return (
     <CategoryPageContainer>
+      <Head>
+        <title>Utopia - {category}</title>
+      </Head>
       <FrameWorkContainer>
         <NavigationMap categoryValue={category} />
         <div className="list_container">

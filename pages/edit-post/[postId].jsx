@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
+import Head from 'next/head';
 import ImageUploading from 'react-images-uploading';
 import Image from 'next/image';
-import { BsArrowClockwise } from 'react-icons/bs';
-import { HiOutlineLightBulb } from 'react-icons/hi';
-import { FiTrash } from 'react-icons/fi';
+import {
+  BsArrowClockwise,
+  HiOutlineLightBulb,
+  FiTrash,
+} from '../../components/ReactIcons';
+
 import { getPostDetails } from '../../utils/postRequest';
 import { Button, PostEditForm } from '../../components';
 
@@ -20,8 +23,6 @@ import {
 
 const EditPostPage = ({ post }) => {
   // CONFIGURATION
-
-  // console.log(data);
   const maxNumber = 10;
 
   // STATE MANAGEMENT
@@ -34,6 +35,9 @@ const EditPostPage = ({ post }) => {
 
   return (
     <EditPostContainer>
+      <Head>
+        <title>Edit Post</title>
+      </Head>
       <OutterContainer>
         <ImageUploading
           multiple

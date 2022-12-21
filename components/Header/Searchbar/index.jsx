@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 
-import { HiOutlineSearch } from 'react-icons/hi';
+import { HiOutlineSearch } from '../../ReactIcons';
 import { SearchbarWrapper } from './index.styles';
 
 const Searchbar = ({ setShowOverlay }) => {

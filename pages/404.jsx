@@ -1,9 +1,9 @@
 import React from 'react';
-// import Link from 'next/link';
+import Head from 'next/head';
 import Image from 'next/image';
 import Router from 'next/router';
 
-import { Button, BUTTON_TYPES } from '../components/index';
+import { Button } from '../components/index';
 
 import {
   PageWrapper,
@@ -16,6 +16,9 @@ import ErrorImage from '../assets/image/error_image.png';
 const ErrorPage = () => {
   return (
     <PageWrapper>
+      <Head>
+        <title>Utopia - 404 error</title>
+      </Head>
       <LinkSection>
         <div className="title">
           <h1>404</h1>
@@ -33,33 +36,6 @@ const ErrorPage = () => {
             Explore Our Site
           </Button>
         </div>
-        {/* <div className="links">
-          <h2>Can&#39;t find what you were looking for?</h2>
-          <ul>
-            <Link href="/men">
-              <a className="link">
-                <li>
-                  Today&#39;s trend of <span>men</span> &rarr;
-                </li>
-              </a>
-            </Link>
-            <Link href="/women">
-              <a className="link">
-                <li>
-                  Today&#39;s trend of <span>women</span> &rarr;
-                </li>
-              </a>
-            </Link>
-
-            <Link href="/products">
-              <a className="link">
-                <li>
-                  Explore <span>all</span> the products &rarr;
-                </li>
-              </a>
-            </Link>
-          </ul>
-        </div> */}
       </LinkSection>
       <ImageSection>
         <div className="image-container">

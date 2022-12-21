@@ -5,7 +5,7 @@ export const FooterContainer = styled.div`
   background-color: var(--black);
   display: flex;
   color: var(--white);
-  border-top: 1px solid ${({ theme }) => theme.border}; 
+  border-top: 1px solid ${({ theme }) => theme.border};
 `;
 
 export const MasterFramworkWrapper = styled.div`
@@ -32,14 +32,13 @@ export const LogoColWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  /* background-color: green; */
-
   .logo {
     display: block;
     margin: auto 0;
     color: var(--white);
     font-size: 5.2rem;
     font-family: var(--ff-display);
+    font-weight: 700;
   }
 `;
 
@@ -153,7 +152,6 @@ export const EmailBarContainer = styled.div`
     height: 100%;
     width: 100%;
     border: none;
-    /* background-color: orangered; */
     font-size: var(--fs-s);
     color: var(--black-light-2);
     padding: 0 1rem;

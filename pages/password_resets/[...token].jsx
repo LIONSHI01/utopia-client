@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
@@ -59,6 +60,9 @@ const ResetPasswordPage = () => {
 
   return (
     <PageContainer>
+      <Head>
+        <title>Utopia - Reset password</title>
+      </Head>
       <FrameworkContainer>
         <ImageContainer>
           <Image

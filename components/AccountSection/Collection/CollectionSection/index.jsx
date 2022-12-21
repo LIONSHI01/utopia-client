@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
+
+import { AiOutlinePlus } from '../../../ReactIcons';
 
 import {
   SectionContainer,

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 
 import {
   SubCategoryPageContainer,
   FrameWorkContainer,
-  LoadingPageContainer,
 } from '../../../../pages_styles/subCategory.styles';
 import { getSubCategoryPosts } from '../../../../utils/postRequest';
-import { DisplayList, NavigationMap, Spinner } from '../../../../components';
+import { DisplayList, NavigationMap } from '../../../../components';
 
 const SubCategoryPage = () => {
   const [posts, setPosts] = useState([]);
@@ -26,15 +26,11 @@ const SubCategoryPage = () => {
     }
   );
 
-  // if (isLoadingPosts)
-  //   return (
-  //     <LoadingPageContainer>
-  //       <Spinner message="Loading items for you ..." />
-  //     </LoadingPageContainer>
-  //   );
-
   return (
     <SubCategoryPageContainer>
+      <Head>
+        <title>Utopia - {subCategory}</title>
+      </Head>
       <FrameWorkContainer>
         <NavigationMap
           categoryValue={category}

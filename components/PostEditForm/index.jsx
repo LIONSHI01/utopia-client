@@ -4,8 +4,8 @@ import { useSession } from 'next-auth/react';
 import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { IoIosArrowDown } from 'react-icons/io';
 
+import { IoIosArrowDown } from '../ReactIcons';
 import { Button, BUTTON_TYPES } from '../index';
 import { FormContainer } from './index.styles';
 import { categories } from '../../assets/constants';

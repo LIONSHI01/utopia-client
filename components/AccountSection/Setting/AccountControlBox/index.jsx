@@ -3,8 +3,8 @@ import { signOut } from 'next-auth/react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
-import { AiOutlineUserDelete } from 'react-icons/ai';
 
+import { AiOutlineUserDelete } from '../../../ReactIcons';
 import { inactivateUserRequest } from '../../../../utils/apiData/userRequest';
 
 import { Button, BUTTON_TYPES, Overlay, FormInputComp } from '../../../index';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession, signOut } from 'next-auth/react';
 
-import { IoIosArrowForward } from 'react-icons/io';
+import { IoIosArrowForward } from '../../ReactIcons';
 import { profileLinksMobile } from '../../../assets/constants';
 import {
   Overlay,

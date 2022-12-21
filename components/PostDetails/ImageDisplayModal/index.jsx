@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { AiFillCloseCircle } from 'react-icons/ai';
 
+import { AiFillCloseCircle } from '../../ReactIcons';
 import {
   DisplayModalContainer,
   DisplayedImageWrapper,

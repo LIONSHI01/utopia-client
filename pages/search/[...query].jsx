@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { searchPostsRequest } from '../../utils/postRequest';
-
+import Head from 'next/head';
 import { DisplayList } from '../../components';
 import {
   SearchPageContainer,
@@ -10,6 +10,9 @@ import {
 const SearchPage = ({ searchPosts, searchWords }) => {
   return (
     <SearchPageContainer>
+      <Head>
+        <title>Utopia - Search results</title>
+      </Head>
       <FrameworkContainer>
         <div className="search-words">
           <span className="results-number">{searchPosts?.length}</span>

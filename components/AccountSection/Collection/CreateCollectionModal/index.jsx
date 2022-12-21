@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { IoMdClose } from 'react-icons/io';
+
 import { useSession } from 'next-auth/react';
 import { useMutation } from 'react-query';
-
+import { IoMdClose } from '../../../ReactIcons';
 import { ModalContainer } from './index.styles';
 import {
-  Overlay,
   Button,
   BUTTON_TYPES,
   IconButton,
