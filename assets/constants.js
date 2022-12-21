@@ -13,7 +13,6 @@ import {
   ImFacebook,
   BsGithub,
   RiEarthFill,
-  BsHeart,
   AiOutlineHeart,
   HiOutlineDocumentText,
 } from '../components/ReactIcons';
@@ -44,11 +43,6 @@ export const categories = [
         subCategoryValue: 'bags',
         link: '/products/fashion/bags',
       },
-      {
-        subCategory: 'Others',
-        subCategoryValue: 'Others',
-        link: '/products/fashion/others',
-      },
     ],
   },
   {
@@ -75,11 +69,6 @@ export const categories = [
         subCategory: 'photography',
         subCategoryValue: 'photography',
         link: '/products/mobiles-electronics/photography',
-      },
-      {
-        subCategory: 'others',
-        subCategoryValue: 'others',
-        link: '/products/mobiles-electronics/others',
       },
     ],
   },
@@ -108,11 +97,6 @@ export const categories = [
         subCategoryValue: 'lighting-fans',
         link: '/products/home-decors/lighting-fan',
       },
-      {
-        subCategory: 'others',
-        subCategoryValue: 'others',
-        link: '/products/home-decors/others',
-      },
     ],
   },
   {
@@ -139,11 +123,6 @@ export const categories = [
         subCategory: 'sun glasses',
         subCategoryValue: 'sun-glasses',
         link: '/products/living/sun-glasses',
-      },
-      {
-        subCategory: 'others',
-        subCategoryValue: 'others',
-        link: '/products/living/others',
       },
     ],
   },
@@ -172,11 +151,6 @@ export const categories = [
         subCategoryValue: 'sport-equipments',
         link: '/products/hobbies/sport-equipments',
       },
-      {
-        subCategory: 'others',
-        subCategoryValue: 'others',
-        link: '/products/hobbies/others',
-      },
     ],
   },
   {
@@ -199,11 +173,6 @@ export const categories = [
         subCategoryValue: 'property-for-rental',
         link: '/products/cars-properties/property-rental',
       },
-      {
-        subCategory: 'others',
-        subCategoryValue: 'others',
-        link: '/products/cars-properties/others',
-      },
     ],
   },
   {
@@ -220,11 +189,6 @@ export const categories = [
         subCategory: 'full-time',
         subCategoryValue: 'full-time',
         link: '/products/jobs-services/full-time',
-      },
-      {
-        subCategory: 'internships & others',
-        subCategoryValue: 'internships-others',
-        link: '/products/jobs-services/internship-others',
       },
     ],
   },

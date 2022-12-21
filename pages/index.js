@@ -49,7 +49,7 @@ const Home = () => {
     <ContentContainer>
       <Head>
         <title>Utopia - Home</title>
-        <link rel="shortcut icon" href="/static/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <FrameworkContainer>
         <DisplayList posts={posts} isLoading={isLoadingPosts} />

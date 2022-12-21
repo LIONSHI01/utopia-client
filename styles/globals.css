@@ -97,23 +97,11 @@ figure {
   --grey-light-1: #eaeaea;
   --grey-light-2: #eeeeee;
   --grey-light-3: #f7f7f7;
-  /* 
-  --grey-dark-1: #5c5c5c;
-  --grey-dark-2: #474747;
-  --grey-dark-3: #333; */
 
   --green: #4ca230;
-  /* --green: #4ca23037; */
   --red: #e94560;
   --white: #fff;
   --yellow: #ffc93c;
-
-  /* --primary: #ff2e63;
-  --primary-light: #ff5882;
-  --primary-light-2: #ffabc1;
-  --primary-light-3: #ffc0d0;
-  --primary-light-4: #ffeaef;
-  --primary-dark: #cc254f; */
 
   --primary: #ff6f3c;
   --primary-light: #ff8c63;
@@ -222,13 +210,7 @@ ul {
   margin-inline-end: 0px;
   padding-inline-start: 0px;
 }
-/* 
-.Toastify__toast--warning {
 
-}
-.Toastify__toast--error {
-
-} */
 .toastBody {
   font-family: 'DM Sans', sans-serif;
   color: #10171d;
@@ -242,5 +224,4 @@ ul {
   background-color: var(--black);
   color: var(--white);
   z-index: 1100;
-  /* padding: 8px; */
 }
