@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { UserIcon, Searchbar, ThemeToggler } from '../../index';
-import { NavbarContainer, StickyFillinSpace } from './index.styles';
+import { UserIcon, Searchbar, MessageBanner } from '../../index';
+import {
+  MasterWrapper,
+  NavbarContainer,
+  StickyFillinSpace,
+} from './index.styles';
 import { HiOutlineMenu } from '../../ReactIcons';
 
 const MobileNavbar = ({ setIsSidebarOpen }) => {
@@ -11,6 +15,7 @@ const MobileNavbar = ({ setIsSidebarOpen }) => {
 
   const [sticky, setSticky] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
 
   // STICKY EFFECT
   const addStickyEffect = () => {
@@ -28,26 +33,31 @@ const MobileNavbar = ({ setIsSidebarOpen }) => {
   return (
     <>
       <StickyFillinSpace sticky={sticky} />
-      <NavbarContainer sticky={sticky}>
-        <div className="upper_part">
-          <div
-            className="sidebar_open_btn"
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            <HiOutlineMenu size={30} />
+      <MasterWrapper sticky={sticky}>
+        <NavbarContainer>
+          <div className="upper_part">
+            <div
+              className="sidebar_open_btn"
+              onClick={() => setIsSidebarOpen(true)}
+            >
+              <HiOutlineMenu size={30} />
+            </div>
+            <Link href="/">
+              <a className="logo">Utopia</a>
+            </Link>
+            <div className="user_section">
+              {data && (
+                <UserIcon user={user} onClick={() => setIsSidebarOpen(true)} />
+              )}
+            </div>
           </div>
-          <Link href="/">
-            <a className="logo">Utopia</a>
-          </Link>
-          <div className="user_section">
-            {data && (
-              <UserIcon user={user} onClick={() => setIsSidebarOpen(true)} />
-            )}
-          </div>
-        </div>
 
-        <Searchbar setShowOverlay={setShowOverlay} />
-      </NavbarContainer>
+          <Searchbar setShowOverlay={setShowOverlay} />
+        </NavbarContainer>
+        {showBanner && (
+          <MessageBanner setShowup={setShowBanner} popOutFn={() => {}} />
+        )}
+      </MasterWrapper>
     </>
   );
 };

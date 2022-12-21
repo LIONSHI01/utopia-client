@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
+import { FaUserCircle, RiUserFill } from '../ReactIcons/index';
 
 import UserMenuDropdown from './UserMenu';
 
@@ -54,6 +55,40 @@ const IconWrapper = styled.div`
       text-transform: uppercase;
     }
   }
+  .placeholderContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    span {
+      font-size: var(--fs);
+    }
+  }
+
+  .placeholderIconContainer {
+    background-color: ${({ theme }) => theme.textLight3};
+    border-radius: 100px;
+    height: 3.7rem;
+    width: 3.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ${(props) => props.outline && outlineStyles}
+    ${(props) => props.size === 's' && smallSizeStyles}
+    ${(props) => props.size === 'xs' && xsSizeStyles}
+  }
+
+  .placeholderIcon {
+    height: 3rem;
+    width: 3rem;
+
+    ${(props) => props.outline && outlineStyles}
+    ${(props) => props.size === 's' && smallSizeStyles}
+    ${(props) => props.size === 'xs' && xsSizeStyles}
+ 
+    color: var(--primary);
+  }
 `;
 
 const UserIcon = ({
@@ -61,6 +96,7 @@ const UserIcon = ({
   size,
   hasUserMenu = false,
   outline = false,
+  placeHolder = false,
   ...otherProps
 }) => {
   const ref = useRef();
@@ -79,6 +115,19 @@ const UserIcon = ({
       window.removeEventListener('mousedown', checkIfClickOutside, true);
     };
   }, [showUserMenu]);
+
+  if (placeHolder) {
+    return (
+      <IconWrapper size={size} ref={ref} outline={outline} {...otherProps}>
+        <div className="placeholderContainer">
+          <div className="placeholderIconContainer">
+            <RiUserFill className="placeholderIcon" />
+          </div>
+          <span>Visitor</span>
+        </div>
+      </IconWrapper>
+    );
+  }
 
   return (
     <IconWrapper size={size} ref={ref} outline={outline} {...otherProps}>

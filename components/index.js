@@ -62,6 +62,7 @@ import ThemeToggler from './ThemeToggler';
 import ProductCardSkeleton from './LoadingSkeletons/ProductCardSkeleton';
 import ProfilePreviewCardSkeleton from './LoadingSkeletons/ProfilePreviewCardSkeleton';
 import MasterModalFramework from './MasterModalFramework';
+import MessageBanner from './MessageBanner';
 
 export {
   MainHeader,
@@ -129,4 +130,5 @@ export {
   ProductCardSkeleton,
   ProfilePreviewCardSkeleton,
   MasterModalFramework,
+  MessageBanner,
 };

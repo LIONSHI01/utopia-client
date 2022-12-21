@@ -36,6 +36,20 @@ export const ColumnWrapper = styled.div`
     overflow: hidden;
   }
 
+  .placeholder {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 100px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      font-size: var(--fs-xxxl);
+      text-transform: capitalize;
+    }
+  }
+
   .profile {
     display: flex;
     flex-direction: column;

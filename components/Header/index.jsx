@@ -5,8 +5,8 @@ import Router from 'next/router';
 
 import { ThemeToggler } from '../index';
 import { useGetUserHook } from '../../utils/customHooks/fetchUserHook';
+import { useClaimFaucet } from '../../utils/customHooks/useClaimFaucet';
 import { RiNotification4Line, FiHeart } from '../ReactIcons';
-
 import {
   UserIcon,
   Button,
@@ -17,6 +17,9 @@ import {
   CategoryBar,
   AcBalanceBox,
   Overlay,
+  MessageBanner,
+  FaucetModal,
+  WaitingModal,
 } from '../index';
 
 import { HeaderWrapper, InnerWrapper, StickyFillinSpace } from './index.styles';
@@ -28,12 +31,24 @@ const MainHeader = ({ theme, setTheme }) => {
   const { user, refetch: refetchUser } = useGetUserHook({
     userId: data?.profile?._id,
   });
+  const {
+    isClaiming,
+    onSubmitClaimHandler,
+    showFaucetModal,
+    setShowFaucetModal,
+    showWaitingModal,
+    setShowWaitingModal,
+    waitModalTitle,
+    waitModalMsg,
+    waitingModalLink,
+  } = useClaimFaucet();
 
   // STATE MANAGEMENT
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [showNotiDropdown, setShowNotiDropdown] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [sticky, setSticky] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
 
   useEffect(() => {
     const checkIfClickOutside = (e) => {
@@ -151,9 +166,29 @@ const MainHeader = ({ theme, setTheme }) => {
           </div>
         </HeaderWrapper>
         <CategoryBar />
+        {showBanner && (
+          <MessageBanner
+            setShowup={setShowBanner}
+            popOutFn={setShowFaucetModal}
+          />
+        )}
       </InnerWrapper>
       <AuthForm showAuthForm={showAuthForm} setShowAuthForm={setShowAuthForm} />
       <Overlay zIndex={101} setShowUp={setShowOverlay} showUp={showOverlay} />
+
+      <FaucetModal
+        showup={showFaucetModal}
+        setShowup={setShowFaucetModal}
+        onSubmitClaimHandler={onSubmitClaimHandler}
+      />
+      <WaitingModal
+        title={waitModalTitle}
+        message={waitModalMsg}
+        url={waitingModalLink}
+        isLoading={isClaiming}
+        showup={showWaitingModal}
+        setShowup={setShowWaitingModal}
+      />
     </>
   );
 };

@@ -58,7 +58,7 @@ const MainMenuSidebar = ({ isOpen, setIsOpen, theme, setTheme }) => {
       <SidebarContainer isOpen={isOpen}>
         <UserSummaryWrapper>
           <div className="user_info">
-            {user && <UserIcon user={user} />}
+            {user ? <UserIcon user={user} /> : <UserIcon placeHolder={true} />}
             <h4 className="user_name">
               {user?.name.length > 10
                 ? user?.name.slice(0, 5) + '...'

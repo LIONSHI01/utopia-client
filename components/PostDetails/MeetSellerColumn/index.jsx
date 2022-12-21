@@ -16,15 +16,21 @@ const MeetSellerColumn = ({ sellerId }) => {
     <ColumnWrapper>
       <div className="heading">Meet the seller</div>
       <div className="seller-container">
-        <div className="seller-image">
-          <Image
-            src={seller?.photo}
-            alt="seller"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </div>
+        {seller?.photo ? (
+          <div className="seller-image">
+            <Image
+              src={seller?.photo}
+              alt="seller"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          </div>
+        ) : (
+          <div className="placeholder">
+            <span>{seller?.name?.slice(0, 1)}</span>
+          </div>
+        )}
         <div className="profile">
           <span className="name">{seller?.name}</span>
           <div className="details">

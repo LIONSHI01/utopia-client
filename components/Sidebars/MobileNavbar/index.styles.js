@@ -3,6 +3,7 @@ import { device } from '../../../styles/devices';
 
 const fillinSpaceStickyStyles = css`
   height: 10rem;
+
   @media ${device.tablet} {
     display: unset;
   }
@@ -16,6 +17,14 @@ const navBarStickyStyles = css`
   z-index: 999;
 `;
 
+export const MasterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  ${(props) => props.sticky && navBarStickyStyles}
+`;
+
 export const NavbarContainer = styled.div`
   display: none;
   flex-direction: column;
@@ -27,8 +36,6 @@ export const NavbarContainer = styled.div`
     display: flex;
     z-index: 999;
   }
-
-  ${(props) => props.sticky && navBarStickyStyles}
 
   .upper_part {
     display: flex;

@@ -7,7 +7,6 @@ import { ModalContainer, MessageContainer, ButtonsGroup } from './index.styles';
 import {
   Button,
   BUTTON_TYPES,
-  Overlay,
   FormInputComp,
   MasterModalFramework,
 } from '../../index';

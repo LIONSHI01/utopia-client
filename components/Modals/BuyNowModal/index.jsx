@@ -27,6 +27,7 @@ import {
   IconButton,
   ICON_BUTTON_TYPES,
   WaitingModal,
+  AlertModal,
 } from '../../index';
 import ETHIcon from '../../../assets/image/eth-icon.png';
 import { toast } from 'react-toastify';
@@ -75,11 +76,11 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
   // STATE
   // Popup Waiting modal when tx complete
   const [showWaitingModal, setShowWaitingModal] = useState(false);
+  const [showInstallWalletAlert, setShowInstallWalletAlert] = useState(false);
 
   const connectWalletBtnHandler = () => {
     if (!isDesktop) {
       alert('Please switch to desktop to perform purchase action, thank you.');
-
       return;
     }
 
@@ -88,9 +89,7 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
       typeof window.ethereum === 'undefined' ||
       !window.ethereum.isMetaMask
     ) {
-      alert(
-        'Please install MetaMask wallet to perform purchase action, thank you.'
-      );
+      setShowInstallWalletAlert(true);
       return;
     }
     connectWalletHandler();
@@ -276,6 +275,13 @@ const BuyNowModal = ({ showup, setShowup, post, user, refetchUser }) => {
         url={waitingModalLink}
         showup={showWaitingModal}
         setShowup={setShowWaitingModal}
+      />
+      <AlertModal
+        title="Reminder"
+        message="Please install MetaMask Wallet first!"
+        showup={showInstallWalletAlert}
+        setShowup={setShowInstallWalletAlert}
+        onConfirmHandler={() => setShowInstallWalletAlert(false)}
       />
       {/* Don't let Overly control close modal here, not disburbing transaction by accident */}
       <Overlay showUp={showup} setShowUp={() => {}} />

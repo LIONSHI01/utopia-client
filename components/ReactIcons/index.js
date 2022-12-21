@@ -10,7 +10,7 @@ import {
   AiOutlinePlus,
 } from 'react-icons/ai';
 import { BiTimeFive, BiWalletAlt } from 'react-icons/bi';
-import { FaWallet, FaExchangeAlt } from 'react-icons/fa';
+import { FaWallet, FaExchangeAlt, FaUserCircle } from 'react-icons/fa';
 import {
   MdDelete,
   MdDoneAll,
@@ -36,6 +36,7 @@ import {
   RiEarthFill,
   RiNotification4Line,
   RiArrowDownSFill,
+  RiUserFill,
 } from 'react-icons/ri';
 import {
   BsCheck2Circle,
@@ -127,4 +128,6 @@ export {
   BiMoon,
   BsArrowCounterclockwise,
   FaExchangeAlt,
+  FaUserCircle,
+  RiUserFill,
 };
