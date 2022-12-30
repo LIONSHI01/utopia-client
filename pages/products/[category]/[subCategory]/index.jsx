@@ -29,7 +29,7 @@ const SubCategoryPage = () => {
   return (
     <SubCategoryPageContainer>
       <Head>
-        <title>Utopia - {subCategory}</title>
+        <title>{subCategory} | Utopia</title>
       </Head>
       <FrameWorkContainer>
         <NavigationMap

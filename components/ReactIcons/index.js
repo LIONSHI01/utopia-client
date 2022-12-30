@@ -10,6 +10,8 @@ import {
   AiOutlinePlus,
   AiOutlineUserDelete,
   AiFillCloseCircle,
+  AiFillBehanceCircle,
+  AiFillHome,
 } from 'react-icons/ai';
 import { BiTimeFive, BiWalletAlt } from 'react-icons/bi';
 import {
@@ -129,6 +131,7 @@ export {
   BiWalletAlt,
   RiArrowDownSFill,
   FiEdit,
+  AiFillHome,
   BsDropletHalf,
   IoIosArrowForward,
   HiOutlineMenu,
@@ -158,4 +161,5 @@ export {
   FiTrash,
   BsArrowClockwise,
   HiOutlineLightBulb,
+  AiFillBehanceCircle,
 };

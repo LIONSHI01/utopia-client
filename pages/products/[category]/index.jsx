@@ -32,7 +32,7 @@ const CategoryPage = () => {
   return (
     <CategoryPageContainer>
       <Head>
-        <title>Utopia - {category}</title>
+        <title>{category} | Utopia</title>
       </Head>
       <FrameWorkContainer>
         <NavigationMap categoryValue={category} />

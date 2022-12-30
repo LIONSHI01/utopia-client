@@ -28,7 +28,7 @@ const ResetPasswordPage = () => {
     query: { token },
   } = router || {};
 
-  // STATES
+  // STATES2
   const [formField, setFormField] = useState(INITIAL_FORM_FIELDS);
   const { password, confirmPassword } = formField;
 
@@ -61,7 +61,7 @@ const ResetPasswordPage = () => {
   return (
     <PageContainer>
       <Head>
-        <title>Utopia - Reset password</title>
+        <title>Reset password | Utopia</title>
       </Head>
       <FrameworkContainer>
         <ImageContainer>

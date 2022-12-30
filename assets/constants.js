@@ -15,6 +15,8 @@ import {
   RiEarthFill,
   AiOutlineHeart,
   HiOutlineDocumentText,
+  AiFillBehanceCircle,
+  AiFillHome,
 } from '../components/ReactIcons';
 
 export const categories = [
@@ -311,5 +313,19 @@ export const profileLinksMobile = [
     path: '/account/settings',
     icon: <FiSettings size={20} />,
     isPublic: false,
+  },
+];
+
+export const AUTHOR_INFO = [
+  { title: 'homePage', link: 'https://lionshi.io', icon: <AiFillHome /> },
+  {
+    title: 'github',
+    link: 'https://github.com/LIONSHI01',
+    icon: <BsGithub />,
+  },
+  {
+    title: 'behance',
+    link: 'https://www.behance.net/lionc',
+    icon: <AiFillBehanceCircle />,
   },
 ];

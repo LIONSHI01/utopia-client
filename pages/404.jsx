@@ -17,7 +17,7 @@ const ErrorPage = () => {
   return (
     <PageWrapper>
       <Head>
-        <title>Utopia - 404 error</title>
+        <title>404 error | Utopia</title>
       </Head>
       <LinkSection>
         <div className="title">

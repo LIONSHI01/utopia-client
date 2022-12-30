@@ -11,7 +11,7 @@ const SearchPage = ({ searchPosts, searchWords }) => {
   return (
     <SearchPageContainer>
       <Head>
-        <title>Utopia - Search results</title>
+        <title>Search results | Utopia</title>
       </Head>
       <FrameworkContainer>
         <div className="search-words">

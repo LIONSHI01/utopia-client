@@ -12,7 +12,7 @@ const stickyStyles = css`
 export const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: var(--white); */
+
   background-color: ${(props) => props.theme.background};
   width: 100%;
   z-index: 1000;

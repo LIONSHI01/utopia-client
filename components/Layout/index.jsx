@@ -1,7 +1,12 @@
 import React from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { MainHeader, Footer, MobileNavigation } from '../index';
+import {
+  MainHeader,
+  Footer,
+  MobileNavigation,
+  AuthorDisplayBlock,
+} from '../index';
 
 const Layout = ({ children, theme, themeToggler }) => {
   NProgress.configure({ showSpinner: false });
@@ -15,6 +20,7 @@ const Layout = ({ children, theme, themeToggler }) => {
       <MainHeader theme={theme} setTheme={themeToggler} />
       {children}
       <Footer />
+      <AuthorDisplayBlock />
     </>
   );
 };

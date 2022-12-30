@@ -63,6 +63,7 @@ import ProductCardSkeleton from './LoadingSkeletons/ProductCardSkeleton';
 import ProfilePreviewCardSkeleton from './LoadingSkeletons/ProfilePreviewCardSkeleton';
 import MasterModalFramework from './MasterModalFramework';
 import MessageBanner from './MessageBanner';
+import AuthorDisplayBlock from './AuthorDisplayBlock';
 
 export {
   MainHeader,
@@ -131,4 +132,5 @@ export {
   ProfilePreviewCardSkeleton,
   MasterModalFramework,
   MessageBanner,
+  AuthorDisplayBlock,
 };

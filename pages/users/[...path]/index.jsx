@@ -67,7 +67,7 @@ const AccountPage = () => {
   return (
     <PageContainer>
       <Head>
-        <title>Utopia - Dashboard</title>
+        <title>Dashboard | Utopia</title>
       </Head>
       <MenuSidebar
         refetchUser={refetchUser}

@@ -36,7 +36,7 @@ const EditPostPage = ({ post }) => {
   return (
     <EditPostContainer>
       <Head>
-        <title>Edit Post</title>
+        <title>Edit Post | Utopia</title>
       </Head>
       <OutterContainer>
         <ImageUploading

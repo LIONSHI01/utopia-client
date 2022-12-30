@@ -37,7 +37,7 @@ const CreatePost = () => {
   return (
     <CreatePostContainer>
       <Head>
-        <title>Utopia - Create post</title>
+        <title>Create post | Utopia </title>
       </Head>
       <OutterContainer>
         <ImageUploading

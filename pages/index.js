@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <ContentContainer>
       <Head>
-        <title>Utopia - Home</title>
+        <title>Home | Utopia</title>
         <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <FrameworkContainer>
