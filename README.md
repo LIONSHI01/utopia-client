@@ -1,4 +1,4 @@
-## Frontend Marketplace App 👨‍💻
+## Full Stack Marketplace App 👨‍💻
 
 [![](https://img.shields.io/badge/Gmail-anhquan291%40gmail.com-red)](mailto:lionshi@gmail.com)
 
@@ -18,12 +18,10 @@
 
 ## :star: Technical details
 
-- React
+- Front-end framework: Next.js
+- Back-end framework: Express.js (Refer to: https://github.com/LIONSHI01/utopia-backend)
 - NPM managed workflows.
-- UI framework: Next.js.
-- Header Animation: Animated, React Animatable.
-- Form: Redux form validation.
-- Icon: React-icons.
-- Payment: Transaction on Ethereum Goerli Testnet
-- Loader: Skeleton loader.
+- Database: MongoDB.
 - Reducer: Redux.
+- Icon: React-icons.
+- Payment: Transaction on Ethereum Goerli Testnet (with Web3.js)
