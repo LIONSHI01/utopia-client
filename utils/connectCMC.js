@@ -6,8 +6,7 @@ export const getEthereumQuotes = async () => {
       method: 'GET',
       url: 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=eth',
       headers: {
-        // 'X-CMC_PRO_API_KEY': process.env.NEXT_PUBLIC_CMC_API_KEY,
-        'X-CMC_PRO_API_KEY': '80f0e599-8c5c-4bdc-91a8-c17c7e2b3d84',
+        'X-CMC_PRO_API_KEY': process.env.NEXT_PUBLIC_CMC_API_KEY,
         'Access-Control-Allow-Origin': '*',
       },
     });

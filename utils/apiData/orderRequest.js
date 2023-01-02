@@ -48,7 +48,6 @@ export const deleteOrder = async (orderId) => {
     url: `${baseURL}/orders/inactivate/${orderId}`,
   });
 
-  console.log(res);
   return res.data;
 };
 

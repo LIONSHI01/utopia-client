@@ -4,8 +4,8 @@
 
 ## :star: Features
 
-- Authentication (Signup, Login, Reset Password).
-- Product post management (Upload/Edit post details).
+- Authentication (Signup, Login, Reset Password)
+- Product post management (Upload/Edit post details)
 - Real time update products, ethereum price
 - User profile (Upload/Edit Profile Picture, Address, Social media link)
 - Payment method: Ethereum transaction
@@ -18,10 +18,10 @@
 
 ## :star: Technical details
 
-- Front-end framework: Next.js
-- Back-end framework: Express.js (Refer to: https://github.com/LIONSHI01/utopia-backend)
-- NPM managed workflows.
-- Database: MongoDB.
-- Reducer: Redux.
-- Icon: React-icons.
+- Frontend framework: Next.js
+- Backend framework: Express.js (Refer to: https://github.com/LIONSHI01/utopia-backend)
+- NPM managed workflows
+- Database: MongoDB
+- Reducer: Redux
+- Icon: React-icons
 - Payment: Transaction on Ethereum Goerli Testnet (with Web3.js)
