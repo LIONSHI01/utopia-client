@@ -1,6 +1,6 @@
 ## Full Stack Marketplace App 👨‍💻
 
-[![](https://img.shields.io/badge/Gmail-anhquan291%40gmail.com-red)](mailto:lionshi@gmail.com)
+[![](https://img.shields.io/badge/Gmail-lionshi2012%40gmail.com-red)](mailto:lionshi2012@gmail.com)
 
 ## :star: Features
 
