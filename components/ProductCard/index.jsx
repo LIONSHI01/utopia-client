@@ -122,13 +122,12 @@ const ProductCard = ({ post }) => {
           </div>
           <div className="buttons-group">
             <button onClick={onClickLikeBtn} className="like-btn">
-              <BsFillHeartFill
-                size={25}
-                className={isLiked ? 'icon is_liked' : 'icon'}
-              />
+              <BsFillHeartFill className={isLiked ? 'icon is_liked' : 'icon'} />
             </button>
             <Button
-              size="m"
+              fonsSize="1.8rem"
+              width="8rem"
+              height="4rem"
               type="button"
               buttonType={BUTTON_TYPES.base}
               onClick={() => router.replace(productLink)}

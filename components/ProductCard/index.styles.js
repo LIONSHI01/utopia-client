@@ -3,7 +3,9 @@ import { device } from '../../styles/devices';
 
 export const CardContainer = styled.div`
   width: 25rem;
-  height: 38rem;
+  /* height: 38rem; */
+  display: flex;
+  flex-direction: column;
   border: 2px solid ${({ theme }) => theme.border};
   border-radius: var(--br-m);
   transition: all 0.3s ease-in-out;
@@ -15,7 +17,8 @@ export const CardContainer = styled.div`
 
   @media ${device.mobileL} {
     width: 35rem;
-    height: 45rem;
+    height: auto;
+    /* height: 43rem; */
   }
 `;
 
@@ -54,6 +57,8 @@ export const ImageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   padding: 1rem;
@@ -61,7 +66,8 @@ export const ContentContainer = styled.div`
   .details {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--mg-s);
+    /* margin-bottom: var(--mg-s); */
+    margin-bottom: auto;
   }
 
   .title {
@@ -101,11 +107,13 @@ export const ContentContainer = styled.div`
   .status {
     font-size: var(--fs-ss);
     color: ${({ theme }) => theme.textLight2};
+    margin-bottom: var(--mg-s);
   }
 
   .buttons-group {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .like-btn {
@@ -116,6 +124,11 @@ export const ContentContainer = styled.div`
 
     :active {
       scale: 0.8;
+    }
+
+    svg {
+      height: 3rem;
+      width: 3rem;
     }
   }
 
