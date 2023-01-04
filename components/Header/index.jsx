@@ -136,7 +136,7 @@ const MainHeader = ({ theme, setTheme }) => {
 
             {data && (
               <>
-                <AcBalanceBox />
+                {user?.walletAddress && <AcBalanceBox />}
                 <UserIcon user={user} hasUserMenu={true} outline={true} />
               </>
             )}
