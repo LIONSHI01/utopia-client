@@ -23,3 +23,12 @@ export const LoadingPageContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const EmptyPostContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xl);
+  margin-top: 10rem;
+  text-align: center;
+`;

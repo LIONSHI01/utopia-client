@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import {
   SubCategoryPageContainer,
   FrameWorkContainer,
+  EmptyPostContainer,
 } from '../../../../pages_styles/subCategory.styles';
 import { getSubCategoryPosts } from '../../../../utils/postRequest';
 import { DisplayList, NavigationMap } from '../../../../components';
@@ -25,11 +26,27 @@ const SubCategoryPage = () => {
       enabled: !!category && !!subCategory,
     }
   );
+  console.log(subCategory);
+  if (posts.length === 0) {
+    return (
+      <SubCategoryPageContainer>
+        <Head>
+          <title>{subCategory?.replace('-', ' ')} | Utopia</title>
+        </Head>
+        <FrameWorkContainer>
+          <NavigationMap categoryValue={category} />
+          <EmptyPostContainer>
+            <p>Ops! No Product found on this category yet.</p>
+          </EmptyPostContainer>
+        </FrameWorkContainer>
+      </SubCategoryPageContainer>
+    );
+  }
 
   return (
     <SubCategoryPageContainer>
       <Head>
-        <title>{subCategory} | Utopia</title>
+        <title>{subCategory?.replace('-', ' ')} | Utopia</title>
       </Head>
       <FrameWorkContainer>
         <NavigationMap

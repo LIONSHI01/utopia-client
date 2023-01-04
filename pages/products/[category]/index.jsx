@@ -9,6 +9,7 @@ import { DisplayList, NavigationMap } from '../../../components';
 import {
   CategoryPageContainer,
   FrameWorkContainer,
+  EmptyPostContainer,
 } from '../../../pages_styles/category.styles';
 
 const CategoryPage = () => {
@@ -29,10 +30,26 @@ const CategoryPage = () => {
     }
   );
 
+  if (posts.length === 0) {
+    return (
+      <CategoryPageContainer>
+        <Head>
+          <title>{category?.replace('-', ' ')} | Utopia</title>
+        </Head>
+        <FrameWorkContainer>
+          <NavigationMap categoryValue={category} />
+          <EmptyPostContainer>
+            <p>Ops! No Product found on this category yet.</p>
+          </EmptyPostContainer>
+        </FrameWorkContainer>
+      </CategoryPageContainer>
+    );
+  }
+
   return (
     <CategoryPageContainer>
       <Head>
-        <title>{category} | Utopia</title>
+        <title>{category?.replace('-', ' ')} | Utopia</title>
       </Head>
       <FrameWorkContainer>
         <NavigationMap categoryValue={category} />
