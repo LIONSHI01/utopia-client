@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useGetUserHook } from '../../../utils/customHooks/fetchUserHook';
 import { useGetEthHook } from '../../../utils/customHooks/ethQueryHook';
 import { setEthPrice } from '../../../store/post/post.action';
-
+import TagManager from 'react-gtm-module';
 import {
   Spinner,
   MenuSidebar,
@@ -55,6 +55,17 @@ const AccountPage = () => {
     setIsAuthenticated(data?.profile?._id === user?._id);
     setDisplaySection(query?.path?.[1]);
   }, [user, data, query]);
+
+  useEffect(() => {
+    if (user) {
+      TagManager.dataLayer({
+        dataLayer: {
+          event: 'user_dashboard_view',
+          login_user: user?.id,
+        },
+      });
+    }
+  }, [user]);
 
   if (isLoadingUser) {
     return (

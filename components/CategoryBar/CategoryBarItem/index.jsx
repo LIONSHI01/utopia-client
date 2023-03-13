@@ -31,6 +31,7 @@ const CategoryBarItem = ({ item }) => {
 
   return (
     <ItemWrapper
+      className="category_item"
       onMouseEnter={() => {
         timer = setTimeout(() => setShowMenu(true), 300);
       }}
@@ -41,7 +42,9 @@ const CategoryBarItem = ({ item }) => {
     >
       <Link href={link}>
         <a>
-          <span>{category}</span>
+          <span className="category_item_text" value={category}>
+            {category}
+          </span>
         </a>
       </Link>
       {showMenu && <DropdownWindow subCategories={subCategories} />}

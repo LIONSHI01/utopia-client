@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
+import TagManager from 'react-gtm-module';
 
 import { IoIosArrowDown } from '../ReactIcons';
 import { Button } from '../index';
@@ -54,6 +55,7 @@ const PostForm = ({ images }) => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (images.length === 0)
@@ -75,11 +77,28 @@ const PostForm = ({ images }) => {
 
     // Send Request
     mutateCreatePost({ data: form });
+
+    // GTM data layer push
+    TagManager.dataLayer({
+      dataLayer: {
+        category,
+        subCategory,
+        brand,
+        title,
+        description,
+        price,
+        user_id: user?.profile?._id,
+      },
+    });
   };
 
   return (
     <FormContainer>
-      <form className="post-form" onSubmit={onSubmitHandler}>
+      <form
+        id="create_post_form"
+        className="post-form"
+        onSubmit={onSubmitHandler}
+      >
         <div className="category">
           <label htmlFor="category">Category</label>
           <div className="field-cover">

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { device } from '../../../styles/devices';
 
-export const ItemWrapper = styled.div`
+export const ItemWrapper = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
   position: relative;
 
   height: 100%;

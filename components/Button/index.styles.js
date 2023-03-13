@@ -21,7 +21,9 @@ const disableStyles = css`
   background-color: var(--black-light-3);
 `;
 
-export const BaseButton = styled.button`
+export const BaseButton = styled.button.attrs((props) => ({
+  className: props.className,
+}))`
   border: none;
   background-color: var(--primary);
   color: var(--white);

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import ReactTooltip from 'react-tooltip';
-
+import TagManager from 'react-gtm-module';
 import {
   ImageDisplayModal,
   Button,
@@ -112,6 +112,25 @@ const ProductDetailsPage = () => {
       window.removeEventListener('mousedown', checkIfClickOutside, true);
     };
   }, [showEditDropdown]);
+
+  // Initial Google Manager Data layer
+  useEffect(() => {
+    if (user && seller && post) {
+      TagManager.dataLayer({
+        dataLayer: {
+          event: 'product_page_view',
+          pageQuery: query,
+          category,
+          subCategory,
+          product_name: slug[0],
+          product_id: slug[1],
+          login_user: user?.id,
+          post_creator: seller?.id,
+          price: post?.price,
+        },
+      });
+    }
+  }, [user, seller, post]);
 
   // HANDLERS
   const onClickAddToCollectionHandler = () => {
@@ -228,6 +247,7 @@ const ProductDetailsPage = () => {
                     </div>
                     <div className="buttons-group">
                       <Button
+                        className="add_to_collection_btn"
                         height="4rem"
                         width="100%"
                         buttonType={
@@ -238,6 +258,7 @@ const ProductDetailsPage = () => {
                         {isLiked ? 'Liked' : 'Add to collection'}
                       </Button>
                       <Button
+                        className="buy_now_btn"
                         height="4rem"
                         width="100%"
                         onClick={onClickBuyHandler}
